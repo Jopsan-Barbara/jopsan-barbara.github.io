@@ -1,0 +1,15 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const context=vm.createContext({});vm.runInContext(fs.readFileSync(__dirname+'/Code.gs','utf8'),context);
+const guests=[['example-private-id','Familia de prueba','','',2]];
+const payload={id:'example-private-id',firstName:'Prueba',lastName:'Local',email:'test@example.com',attends:'Sí',people:2,companions:'Acompañante',diet:'Ninguna',consent:true};
+const validate=(data)=>context.validate_(data,guests);
+assert.equal(validate(payload)[6],2);
+assert.equal(validate({...payload,attends:'No',people:500,diet:''})[6],0);
+for(const change of [{people:3},{people:1.5},{id:'desconocido'},{email:'incorrecto'},{consent:false},{website:'spam'},{firstName:''},{companions:''}])assert.throws(()=>validate({...payload,...change}));
+assert.equal(validate({...payload,firstName:'=IMPORTXML("x")'})[2].charAt(0),"'");
+let released=false,rows=Array.from({length:200},()=>['']),written=[];
+context.LockService={getScriptLock:()=>({tryLock:()=>true,releaseLock:()=>{released=true;}})};
+context.SpreadsheetApp={openById:id=>({getSheetByName:()=>({getRange:(row,col,height,width)=>({getValues:()=>id.startsWith('1ov')?guests:rows,setValues:value=>{written.push({row,value});rows[row-6]=[value[0][1]];}})})}),flush:()=>{}};
+assert.equal(context.submitRsvp(payload).ok,true);assert.equal(written[0].row,6);assert(released);
+context.submitRsvp({...payload,attends:'No'});assert.equal(written[1].row,6);assert.equal(written[1].value[0][6],0);
+console.log('13 verificaciones correctas: validación, cupos, ID, consentimiento, fórmulas y actualización sin duplicados.');

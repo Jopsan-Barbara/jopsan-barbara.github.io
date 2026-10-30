@@ -50,7 +50,10 @@ function getDashboard() {
   const viewer = authorize_();
   const guests = SpreadsheetApp.openById(PANEL_GUESTS_).getSheetByName('Invitados').getRange(6,1,200,9).getDisplayValues();
   const answers = SpreadsheetApp.openById(PANEL_ANSWERS_).getSheetByName('Respuestas').getRange(6,1,200,12).getDisplayValues();
-  return Object.assign(compile_(guests,answers),{viewer,refreshedAt:new Date().toISOString()});
+  const result=compile_(guests,answers);
+  const songSheet=SpreadsheetApp.openById(PANEL_ANSWERS_).getSheetByName('Canciones');
+  if(songSheet){const songs=new Map(songSheet.getRange(2,1,200,3).getDisplayValues().filter(r=>r[1]).map(r=>[r[1],r[2]]));guests.filter(g=>String(g[1]).trim()).forEach((g,i)=>{if(songs.has(String(g[0]).trim()))result.rows[i].song=songs.get(String(g[0]).trim());});}
+  return Object.assign(result,{viewer,refreshedAt:new Date().toISOString()});
 }
 
 function addGuest(data) {

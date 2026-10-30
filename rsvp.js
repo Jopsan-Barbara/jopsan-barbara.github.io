@@ -22,7 +22,7 @@
     frame.src=endpoint.href;frame.title='Formulario de confirmación de asistencia';frame.loading='lazy';
     frame.style.cssText='width:100%;height:1400px;border:0;display:block;margin-top:24px;border-radius:8px';
     section.querySelector('a[aria-disabled="true"]')?.remove();
-    copy.textContent='Confirma por todas las personas de tu invitación en el formulario.';
+    copy.textContent='Confirma por todas las personas de tu invitación.';
     section.append(frame);
   } catch (_) { /* Mantener el estado pendiente cuando no se pueda cargar configuración. */ }
 })();

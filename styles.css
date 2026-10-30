@@ -206,4 +206,4 @@ h2 em{font-weight:400}
 
 /* Colores reservados para la novia. */
 .reserved-palette span{position:relative}
-.reserved-palette span::after{content:"";position:absolute;inset:-2px;border:3px solid #a44242;border-radius:50%;background:linear-gradient(135deg,transparent calc(50% - 1.5px),#a44242 calc(50% - 1.5px),#a44242 calc(50% + 1.5px),transparent calc(50% + 1.5px));pointer-events:none}
+.reserved-palette span::after{content:"";position:absolute;inset:-2px;border:1.5px solid #907b83;border-radius:50%;background:linear-gradient(135deg,transparent calc(50% - .75px),#907b83 calc(50% - .75px),#907b83 calc(50% + .75px),transparent calc(50% + .75px));pointer-events:none}

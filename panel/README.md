@@ -1,16 +1,11 @@
-# Panel privado de los novios
+# Panel privado de Jopsan y Bárbara
 
-Proyecto de Apps Script independiente del formulario público. Publicar ejecutando como el usuario que accede, con acceso para usuarios con cuenta de Google. Nunca ejecutar este panel como el propietario: getActiveUser no identifica de forma fiable a invitados externos en ese modo.
+Ejecutar como el usuario que accede; cada RPC valida las tres cuentas permitidas. Invitados compartida como editor con ambos novios para crear invitaciones y configurar regalos; Respuestas permanece de consulta. No ejecutar como propietario.
 
-El servidor comprueba la cuenta en cada lectura y antes de servir la interfaz. Lista permitida: scarriont@gmail.com, Jopsan.a.v@gmail.com y Bamh.3003@gmail.com. Si la cuenta está vacía o no coincide se deniega todo. No se acepta identidad enviada por parámetros.
+Agregar invitado genera UUID estable, cupos y URL personal. Límite 200 invitaciones. Los enlaces no caducan: desde 2027-02-01T03:00:00Z se rechazan nuevas respuestas y modificaciones en servidor, y se muestra acceso a #regalos. Corresponde al cierre 31-01-2027 23:59 America/Santiago.
 
-Compartir exclusivamente las dos planillas con las cuentas de los novios como lectores. El proyecto no tiene funciones de escritura. Los filtros se aplican a las mismas filas usadas por indicadores, barras y detalle. No se guarda información en localStorage ni se incluye en parámetros URL.
+Configurar regalos publica datos de transferencia y hasta 20 regalos simbólicos en pestaña Regalos de Invitados (B1 datos bancarios, B2 líneas nombre | monto CLP). La vista pública lee exclusivamente esas dos celdas; escapa HTML y no procesa pagos, reserva stock ni acredita transferencias. Sin configuración muestra estado pendiente.
 
-Grano: una invitación, con su respuesta vigente. Cupos pendientes son los cupos de invitaciones sin responder; personas confirmadas suma únicamente las respuestas Sí. Las indicaciones alimentarias se cuentan por invitación, no por persona. No se suman respuestas sin ID vinculado. Duplicados o valores inválidos detienen la carga en lugar de producir cifras engañosas.
+Pruebas: test-panel.cjs y integration/test-rsvp.cjs. Creación probada en vivo con invitación temporal y retirada luego; guardado de configuración vacía verificado. Cierre probado antes y desde el instante límite. No se ha accedido como los novios: deben usar sus cuentas autorizadas.
 
-Límite: 200 invitaciones, coherente con las planillas y el formulario. Sin datos reales cargados, el panel muestra ceros y un estado vacío.
-
-
-Implementación: https://script.google.com/macros/s/AKfycbyuJCaM-awsmWY3OCfAC1RvWk7dwYNlbcEmTeZI0Pt5yonWSY3GfJ0WgpBgIT4eLw/exec
-
-Estado: publicado con ejecución como usuario; ambas planillas compartidas como lector con los novios. La primera autorización de Google está pendiente; todavía no se ha validado la carga real de datos en la implementación. Pruebas locales: autorización cerrada por defecto, cruce de respuestas, totales, duplicados y estado vacío.
+Panel: https://script.google.com/macros/s/AKfycbyuJCaM-awsmWY3OCfAC1RvWk7dwYNlbcEmTeZI0Pt5yonWSY3GfJ0WgpBgIT4eLw/exec

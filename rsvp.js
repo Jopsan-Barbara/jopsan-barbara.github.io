@@ -1,6 +1,9 @@
 (async function () {
   const section = document.querySelector('#rsvp .container');
   if (!section) return;
+  const invitationId=new URLSearchParams(location.search).get('id');
+  const songFrame=document.getElementById('song-frame');
+  if(songFrame && invitationId){const songUrl=new URL(songFrame.src);songUrl.searchParams.set('id',invitationId);songFrame.src=songUrl.href;}
   if(Date.now()>=Date.parse('2027-02-01T03:00:00Z')) {
     document.getElementById('guest-title').textContent='El tiempo para confirmar asistencia ha finalizado';
     document.getElementById('guest-copy').textContent='Sin embargo, si nos quieres dejar un regalo aún estás a tiempo de hacerlo.';

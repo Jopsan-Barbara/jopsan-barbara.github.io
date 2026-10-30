@@ -1,0 +1,7 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+let email='other@gmail.com',writes=[],rows=Array.from({length:200},()=>Array(9).fill(''));
+const sheet={getRange:(r,c,h,w)=>({getValues:()=>rows,setValues:v=>writes.push({r,c,v}),setValue:v=>writes.push({r,c,v})})};
+const ctx={Session:{getActiveUser:()=>({getEmail:()=>email})},Utilities:{getUuid:()=> 'test-uuid'},LockService:{getScriptLock:()=>({waitLock(){},releaseLock(){}})},SpreadsheetApp:{openById:()=>({getSheetByName:()=>sheet}),flush(){}}};
+vm.createContext(ctx);vm.runInContext(fs.readFileSync(__dirname+'/Code.gs','utf8'),ctx);
+assert.throws(()=>ctx.addGuest({name:'Ana',capacity:2}),/Acceso/);assert.equal(writes.length,0);email='Jopsan.a.v@gmail.com';assert.throws(()=>ctx.addGuest({name:'Ana',capacity:0}),/cupos/);const r=ctx.addGuest({name:'=Ana',capacity:2});assert(r.url.endsWith('?id=test-uuid'));assert.equal(writes[0].v[0][1],"'=Ana");assert.equal(writes[0].r,6);assert.equal(writes[1].c,8);rows[0][0]='existing';rows[0][1]='Existing';ctx.addGuest({name:'Ben',capacity:1});assert.equal(writes[2].r,7);rows.forEach(r=>{r[0]='x';r[1]='X'});assert.throws(()=>ctx.addGuest({name:'Z',capacity:1}),/200/);assert.throws(()=>ctx.saveGiftSettings({bank:'',gifts:'Cena | -5'}),/regalo/);
+const html=vm.runInContext('PANEL_HTML_',ctx);new Function(html.match(/<script>([\s\S]*)<\/script>/)[1]);console.log('Panel: autorización, cupos, URL, escritura segura, fila libre, capacidad, montos y sintaxis correctos.');

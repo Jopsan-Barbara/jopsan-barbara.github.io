@@ -1,3 +1,5 @@
+const RSVP_CLOSE_ = Date.parse('2027-02-01T03:00:00Z'); // 00:00 del 1 de febrero, America/Santiago (UTC-3).
+function assertOpen_(){if(Date.now()>=RSVP_CLOSE_)throw new Error('El tiempo para confirmar asistencia ha finalizado. Aún puedes dejarnos un regalo en https://jopsan-barbara.github.io/#regalos');}
 /* Ejecutar prepararInvitaciones_ desde el editor, nunca desde la web pública. */
 const INVITADOS_ID = '1ovMgCRmxfnyhUZL69CINtlUW0TJeggHPOghDnIeubcg';
 const RESPUESTAS_ID = '1WVDs5uB8MjFG2TwyTrhEU5H5U_4hQrfyQRj3mtRxMTY';
@@ -30,9 +32,20 @@ function prepararInvitaciones_() {
   });
 }
 
-function doGet() {
+function doGet(e) {
+  if(e && e.parameter && e.parameter.view==='regalos')return renderGifts_();
+  if(Date.now()>=RSVP_CLOSE_) return HtmlService.createHtmlOutput('<!doctype html><html lang="es"><meta name="viewport" content="width=device-width,initial-scale=1"><body style="padding:32px;background:#f6f3ed;color:#293c31;font:18px/1.6 Arial"><h1>El tiempo para confirmar asistencia ha finalizado</h1><p>Sin embargo, si nos quieres dejar un regalo aún estás a tiempo de hacerlo.</p><a href="https://jopsan-barbara.github.io/#regalos" target="_top">Ver regalos →</a></body></html>').setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
   return HtmlService.createHtmlOutput(FORM_HTML_).setTitle('Confirma tu asistencia · Jopsan y Bárbara')
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
+function renderGifts_() {
+  const esc=v=>String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const sheet=SpreadsheetApp.openById(INVITADOS_ID).getSheetByName('Regalos');
+  const values=sheet?sheet.getRange(1,2,2,1).getDisplayValues():[[''],['']];
+  const bank=String(values[0][0]),gifts=String(values[1][0]).split('\n').map(x=>x.split('|')).filter(x=>x.length===2&&x[0].trim()&&/^\d+$/.test(x[1].trim())&&Number(x[1])>0);
+  const cards=gifts.map((x,i)=>'<article><h3>'+esc(x[0].trim())+'</h3><p>$'+Number(x[1]).toLocaleString('es-CL')+' CLP</p><a href="#transferencia">Regalar este aporte →</a></article>').join('');
+  return HtmlService.createHtmlOutput('<!doctype html><html lang="es"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font:16px/1.6 Arial;color:#293c31;background:#f6f3ed;margin:0;padding:20px}h2,h3{font-family:Georgia}section{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}article{background:white;border:1px solid #dce2d8;padding:20px;border-radius:12px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}a{color:#754458}</style><h2>Regalos simbólicos</h2><section>'+ (cards||'<p>Los novios están preparando su lista de regalos.</p>')+'</section><h2 id="transferencia">Aporte por transferencia</h2><p>Puedes aportar el monto de un regalo simbólico o elegir un monto libre.</p><article><pre>'+esc(bank||'Los datos bancarios estarán disponibles cuando los novios los publiquen.')+'</pre></article><p>Los aportes se realizan directamente por transferencia. Si eliges un regalo simbólico, incluye su nombre en el comentario de tu transferencia. El sitio no procesa pagos ni confirma abonos.</p></html>').setTitle('Regalos · Jopsan y Bárbara').setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 
 function clean_(value, max, required) {
@@ -63,9 +76,11 @@ function validate_(data, guests) {
 }
 
 function submitRsvp(data) {
+  assertOpen_();
   const lock = LockService.getScriptLock();
   if (!lock.tryLock(15000)) throw new Error('Hay varios envíos en curso. Inténtalo nuevamente en unos segundos.');
   try {
+    assertOpen_();
     const guests = SpreadsheetApp.openById(INVITADOS_ID).getSheetByName('Invitados').getRange(6, 1, 200, 9).getValues();
     const row = validate_(data, guests);
     const sheet = SpreadsheetApp.openById(RESPUESTAS_ID).getSheetByName('Respuestas');

@@ -1,17 +1,15 @@
-# Activar RSVP en la cuenta personal
+# RSVP activo
 
-Estado: código preparado; servicio sin publicar y sin prueba real de envío.
+Cuenta propietaria: scarriont@gmail.com.
 
-1. En scarriont@gmail.com, abrir la planilla Invitados. Extensiones > Apps Script.
-2. Pegar Code.gs. Los IDs de ambas planillas ya están configurados.
-3. Cargar invitados desde la fila 6, con nombre y cupos. Ejecutar prepararInvitaciones_ desde el editor para asignar IDs aleatorios a las invitaciones nuevas. Repetir al agregar invitados. No usar IDs correlativos fáciles de adivinar.
-4. Publicar como aplicación web, ejecutada por el propietario. Permitir acceso a invitados sin cuenta de Google. Autorizar el proyecto desde la cuenta personal. Las planillas siguen privadas; el servicio solo acepta respuestas de un ID registrado y no ofrece listados públicos.
-5. Copiar URL /exec a rsvp-config.json, propiedad endpoint. No usar URL /dev.
-6. Probar un invitado de prueba desde la web: guardar Sí, comprobar fila en Respuestas; reenviar No y comprobar actualización de la misma fila. Probar exceso de cupos y un ID desconocido. Eliminar únicamente la prueba al terminar.
-7. Compartir las planillas con los novios cuando sus correos hayan sido confirmados. No hay avisos por correo configurados.
+El servicio está publicado y rsvp-config.json contiene el endpoint verificado. Las planillas siguen privadas. Se probaron guardado real, rechazo de exceso de cupos y actualización de la misma respuesta. Los datos ficticios de prueba se retiraron.
 
-El formulario se sirve en un iframe desde Apps Script y guarda con google.script.run. No se considera enviado hasta que el servidor confirma escritura. Cada ID tiene una respuesta vigente; un nuevo envío la actualiza.
+## Uso
 
-Los parámetros invitado/cupos solo personalizan la invitación. El servidor valida los cupos contra Invitados. El ID actúa como enlace privado: compartirlo permite actualizar esa invitación.
+En Invitados, pestaña Invitados, completar desde la fila 6 el nombre y los cupos. El disparador onEdit del proyecto vinculado genera un UUID cuando se editan esos campos directamente en Google Sheets. La columna H genera el enlace personal. Si se cargan invitados mediante API/importación, el disparador simple no se ejecuta: asignar IDs únicos aleatorios o usar prepararInvitaciones_ desde el editor.
 
-Capacidad actual: 200 invitaciones y 200 respuestas. Ajustar rangos y resúmenes antes de superar ese límite.
+Cada ID permite una respuesta vigente; reenviar actualiza la fila. La planilla Respuestas de asistencia muestra respuestas y totales. Para dar acceso a los novios, confirmar sus correos y compartir directamente las planillas, nunca publicarlas.
+
+Capacidad configurada: 200 invitaciones y 200 respuestas. El endpoint no permite listar invitados ni consultar respuestas. Un enlace privado permite actualizar la invitación correspondiente; no usar IDs predecibles. Los parámetros invitado y cupos personalizan texto; el servidor valida cupos contra la planilla.
+
+No hay avisos por correo configurados. Piscina, horarios y lugares siguen sujetos a confirmación.

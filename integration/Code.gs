@@ -2,6 +2,20 @@
 const INVITADOS_ID = '1ovMgCRmxfnyhUZL69CINtlUW0TJeggHPOghDnIeubcg';
 const RESPUESTAS_ID = '1WVDs5uB8MjFG2TwyTrhEU5H5U_4hQrfyQRj3mtRxMTY';
 
+// Genera el ID al completar nombre y cupos directamente en Google Sheets.
+function onEdit(e) {
+  if (!e || !e.range || typeof e.range.getSheet !== 'function') return;
+  const sheet = e.range.getSheet();
+  if (sheet.getName() !== 'Invitados' || e.range.getLastRow() < 6 || e.range.getRow() > 205) return;
+  const start = Math.max(6, e.range.getRow()), end = Math.min(205, e.range.getLastRow());
+  const rows = sheet.getRange(start, 1, end - start + 1, 5).getValues();
+  rows.forEach((row, index) => {
+    if (!row[0] && String(row[1]).trim() && Number.isInteger(Number(row[4])) && Number(row[4]) > 0 && Number(row[4]) <= 100) {
+      sheet.getRange(start + index, 1).setValue(Utilities.getUuid());
+    }
+  });
+}
+
 function prepararInvitaciones_() {
   const sheet = SpreadsheetApp.openById(INVITADOS_ID).getSheetByName('Invitados');
   const rows = sheet.getRange(6, 1, 200, 9).getValues();

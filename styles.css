@@ -203,3 +203,7 @@ h2 em{font-weight:400}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.js-motion .reveal{opacity:1;transform:none}}
 
 .reserved-palette{list-style:none;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:0;margin:28px 0 32px}.reserved-palette li{display:grid;justify-items:center;gap:9px;font-size:12px}.reserved-palette span{display:block;width:42px;height:42px;border-radius:50%;background:var(--swatch);border:1px solid #b6aa9e}
+
+/* Colores reservados para la novia. */
+.reserved-palette span{position:relative}
+.reserved-palette span::after{content:"";position:absolute;inset:-2px;border:3px solid #a44242;border-radius:50%;background:linear-gradient(135deg,transparent calc(50% - 1.5px),#a44242 calc(50% - 1.5px),#a44242 calc(50% + 1.5px),transparent calc(50% + 1.5px));pointer-events:none}

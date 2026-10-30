@@ -132,3 +132,72 @@ p { color: var(--muted); }
   .countdown span { font-size:.61rem; }
   .hero::after { width:300px; height:300px; right:-170px; }
 }
+
+/* Botánico contemporáneo: evolución de la estructura original. */
+:root{--bg:#f6f2e9;--paper:#fcfaf5;--ink:#293c31;--muted:#62665f;--line:#d5d6c9;--accent:#754458;--sage:#e4e7d8;--lavender:#ddd1dd}
+.hero{color:var(--ink);background:radial-gradient(ellipse at 20% 10%,#fffdf7 0%,transparent 55%),#f6f2e9;isolation:isolate}
+.hero::after{display:none}
+.hero-overlay{background:linear-gradient(110deg,transparent 25%,#fffdf744 55%,transparent);z-index:0}
+.hero-leaf{position:absolute;width:clamp(220px,32vw,520px);height:100%;object-fit:contain;pointer-events:none;z-index:-1;opacity:.13;filter:blur(9px)}
+.hero-leaf-left{left:-8%;top:3%;transform:rotate(30deg)}
+.hero-leaf-right{right:-5%;top:-21%;transform:rotate(210deg)}
+.hero-content p{color:var(--muted)}
+.hero-content .eyebrow{color:var(--ink)}
+h1 span,h2 em{color:var(--accent)}
+h2{line-height:1.08}
+h2 em{font-weight:400}
+.nav-link{border:1px solid var(--ink);border-radius:999px;padding:6px 21px;font-size:.8rem}
+.button-light{background:var(--accent);border:1px solid var(--accent);color:#fff}
+.button-light:hover{background:#603448;color:#fff}
+.button-dark{background:var(--ink)}
+.button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+.botanical-strip{display:grid;grid-template-columns:.8fr 1.2fr 1.2fr .85fr 1.2fr 1fr;height:clamp(85px,12vw,175px);overflow:hidden}
+.tile{position:relative;overflow:hidden;border-right:2px solid var(--bg)}
+.monogram{display:flex;align-items:center;justify-content:center;background:#66715b;color:#f8f4ec;font:clamp(30px,5vw,70px) 'Cormorant Garamond',serif}
+.monogram span{font-size:.4em;font-style:italic;padding:0 4px}
+.leaves{background:#d4dacb}
+.leaves::before{content:'';position:absolute;inset:-55%;background:url('assets/leaf.svg') center/contain no-repeat;transform:rotate(25deg)}
+.olive{background:#a9b09b}.olive::before{transform:rotate(200deg)}
+.petals{background:radial-gradient(ellipse at 20% 95%,#a48b9f 0 24%,transparent 25%),radial-gradient(ellipse at 75% 95%,#c1aebe 0 35%,transparent 36%),radial-gradient(ellipse at 50% 0%,#e2d6df 0 50%,#beadbf 51%)}
+.wine{background:#77495c;color:#f3eae9;display:grid;place-items:center}
+.wine svg{width:45%;height:65%}
+.blue{background:linear-gradient(140deg,#6f8390,#b9c3c7 45%,#84949e 70%,#c9d0cf)}
+.intro{padding:85px 0;background:var(--paper)}
+.intro h2{font-size:clamp(2.5rem,4.5vw,4.4rem)}
+.countdown-section{background:var(--sage);padding:38px 0}
+.countdown{margin-top:12px}
+.countdown div{padding:8px}
+.card{text-align:center;border-color:#b8a3ae;background:transparent;min-height:320px}
+.card .section-kicker,.text-link{color:var(--accent)}
+.dress{background:#e9e8de}
+.rsvp{background:var(--lavender);color:var(--ink)}
+.rsvp p{color:var(--muted)}
+.rsvp .button-dark{background:var(--ink);color:#fff}
+.footer{background:var(--ink)}.footer p{color:#f6f2e9}
+.skip-link{position:fixed;left:15px;top:-90px;z-index:20;background:var(--paper);padding:12px}.skip-link:focus{top:15px}
+.disabled{pointer-events:none}
+.timing{background:var(--paper);overflow:hidden}
+.timing-note{font-size:.75rem;letter-spacing:.03em;color:var(--accent);margin-top:20px}
+.timeline{position:relative;max-width:600px;margin:50px auto 0;padding:0 25px}
+.timeline ol{list-style:none;padding:0;margin:0;position:relative}
+.timeline-path{position:absolute;left:12%;top:25px;width:76%;height:calc(100% - 50px);overflow:visible;pointer-events:none}
+.timeline-path path{fill:none;stroke:#adb99c;stroke-width:1.5;stroke-dasharray:5 8}
+.timeline-item{display:flex;align-items:center;gap:25px;min-height:180px;width:80%;position:relative}
+.timeline-item:nth-child(even){margin-left:20%;flex-direction:row-reverse;text-align:right}
+.moment-icon{width:88px;height:88px;flex:0 0 88px;border-radius:50%;background:var(--paper);display:grid;place-items:center;color:var(--accent);border:1px solid #ded8d1}
+.moment-icon svg{width:52px;height:52px}
+.moment-copy{background:var(--paper);padding:8px 0}
+.moment-number{font-size:.65rem;letter-spacing:.18em;color:var(--accent)}
+.moment-copy h3{font-size:2rem;margin:5px 0}
+.moment-copy p{font-size:.78rem;margin:6px 0}
+.reveal{opacity:1;transform:none}
+.js-motion .reveal{opacity:0;transform:translateY(18px)}
+.js-motion .reveal.visible{opacity:1;transform:none}
+@media(max-width:760px){
+.hero-content{padding:70px 0 100px}h1{font-size:clamp(3.6rem,14vw,6rem);line-height:.98;max-width:600px;margin-left:auto;margin-right:auto}
+.hero-leaf{width:65vw;opacity:.12}.hero-leaf-left{left:-28%}.hero-leaf-right{right:-25%}
+.intro{padding:65px 0}.countdown-section{padding:30px 0}
+.card{min-height:auto}.timeline{padding:0 22px}.timeline-item{width:90%;gap:16px;min-height:165px}.timeline-item:nth-child(even){margin-left:10%}
+.moment-icon{width:68px;height:68px;flex-basis:68px}.moment-icon svg{width:42px;height:42px}.moment-copy h3{font-size:1.75rem}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.js-motion .reveal{opacity:1;transform:none}}

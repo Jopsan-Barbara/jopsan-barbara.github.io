@@ -201,3 +201,5 @@ h2 em{font-weight:400}
 .moment-icon{width:68px;height:68px;flex-basis:68px}.moment-icon svg{width:42px;height:42px}.moment-copy h3{font-size:1.75rem}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.js-motion .reveal{opacity:1;transform:none}}
+
+.reserved-palette{list-style:none;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:0;margin:28px 0 32px}.reserved-palette li{display:grid;justify-items:center;gap:9px;font-size:12px}.reserved-palette span{display:block;width:42px;height:42px;border-radius:50%;background:var(--swatch);border:1px solid #b6aa9e}

@@ -1,6 +1,12 @@
 (async function () {
   const section = document.querySelector('#rsvp .container');
   if (!section) return;
+  if(Date.now()>=Date.parse('2027-02-01T03:00:00Z')) {
+    document.getElementById('guest-title').textContent='El tiempo para confirmar asistencia ha finalizado';
+    document.getElementById('guest-copy').textContent='Sin embargo, si nos quieres dejar un regalo aún estás a tiempo de hacerlo.';
+    section.querySelector('a[aria-disabled="true"]')?.remove();
+    const link=document.createElement('a');link.href='#regalos';link.className='button button-dark';link.textContent='Ver regalos';section.append(link);return;
+  }
   try {
     const response = await fetch('rsvp-config.json', {cache:'no-store'});
     if (!response.ok) return;

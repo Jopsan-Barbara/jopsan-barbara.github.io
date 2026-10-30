@@ -1,22 +1,21 @@
-// La fecha está confirmada; no mostramos una hora ficticia.
-const weddingDate = new Date('2027-02-27T00:00:00-03:00');
-const weddingTimeConfirmed = false;
+// Bienvenida: 27 de febrero de 2027, 12:00 en America/Santiago (UTC-3).
+const weddingDate = new Date('2027-02-27T12:00:00-03:00');
 
 function updateCountdown() {
   const now = new Date();
   const diff = weddingDate - now;
   if (diff <= 0) {
-    document.getElementById('countdown').innerHTML = '<p>Hoy celebramos 🤍</p>';
+    document.getElementById('countdown').innerHTML = '<p>¡Llegó el gran día! 🤍</p>';
     return;
   }
-  const days = Math.ceil(diff / 86400000);
+  const days = Math.floor(diff / 86400000);
   const hours = Math.floor((diff / 3600000) % 24);
   const minutes = Math.floor((diff / 60000) % 60);
   const seconds = Math.floor((diff / 1000) % 60);
   document.getElementById('days').textContent = String(days).padStart(3, '0');
-  document.getElementById('hours').textContent = weddingTimeConfirmed ? String(hours).padStart(2, '0') : '—';
-  document.getElementById('minutes').textContent = weddingTimeConfirmed ? String(minutes).padStart(2, '0') : '—';
-  document.getElementById('seconds').textContent = weddingTimeConfirmed ? String(seconds).padStart(2, '0') : '—';
+  document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+  document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);

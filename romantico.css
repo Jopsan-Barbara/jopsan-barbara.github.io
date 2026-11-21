@@ -500,3 +500,18 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #80
     opacity:.52;
   }
 }
+
+/* RETIRO DEFINITIVO DE ORNAMENTOS */
+/* Sin ilustraciones florales artificiales en portada ni secciones interiores. */
+.hero.romantic-hero::before,
+.hero.romantic-hero::after,
+.celebration::before,
+.dress::after {
+  content:none!important;
+  display:none!important;
+  background:none!important;
+}
+.hero.romantic-hero img.floral-ornament,
+.hero.romantic-hero img.hero-botanical {
+  display:none!important;
+}

@@ -10,8 +10,9 @@ function mount(root,kind,endpoint){
  const retry=document.createElement('button');retry.type='button';retry.className='retry';retry.textContent='Reintentar';retry.hidden=true;
  const nonce=crypto.randomUUID(),url=new URL(endpoint);url.searchParams.set('view',kind);url.searchParams.set('nonce',nonce);
  const frame=document.createElement('iframe');frame.hidden=true;frame.title=kind==='public-rsvp'?'Confirmación de asistencia':'Sugerir una canción';frame.src=url.href;frame.style.height=kind==='public-rsvp'?'880px':'220px';
- root.replaceChildren(status,retry,frame);let ready=false;
- const timer=setTimeout(()=>{if(!ready){status.textContent='El formulario no está disponible en este momento. Por favor, inténtalo nuevamente más tarde.';retry.hidden=false;}},12000);
+ const fallback=document.createElement('a');fallback.href=url.href;fallback.target='_blank';fallback.rel='noopener noreferrer';fallback.className='button button-dark form-open-direct';fallback.textContent=kind==='public-rsvp'?'Abrir confirmación en otra pestaña':'Abrir canciones en otra pestaña';fallback.hidden=true;
+ root.replaceChildren(status,retry,fallback,frame);let ready=false;
+ const timer=setTimeout(()=>{if(!ready){status.textContent='No pudimos mostrar el formulario dentro de esta página. Puedes intentar abrirlo en otra pestaña.';retry.hidden=false;fallback.hidden=false;}},12000);
  function listener(e){const d=e.data;if(!d||d.channel!=='jb-public-form-v1'||d.nonce!==nonce||d.kind!==kind)return;try{const origin=new URL(e.origin);if(origin.protocol!=='https:'||!(origin.hostname==='script.google.com'||origin.hostname==='script.googleusercontent.com'||origin.hostname.endsWith('-script.googleusercontent.com')||origin.hostname.endsWith('.googleusercontent.com')))return;}catch(_){return;}
  if(d.ready!==true)return;ready=true;clearTimeout(timer);status.hidden=true;retry.hidden=true;frame.hidden=false;
  if(Number.isFinite(d.height))frame.style.height=Math.max(180,Math.min(1700,Math.ceil(d.height)+16))+'px';

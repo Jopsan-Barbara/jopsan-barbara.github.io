@@ -27,7 +27,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #80
   background:radial-gradient(ellipse at 95% 95%,#f6dfe0 0%,transparent 45%),
     radial-gradient(ellipse at 2% 15%,#fffaf6 0%,transparent 51%),#fcf3f0;
 }
-.romantic-hero::before,.romantic-hero::after{content:"";display:block;position:absolute;z-index:3;pointer-events:none;background:url('assets/flores-romanticas.svg') center/contain no-repeat;opacity:.93;}
+.romantic-hero::before,.romantic-hero::after{content:"";display:block;position:absolute;z-index:3;pointer-events:none;background:url('https://www.publicdomainpictures.net/pictures/450000/velka/aquarell-blume-vintage-clipart-16508892442WI.png') center/contain no-repeat;opacity:.93;}
 .romantic-hero::before{width:clamp(210px,24vw,370px);height:390px;right:-48px;top:-60px;transform:rotate(-6deg);}
 .romantic-hero::after{width:clamp(245px,27vw,420px);height:440px;left:-97px;bottom:-146px;transform:rotate(170deg);}
 .romantic-hero img.hero-botanical{display:none;}
@@ -160,7 +160,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #80
 }
 .celebration::before{
   content:"";position:absolute;right:-130px;top:-140px;z-index:-1;
-  width:420px;height:450px;background:url('assets/flores-romanticas.svg') center/contain no-repeat;
+  width:420px;height:450px;background:url('https://www.publicdomainpictures.net/pictures/450000/velka/aquarell-blume-vintage-clipart-16508892442WI.png') center/contain no-repeat;
   opacity:.15;pointer-events:none;
 }
 .celebration .section-kicker{color:#8b465c;}
@@ -197,7 +197,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #80
 }
 .dress::after{
   content:"";position:absolute;right:-105px;bottom:-150px;pointer-events:none;
-  width:320px;height:345px;background:url('assets/flores-romanticas.svg') center/contain no-repeat;
+  width:320px;height:345px;background:url('https://www.publicdomainpictures.net/pictures/450000/velka/aquarell-blume-vintage-clipart-16508892442WI.png') center/contain no-repeat;
   opacity:.21;transform:rotate(20deg);
 }
 .dress-flourish{color:#ac7884;}
@@ -330,4 +330,73 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #80
   .romantic-hero .hero-content{padding-top:clamp(365px,100vw,450px);}
   .romantic-hero::after{width:190px;height:215px;bottom:-88px;left:-92px;opacity:.58;}
   .romantic-hero .eyebrow{margin-top:0;margin-bottom:13px;}
+}
+
+/* Flores botánicas reales en acuarela, ilustración vintage CC0.
+   Fuente: PublicDomainPictures / Martina Stokow.
+   La ilustración queda en las orillas, nunca encima de los rostros. */
+.romantic-hero::before,.romantic-hero::after{
+  background-image:url('https://www.publicdomainpictures.net/pictures/450000/velka/aquarell-blume-vintage-clipart-16508892442WI.png');
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+  filter:saturate(.68) opacity(.80);
+}
+@media(min-width:851px){
+  .romantic-hero::before{
+    display:block!important;
+    width:clamp(155px,18vw,255px);
+    height:clamp(165px,21vw,275px);
+    top:-18px;
+    right:-7px;
+    left:auto;
+    transform:rotate(17deg);
+  }
+  .romantic-hero::after{
+    display:block!important;
+    width:clamp(165px,20vw,290px);
+    height:clamp(205px,24vw,320px);
+    left:-58px;
+    bottom:-78px;
+    right:auto;
+    top:auto;
+    transform:rotate(-18deg);
+  }
+}
+@media(max-width:850px){
+  .romantic-hero::before{
+    display:block!important;
+    position:absolute;
+    width:125px;
+    height:155px;
+    top:44px;
+    right:-26px;
+    left:auto;
+    opacity:.78;
+    transform:rotate(10deg);
+  }
+  .romantic-hero::after{
+    display:block!important;
+    position:absolute;
+    width:165px;
+    height:195px;
+    left:-54px;
+    right:auto;
+    top:auto;
+    bottom:-67px;
+    opacity:.73;
+    transform:rotate(-24deg);
+  }
+}
+@media(max-width:540px){
+  .romantic-hero::before{width:110px;height:130px;top:51px;right:-31px;opacity:.68;}
+  .romantic-hero::after{width:145px;height:165px;left:-48px;bottom:-48px;opacity:.69;}
+}
+/* Secciones interiores: ornamentos discretos de la misma línea. */
+.celebration::before,.dress::after{
+  background-image:url('https://www.publicdomainpictures.net/pictures/450000/velka/aquarell-blume-vintage-clipart-16508892442WI.png');
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+  opacity:.13;
 }

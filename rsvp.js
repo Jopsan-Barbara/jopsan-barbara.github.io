@@ -19,5 +19,8 @@ function mount(root,kind,endpoint){
  window.addEventListener('message',listener);
  retry.onclick=()=>{clearTimeout(timer);window.removeEventListener('message',listener);mount(root,kind,endpoint);};
 }
-try{const response=await fetch('rsvp-config.json',{cache:'no-store'});if(!response.ok)throw Error();const config=await response.json(),endpoint=new URL(config.endpoint);if(endpoint.origin!=='https://script.google.com'||!/^\/macros\/s\/[\w-]+\/exec$/.test(endpoint.pathname))throw Error();if(!closed)mount(rsvp,'public-rsvp',endpoint);mount(song,'public-song',endpoint);}catch(_){[closed?null:rsvp,song].filter(Boolean).forEach(root=>{root.textContent='El formulario no está disponible en este momento. Por favor, inténtalo nuevamente más tarde.';});}
+try{const response=await fetch('rsvp-config.json',{cache:'no-store'});if(!response.ok)throw Error();const config=await response.json();
+function mountGoogleForm(root,value,label){if(!root||!value)return false;let url;try{url=new URL(value);if(url.origin!=='https://docs.google.com'||!/^\/forms\/d\/(?:e\/)?[\w-]+\/viewform$/.test(url.pathname))return false;}catch(_){return false;}const link=document.createElement('a');link.className='button button-dark';link.href=url.href;link.target='_blank';link.rel='noopener noreferrer';link.textContent=label;root.replaceChildren(link);return true;}
+const hasRsvp=closed||mountGoogleForm(rsvp,config.rsvpForm,'Confirmar asistencia'),hasSong=mountGoogleForm(song,config.songForm,'Sugerir una canción');if(hasRsvp&&hasSong)return;
+const endpoint=new URL(config.endpoint);if(endpoint.origin!=='https://script.google.com'||!/^\/macros\/s\/[\w-]+\/exec$/.test(endpoint.pathname))throw Error();if(!hasRsvp)mount(rsvp,'public-rsvp',endpoint);if(!hasSong)mount(song,'public-song',endpoint);}catch(_){[closed?null:rsvp,song].filter(Boolean).forEach(root=>{root.textContent='El formulario no está disponible en este momento. Por favor, inténtalo nuevamente más tarde.';});}
 })();

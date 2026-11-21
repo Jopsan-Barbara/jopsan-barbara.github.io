@@ -445,3 +445,58 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #80
     width:163px;left:-66px;bottom:-68px;opacity:.75;
   }
 }
+
+/* Refinamiento floral sutil · referencia aprobada 2026-11-21 */
+/* Flores de menor tamaño y baja saturación; no alteran la fotografía original. */
+.romantic-hero img.floral-ornament {
+  width:clamp(135px,14vw,205px);
+  opacity:.56;
+  filter:saturate(.65);
+  pointer-events:none;
+}
+.romantic-hero img.floral-top {
+  width:clamp(135px,14vw,195px);
+  top:-33px;
+  right:-32px;
+  bottom:auto;
+  left:auto;
+  opacity:.52;
+  transform:rotate(-9deg);
+}
+.romantic-hero img.floral-bottom {
+  width:clamp(145px,15vw,205px);
+  bottom:-44px;
+  left:-38px;
+  top:auto;
+  right:auto;
+  opacity:.59;
+  transform:rotate(157deg);
+}
+@media(max-width:850px) {
+  .romantic-hero img.floral-top {
+    width:105px;
+    right:-26px;
+    top:-22px;
+    opacity:.46;
+  }
+  .romantic-hero img.floral-bottom {
+    width:132px;
+    left:-31px;
+    bottom:-34px;
+    opacity:.55;
+  }
+}
+@media(max-width:540px) {
+  .romantic-hero img.floral-top {
+    width:96px;
+    right:-24px;
+    top:-14px;
+    opacity:.45;
+  }
+  .romantic-hero img.floral-bottom {
+    width:116px;
+    left:-28px;
+    bottom:-25px;
+    opacity:.52;
+  }
+}

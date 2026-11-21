@@ -19,12 +19,12 @@ function prepararGoogleForms() {
     return f;
   }
   const rsvp=make('RSVP_FORM','Jopsan y Bárbara · Confirmación de asistencia',f=>{
-    f.setDescription('Confirma hasta el 31 de enero de 2027. Considera únicamente a las personas invitadas.').setConfirmationMessage('Tu respuesta quedó registrada. ¡Muchas gracias!').setShowLinkToRespondAgain(false).setCustomClosedFormMessage('El tiempo para confirmar asistencia ha finalizado.');
+    f.setDescription('Confirma hasta el 31 de enero de 2027. La invitación es individual salvo indicación expresa de los novios. Gracias por comprender.').setConfirmationMessage('Tu respuesta quedó registrada. ¡Muchas gracias!').setShowLinkToRespondAgain(false).setCustomClosedFormMessage('El tiempo para confirmar asistencia ha finalizado.');
     f.addTextItem().setTitle('Nombre').setRequired(true);
     f.addTextItem().setTitle('Apellido').setRequired(true);
     const choice=f.addMultipleChoiceItem().setTitle('¿Asistirás?').setRequired(true);
     const yes=f.addPageBreakItem().setTitle('Detalles de asistencia');
-    f.addListItem().setTitle('Personas que asistirán, incluyéndote').setChoiceValues(Array.from({length:20},(_,i)=>String(i+1))).setRequired(true);
+    f.addListItem().setTitle('Personas invitadas, incluyéndote').setHelpText('Elige 1, salvo que los novios te hayan indicado expresamente que puedes llevar acompañantes.').setChoiceValues(Array.from({length:20},(_,i)=>String(i+1))).setRequired(true);
     f.addParagraphTextItem().setTitle('Nombres de acompañantes, si corresponde');
     f.addParagraphTextItem().setTitle('Restricciones alimentarias (opcional)');
     choice.setChoices([choice.createChoice('Sí',yes),choice.createChoice('No',FormApp.PageNavigationType.SUBMIT)]);

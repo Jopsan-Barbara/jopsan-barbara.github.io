@@ -228,3 +228,196 @@ h2 em{font-weight:400}
 .hero .hero-copy{font-size:.85rem;margin:8px 0 16px}
 .hero .button{padding:10px 20px}
 }
+
+/* Portada editorial: la fotografía original es la protagonista.
+   Los textos y el reloj conservan una jerarquía de parte matrimonial. */
+.hero {
+  min-height: 100svh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  overflow: hidden;
+  background: #f8f5ef;
+  color: var(--ink);
+}
+.hero-photo {
+  display: block;
+  position: absolute;
+  inset: 0 0 0 auto;
+  z-index: 0;
+  width: 56%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    #f8f5ef 0%,
+    #f8f5ef 33%,
+    rgba(248,245,239,.96) 41%,
+    rgba(248,245,239,.70) 49%,
+    rgba(248,245,239,0) 63%);
+}
+.hero .nav {
+  position: relative;
+  z-index: 3;
+  padding: 24px 0;
+}
+.hero .brand { color: var(--ink); }
+.hero .nav-link {
+  color: var(--ink);
+  background: rgba(252,250,245,.90);
+  border: 1px solid rgba(41,60,49,.32);
+  backdrop-filter: blur(8px);
+}
+.hero .hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(49%, 640px);
+  max-width: none;
+  margin: auto auto auto clamp(20px, 3.5vw, 76px);
+  padding: 44px 20px 65px;
+  text-align: center;
+}
+.hero .eyebrow {
+  margin: 0 0 24px;
+  color: var(--accent);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .29em;
+}
+.hero h1 {
+  font-size: clamp(4rem, 6.25vw, 7rem);
+  line-height: .92;
+  margin: 0 0 27px;
+  letter-spacing: -.035em;
+  color: #293c31;
+}
+.hero h1 span {
+  display: block;
+  margin: 10px 0 12px;
+  font-size: .57em;
+  font-weight: 400;
+  font-style: italic;
+  color: #754458;
+}
+.hero .date {
+  margin: 0;
+  letter-spacing: .32em;
+  font-size: .91rem;
+  color: #475b4d;
+}
+.hero .hero-copy {
+  max-width: 340px;
+  margin: 18px auto 25px;
+  font-size: .93rem;
+  color: #62665f;
+}
+.hero .button-light {
+  background: transparent;
+  border: 1px solid #754458;
+  border-radius: 2px;
+  color: #754458;
+  padding: 12px 30px;
+  font-size: .72rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+.hero .button-light:hover { background: #754458; color: #fff; }
+.hero-countdown {
+  width: min(100%, 450px);
+  margin: 40px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(41,60,49,.23);
+}
+.hero-countdown-label {
+  margin: 0;
+  color: #754458 !important;
+  font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: .24em;
+}
+.hero-countdown .countdown {
+  width: 100%;
+  max-width: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 0;
+  margin: 13px auto 0;
+}
+.hero-countdown .countdown > div {
+  min-width: 0;
+  padding: 2px 4px;
+  border-left: 1px solid rgba(41,60,49,.15);
+}
+.hero-countdown .countdown > div:first-child { border-left: 0; }
+.hero-countdown .countdown strong {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  color: #293c31;
+  font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.12;
+  font-variant-numeric: tabular-nums;
+}
+.hero-countdown .countdown span {
+  display: block;
+  margin-top: 4px;
+  color: #686e65;
+  font-size: .55rem;
+  font-weight: 500;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+@media (max-width: 800px) {
+  .hero { min-height: 0; }
+  .hero-photo {
+    position: relative;
+    inset: auto;
+    order: 0;
+    width: 100%;
+    height: clamp(350px, 55svh, 640px);
+    object-position: 50% 43%;
+  }
+  .hero-overlay { display: none; }
+  .hero .nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    padding: 18px 0;
+  }
+  .hero .brand {
+    color: #293c31;
+    text-shadow: 0 1px 10px rgba(255,255,255,.9);
+  }
+  .hero .hero-content {
+    order: 1;
+    width: min(calc(100% - 36px), 560px);
+    margin: 0 auto;
+    padding: 43px 7px 48px;
+  }
+  .hero .eyebrow { margin-bottom: 17px; font-size: .66rem; }
+  .hero h1 {
+    font-size: clamp(3.3rem, 12vw, 5.2rem);
+    line-height: .98;
+    margin-bottom: 19px;
+  }
+  .hero h1 span { display: inline; font-size: .72em; margin: 0 3px; }
+  .hero .date { font-size: .82rem; letter-spacing: .23em; }
+  .hero .hero-copy { font-size: .88rem; margin: 14px auto 20px; }
+  .hero-countdown { margin-top: 31px; padding-top: 17px; }
+  .hero-countdown .countdown strong { font-size: clamp(1.75rem, 7vw, 2.3rem); }
+}
+@media (max-width: 380px) {
+  .hero-photo { height: 53svh; min-height: 325px; }
+  .hero .hero-content { width: calc(100% - 26px); padding-top: 34px; }
+  .hero h1 { font-size: 3.15rem; }
+  .hero-countdown .countdown strong { font-size: 1.7rem; }
+}

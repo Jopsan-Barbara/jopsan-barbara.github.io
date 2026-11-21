@@ -1,394 +1,292 @@
-/* Portada romántica Jopsan & Bárbara — referencia rosa empolvado y borgoña.
-   Este archivo se carga después de styles.css para mantener las otras funcionalidades. */
+/* Invitación de Jopsan & Bárbara · Diseño floral romántico aprobado.
+   Hoja de estilo final: conserva los módulos funcionales existentes. */
 :root {
-  --bg:#f7ebe7;
-  --paper:#fff9f6;
-  --ink:#2d2425;
-  --muted:#71605e;
-  --line:#ddc4c5;
-  --accent:#72253f;
-  --forest:#68273d;
-  --gold:#c79da4;
-  --sage:#f1e4e1;
-  --lavender:#f1e0e0;
+  --bg:#fcf3f0;
+  --paper:#fffaf7;
+  --ink:#3b2930;
+  --muted:#72666a;
+  --line:#e6cdd2;
+  --accent:#792b47;
+  --forest:#792b47;
+  --gold:#c9a0a7;
+  --sage:#78886a;
+  --lavender:#f7e6e8;
 }
-body {background:var(--bg);color:var(--ink);}
-h1,h2,h3,.footer-names {color:var(--ink);}
-h1 span,h2 em {color:var(--accent);}
-.section-kicker {color:var(--accent);}
-a:focus-visible,button:focus-visible {outline:2px solid var(--accent);outline-offset:5px;}
+body{background:var(--bg);color:var(--ink);}
+.section-kicker{color:#82344f;font-size:.72rem;letter-spacing:.23em;}
+h1,h2,h3,.footer-names{color:var(--ink);}
+h2 em,h1 span{color:var(--accent);}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #802f4b;outline-offset:5px;}
+#detalles,#cronograma,#rsvp,#regalos{scroll-margin-top:20px;}
 
-/* La foto se integra en el fondo sin recortarla en un arco ni editar los rostros. */
-.hero.romantic-hero {
-  display:block;
-  position:relative;
-  min-height:clamp(780px,100svh,1050px);
-  overflow:hidden;
-  isolation:isolate;
-  background:#f7ebe7;
+/* --- Portada: la foto es original y nunca se utiliza como texto estático. --- */
+.hero.floral-hero{
+  position:relative;display:flex;flex-direction:column;isolation:isolate;overflow:hidden;
+  min-height:max(830px,100svh);color:var(--ink);
+  background:radial-gradient(ellipse at 95% 95%,#f6dfe0 0%,transparent 45%),
+    radial-gradient(ellipse at 2% 15%,#fffaf6 0%,transparent 51%),#fcf3f0;
+}
+.floral-hero::before,.floral-hero::after{display:none;}
+.floral-hero .hero-photo{
+  display:block;position:absolute;z-index:0;top:0;left:0;right:auto;bottom:auto;
+  width:61%;height:100%;min-height:0;object-fit:cover;object-position:center 30%;
+  border:0;border-radius:0;box-shadow:none;background:#e3dddd;opacity:1;
+}
+.floral-hero .hero-overlay{
+  display:block;position:absolute;z-index:1;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(252,243,240,.08) 0%,rgba(252,243,240,.10) 24%,
+    rgba(252,243,240,.34) 40%,rgba(252,243,240,.85) 53%,#fcf3f0 68%),
+    linear-gradient(0deg,#fcf3f0 0%,rgba(252,243,240,.62) 13%,transparent 48%);
+}
+.floral-hero .hero-botanical{
+  display:block;position:absolute;z-index:3;pointer-events:none;height:auto;object-fit:contain;
+  filter:none;opacity:.92;
+}
+.floral-hero .hero-botanical-top{width:clamp(210px,24vw,380px);right:-45px;top:-60px;left:auto;transform:rotate(-7deg);}
+.floral-hero .hero-botanical-bottom{width:clamp(250px,27vw,435px);left:-95px;bottom:-140px;right:auto;transform:rotate(165deg);}
+.floral-hero .nav{
+  position:relative;z-index:5;width:min(calc(100% - 84px),1280px);
+  margin:0 auto;padding:28px 0 10px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.floral-hero .brand{
+  margin:0;display:inline-flex;align-items:center;gap:22px;
+  font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-style:italic;
+  line-height:1;font-weight:500;text-decoration:none;color:#68283f;text-shadow:none;
+}
+.floral-hero .brand::after{content:"";width:94px;height:1px;background:#9b9a7b;display:block;}
+.floral-hero .nav-link{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:'Cormorant Garamond',serif;font-size:1.38rem;font-style:italic;line-height:1;
+  padding:10px 21px;color:#6e3449;background:rgba(255,251,248,.7);
+  border:1px solid #9c8c69;border-radius:999px;text-decoration:none;backdrop-filter:blur(5px);
+}
+.floral-hero .nav-link:hover{background:#7c314a;color:#fff;}
+.floral-hero .nav-link svg{width:18px;height:18px;flex:0 0 auto;}
+.floral-hero .hero-content{
+  display:flex;flex-direction:column;align-items:center;
+  z-index:2;position:relative;width:min(45%,610px);max-width:none;
+  margin:auto clamp(52px,7vw,170px) auto auto;padding:26px 0 68px;text-align:center;
+}
+.floral-hero .hero-announcement{width:100%;margin:0;display:flex;flex-direction:column;align-items:center;}
+.floral-hero .eyebrow{
+  display:flex;align-items:center;justify-content:center;gap:17px;width:100%;
+  margin:0 0 13px;color:#7a8262;
+  font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3vw,3rem);
+  font-style:italic;font-weight:400;line-height:1.1;letter-spacing:.035em;text-transform:none;
+}
+.floral-hero .eyebrow::before,.floral-hero .eyebrow::after{
+  content:"";width:34px;height:1px;background:#97a086;opacity:.9;
+}
+.floral-hero h1{
+  display:block;width:100%;color:#68233b;margin:0;padding:0;
+  font-weight:400;line-height:1;letter-spacing:0;text-wrap:normal;
+}
+.floral-hero h1 .hero-name{
+  display:block;font-family:'Great Vibes','URW Chancery L',cursive;
+  color:#69253d;font-size:clamp(5.4rem,7.25vw,8.7rem);
+  font-weight:400;line-height:.9;white-space:nowrap;letter-spacing:0;
+}
+.floral-hero h1 .hero-amp{
+  display:block;font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,3.8vw,4rem);
+  color:#c18795;font-weight:400;line-height:.75;margin:5px auto 8px;font-style:italic;
+}
+.floral-hero .hero-heart-rule{display:flex;align-items:center;justify-content:center;gap:18px;width:76%;margin:16px auto 13px;}
+.floral-hero .hero-heart-rule::before,.floral-hero .hero-heart-rule::after{
+  content:"";display:block;height:1px;background:#cc9da6;flex:1;
+}
+.floral-hero .hero-heart-rule span{color:#d9a0a9;font-size:1.5rem;line-height:1;}
+.floral-hero .date{
+  color:#723348;margin:0;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.55rem,2.25vw,2.45rem);line-height:1.3;
+  letter-spacing:.16em;font-weight:500;
+}
+.floral-hero .hero-countdown{
+  position:relative;width:min(100%,575px);max-width:none;
+  margin:30px 0 0;padding:31px 17px 21px;
+  border:1px solid #dcafb8;border-radius:34px;background:rgba(255,249,247,.38);
+}
+.floral-hero .hero-countdown-label{
+  position:absolute;top:-.7rem;left:50%;transform:translateX(-50%);
+  padding:0 16px;background:#fcf3f0;color:#743148!important;
+  font-family:'Cormorant Garamond',serif;font-size:clamp(.83rem,1.3vw,1.2rem);
+  font-style:normal;font-weight:500;white-space:nowrap;letter-spacing:.21em;
+}
+.floral-hero .hero-countdown .countdown{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;
+  width:100%;max-width:none;margin:0 auto;
+}
+.floral-hero .hero-countdown .countdown>div{
+  min-width:0;padding:0 6px;border-left:1px solid #e1bdc2;text-align:center;
+}
+.floral-hero .hero-countdown .countdown>div:first-child{border-left:0;}
+.floral-hero .hero-countdown .countdown strong{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.55rem,3.7vw,4rem);font-weight:500;line-height:.95;
+  color:#69273f;font-variant-numeric:lining-nums tabular-nums;display:block;
+}
+.floral-hero .hero-countdown .countdown span{
+  display:block;margin:5px 0 0;font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:clamp(.9rem,1.4vw,1.25rem);
+  color:#647656;text-transform:none;letter-spacing:0;
+}
+.floral-hero .button-light{
+  align-self:center;display:inline-flex;align-items:center;justify-content:center;gap:14px;
+  margin:28px auto 0;padding:11px 43px 13px;
+  min-width:265px;background:#7d314b;color:#fff9f6;
+  border:1px solid #7d314b;border-radius:999px;
+  font-family:'Cormorant Garamond',serif;font-size:clamp(1.55rem,2.4vw,2.2rem);
+  font-weight:500;font-style:italic;letter-spacing:0;text-transform:none;
+  box-shadow:0 10px 24px rgba(102,41,62,.14);
+}
+.floral-hero .button-light:hover{background:#632038;color:#fff;transform:translateY(-2px);}
+.floral-hero .button-light span{font-family:Inter,sans-serif;font-size:1.45rem;font-style:normal;font-weight:300;line-height:1;}
+
+/* --- Secciones interiores: papel, flores y acentos borgoña. --- */
+.memories-strip{padding:33px 0 38px;background:#fff9f7;border-top:1px solid #efd9dc;border-bottom:1px solid #efd9dc;}
+.memories-heading p{color:#82344f;}
+.memories-arrow{border:1px solid #d8aeba;color:#833e56;background:#fff9f7;}
+.memories-arrow:hover{background:#7d314b;color:#fff;}
+.memory-slide{border-radius:16px;box-shadow:0 7px 19px rgba(92,46,59,.11);}
+.celebration{
+  position:relative;isolation:isolate;overflow:hidden;
+  padding:88px 0;background:linear-gradient(135deg,#fff8f5,#f6e9e7 60%,#fff9f6);
   color:var(--ink);
-  padding-bottom:42px;
 }
-.romantic-hero::before,.romantic-hero::after {display:none;}
-.romantic-hero .hero-photo {
-  position:absolute;
-  inset:0 0 auto auto;
-  z-index:0;
-  width:69%;
-  height:clamp(610px,82svh,860px);
-  display:block;
-  object-fit:cover;
-  object-position:50% 40%;
-  border:0;
-  border-radius:0;
-  box-shadow:none;
-  background:#e5dfdc;
-  opacity:1;
+.celebration::before{
+  content:"";position:absolute;right:-130px;top:-140px;z-index:-1;
+  width:420px;height:450px;background:url('assets/flores-romanticas.svg') center/contain no-repeat;
+  opacity:.15;pointer-events:none;
 }
-.romantic-hero .hero-overlay {
-  position:absolute;
-  inset:0;
-  display:block;
-  z-index:1;
-  pointer-events:none;
-  background:
-    linear-gradient(90deg,#f7ebe7 0%,rgba(247,235,231,.98) 19%,rgba(247,235,231,.8) 33%,rgba(247,235,231,.23) 49%,rgba(247,235,231,0) 71%),
-    linear-gradient(180deg,rgba(247,235,231,0) 0%,rgba(247,235,231,0) 44%,rgba(247,235,231,.28) 60%,#f7ebe7 82%,#f7ebe7 100%);
+.celebration .section-kicker{color:#8b465c;}
+.celebration h2{color:#6b2d46;font-size:clamp(3rem,5vw,4.8rem);line-height:1.05;}
+.celebration h2 em{color:#bc8294;}
+.celebration-copy{color:#77656b;font-size:1rem;line-height:1.8;}
+.celebration-facts>div{border-top:1px solid #dfbec7;}
+.celebration-facts strong{color:#523b42;}
+.celebration-facts>div>span:last-child:not(.fact-label){color:#7d686d;}
+.fact-label{color:#914760;}
+.celebrate-cta,.rsvp .button-dark{
+  background:#7c304b;color:#fff9f7;border:1px solid #7c304b;border-radius:999px;
+  box-shadow:0 8px 18px rgba(107,45,70,.11);
 }
-.romantic-hero .hero-botanical {
-  position:absolute;
-  z-index:3;
-  pointer-events:none;
-  object-fit:contain;
-  display:block;
+.celebrate-cta:hover{color:#7c304b;background:transparent;}
+.location-card{
+  padding:30px;border:1px solid #d9adb7;background:rgba(255,253,251,.87);
+  border-radius:23px;box-shadow:0 12px 34px rgba(119,72,83,.08);
 }
-.romantic-hero .hero-botanical-top {width:clamp(175px,24vw,360px);height:auto;top:-28px;left:-30px;}
-.romantic-hero .hero-botanical-bottom {width:clamp(205px,25vw,380px);height:auto;bottom:-105px;right:-40px;}
-.romantic-hero .nav {
-  position:relative;
-  top:auto;right:auto;left:auto;
-  width:min(calc(100% - 100px),1120px);
-  z-index:5;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:32px 0 0;
-  margin:0 auto;
+.location-eyebrow{color:#98566b;}
+.location-card h3{color:#692d43;}
+.location-card p{color:#75666a;}
+.map-preview{border-radius:12px;overflow:hidden;border:1px solid #e6ced4;background:#e7e6e3;}
+.map-cta{color:#fff;background:#7d314b;border-radius:999px;padding:13px 18px;}
+.map-cta:hover{background:#5e1c36;color:#fff;}
+.timing{background:#fffaf8;}
+.timing .section-kicker{color:#813e55;}
+.timeline-path path{stroke:#b1b9a1;}
+.moment-icon{color:#964f65;background:#fffaf8;border-color:#e9cbd1;}
+.moment-copy{background:#fffaf8;}
+.moment-number{color:#96566c;}
+.dress{
+  position:relative;overflow:hidden;background:#f6e7e8;color:#503943;
 }
-.romantic-hero .brand {
-  margin-left:7%;
-  font-family:'Cormorant Garamond',serif;
-  font-weight:500;
-  color:#2d2528;
-  font-size:2rem;
-  text-shadow:none;
+.dress::after{
+  content:"";position:absolute;right:-105px;bottom:-150px;pointer-events:none;
+  width:320px;height:345px;background:url('assets/flores-romanticas.svg') center/contain no-repeat;
+  opacity:.21;transform:rotate(20deg);
 }
-.romantic-hero .brand::before,.romantic-hero .brand::after {
-  content:"";display:inline-block;width:clamp(20px,4vw,65px);height:1px;vertical-align:middle;
-  background:#8e5364;margin:0 18px;
-}
-.romantic-hero .nav-link {
-  font-size:.81rem;
-  color:#68243e;
-  border:1px solid #99546d;
-  background:rgba(255,250,247,.7);
-  backdrop-filter:blur(8px);
-  border-radius:99px;
-  padding:8px 23px;
-  text-decoration:none;
-}
-.romantic-hero .nav-link:hover {background:#68243e;color:white;}
-.romantic-hero .hero-content {
-  position:relative;
-  z-index:2;
-  display:flex;
-  flex-direction:column;
-  width:min(calc(100% - 72px),1120px);
-  max-width:none;
-  min-height:0;
-  margin:0 auto;
-  padding:40px 0 22px;
-  text-align:center;
-}
-.romantic-hero .hero-announcement {
-  width:min(49%,520px);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  margin:0 0 0 0;
-}
-.romantic-hero .eyebrow {
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(2rem,3.5vw,3.6rem);
-  font-style:italic;
-  font-weight:500;
-  letter-spacing:.012em;
-  text-transform:none;
-  color:#73243d;
-  margin:26px 0 17px;
-}
-.romantic-hero h1 {
-  margin:0;
-  color:#282324;
-  font-family:'Cormorant Garamond',serif;
-  font-weight:500;
-  font-size:clamp(5.2rem,9.8vw,10.5rem);
-  letter-spacing:-.052em;
-  line-height:.83;
-  text-wrap:balance;
-}
-.romantic-hero h1 .hero-name {display:block;font:inherit;color:inherit;}
-.romantic-hero h1 .hero-amp {
-  display:block;
-  font-family:'Cormorant Garamond',serif;
-  font-size:.62em;
-  font-style:italic;
-  color:#772841;
-  margin:4px 0 10px;
-  line-height:.95;
-}
-.romantic-hero .hero-heart {
-  width:122px;
-  height:53px;
-  margin:25px auto 8px;
-  display:block;
-}
-.romantic-hero .date {
-  font-size:.76rem;
-  letter-spacing:.28em;
-  color:#714255;
-  margin:6px 0 0;
-}
-/* Los párrafos de portada prevalecen sobre los colores de la hoja anterior. */
-.romantic-hero .hero-content .eyebrow {color:#73243d;}
-.romantic-hero .hero-content .date {color:#714255;}
-.romantic-hero .hero-countdown {
-  width:min(100%,800px);
-  max-width:none;
-  margin:32px auto 0;
-  border:0;
-  padding:0;
-  text-align:center;
-}
-.romantic-hero .hero-countdown-label {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:25px;
-  white-space:nowrap;
-  color:#6b223b!important;
-  font-family:'Inter',sans-serif;
-  font-size:clamp(.78rem,1.4vw,1.23rem);
-  font-style:normal;
-  font-weight:600;
-  letter-spacing:.26em;
-  margin:0;
-}
-.romantic-hero .hero-countdown-label::before,.romantic-hero .hero-countdown-label::after {
-  content:"";display:block;flex:1;max-width:145px;height:1px;background:#9d6e7c;
-}
-.romantic-hero .hero-countdown .countdown {
-  width:100%;
-  max-width:none;
-  margin:25px auto 0;
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:0;
-}
-.romantic-hero .hero-countdown .countdown>div {
-  border-left:1px solid #d7b8bb;
-  padding:0 8px;
-  min-width:0;
-  text-align:center;
-}
-.romantic-hero .hero-countdown .countdown>div:first-child {border-left:0;}
-.romantic-hero .hero-countdown .countdown strong {
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(3.6rem,5.5vw,5.3rem);
-  font-weight:500;
-  color:#292425;
-  line-height:.94;
-  font-variant-numeric:lining-nums tabular-nums;
-}
-.romantic-hero .hero-countdown .countdown span {
-  display:block;
-  margin:7px 0 0;
-  color:#423537;
-  font:400 clamp(.62rem,1vw,.8rem)/1.4 'Inter',sans-serif;
-  text-transform:uppercase;
-  letter-spacing:.22em;
-}
-.romantic-hero .button-light {
-  align-self:center;
-  color:#fff9f8;
-  background:#6d203b;
-  border:1px solid #6d203b;
-  border-radius:999px;
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.55rem,2.5vw,2.35rem);
-  font-style:italic;
-  font-weight:500;
-  text-transform:none;
-  letter-spacing:0;
-  margin-top:34px;
-  padding:10px 55px 14px;
-  box-shadow:0 5px 14px rgba(109,32,59,.1);
-}
-.romantic-hero .button-light:hover {background:#4f142b;color:#fff9f8;transform:translateY(-2px);}
-.romantic-hero .button-light span {font-family:'Inter',sans-serif;font-style:normal;font-weight:300;margin-left:14px;}
-/* Identidad cromática para las secciones interiores. */
-.memories-strip {background:#f9efec;}
-.memories-heading p {color:#7d334b;}
-.memories-arrow {border-color:#cfaeb8;color:#7d334b;}
-.memories-arrow:hover {background:#72253f;}
-.celebration {background:#6b2a43;color:#fff6f3;}
-.celebration .section-kicker,.location-eyebrow,.fact-label {color:#efd3d3;}
-.celebration h2,.location-card h3 {color:#fff7f2;}
-.celebration h2 em {color:#edc6cf;}
-.celebration-copy {color:#f4e3e4;}
-.celebration-facts>div {border-top-color:rgba(255,221,225,.35);}
-.celebration-facts strong {color:#fff7f2;}
-.celebration-facts>div>span:last-child:not(.fact-label) {color:#f2dee1;}
-.celebrate-cta {background:#fff3f1;color:#6b2a43;border-color:#fff3f1;}
-.celebrate-cta:hover {color:#fff;background:transparent;}
-.location-card {background:#813d55;border:1px solid rgba(255,222,225,.58);}
-.location-card p {color:#f5e4e5;}
-.map-preview {border-color:#c998a5;}
-.map-cta {background:#fff3f1;color:#72253f;}
-.map-cta:hover {background:#eecdd3;}
-.timing {background:#fffaf7;}
-.timeline-path path {stroke:#c6a3ac;}
-.moment-icon {color:#7a3550;background:#fffaf7;border-color:#e6cbd1;}
-.moment-copy {background:#fffaf7;}
-.moment-number {color:#8d4962;}
-.dress {background:#f1e6e4;}
-.dress-flourish {color:#91506b;}
-.playlist {background:#fff9f6;}
-.song-card {background:#f7eceb;border-color:#ead0d2;border-top-color:#8b3e58;}
-.song-card-heading {color:#8b3e58;}
-.rsvp {background:#f1dfe1;color:#38282b;}
-.rsvp p {color:#69555a;}
-.rsvp .button-dark {background:#6d203b;color:white;}
-.invitation-policy {border-color:#dbb2be;color:#473039!important;background:rgba(255,255,255,.48);}
-.faq {background:#fff9f6;}
-.footer {background:#65243c;}
-.footer p {color:#fff3f0;}
-.footer-names {color:#fff3f0;}
-/* Tableta: foto en la parte superior con desvanecimiento; el texto queda legible debajo. */
-@media(max-width:820px) {
-  .hero.romantic-hero {min-height:0;padding-bottom:44px;}
-  .romantic-hero .hero-photo {
-    position:absolute;top:0;right:0;left:auto;bottom:auto;
-    width:100%;height:clamp(300px,62vw,490px);
-    border:0;border-radius:0;object-position:center 33%;
-  }
-  .romantic-hero .hero-overlay {
-    background:
-      linear-gradient(180deg,rgba(247,235,231,.08) 0%,rgba(247,235,231,.05) 28%,rgba(247,235,231,.68) 66%,#f7ebe7 95%),
-      linear-gradient(90deg,rgba(247,235,231,.2),transparent 85%);
-  }
-  .romantic-hero .nav {
-    position:relative;width:min(calc(100% - 34px),700px);padding:22px 0 0;
-  }
-  .romantic-hero .brand {margin-left:0;font-size:1.6rem;color:#492539;text-shadow:0 0 8px #fff;}
-  .romantic-hero .brand::before,.romantic-hero .brand::after {width:25px;margin:0 8px;}
-  .romantic-hero .nav-link {color:#65233c;background:rgba(255,248,245,.82);}
-  .romantic-hero .hero-content {width:min(calc(100% - 36px),650px);padding:0 0 12px;}
-  .romantic-hero .hero-announcement {width:100%;padding-top:clamp(240px,45vw,400px);margin:0 auto;}
-  .romantic-hero .eyebrow {font-size:clamp(2rem,6vw,3rem);margin:16px 0 9px;}
-  .romantic-hero h1 {font-size:clamp(5rem,13vw,8rem);}
-  .romantic-hero .hero-heart {margin:18px auto 5px;}
-  .romantic-hero .hero-countdown {margin-top:35px;}
-  .romantic-hero .hero-countdown .countdown strong {font-size:clamp(3rem,8vw,4.5rem);}
-  .romantic-hero .hero-botanical-top {width:180px;top:-34px;left:-55px;opacity:.62;}
-  .romantic-hero .hero-botanical-bottom {width:230px;bottom:-85px;right:-65px;}
-}
-@media(max-width:540px) {
-  .hero.romantic-hero {padding-bottom:30px;}
-  .romantic-hero .hero-photo {height:310px;object-position:50% 24%;}
-  .romantic-hero .hero-overlay {background:linear-gradient(180deg,rgba(247,235,231,.02) 0%,rgba(247,235,231,.1) 32%,rgba(247,235,231,.62) 67%,#f7ebe7 98%);}
-  .romantic-hero .hero-content {width:calc(100% - 32px);}
-  .romantic-hero .hero-announcement {padding-top:226px;}
-  .romantic-hero .eyebrow {font-size:2.2rem;margin:18px 0 8px;}
-  .romantic-hero h1 {font-size:clamp(4rem,19vw,6rem);line-height:.84;}
-  .romantic-hero h1 .hero-amp {margin:6px 0;}
-  .romantic-hero .hero-heart {width:105px;height:43px;margin:17px auto 7px;}
-  .romantic-hero .date {font-size:.69rem;}
-  .romantic-hero .hero-countdown {width:100%;margin-top:28px;}
-  .romantic-hero .hero-countdown-label {gap:9px;letter-spacing:.12em;font-size:.69rem;}
-  .romantic-hero .hero-countdown-label::before,.romantic-hero .hero-countdown-label::after {max-width:50px;}
-  .romantic-hero .hero-countdown .countdown {margin-top:20px;}
-  .romantic-hero .hero-countdown .countdown>div {padding:0 2px;}
-  .romantic-hero .hero-countdown .countdown strong {font-size:clamp(2.45rem,10vw,3.5rem);}
-  .romantic-hero .hero-countdown .countdown span {font-size:.58rem;letter-spacing:.08em;}
-  .romantic-hero .button-light {font-size:1.55rem;padding:10px 45px;margin-top:28px;}
-  .romantic-hero .hero-botanical-bottom {width:178px;bottom:-60px;right:-52px;opacity:.83;}
-  .romantic-hero .hero-botanical-top {width:150px;}
-}
-@media(prefers-reduced-motion:reduce){.romantic-hero .button-light:hover{transform:none;}}
+.dress-flourish{color:#ac7884;}
+.dress h2{color:#6c2d46;}
+.reserved-palette span::after{border-color:#a76b7a;background:linear-gradient(135deg,transparent calc(50% - .75px),#a76b7a calc(50% - .75px),#a76b7a calc(50% + .75px),transparent calc(50% + .75px));}
+.playlist{background:#fffaf7;}
+.playlist h2{color:#6b2b44;}
+.song-card{background:#fbf0ed;border:1px solid #e5c8cf;border-top:2px solid #b67b91;border-radius:18px;padding:23px;box-shadow:0 9px 30px rgba(109,49,74,.045);}
+.song-card-heading{color:#914f64;}
+.gifts{background:#fff9f6;border-top:1px solid #ecd6db;}
+.gifts h2{color:#6d2c46;}
+.gift-card{background:#fffdfb;border-color:#e2c9d0!important;border-radius:15px!important;}
+.gift-card .gift-price,.gift-card .text-link,.text-link{color:#7e3652;}
+.copy-bank{border-color:#b47c90;color:#7c304b;}
+.rsvp{background:linear-gradient(150deg,#f1dfe2,#f7ebea);color:#6c3048;}
+.rsvp h2{color:#6c3048;}
+.rsvp p{color:#745d65;}
+.rsvp .button-dark:hover{background:#5d1e38;color:#fff;}
+.invitation-policy{border:1px solid #d6acb8;background:rgba(255,250,247,.58);border-radius:14px;color:#614a54!important;}
+.faq{background:#fffaf7;}
+.faq h2{color:#6b2a45;}
+.faq summary{color:#683c4b;}
+.faq details{border-color:#e5cbd2;}
+.footer{background:#6c2945;}
+.footer p,.footer-names{color:#fff6f2;}
 
-/* Ajuste de encuadre para la maqueta aprobada: preservar el espacio
-   de los nombres y evitar que la fotografía invada la tipografía. */
-@media (min-width: 821px) {
-  .hero.romantic-hero {
-    min-height: max(840px, 100svh);
+/* --- Móvil: la composición es vertical, como el parte aprobado. --- */
+@media(max-width:850px){
+  .hero.floral-hero{min-height:0;padding:0 0 55px;display:block;}
+  .floral-hero .hero-photo{
+    position:absolute;top:0;left:0;width:100%;height:clamp(310px,77vw,560px);
+    object-position:50% 40%;
   }
-  .romantic-hero .hero-photo {
-    top: 0;
-    right: 0;
-    left: auto;
-    width: 58%;
-    height: clamp(590px, 74svh, 775px);
-    object-position: 50% 27%;
-    border: 0;
-    border-radius: 0;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 16%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 16%);
+  .floral-hero .hero-overlay{
+    background:linear-gradient(180deg,
+      rgba(252,243,240,.06) 0%,rgba(252,243,240,.03) 20%,
+      rgba(252,243,240,.14) 37%,rgba(252,243,240,.60) 61%,
+      #fcf3f0 93%,#fcf3f0 100%);
   }
-  .romantic-hero .hero-overlay {
-    display: block;
-    background:
-      linear-gradient(90deg,
-        #f7ebe7 0%,
-        #f7ebe7 32%,
-        rgba(247,235,231,.96) 39%,
-        rgba(247,235,231,.48) 47%,
-        transparent 59%),
-      linear-gradient(180deg,
-        transparent 0%,
-        transparent 50%,
-        rgba(247,235,231,.24) 64%,
-        #f7ebe7 82%);
+  .floral-hero .nav{
+    position:relative;z-index:5;width:min(calc(100% - 32px),710px);
+    padding:18px 0 0;
   }
-  .romantic-hero .nav {
-    width: min(calc(100% - 110px), 1530px);
-    padding-top: 30px;
+  .floral-hero .brand{font-size:1.9rem;gap:12px;}
+  .floral-hero .brand::after{width:44px;}
+  .floral-hero .nav-link{font-size:1.15rem;padding:8px 17px;}
+  .floral-hero .hero-content{
+    width:min(calc(100% - 36px),650px);max-width:none;margin:0 auto;
+    padding:clamp(245px,61vw,415px) 0 0;
   }
-  .romantic-hero .brand { margin-left: 0; }
-  .romantic-hero .hero-content {
-    width: min(calc(100% - 110px), 1530px);
-    margin: 0 auto;
-    padding: 46px 0 28px;
-  }
-  .romantic-hero .hero-announcement {
-    width: 43%;
-    max-width: 640px;
-    margin: 0;
-  }
-  .romantic-hero .eyebrow {
-    margin-top: 16px;
-  }
-  .romantic-hero h1 {
-    font-size: clamp(5.1rem, 8vw, 8.65rem);
-    line-height: .87;
-  }
-  .romantic-hero .hero-countdown {
-    margin-top: 38px;
-    position: relative;
-  }
+  .floral-hero .hero-announcement{width:100%;}
+  .floral-hero .eyebrow{font-size:clamp(2rem,5vw,2.8rem);margin:0 0 11px;}
+  .floral-hero h1 .hero-name{font-size:clamp(5rem,12.8vw,8rem);}
+  .floral-hero h1 .hero-amp{font-size:clamp(2.8rem,7vw,4rem);margin:2px 0 10px;}
+  .floral-hero .hero-heart-rule{margin:12px auto 11px;}
+  .floral-hero .hero-countdown{width:min(100%,575px);}
+  .floral-hero .hero-countdown .countdown strong{font-size:clamp(2.7rem,6.9vw,4rem);}
+  .floral-hero .hero-botanical-top{width:clamp(170px,32vw,260px);right:-55px;top:-45px;opacity:.88;}
+  .floral-hero .hero-botanical-bottom{width:clamp(190px,35vw,285px);left:-75px;bottom:-95px;opacity:.87;}
+  .celebration{padding:70px 0;}
 }
-@media (min-width: 821px) and (max-width: 1100px) {
-  .romantic-hero .hero-photo { width: 57%; }
-  .romantic-hero .hero-announcement { width: 46%; }
-  .romantic-hero h1 { font-size: clamp(4.6rem, 8.3vw, 6.3rem); }
+@media(max-width:540px){
+  .hero.floral-hero{padding-bottom:38px;}
+  .floral-hero .hero-photo{height:clamp(300px,82vw,405px);object-position:50% 41%;}
+  .floral-hero .hero-content{padding-top:clamp(255px,67vw,350px);width:calc(100% - 36px);}
+  .floral-hero .brand{font-size:1.55rem;}
+  .floral-hero .brand::after{width:26px;}
+  .floral-hero .nav-link{font-size:1rem;padding:8px 13px;gap:6px;}
+  .floral-hero .nav-link svg{width:15px;height:15px;}
+  .floral-hero .eyebrow{font-size:2rem;margin-bottom:8px;}
+  .floral-hero .eyebrow::before,.floral-hero .eyebrow::after{width:22px;}
+  .floral-hero h1 .hero-name{font-size:clamp(4rem,16vw,6rem);}
+  .floral-hero h1 .hero-amp{font-size:2.5rem;}
+  .floral-hero .hero-heart-rule{width:70%;margin:12px auto 8px;}
+  .floral-hero .date{font-size:1.46rem;}
+  .floral-hero .hero-countdown{padding:26px 7px 15px;margin-top:28px;border-radius:25px;}
+  .floral-hero .hero-countdown-label{font-size:.8rem;letter-spacing:.13em;top:-.6rem;}
+  .floral-hero .hero-countdown .countdown>div{padding:0 2px;}
+  .floral-hero .hero-countdown .countdown strong{font-size:clamp(2.25rem,10vw,3.25rem);}
+  .floral-hero .hero-countdown .countdown span{font-size:.9rem;}
+  .floral-hero .button-light{min-width:240px;margin-top:24px;padding:10px 32px 12px;font-size:1.6rem;}
+  .floral-hero .hero-botanical-top{width:175px;right:-68px;top:-39px;opacity:.7;}
+  .floral-hero .hero-botanical-bottom{width:205px;left:-83px;bottom:-115px;opacity:.7;}
+  .location-card{padding:19px;}
+  .celebration{padding:55px 0;}
+  .dress::after{width:240px;height:260px;opacity:.16;}
+  .song-card{padding:16px;}
+}
+@media(max-width:360px){
+  .floral-hero h1 .hero-name{font-size:3.72rem;}
+  .floral-hero .hero-countdown .countdown strong{font-size:2.12rem;}
+  .floral-hero .hero-countdown .countdown span{font-size:.8rem;}
+}
+@media(prefers-reduced-motion:reduce){
+  .floral-hero .button-light:hover{transform:none;}
 }

@@ -62,3 +62,13 @@
 #regalos .bank-card h3{color:var(--dark);line-height:1.2}
 #regalos .bank-card dd{font-size:14px}
 #regalos a:focus-visible,#regalos button:focus-visible{outline:2px solid #8c4863;outline-offset:3px}
+
+
+/* Transferencias: salvia suave para separar regalos y confirmación. */
+#regalos {background:#fff9f6;}
+#regalos .bank-section {
+  background:#e8eee8;
+  border-color:#cfd9d0;
+}
+#regalos .bank-card {border-color:#c9d4ca;}
+#regalos .bank-card dl div {border-color:#e1e8e0;}

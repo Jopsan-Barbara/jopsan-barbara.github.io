@@ -848,3 +848,44 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #80
 @media(prefers-reduced-motion:reduce) {
   .memory-slide img {transition:none;}
 }
+
+
+/* Ritmo visual entre secciones: verde salvia, marfil y rosa empolvado.
+   Mantiene las fotografías, flores y tipografías originales. */
+.timing {
+  background:#edf1eb;
+}
+.timing .moment-icon,
+.timing .moment-copy {
+  background:#edf1eb;
+}
+.timing .moment-icon {
+  border-color:#cad8ca;
+}
+.timing .timeline-path path {
+  stroke:#97ad99;
+}
+.playlist {
+  background:#eaf0ed;
+}
+.playlist .song-card {
+  background:#fffdfb;
+  border-color:#cbdad1;
+  border-top-color:#889d90;
+}
+.playlist .song-card iframe {
+  background:#fffdfb;
+}
+.rsvp {
+  background:linear-gradient(145deg,#f3e1e7 0%,#f8eced 100%);
+}
+@media (min-width:851px) {
+  .timing .timeline-item {min-height:139px;}
+  .timing {padding:66px 0 70px;}
+}
+@media (max-width:850px) {
+  .timing .timeline-item {min-height:129px;}
+}
+@media (max-width:540px) {
+  .timing .timeline-item {min-height:122px;}
+}

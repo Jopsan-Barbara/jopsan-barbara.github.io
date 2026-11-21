@@ -35,7 +35,7 @@ a:focus-visible,button:focus-visible {outline:2px solid var(--accent);outline-of
   inset:0 0 auto auto;
   z-index:0;
   width:69%;
-  height:83%;
+  height:clamp(610px,82svh,860px);
   display:block;
   object-fit:cover;
   object-position:50% 40%;

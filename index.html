@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=parte-elegante-2" />
+  <link rel="stylesheet" href="styles.css?v=parte-verde-dorado-3" />
 </head>
 <body>
   <a class="skip-link" href="#detalles">Saltar a los detalles</a>
@@ -40,31 +40,52 @@
   </header>
 
   <main>
-    <div class="botanical-strip" aria-hidden="true"><span class="tile monogram">J<span>&</span>B</span><span class="tile leaves"></span><span class="tile petals"></span><span class="tile wine"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 42C13 19 27 7 42 6c0 19-9 33-30 36Zm0 0L35 13M20 29l-1-11m7 5 10-1"/></svg></span><span class="tile blue"></span><span class="tile leaves olive"></span></div>
-    <section class="section intro reveal">
-      <div class="container narrow center">
-        <p class="section-kicker">NUESTRA CELEBRACIÓN</p>
-        <h2>Hay momentos <em>que merecen</em> compartirse</h2>
-        <p>Comenzamos esta nueva etapa y estamos felices de compartirla contigo.</p>
+    <section class="memories-strip" aria-label="Recuerdos de Jopsan y Bárbara">
+      <div class="container memories-heading">
+        <p>UN POQUITO DE NUESTRA HISTORIA</p>
+        <div class="memories-controls" aria-label="Controles del carrusel">
+          <button id="memories-prev" class="memories-arrow" type="button" aria-label="Fotografía anterior">‹</button>
+          <button id="memories-next" class="memories-arrow" type="button" aria-label="Fotografía siguiente">›</button>
+        </div>
+      </div>
+      <div class="memories-viewport" id="memories-viewport" aria-label="Galería de recuerdos">
+        <div class="memories-track" id="memories-track">
+          <figure class="memory-slide"><img src="assets/novios-portada.jpg" alt="Jopsan y Bárbara muestran sus anillos" loading="lazy"></figure>
+        </div>
+      </div>
+    </section>
+    <section class="section celebration" id="detalles">
+      <div class="container celebration-layout">
+        <div class="celebration-story">
+          <p class="section-kicker">NUESTRA CELEBRACIÓN</p>
+          <h2>Hay momentos <em>que merecen</em> compartirse</h2>
+          <p class="celebration-copy">Comenzamos una nueva etapa y queremos celebrarla contigo. Nos reuniremos en un lugar muy especial para compartir una jornada llena de cariño, recuerdos y alegría.</p>
+          <div class="celebration-facts" aria-label="Datos importantes de la celebración">
+            <div><span class="fact-label">CUÁNDO</span><strong>Sábado 27 de febrero de 2027</strong></div>
+            <div><span class="fact-label">A QUÉ HORA</span><strong>Bienvenida · 12:00 h</strong></div>
+            <div><span class="fact-label">DÓNDE</span><strong>Domos de Chamiza</strong><span>Puerto Montt, Chile</span></div>
+          </div>
+          <a class="button celebrate-cta" href="#rsvp">Confirmar mi asistencia</a>
+        </div>
+        <div class="celebration-location">
+          <div class="location-card">
+            <p class="location-eyebrow">TE ESPERAMOS AQUÍ</p>
+            <h3>Domos de Chamiza</h3>
+            <p>Puerto Montt, Chile</p>
+            <div class="map-preview">
+              <iframe title="Mapa de Domos de Chamiza, Puerto Montt" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Domos%20de%20Chamiza%2C%20Puerto%20Montt%2C%20Chile&amp;output=embed"></iframe>
+            </div>
+            <a class="map-cta" href="https://maps.app.goo.gl/zymREpPr2wvXvVBv8?g_st=iw" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">⌖</span> Abrir mapa y cómo llegar <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
       </div>
     </section>
 
-
-    <section class="section" id="detalles">
-      <div class="container narrow center">
-        <article class="card reveal">
-          <p class="section-kicker">CEREMONIA Y CELEBRACIÓN</p>
-          <p class="big">27 de febrero de 2027 · 12:00 h</p>
-          <p>Lugar: Domos de Chamiza, Puerto Montt.</p>
-          <a class="text-link" href="https://maps.app.goo.gl/zymREpPr2wvXvVBv8?g_st=iw" target="_blank" rel="noopener">Cómo llegar →</a>
-        </article>
-      </div>
-    </section>
-
-<section class="section timing" id="cronograma" aria-label="Nuestro gran día"><div class="container narrow center"><p class="section-kicker">NUESTRO GRAN DÍA</p></div><div class="timeline"><svg class="timeline-path" viewBox="0 0 440 940" preserveAspectRatio="none" aria-hidden="true"><path d="M220 40 C420 80 420 200 220 230 S20 380 220 420 S420 580 220 610 S20 770 220 800 L220 900" /></svg><ol><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 44V19l16-9 16 9v25M8 44h40M23 44V29h10v15M19 21h1m16 0h1"/><path d="M7 13l4 2m34 0 4-2M28 3v3"/></svg></div><div class="moment-copy"><span class="moment-number">01</span><h3>Bienvenida</h3><p>12:00 h</p></div></li><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="21" cy="31" r="12"/><circle cx="35" cy="31" r="12"/><path d="m16 14 5-6 5 6-5 5-5-5Z"/></svg></div><div class="moment-copy"><span class="moment-number">02</span><h3>Ceremonia</h3><p>Por confirmar</p></div></li><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13 8 16 4-7 19c-6 3-12 0-12-6l3-17Zm23 1 13 4-6 17c-5 3-11 0-11-6l4-15ZM16 32l-3 14m-6-1 12 3m18-16-3 13m-5-2 12 4M28 4l-1 4m5-3 1 3"/></svg></div><div class="moment-copy"><span class="moment-number">03</span><h3>Brindis y cóctel</h3><p>Por confirmar</p></div></li><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="30" cy="28" r="17"/><circle cx="30" cy="28" r="11"/><path d="M6 9v15m5-15v15M6 18h5M9 24v23M51 9v38M51 9c-5 4-5 13 0 16"/></svg></div><div class="moment-copy"><span class="moment-number">04</span><h3>Almuerzo</h3><p>Por confirmar</p></div></li><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 38V12l22-5v25M22 19l22-5"/><ellipse cx="16" cy="39" rx="6" ry="5"/><ellipse cx="38" cy="33" rx="6" ry="5"/><path d="m7 10 2 3 4 1-4 2-2 4-1-4-3-2 3-1Z"/></svg></div><div class="moment-copy"><span class="moment-number">05</span><h3>Fiesta</h3><p>Por confirmar</p></div></li></ol></div></section>
+    <section class="section timing" id="cronograma" aria-label="Nuestro gran día"><div class="container narrow center"><p class="section-kicker">NUESTRO GRAN DÍA</p></div><div class="timeline"><svg class="timeline-path" viewBox="0 0 440 940" preserveAspectRatio="none" aria-hidden="true"><path d="M220 40 C420 80 420 200 220 230 S20 380 220 420 S420 580 220 610 S20 770 220 800 L220 900" /></svg><ol><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 44V19l16-9 16 9v25M8 44h40M23 44V29h10v15M19 21h1m16 0h1"/><path d="M7 13l4 2m34 0 4-2M28 3v3"/></svg></div><div class="moment-copy"><span class="moment-number">01</span><h3>Bienvenida</h3><p>12:00 h</p></div></li><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="21" cy="31" r="12"/><circle cx="35" cy="31" r="12"/><path d="m16 14 5-6 5 6-5 5-5-5Z"/></svg></div><div class="moment-copy"><span class="moment-number">02</span><h3>Ceremonia</h3><p>Por confirmar</p></div></li><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13 8 16 4-7 19c-6 3-12 0-12-6l3-17Zm23 1 13 4-6 17c-5 3-11 0-11-6l4-15ZM16 32l-3 14m-6-1 12 3m18-16-3 13m-5-2 12 4M28 4l-1 4m5-3 1 3"/></svg></div><div class="moment-copy"><span class="moment-number">03</span><h3>Brindis y cóctel</h3><p>Por confirmar</p></div></li><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="30" cy="28" r="17"/><circle cx="30" cy="28" r="11"/><path d="M6 9v15m5-15v15M6 18h5M9 24v23M51 9v38M51 9c-5 4-5 13 0 16"/></svg></div><div class="moment-copy"><span class="moment-number">04</span><h3>Almuerzo</h3><p>Por confirmar</p></div></li><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 38V12l22-5v25M22 19l22-5"/><ellipse cx="16" cy="39" rx="6" ry="5"/><ellipse cx="38" cy="33" rx="6" ry="5"/><path d="m7 10 2 3 4 1-4 2-2 4-1-4-3-2 3-1Z"/></svg></div><div class="moment-copy"><span class="moment-number">05</span><h3>Fiesta</h3><p>Por confirmar</p></div></li></ol></div></section>
     <section class="section dress reveal">
       <div class="container narrow center">
         <p class="section-kicker">DRESS CODE</p>
+        <div class="dress-flourish" aria-hidden="true">✧</div>
         <h2>Semi-Formal / Casual Elegante</h2>
         <p>Reservamos el blanco y sus tonos similares para la novia.</p>
         <ul class="reserved-palette" aria-label="Colores reservados para la novia">
@@ -75,13 +96,15 @@
     </section>
 
     <section class="section playlist reveal">
-      <div class="container split align-center">
+      <div class="container split align-center playlist-layout">
         <div>
           <p class="section-kicker">LA BANDA SONORA</p>
           <h2>Ayúdanos a llenar la pista</h2>
-          <p>Cuéntanos ¿qué canción no puede faltar?</p>
+          <p>Cuéntanos: ¿qué canción no puede faltar? Queremos que esta celebración también suene a ti.</p>
         </div>
+        <div class="song-card"><p class="song-card-heading">TU CANCIÓN PARA LA FIESTA</p>
         <iframe id="song-frame" title="Sugerir una canción" src="https://script.google.com/macros/s/AKfycbzaQII35vfo8NEtnR-EXULyRJLiM_haJ0mumM4bzIvZTV9kQoewGd87Dj8Zk9uXJ0Cp/exec?view=cancion" loading="lazy" style="width:100%;height:250px;border:0"></iframe>
+        </div>
       </div>
     </section>
 
@@ -153,6 +176,7 @@ Correo: Bamh.3003@gmail.com</pre><p>Escribe el nombre del regalo en el comentari
         <p class="section-kicker">RSVP</p>
         <h2 id="guest-title">¿Nos acompañas?</h2>
         <p id="guest-copy">Confirma hasta el 31 de enero de 2027.</p>
+        <p class="invitation-policy">Preparamos esta invitación especialmente para ti. Los cupos son los que te indicamos al invitarte; si no se mencionó un acompañante, tu invitación es individual. Gracias por ayudarnos a organizar este día.</p>
         <a class="button button-dark disabled" href="#" aria-disabled="true">Confirmar asistencia</a>
       </div>
     </section>
@@ -162,8 +186,8 @@ Correo: Bamh.3003@gmail.com</pre><p>Escribe el nombre del regalo en el comentari
         <p class="section-kicker center">INFORMACIÓN ÚTIL</p>
         <h2 class="center">Preguntas frecuentes</h2>
         <details>
-          <summary>¿Puedo ir con acompañante?</summary>
-          <p>Tu invitación indica los cupos disponibles.</p>
+          <summary>¿Puedo asistir con acompañante?</summary>
+          <p>Para que podamos recibir a todos de la mejor manera, cada invitación contempla únicamente los cupos que se indicaron al invitarte. Si no se mencionó un acompañante, tu invitación es individual. Gracias por comprender.</p>
         </details>
         <details>
           <summary>¿Habrá estacionamiento?</summary>
@@ -185,7 +209,9 @@ Correo: Bamh.3003@gmail.com</pre><p>Escribe el nombre del regalo en el comentari
   </footer>
 
   <script src="script.js?v=20270227-hero-2"></script>
-  <script src="rsvp.js?v=approved-copy-2"></script>
+  <script src="gallery-data.js?v=galeria-1" defer></script>
+  <script src="gallery.js?v=galeria-1" defer></script>
+  <script src="rsvp.js?v=invitaciones-personales-3"></script>
 </body>
 </html>
 

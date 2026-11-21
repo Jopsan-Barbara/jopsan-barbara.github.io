@@ -645,3 +645,206 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #80
     opacity:.70;
   }
 }
+
+/* INTERIORES APROBADOS · VERSION 9 */
+/* Galería con movimiento automático y fotografías originales, sin filtros faciales. */
+.memories-strip {
+  padding:38px 0 44px;
+  overflow:hidden;
+  background:linear-gradient(180deg,#fffaf8 0%,#fff7f5 100%);
+}
+.memories-heading {
+  gap:18px;
+  align-items:flex-end;
+  margin-bottom:19px;
+}
+.memories-heading-text p {margin:0 0 6px;}
+.memories-heading-text span {
+  font-family:'Cormorant Garamond',serif;
+  color:#8b6d75;
+  font-size:clamp(1rem,1.5vw,1.25rem);
+  font-style:italic;
+}
+.memories-controls {align-items:center;gap:9px;flex:0 0 auto;}
+.memories-counter {
+  font-size:.72rem;
+  letter-spacing:.1em;
+  color:#82475b;
+  font-variant-numeric:tabular-nums;
+  margin-right:8px;
+}
+.memories-arrow {
+  width:38px;height:38px;
+  border-color:#dab9c3;
+  background:rgba(255,250,248,.92);
+  box-shadow:0 2px 8px rgba(102,51,68,.06);
+}
+.memories-viewport {
+  scroll-padding-inline:20px;
+  scrollbar-width:none;
+  outline-offset:-3px;
+}
+.memories-viewport:focus-visible {
+  outline:2px solid #8f4662;
+  border-radius:12px;
+}
+.memories-track {
+  gap:18px;
+  padding-top:6px;
+  padding-bottom:12px;
+}
+.memory-slide {
+  flex:0 0 clamp(250px,25vw,345px);
+  width:clamp(250px,25vw,345px);
+  height:clamp(205px,20vw,280px);
+  border-radius:14px;
+  border:1px solid #e6cbd1;
+  background:#eee2df;
+  box-shadow:0 7px 22px rgba(112,64,80,.09);
+}
+.memory-slide img {
+  border-radius:13px;
+  filter:none;
+}
+/* Celebración y ubicación: mayor claridad de fecha, hora, mapa y confirmación. */
+.celebration {isolation:isolate;padding:clamp(62px,7vw,90px) 0;}
+.celebration::after {
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  right:-65px;
+  bottom:-70px;
+  width:165px;
+  height:110px;
+  background:url('assets/ramillete-botanico-real.webp') center/contain no-repeat;
+  opacity:.22;
+  transform:rotate(180deg);
+  z-index:-1;
+}
+.celebration-layout {
+  grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
+  gap:clamp(28px,5vw,72px);
+  align-items:center;
+}
+.celebration-story h2 {
+  font-size:clamp(3rem,4.6vw,4.6rem);
+  margin:0 0 22px;
+}
+.celebration-copy {margin-bottom:25px;}
+.celebration-facts {max-width:560px;}
+.celebration-facts>div {padding:13px 0;gap:13px;}
+.celebration-facts strong {font-size:1rem;line-height:1.45;}
+.celebrate-cta {margin-top:26px;min-height:45px;display:inline-flex;align-items:center;}
+.location-card {padding:clamp(22px,3vw,35px);position:relative;}
+.location-card h3 {line-height:1.08;}
+.map-preview {height:clamp(230px,22vw,300px);margin:21px 0 16px;}
+.map-cta {
+  min-height:47px;
+  gap:10px;
+  box-shadow:0 7px 18px rgba(114,45,71,.14);
+}
+.location-rsvp {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  color:#78384f;
+  border-bottom:1px solid #c693a3;
+  margin:17px auto 2px;
+  padding:3px 0;
+  font-size:.83rem;
+  font-weight:500;
+  text-decoration:none;
+}
+.location-rsvp:hover {color:#50223a;border-color:#50223a;}
+/* Itinerario: conservar el trazado curvo y evitar espacio excesivo. */
+.timing {padding:74px 0 78px;}
+.timing-intro {
+  max-width:480px;
+  margin:12px auto 0;
+  line-height:1.65;
+  font-size:.9rem;
+  color:#836b74;
+}
+.timing .timeline {max-width:580px;margin:34px auto 0;}
+.timing .timeline-item {min-height:155px;gap:22px;}
+.timing .moment-icon {
+  width:80px;height:80px;flex-basis:80px;
+  border-color:#ead0d6;
+}
+.timing .moment-icon svg {width:47px;height:47px;}
+/* Dress code: mejor lectura, misma norma de colores. */
+.dress {padding:72px 0 80px;isolation:isolate;}
+.dress .container {position:relative;z-index:1;}
+.dress .container::before {
+  content:"";position:absolute;pointer-events:none;
+  width:115px;height:78px;left:-96px;top:-48px;
+  background:url('assets/ramillete-botanico-real.webp') center/contain no-repeat;
+  opacity:.27;transform:rotate(145deg);
+}
+.dress h2 {font-size:clamp(2.6rem,4.6vw,4.35rem);margin-bottom:24px;}
+.dress .reserved-palette {
+  display:flex;justify-content:center;
+  gap:16px;max-width:640px;
+  margin:27px auto 32px;
+}
+.dress .reserved-palette li {line-height:1.4;color:#66535d;}
+/* Música: una tarjeta liviana y consistente con la invitación. */
+.playlist {padding:78px 0;}
+.playlist .container {position:relative;z-index:1;}
+.playlist .container::after {
+  content:"";position:absolute;pointer-events:none;
+  width:104px;height:70px;right:-82px;bottom:-55px;
+  background:url('assets/ramillete-botanico-real.webp') center/contain no-repeat;
+  opacity:.22;
+}
+.playlist h2 {max-width:470px;}
+.playlist p {line-height:1.7;}
+.song-card {
+  background:#fff8f5;
+  border:1px solid #e7cdd3;
+  border-top:2px solid #a9667b;
+  border-radius:19px;
+  padding:clamp(18px,2.6vw,28px);
+  box-shadow:0 12px 32px rgba(99,45,65,.065);
+}
+.song-card-heading {font-size:.72rem;letter-spacing:.17em;}
+.song-card iframe {
+  display:block;
+  width:100%;
+  border:0;
+  border-radius:9px;
+  background:#fffaf7;
+}
+@media(max-width:850px) {
+  .memories-strip {padding:30px 0 35px;}
+  .celebration-layout {grid-template-columns:1fr;gap:28px;}
+  .celebration-story {text-align:center;}
+  .celebration-facts {margin-left:auto;margin-right:auto;text-align:left;}
+  .celebration .celebrate-cta {margin-top:22px;}
+  .timing {padding:62px 0 66px;}
+  .dress,.playlist {padding:65px 0;}
+  .dress .container::before,.playlist .container::after {display:none;}
+}
+@media(max-width:540px) {
+  .memories-heading {align-items:center;}
+  .memories-heading-text span {font-size:1.04rem;}
+  .memories-counter {font-size:.66rem;margin-right:2px;}
+  .memories-controls {gap:6px;}
+  .memories-arrow {width:34px;height:34px;}
+  .memory-slide {flex-basis:78vw;width:78vw;height:clamp(205px,68vw,285px);}
+  .memories-track {gap:12px;}
+  .celebration-story h2 {font-size:clamp(2.6rem,10vw,3.4rem);}
+  .map-preview {height:235px;}
+  .timing .timeline {margin-top:26px;}
+  .timing .timeline-item {min-height:145px;gap:14px;}
+  .timing .moment-icon {width:66px;height:66px;flex-basis:66px;}
+  .timing .moment-icon svg {width:41px;height:41px;}
+  .timing-intro {font-size:.83rem;padding:0 12px;}
+  .dress,.playlist {padding:55px 0 62px;}
+  .dress .reserved-palette {gap:13px;}
+  .song-card {padding:16px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .memory-slide img {transition:none;}
+}

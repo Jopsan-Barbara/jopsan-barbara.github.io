@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=parte-verde-dorado-3" />
-  <link rel="stylesheet" href="romantico.css?v=portada-optimizada-8" />
+  <link rel="stylesheet" href="romantico.css?v=interiores-florales-9" />
 </head>
 <body>
   <a class="skip-link" href="#detalles">Saltar a los detalles</a>
@@ -50,15 +50,16 @@
   <main>
     <section class="memories-strip" aria-label="Recuerdos de Jopsan y Bárbara">
       <div class="container memories-heading">
-        <p>UN POQUITO DE NUESTRA HISTORIA</p>
+        <div class="memories-heading-text"><p>UN POQUITO DE NUESTRA HISTORIA</p><span>Recuerdos que nos trajeron hasta aquí</span></div>
         <div class="memories-controls" aria-label="Controles del carrusel">
+          <span class="memories-counter" id="memories-counter" aria-label="Fotografía 1 de 14">01 / 14</span>
           <button id="memories-prev" class="memories-arrow" type="button" aria-label="Fotografía anterior">‹</button>
           <button id="memories-next" class="memories-arrow" type="button" aria-label="Fotografía siguiente">›</button>
         </div>
       </div>
-      <div class="memories-viewport" id="memories-viewport" aria-label="Galería de recuerdos">
+      <div class="memories-viewport" id="memories-viewport" aria-label="Galería de 14 fotografías de Jopsan y Bárbara" aria-roledescription="carrusel" tabindex="0">
         <div class="memories-track" id="memories-track">
-          <figure class="memory-slide"><img src="assets/novios-portada.jpg" alt="Jopsan y Bárbara muestran sus anillos" loading="lazy"></figure>
+          <figure class="memory-slide"><img src="assets/recuerdos/recuerdo-01.jpg" alt="La propuesta en la nieve" loading="lazy"></figure>
         </div>
       </div>
     </section>
@@ -84,12 +85,13 @@
               <iframe title="Mapa de Domos de Chamiza, Puerto Montt" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Domos%20de%20Chamiza%2C%20Puerto%20Montt%2C%20Chile&amp;output=embed"></iframe>
             </div>
             <a class="map-cta" href="https://maps.app.goo.gl/zymREpPr2wvXvVBv8?g_st=iw" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">⌖</span> Abrir mapa y cómo llegar <span aria-hidden="true">↗</span></a>
+            <a class="location-rsvp" href="#rsvp">Confirmar mi asistencia <span aria-hidden="true">›</span></a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section timing" id="cronograma" aria-label="Nuestro gran día"><div class="container narrow center"><p class="section-kicker">NUESTRO GRAN DÍA</p></div><div class="timeline"><svg class="timeline-path" viewBox="0 0 440 940" preserveAspectRatio="none" aria-hidden="true"><path d="M220 40 C420 80 420 200 220 230 S20 380 220 420 S420 580 220 610 S20 770 220 800 L220 900" /></svg><ol><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 44V19l16-9 16 9v25M8 44h40M23 44V29h10v15M19 21h1m16 0h1"/><path d="M7 13l4 2m34 0 4-2M28 3v3"/></svg></div><div class="moment-copy"><span class="moment-number">01</span><h3>Bienvenida</h3><p>12:00 h</p></div></li><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="21" cy="31" r="12"/><circle cx="35" cy="31" r="12"/><path d="m16 14 5-6 5 6-5 5-5-5Z"/></svg></div><div class="moment-copy"><span class="moment-number">02</span><h3>Ceremonia</h3><p>Por confirmar</p></div></li><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13 8 16 4-7 19c-6 3-12 0-12-6l3-17Zm23 1 13 4-6 17c-5 3-11 0-11-6l4-15ZM16 32l-3 14m-6-1 12 3m18-16-3 13m-5-2 12 4M28 4l-1 4m5-3 1 3"/></svg></div><div class="moment-copy"><span class="moment-number">03</span><h3>Brindis y cóctel</h3><p>Por confirmar</p></div></li><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="30" cy="28" r="17"/><circle cx="30" cy="28" r="11"/><path d="M6 9v15m5-15v15M6 18h5M9 24v23M51 9v38M51 9c-5 4-5 13 0 16"/></svg></div><div class="moment-copy"><span class="moment-number">04</span><h3>Almuerzo</h3><p>Por confirmar</p></div></li><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 38V12l22-5v25M22 19l22-5"/><ellipse cx="16" cy="39" rx="6" ry="5"/><ellipse cx="38" cy="33" rx="6" ry="5"/><path d="m7 10 2 3 4 1-4 2-2 4-1-4-3-2 3-1Z"/></svg></div><div class="moment-copy"><span class="moment-number">05</span><h3>Fiesta</h3><p>Por confirmar</p></div></li></ol></div></section>
+    <section class="section timing" id="cronograma" aria-label="Nuestro gran día"><div class="container narrow center"><p class="section-kicker">NUESTRO GRAN DÍA</p><p class="timing-intro">Nos encontraremos a las 12:00 h. Los horarios de los demás momentos se confirmarán próximamente.</p></div><div class="timeline"><svg class="timeline-path" viewBox="0 0 440 940" preserveAspectRatio="none" aria-hidden="true"><path d="M220 40 C420 80 420 200 220 230 S20 380 220 420 S420 580 220 610 S20 770 220 800 L220 900" /></svg><ol><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 44V19l16-9 16 9v25M8 44h40M23 44V29h10v15M19 21h1m16 0h1"/><path d="M7 13l4 2m34 0 4-2M28 3v3"/></svg></div><div class="moment-copy"><span class="moment-number">01</span><h3>Bienvenida</h3><p>12:00 h</p></div></li><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="21" cy="31" r="12"/><circle cx="35" cy="31" r="12"/><path d="m16 14 5-6 5 6-5 5-5-5Z"/></svg></div><div class="moment-copy"><span class="moment-number">02</span><h3>Ceremonia</h3><p>Por confirmar</p></div></li><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13 8 16 4-7 19c-6 3-12 0-12-6l3-17Zm23 1 13 4-6 17c-5 3-11 0-11-6l4-15ZM16 32l-3 14m-6-1 12 3m18-16-3 13m-5-2 12 4M28 4l-1 4m5-3 1 3"/></svg></div><div class="moment-copy"><span class="moment-number">03</span><h3>Brindis y cóctel</h3><p>Por confirmar</p></div></li><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="30" cy="28" r="17"/><circle cx="30" cy="28" r="11"/><path d="M6 9v15m5-15v15M6 18h5M9 24v23M51 9v38M51 9c-5 4-5 13 0 16"/></svg></div><div class="moment-copy"><span class="moment-number">04</span><h3>Almuerzo</h3><p>Por confirmar</p></div></li><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 38V12l22-5v25M22 19l22-5"/><ellipse cx="16" cy="39" rx="6" ry="5"/><ellipse cx="38" cy="33" rx="6" ry="5"/><path d="m7 10 2 3 4 1-4 2-2 4-1-4-3-2 3-1Z"/></svg></div><div class="moment-copy"><span class="moment-number">05</span><h3>Fiesta</h3><p>Por confirmar</p></div></li></ol></div></section>
     <section class="section dress reveal">
       <div class="container narrow center">
         <p class="section-kicker">DRESS CODE</p>
@@ -217,8 +219,8 @@ Correo: Bamh.3003@gmail.com</pre><p>Escribe el nombre del regalo en el comentari
   </footer>
 
   <script src="script.js?v=20270227-hero-2"></script>
-  <script src="gallery-data.js?v=galeria-1" defer></script>
-  <script src="gallery.js?v=galeria-1" defer></script>
+  <script src="gallery-data.js?v=14-recuerdos-2" defer></script>
+  <script src="gallery.js?v=14-recuerdos-2" defer></script>
   <script src="rsvp.js?v=invitaciones-personales-3"></script>
 </body>
 </html>

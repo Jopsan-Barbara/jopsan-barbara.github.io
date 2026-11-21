@@ -159,6 +159,9 @@ a:focus-visible,button:focus-visible {outline:2px solid var(--accent);outline-of
   color:#714255;
   margin:6px 0 0;
 }
+/* Los párrafos de portada prevalecen sobre los colores de la hoja anterior. */
+.romantic-hero .hero-content .eyebrow {color:#73243d;}
+.romantic-hero .hero-content .date {color:#714255;}
 .romantic-hero .hero-countdown {
   width:min(100%,800px);
   max-width:none;

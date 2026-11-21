@@ -29,7 +29,7 @@
   let interval = null;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const canCycle = slides.length > 1;
-  const motion = reducedMotion ? 'instant' : 'smooth';
+  const motion = reducedMotion ? 'auto' : 'smooth';
 
   if (!canCycle) {
     if (prev) prev.hidden = true;
@@ -46,7 +46,7 @@
   const stop = () => { if (interval) clearInterval(interval); interval = null; };
   const start = () => {
     if (reducedMotion || interval || document.hidden) return;
-    interval = setInterval(() => show(current + 1), 4600);
+    interval = setInterval(() => show(current + 1, current === slides.length - 1 ? 'auto' : motion), 4600);
   };
   prev?.addEventListener('click', () => { stop(); show(current - 1); });
   next?.addEventListener('click', () => { stop(); show(current + 1); });

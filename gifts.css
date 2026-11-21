@@ -7,9 +7,9 @@
 #regalos .gift-intro p{color:var(--muted);margin:0 auto;max-width:620px;font-size:15px}
 #regalos .gift-intro p+p{margin-top:8px}
 #regalos .jump{display:inline-block;font-size:12px;margin-top:15px;text-underline-offset:4px;color:var(--wine)}
-#regalos .catalog{width:min(100% - 48px, 960px);margin:0 auto 65px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 20px}
+#regalos .catalog{width:min(100% - 48px, 840px);margin:0 auto 65px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 20px}
 #regalos .gift{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;padding:11px;box-shadow:0 8px 22px #67253e08;min-width:0}
-#regalos .illustration{height:360px;display:flex;justify-content:center;align-items:center;background:#fbf4ee;border-radius:10px;overflow:hidden}
+#regalos .illustration{height:310px;display:flex;justify-content:center;align-items:center;background:#fbf4ee;border-radius:10px;overflow:hidden}
 #regalos .illustration img{display:block;width:100%;height:100%;object-fit:contain}
 #regalos .actions{padding:14px 2px 4px;text-align:center;display:grid;gap:8px;margin-top:auto}
 #regalos .pay,#regalos .copy{border:1px solid var(--wine);background:var(--wine);color:#fff;border-radius:999px;min-height:44px;font-weight:600;font-size:12px;letter-spacing:.01em;padding:10px 12px;width:100%}
@@ -35,15 +35,15 @@
 #regalos .selection.show{display:block}
 #regalos .selection strong{display:block;color:var(--wine)}
 #regalos .selection span{color:var(--muted)}
-@media(max-width:900px){#regalos .catalog{grid-template-columns:repeat(2,minmax(0,1fr));max-width:660px}
+@media(max-width:900px){#regalos .catalog{grid-template-columns:repeat(2,minmax(0,1fr));max-width:590px}
 #regalos .catalog article:last-child{grid-column:auto}
 #regalos .bank-wrap{gap:30px}
-#regalos .illustration{height:350px}
+#regalos .illustration{height:310px}
 }
 @media(max-width:580px){#regalos .gift-intro{padding:44px 20px 24px}
 #regalos .gift-intro h2{font-size:44px}
-#regalos .catalog{width:min(100% - 36px,350px);grid-template-columns:1fr;gap:19px}
-#regalos .illustration{height:390px}
+#regalos .catalog{width:min(100% - 36px,320px);grid-template-columns:1fr;gap:19px}
+#regalos .illustration{height:350px}
 #regalos .bank-wrap{grid-template-columns:1fr;gap:15px}
 #regalos .bank-section{padding:44px 18px}
 #regalos .bank-card{padding:20px}

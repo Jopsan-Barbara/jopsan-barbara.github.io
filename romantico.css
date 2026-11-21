@@ -515,3 +515,63 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #80
 .hero.romantic-hero img.hero-botanical {
   display:none!important;
 }
+
+/* Flores verdaderamente pictóricas en acuarela, recurso WebP con transparencia.
+   Se ubican solo en las esquinas y no se superponen a la fotografía ni a textos. */
+.hero.romantic-hero img.wedding-flowers {
+  display:block;
+  position:absolute;
+  z-index:3;
+  pointer-events:none;
+  width:clamp(135px,13vw,205px);
+  height:auto;
+  object-fit:contain;
+  border:0;
+  box-shadow:none;
+  opacity:.86;
+  filter:saturate(.86);
+}
+.hero.romantic-hero img.wedding-flowers--top {
+  top:22px;
+  right:-20px;
+  bottom:auto;
+  left:auto;
+  transform:none;
+}
+.hero.romantic-hero img.wedding-flowers--bottom {
+  width:clamp(135px,12vw,185px);
+  bottom:-18px;
+  left:-17px;
+  right:auto;
+  top:auto;
+  transform:rotate(180deg);
+  opacity:.83;
+}
+@media(max-width:850px) {
+  .hero.romantic-hero img.wedding-flowers--top {
+    top:83px;
+    right:-22px;
+    width:119px;
+    opacity:.77;
+  }
+  .hero.romantic-hero img.wedding-flowers--bottom {
+    left:-17px;
+    bottom:-15px;
+    width:123px;
+    opacity:.78;
+  }
+}
+@media(max-width:540px) {
+  .hero.romantic-hero img.wedding-flowers--top {
+    top:83px;
+    right:-18px;
+    width:99px;
+    opacity:.76;
+  }
+  .hero.romantic-hero img.wedding-flowers--bottom {
+    left:-12px;
+    bottom:-11px;
+    width:106px;
+    opacity:.78;
+  }
+}

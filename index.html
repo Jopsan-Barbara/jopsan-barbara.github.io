@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="styles.css?v=parte-verde-dorado-3" />
   <link rel="stylesheet" href="romantico.css?v=interiores-florales-9" />
 <link rel="stylesheet" href="gifts.css?v=2">
+<style>.public-form{position:relative;min-width:0}.public-form iframe{display:block;width:100%;border:0;border-radius:10px;margin:0 auto}.public-form iframe[hidden]{display:none!important}.public-form [role=status]{font-size:14px;padding:10px 0}.public-form .retry{margin-top:8px;border:1px solid currentColor;background:transparent;color:inherit;border-radius:30px;padding:8px 18px;cursor:pointer}#rsvp-public{max-width:620px;margin:26px auto 0}</style>
 </head>
 <body>
   <a class="skip-link" href="#detalles">Saltar a los detalles</a>
@@ -114,7 +115,7 @@
           <p>Cuéntanos: ¿qué canción no puede faltar? Queremos que esta celebración también suene a ti.</p>
         </div>
         <div class="song-card"><p class="song-card-heading">TU CANCIÓN PARA LA FIESTA</p>
-        <iframe id="song-frame" title="Sugerir una canción" src="https://script.google.com/macros/s/AKfycbzaQII35vfo8NEtnR-EXULyRJLiM_haJ0mumM4bzIvZTV9kQoewGd87Dj8Zk9uXJ0Cp/exec?view=cancion" loading="lazy" style="width:100%;height:250px;border:0"></iframe>
+        <div id="song-public" class="public-form"><p id="song-status" role="status">Cargando formulario de canciones…</p></div>
         </div>
       </div>
     </section>
@@ -143,9 +144,8 @@
       <div class="container narrow center reveal">
         <p class="section-kicker">RSVP</p>
         <h2 id="guest-title">¿Nos acompañas?</h2>
-        <p id="guest-copy">Confirma hasta el 31 de enero de 2027.</p>
-        <p class="invitation-policy">Preparamos esta invitación especialmente para ti. Los cupos son los que te indicamos al invitarte; si no se mencionó un acompañante, tu invitación es individual. Gracias por ayudarnos a organizar este día.</p>
-        <a class="button button-dark disabled" href="#" aria-disabled="true">Confirmar asistencia</a>
+        <p id="guest-copy">Nos encantaría contar contigo en este día tan especial. Confirma tu asistencia hasta el <strong>31 de enero de 2027</strong>.</p>
+        <div id="rsvp-public" class="public-form"><p id="rsvp-status" role="status">Cargando formulario de confirmación…</p></div>
       </div>
     </section>
 
@@ -155,7 +155,7 @@
         <h2 class="center">Preguntas frecuentes</h2>
         <details>
           <summary>¿Puedo asistir con acompañante?</summary>
-          <p>Para que podamos recibir a todos de la mejor manera, cada invitación contempla únicamente los cupos que se indicaron al invitarte. Si no se mencionó un acompañante, tu invitación es individual. Gracias por comprender.</p>
+          <p>Si asistirás con acompañante, por favor indica su nombre en el formulario de confirmación. Considera únicamente a las personas invitadas; si tienes dudas, consulta directamente con los novios.</p>
         </details>
         <details>
           <summary>¿Habrá estacionamiento?</summary>
@@ -176,10 +176,10 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20270227-hero-2"></script>
+  <script src="script.js?v=enlace-unico-1"></script>
   <script src="gallery-data.js?v=14-recuerdos-2" defer></script>
   <script src="gallery.js?v=14-recuerdos-2" defer></script>
-  <script src="rsvp.js?v=invitaciones-personales-3"></script>
+  <script src="rsvp.js?v=enlace-unico-1"></script>
 </body>
 </html>
 

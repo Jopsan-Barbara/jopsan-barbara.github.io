@@ -22,3 +22,10 @@ context.submitSong({id:'example-private-id',song:'Song A'});
 context.submitSong({id:'example-private-id',song:'Song B'});
 assert.equal(songWrites.length,2);assert.equal(songWrites[0].row,2);assert.equal(songWrites[1].row,2);assert.equal(songWrites[1].value[0][2],'Song B');
 console.log('Canciones: ID válido, texto obligatorio y actualización sin duplicados correctos.');
+
+const pub={requestId:'public-12345678-1234-4123-8123-123456789abc',firstName:'Prueba',lastName:'Pública',email:'test@example.com',attends:'Sí',people:2,companions:'Acompañante',diet:''};
+assert.equal(context.validatePublicRsvp_(pub)[6],2);
+assert.equal(context.validatePublicRsvp_({...pub,attends:'No',people:99})[6],0);
+for(const change of [{requestId:'bad'},{people:21},{people:2.5},{website:'spam'},{email:'bad'},{companions:''}])assert.throws(()=>context.validatePublicRsvp_({...pub,...change}));
+assert.equal(context.validatePublicRsvp_({...pub,firstName:'=1+1'})[2].charAt(0),"'");
+console.log('Enlace general: validación, asistentes, correo, protección de fórmulas y honeypot.');

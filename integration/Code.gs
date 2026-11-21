@@ -33,6 +33,8 @@ function prepararInvitaciones_() {
 }
 
 function doGet(e) {
+  if(e&&e.parameter&&e.parameter.view==='public-song')return publicForm_('public-song');
+  if(e&&e.parameter&&e.parameter.view==='public-rsvp'&&Date.now()<RSVP_CLOSE_)return publicForm_('public-rsvp');
   if(e && e.parameter && e.parameter.view==='regalos')return renderGifts_();
   if(e && e.parameter && e.parameter.view==='cancion')return HtmlService.createHtmlOutput(SONG_HTML_).setTitle('Sugerir una canción').setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
   if(Date.now()>=RSVP_CLOSE_) return HtmlService.createHtmlOutput('<!doctype html><html lang="es"><meta name="viewport" content="width=device-width,initial-scale=1"><body style="padding:32px;background:#f6f3ed;color:#293c31;font:18px/1.6 Arial"><h1>El tiempo para confirmar asistencia ha finalizado</h1><p>Sin embargo, si nos quieres dejar un regalo aún estás a tiempo de hacerlo.</p><a href="https://jopsan-barbara.github.io/#regalos" target="_top">Ver regalos →</a></body></html>').setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
@@ -122,3 +124,51 @@ function submitSong(data) {
   try {const book=SpreadsheetApp.openById(RESPUESTAS_ID);let sheet=book.getSheetByName('Canciones');if(!sheet){sheet=book.insertSheet('Canciones');sheet.getRange(1,1,1,3).setValues([['Fecha y hora','ID de invitación','Canción sugerida']]);}const ids=sheet.getRange(2,2,200,1).getValues().map(r=>String(r[0]).trim());let index=ids.indexOf(id);if(index<0)index=ids.indexOf('');if(index<0)throw new Error('Contacta a los novios para enviar tu canción.');sheet.getRange(index+2,1,1,3).setValues([[new Date(),id,song]]);SpreadsheetApp.flush();return {message:'¡Gracias! Tu canción quedó guardada.'};}finally{lock.releaseLock();}
 }
 const SONG_HTML_ = `<!doctype html><html lang="es"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;padding:12px;background:#f6f2e9;color:#293c31;font:15px/1.5 Arial}input{box-sizing:border-box;width:100%;padding:14px;border:1px solid #8c8190;border-radius:6px;background:#fcfaf5;font:inherit}button{margin-top:16px;padding:12px 30px;border:0;border-radius:40px;background:#293c31;color:white;font:inherit;cursor:pointer}button:disabled{opacity:.5}.trap{position:absolute;left:-9999px}</style><form id="songForm"><label for="song">Tu canción</label><input name="song" id="song" maxlength="200" required placeholder="Nombre de la canción y artista"><input name="website" class="trap" tabindex="-1" aria-hidden="true" autocomplete="off"><button id="send">Enviar</button><p id="status" role="status"></p></form><script>let invitationId='';const form=document.getElementById('songForm'),button=document.getElementById('send'),status=document.getElementById('status');button.disabled=true;google.script.url.getLocation(location=>{invitationId=location.parameter.id||'';button.disabled=!invitationId;if(!invitationId)status.textContent='Abre tu enlace personal para enviar una canción.';});form.onsubmit=event=>{event.preventDefault();if(!form.reportValidity()||!invitationId)return;button.disabled=true;status.textContent='Guardando…';const data=Object.fromEntries(new FormData(form));data.id=invitationId;google.script.run.withSuccessHandler(result=>{status.textContent=result.message;button.disabled=false;}).withFailureHandler(error=>{status.textContent=error.message||'Inténtalo nuevamente.';button.disabled=false;}).submitSong(data);};</script></html>`;
+
+/* Invitación con enlace único. Los registros se conservan en planillas privadas. */
+function publicToken_(value) {
+  if(typeof value!=='string'||!/^public-[a-f0-9-]{36}$/.test(value))throw new Error('Revisa el formulario e inténtalo nuevamente.');
+  return value;
+}
+function validatePublicRsvp_(data) {
+  if(!data||typeof data!=='object'||data.website)throw new Error('Solicitud no válida.');
+  const id=publicToken_(data.requestId);
+  if(!['Sí','No'].includes(data.attends))throw new Error('Indica si asistirás.');
+  const people=data.attends==='No'?0:Number(data.people);
+  if(!Number.isInteger(people)||people<(data.attends==='Sí'?1:0)||people>20)throw new Error('Revisa la cantidad de asistentes.');
+  const email=clean_(data.email,254,true);
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))throw new Error('Revisa tu correo.');
+  return [new Date(),id,clean_(data.firstName,100,true),clean_(data.lastName,100,true),email,data.attends,people,people>1?clean_(data.companions,1000,true):'',people>0?clean_(data.diet,1000,false):'','',clean_(data.message,1000,false),'Web pública'];
+}
+function publicWrite_(sheet,start,width,row) {
+  const count=Math.max(200,sheet.getMaxRows()-start+1);
+  const end=Math.min(count,sheet.getMaxRows()-start+1);
+  const rows=end>0?sheet.getRange(start,1,end,width).getValues():[];
+  const duplicate=rows.find(r=>String(r[1])===row[1]);
+  if(duplicate){const same=row.slice(1).every((v,i)=>String(v)===String(duplicate[i+1]));if(!same)throw new Error('Esta solicitud ya fue registrada. Actualiza el formulario para enviar una nueva respuesta.');return;}
+  let index=rows.findIndex(r=>r.every(v=>v===''));
+  if(index<0)index=rows.length;
+  const target=start+index;
+  if(target>sheet.getMaxRows())sheet.insertRowsAfter(sheet.getMaxRows(),Math.max(100,target-sheet.getMaxRows()));
+  sheet.getRange(target,1,1,width).setValues([row]);
+  SpreadsheetApp.flush();
+}
+function submitPublicRsvp(data) {
+  assertOpen_();
+  const row=validatePublicRsvp_(data);
+  const lock=LockService.getScriptLock();if(!lock.tryLock(15000))throw new Error('Inténtalo nuevamente en unos segundos.');
+  try{assertOpen_();const sheet=SpreadsheetApp.openById(RESPUESTAS_ID).getSheetByName('Respuestas');publicWrite_(sheet,6,12,row);return {ok:true,message:'Tu respuesta quedó guardada. ¡Muchas gracias!'};}finally{lock.releaseLock();}
+}
+function submitPublicSong(data) {
+  if(!data||data.website)throw new Error('Solicitud no válida.');
+  const id=publicToken_(data.requestId),song=clean_(data.song,200,true);
+  const lock=LockService.getScriptLock();if(!lock.tryLock(15000))throw new Error('Inténtalo nuevamente en unos segundos.');
+  try{const book=SpreadsheetApp.openById(RESPUESTAS_ID);let sheet=book.getSheetByName('Canciones');if(!sheet){sheet=book.insertSheet('Canciones');sheet.getRange(1,1,1,3).setValues([['Fecha y hora','ID de registro','Canción sugerida']]);}publicWrite_(sheet,2,3,[new Date(),id,song]);return {ok:true,message:'¡Gracias! Tu canción quedó guardada.'};}finally{lock.releaseLock();}
+}
+const PUBLIC_STYLE_ = '<style>*{box-sizing:border-box}body{margin:0;padding:16px;background:#fcf7f5;color:#67253e;font:14px/1.55 Arial,sans-serif}form{max-width:620px;margin:auto}label{display:block;margin:12px 0 5px;color:#503c43}input,select,textarea{width:100%;padding:12px;border:1px solid #d5b8c0;border-radius:7px;background:#fffdfb;color:#343034;font:inherit}textarea{resize:vertical;min-height:64px}.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}button{display:block;margin:20px auto 0;border:0;border-radius:99px;padding:13px 24px;background:#792c49;color:white;font-weight:600;font-size:14px;cursor:pointer}button:disabled{opacity:.5}.trap{position:absolute;left:-9999px}#status{text-align:center;margin:10px 0;color:#67253e}fieldset{border:0;padding:0;margin:0;min-width:0}fieldset[hidden]{display:none}@media(max-width:450px){.pair{grid-template-columns:1fr;gap:0}body{padding:12px}}</style>';
+function publicForm_(kind) {
+  const song=kind==='public-song';
+  const fields=song?'<label for="song">Tu canción</label><input id="song" name="song" required maxlength="200" placeholder="Nombre de la canción y artista">':'<div class="pair"><div><label for="firstName">Nombre</label><input id="firstName" name="firstName" autocomplete="given-name" maxlength="100" required></div><div><label for="lastName">Apellido</label><input id="lastName" name="lastName" autocomplete="family-name" maxlength="100" required></div></div><label for="email">Correo electrónico</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required><label for="attends">¿Asistirás?</label><select name="attends" id="attends" required><option value="">Selecciona</option><option>Sí</option><option>No</option></select><fieldset id="attendance-details" hidden disabled><label for="people">¿Cuántas personas asistirán, incluyéndote?</label><input type="number" id="people" name="people" min="1" max="20" step="1" value="1" required><div id="companion-wrap" hidden><label for="companions">Nombre y apellido de tus acompañantes invitados</label><textarea id="companions" name="companions" maxlength="1000"></textarea></div><label for="diet">Alergias o restricciones alimentarias (opcional)</label><textarea id="diet" name="diet" maxlength="1000"></textarea></fieldset><label for="message">Mensaje para los novios (opcional)</label><textarea id="message" name="message" maxlength="1000"></textarea>';
+  const client=`const kind=${JSON.stringify(kind)},form=document.getElementById('form'),button=document.getElementById('send'),status=document.getElementById('status');let nonce='',requestId='public-'+crypto.randomUUID(),finished=false;function notify(){if(nonce)window.top.postMessage({channel:'jb-public-form-v1',kind,nonce,ready:true,height:document.body.scrollHeight},'https://jopsan-barbara.github.io');}google.script.url.getLocation(location=>{nonce=location.parameter.nonce||'';notify();});if('ResizeObserver' in window)new ResizeObserver(notify).observe(document.body);if(kind==='public-rsvp'){const attends=form.elements.attends,details=document.getElementById('attendance-details'),wrap=document.getElementById('companion-wrap');function sync(){const yes=attends.value==='Sí';details.hidden=!yes;details.disabled=!yes;const many=yes&&Number(form.elements.people.value)>1;wrap.hidden=!many;form.elements.companions.required=many;form.elements.companions.disabled=!many;notify();}attends.onchange=sync;form.elements.people.oninput=sync;sync();}form.onsubmit=e=>{e.preventDefault();if(finished||!form.reportValidity())return;const data=Object.fromEntries(new FormData(form));data.requestId=requestId;button.disabled=true;status.textContent='Guardando…';const run=google.script.run.withSuccessHandler(result=>{if(!result||result.ok!==true){button.disabled=false;status.textContent='No pudimos confirmar el registro.';return;}status.textContent=result.message;finished=true;if(kind==='public-song'){form.reset();requestId='public-'+crypto.randomUUID();finished=false;button.disabled=false;}else{button.textContent='Respuesta registrada';}notify();}).withFailureHandler(error=>{status.textContent=error.message||'No pudimos guardar. Intenta nuevamente.';button.disabled=false;notify();});if(kind==='public-song')run.submitPublicSong(data);else run.submitPublicRsvp(data);};`;
+  return HtmlService.createHtmlOutput('<!doctype html><html lang="es"><head><meta name="viewport" content="width=device-width,initial-scale=1">'+PUBLIC_STYLE_+'</head><body><form id="form"><label class="trap" aria-hidden="true">Sitio web<input name="website" tabindex="-1" autocomplete="off"></label>'+fields+'<button id="send" type="submit">'+(song?'Enviar canción':'Confirmar respuesta')+'</button><p id="status" role="status" aria-live="polite"></p></form><script>'+client+'</script></body></html>').setTitle(song?'Sugerir canción':'Confirmar asistencia').setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}

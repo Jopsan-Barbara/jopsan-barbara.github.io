@@ -31,21 +31,6 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
 
-// Personalización simple mediante URL, por ejemplo: ?invitado=Seba&cupos=2
-const params = new URLSearchParams(window.location.search);
-const guest = params.get('invitado');
-const seats = params.get('cupos');
-
-if (guest) {
-  document.getElementById('guest-title').textContent = `${guest}, ¿nos acompañas?`;
-  if (seats && Number.isSafeInteger(Number(seats)) && Number(seats) > 0 && Number(seats) <= 100) {
-    const n = Number(seats);
-    document.getElementById('guest-copy').textContent = n === 1
-      ? 'Tu invitación considera 1 cupo. Nos encantará contar contigo.'
-      : `Tu invitación considera ${n} cupos. Nos encantará celebrar juntos.`;
-  }
-}
-
 // Los enlaces pendientes no deben recibir foco ni activarse con teclado.
 document.querySelectorAll('a[aria-disabled="true"]').forEach(link => {
   link.removeAttribute('href');

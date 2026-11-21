@@ -64,11 +64,26 @@
 #regalos a:focus-visible,#regalos button:focus-visible{outline:2px solid #8c4863;outline-offset:3px}
 
 
-/* Transferencias: salvia suave para separar regalos y confirmación. */
+/* Transferencias: salvia pálida, lectura clara y altura más compacta. */
 #regalos {background:#fff9f6;}
 #regalos .bank-section {
-  background:#e8eee8;
-  border-color:#cfd9d0;
+  background:#eef1ed;
+  border-color:#dce4dc;
+  padding:52px 24px 56px;
 }
-#regalos .bank-card {border-color:#c9d4ca;}
-#regalos .bank-card dl div {border-color:#e1e8e0;}
+#regalos .bank-wrap {gap:40px;}
+#regalos .bank-intro p {
+  color:#584b52;
+  font-size:15px;
+  line-height:1.68;
+}
+#regalos .bank-card {border-color:#d4ded5;}
+#regalos .bank-card dt {color:#66515b;}
+#regalos .bank-card dl div {border-color:#e4eae4;}
+@media(max-width:900px) {
+  #regalos .bank-wrap {gap:26px;}
+}
+@media(max-width:580px) {
+  #regalos .bank-section {padding:38px 18px 42px;}
+  #regalos .bank-wrap {gap:18px;}
+}

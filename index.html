@@ -9,12 +9,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=portada-foto-1" />
+  <link rel="stylesheet" href="styles.css?v=parte-elegante-2" />
 </head>
 <body>
   <a class="skip-link" href="#detalles">Saltar a los detalles</a>
   <header class="hero" id="inicio">
-    <div class="hero-overlay" aria-hidden="true"></div><img class="hero-leaf hero-leaf-left" src="assets/leaf.svg" alt="" aria-hidden="true"><img class="hero-leaf hero-leaf-right" src="assets/leaf.svg" alt="" aria-hidden="true">
+    <img class="hero-photo" src="assets/novios-portada.jpg" alt="Jopsan y Bárbara sonríen y muestran sus anillos frente a un paisaje nevado" width="1200" height="1600" decoding="async" fetchpriority="high" />
+    <div class="hero-overlay" aria-hidden="true"></div>
     <nav class="nav container">
       <a class="brand" href="#inicio">J & B</a>
       <a class="nav-link" href="#rsvp">Confirmar</a>
@@ -26,6 +27,15 @@
       <p class="date">27 · 02 · 2027</p>
       <p class="hero-copy">Queremos celebrar este día contigo.</p>
       <a class="button button-light" href="#detalles">Ver invitación</a>
+      <div class="hero-countdown" aria-label="Cuenta regresiva para el matrimonio">
+        <p class="hero-countdown-label">FALTA MUY POCO</p>
+        <div class="countdown" id="countdown" role="timer" aria-live="off">
+          <div><strong id="days">—</strong><span>Días</span></div>
+          <div><strong id="hours">--</strong><span>Horas</span></div>
+          <div><strong id="minutes">--</strong><span>Minutos</span></div>
+          <div><strong id="seconds">--</strong><span>Segundos</span></div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -39,17 +49,6 @@
       </div>
     </section>
 
-    <section class="section countdown-section reveal" aria-label="Cuenta regresiva">
-      <div class="container">
-        <p class="section-kicker center">FALTA MUY POCO</p>
-        <div class="countdown" id="countdown">
-          <div><strong id="days">000</strong><span>Días</span></div>
-          <div><strong id="hours">00</strong><span>Horas</span></div>
-          <div><strong id="minutes">00</strong><span>Minutos</span></div>
-          <div><strong id="seconds">00</strong><span>Segundos</span></div>
-        </div>
-      </div>
-    </section>
 
     <section class="section" id="detalles">
       <div class="container narrow center">
@@ -185,7 +184,7 @@ Correo: Bamh.3003@gmail.com</pre><p>Escribe el nombre del regalo en el comentari
     </div>
   </footer>
 
-  <script src="script.js?v=20270227-noon"></script>
+  <script src="script.js?v=20270227-hero-2"></script>
   <script src="rsvp.js?v=approved-copy-2"></script>
 </body>
 </html>

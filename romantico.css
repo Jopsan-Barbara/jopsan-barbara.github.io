@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 /* Invitación de Jopsan & Bárbara · Diseño floral romántico aprobado.
    Hoja de estilo final: conserva los módulos funcionales existentes. */
 :root {
@@ -20,118 +21,121 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #80
 #detalles,#cronograma,#rsvp,#regalos{scroll-margin-top:20px;}
 
 /* --- Portada: la foto es original y nunca se utiliza como texto estático. --- */
-.hero.floral-hero{
+.hero.romantic-hero{
   position:relative;display:flex;flex-direction:column;isolation:isolate;overflow:hidden;
   min-height:max(830px,100svh);color:var(--ink);
   background:radial-gradient(ellipse at 95% 95%,#f6dfe0 0%,transparent 45%),
     radial-gradient(ellipse at 2% 15%,#fffaf6 0%,transparent 51%),#fcf3f0;
 }
-.floral-hero::before,.floral-hero::after{display:none;}
-.floral-hero .hero-photo{
+.romantic-hero::before,.romantic-hero::after{content:"";display:block;position:absolute;z-index:3;pointer-events:none;background:url('assets/flores-romanticas.svg') center/contain no-repeat;opacity:.93;}
+.romantic-hero::before{width:clamp(210px,24vw,370px);height:390px;right:-48px;top:-60px;transform:rotate(-6deg);}
+.romantic-hero::after{width:clamp(245px,27vw,420px);height:440px;left:-97px;bottom:-146px;transform:rotate(170deg);}
+.romantic-hero img.hero-botanical{display:none;}
+.romantic-hero .hero-photo{
   display:block;position:absolute;z-index:0;top:0;left:0;right:auto;bottom:auto;
   width:61%;height:100%;min-height:0;object-fit:cover;object-position:center 30%;
   border:0;border-radius:0;box-shadow:none;background:#e3dddd;opacity:1;
 }
-.floral-hero .hero-overlay{
+.romantic-hero .hero-overlay{
   display:block;position:absolute;z-index:1;inset:0;pointer-events:none;
   background:linear-gradient(90deg,rgba(252,243,240,.08) 0%,rgba(252,243,240,.10) 24%,
     rgba(252,243,240,.34) 40%,rgba(252,243,240,.85) 53%,#fcf3f0 68%),
     linear-gradient(0deg,#fcf3f0 0%,rgba(252,243,240,.62) 13%,transparent 48%);
 }
-.floral-hero .hero-botanical{
+.romantic-hero .hero-botanical{
   display:block;position:absolute;z-index:3;pointer-events:none;height:auto;object-fit:contain;
   filter:none;opacity:.92;
 }
-.floral-hero .hero-botanical-top{width:clamp(210px,24vw,380px);right:-45px;top:-60px;left:auto;transform:rotate(-7deg);}
-.floral-hero .hero-botanical-bottom{width:clamp(250px,27vw,435px);left:-95px;bottom:-140px;right:auto;transform:rotate(165deg);}
-.floral-hero .nav{
+.romantic-hero .hero-botanical-top{width:clamp(210px,24vw,380px);right:-45px;top:-60px;left:auto;transform:rotate(-7deg);}
+.romantic-hero .hero-botanical-bottom{width:clamp(250px,27vw,435px);left:-95px;bottom:-140px;right:auto;transform:rotate(165deg);}
+.romantic-hero .nav{
   position:relative;z-index:5;width:min(calc(100% - 84px),1280px);
   margin:0 auto;padding:28px 0 10px;
   display:flex;justify-content:space-between;align-items:center;
 }
-.floral-hero .brand{
+.romantic-hero .brand{
   margin:0;display:inline-flex;align-items:center;gap:22px;
   font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-style:italic;
   line-height:1;font-weight:500;text-decoration:none;color:#68283f;text-shadow:none;
 }
-.floral-hero .brand::after{content:"";width:94px;height:1px;background:#9b9a7b;display:block;}
-.floral-hero .nav-link{
+.romantic-hero .brand::after{content:"";width:94px;height:1px;background:#9b9a7b;display:block;}
+.romantic-hero .nav-link{
   display:inline-flex;align-items:center;gap:9px;
   font-family:'Cormorant Garamond',serif;font-size:1.38rem;font-style:italic;line-height:1;
   padding:10px 21px;color:#6e3449;background:rgba(255,251,248,.7);
   border:1px solid #9c8c69;border-radius:999px;text-decoration:none;backdrop-filter:blur(5px);
 }
-.floral-hero .nav-link:hover{background:#7c314a;color:#fff;}
-.floral-hero .nav-link svg{width:18px;height:18px;flex:0 0 auto;}
-.floral-hero .hero-content{
+.romantic-hero .nav-link:hover{background:#7c314a;color:#fff;}
+.romantic-hero .nav-link svg{width:18px;height:18px;flex:0 0 auto;}
+.romantic-hero .hero-content{
   display:flex;flex-direction:column;align-items:center;
   z-index:2;position:relative;width:min(45%,610px);max-width:none;
   margin:auto clamp(52px,7vw,170px) auto auto;padding:26px 0 68px;text-align:center;
 }
-.floral-hero .hero-announcement{width:100%;margin:0;display:flex;flex-direction:column;align-items:center;}
-.floral-hero .eyebrow{
+.romantic-hero .hero-announcement{width:100%;margin:0;display:flex;flex-direction:column;align-items:center;}
+.romantic-hero .eyebrow{
   display:flex;align-items:center;justify-content:center;gap:17px;width:100%;
   margin:0 0 13px;color:#7a8262;
   font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3vw,3rem);
   font-style:italic;font-weight:400;line-height:1.1;letter-spacing:.035em;text-transform:none;
 }
-.floral-hero .eyebrow::before,.floral-hero .eyebrow::after{
+.romantic-hero .eyebrow::before,.romantic-hero .eyebrow::after{
   content:"";width:34px;height:1px;background:#97a086;opacity:.9;
 }
-.floral-hero h1{
+.romantic-hero h1{
   display:block;width:100%;color:#68233b;margin:0;padding:0;
   font-weight:400;line-height:1;letter-spacing:0;text-wrap:normal;
 }
-.floral-hero h1 .hero-name{
+.romantic-hero h1 .hero-name{
   display:block;font-family:'Great Vibes','URW Chancery L',cursive;
   color:#69253d;font-size:clamp(5.4rem,7.25vw,8.7rem);
   font-weight:400;line-height:.9;white-space:nowrap;letter-spacing:0;
 }
-.floral-hero h1 .hero-amp{
+.romantic-hero h1 .hero-amp{
   display:block;font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,3.8vw,4rem);
   color:#c18795;font-weight:400;line-height:.75;margin:5px auto 8px;font-style:italic;
 }
-.floral-hero .hero-heart-rule{display:flex;align-items:center;justify-content:center;gap:18px;width:76%;margin:16px auto 13px;}
-.floral-hero .hero-heart-rule::before,.floral-hero .hero-heart-rule::after{
+.romantic-hero .hero-heart-rule{display:flex;align-items:center;justify-content:center;gap:18px;width:76%;margin:16px auto 13px;}
+.romantic-hero .hero-heart-rule::before,.romantic-hero .hero-heart-rule::after{
   content:"";display:block;height:1px;background:#cc9da6;flex:1;
 }
-.floral-hero .hero-heart-rule span{color:#d9a0a9;font-size:1.5rem;line-height:1;}
-.floral-hero .date{
+.romantic-hero .hero-heart-rule span{color:#d9a0a9;font-size:1.5rem;line-height:1;}
+.romantic-hero .date{
   color:#723348;margin:0;
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(1.55rem,2.25vw,2.45rem);line-height:1.3;
   letter-spacing:.16em;font-weight:500;
 }
-.floral-hero .hero-countdown{
+.romantic-hero .hero-countdown{
   position:relative;width:min(100%,575px);max-width:none;
   margin:30px 0 0;padding:31px 17px 21px;
   border:1px solid #dcafb8;border-radius:34px;background:rgba(255,249,247,.38);
 }
-.floral-hero .hero-countdown-label{
+.romantic-hero .hero-countdown-label{
   position:absolute;top:-.7rem;left:50%;transform:translateX(-50%);
   padding:0 16px;background:#fcf3f0;color:#743148!important;
   font-family:'Cormorant Garamond',serif;font-size:clamp(.83rem,1.3vw,1.2rem);
   font-style:normal;font-weight:500;white-space:nowrap;letter-spacing:.21em;
 }
-.floral-hero .hero-countdown .countdown{
+.romantic-hero .hero-countdown .countdown{
   display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;
   width:100%;max-width:none;margin:0 auto;
 }
-.floral-hero .hero-countdown .countdown>div{
+.romantic-hero .hero-countdown .countdown>div{
   min-width:0;padding:0 6px;border-left:1px solid #e1bdc2;text-align:center;
 }
-.floral-hero .hero-countdown .countdown>div:first-child{border-left:0;}
-.floral-hero .hero-countdown .countdown strong{
+.romantic-hero .hero-countdown .countdown>div:first-child{border-left:0;}
+.romantic-hero .hero-countdown .countdown strong{
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(2.55rem,3.7vw,4rem);font-weight:500;line-height:.95;
   color:#69273f;font-variant-numeric:lining-nums tabular-nums;display:block;
 }
-.floral-hero .hero-countdown .countdown span{
+.romantic-hero .hero-countdown .countdown span{
   display:block;margin:5px 0 0;font-family:'Cormorant Garamond',serif;
   font-style:italic;font-size:clamp(.9rem,1.4vw,1.25rem);
   color:#647656;text-transform:none;letter-spacing:0;
 }
-.floral-hero .button-light{
+.romantic-hero .button-light{
   align-self:center;display:inline-flex;align-items:center;justify-content:center;gap:14px;
   margin:28px auto 0;padding:11px 43px 13px;
   min-width:265px;background:#7d314b;color:#fff9f6;
@@ -140,8 +144,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #80
   font-weight:500;font-style:italic;letter-spacing:0;text-transform:none;
   box-shadow:0 10px 24px rgba(102,41,62,.14);
 }
-.floral-hero .button-light:hover{background:#632038;color:#fff;transform:translateY(-2px);}
-.floral-hero .button-light span{font-family:Inter,sans-serif;font-size:1.45rem;font-style:normal;font-weight:300;line-height:1;}
+.romantic-hero .button-light:hover{background:#632038;color:#fff;transform:translateY(-2px);}
+.romantic-hero .button-light span{font-family:Inter,sans-serif;font-size:1.45rem;font-style:normal;font-weight:300;line-height:1;}
 
 /* --- Secciones interiores: papel, flores y acentos borgoña. --- */
 .memories-strip{padding:33px 0 38px;background:#fff9f7;border-top:1px solid #efd9dc;border-bottom:1px solid #efd9dc;}
@@ -222,71 +226,76 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #80
 
 /* --- Móvil: la composición es vertical, como el parte aprobado. --- */
 @media(max-width:850px){
-  .hero.floral-hero{min-height:0;padding:0 0 55px;display:block;}
-  .floral-hero .hero-photo{
+  .hero.romantic-hero{min-height:0;padding:0 0 55px;display:block;}
+  .romantic-hero .hero-photo{
     position:absolute;top:0;left:0;width:100%;height:clamp(310px,77vw,560px);
     object-position:50% 40%;
   }
-  .floral-hero .hero-overlay{
+  .romantic-hero .hero-overlay{
     background:linear-gradient(180deg,
       rgba(252,243,240,.06) 0%,rgba(252,243,240,.03) 20%,
       rgba(252,243,240,.14) 37%,rgba(252,243,240,.60) 61%,
       #fcf3f0 93%,#fcf3f0 100%);
   }
-  .floral-hero .nav{
+  .romantic-hero .nav{
     position:relative;z-index:5;width:min(calc(100% - 32px),710px);
     padding:18px 0 0;
   }
-  .floral-hero .brand{font-size:1.9rem;gap:12px;}
-  .floral-hero .brand::after{width:44px;}
-  .floral-hero .nav-link{font-size:1.15rem;padding:8px 17px;}
-  .floral-hero .hero-content{
+  .romantic-hero .brand{font-size:1.9rem;gap:12px;}
+  .romantic-hero .brand::after{width:44px;}
+  .romantic-hero .nav-link{font-size:1.15rem;padding:8px 17px;}
+  .romantic-hero .hero-content{
     width:min(calc(100% - 36px),650px);max-width:none;margin:0 auto;
     padding:clamp(245px,61vw,415px) 0 0;
   }
-  .floral-hero .hero-announcement{width:100%;}
-  .floral-hero .eyebrow{font-size:clamp(2rem,5vw,2.8rem);margin:0 0 11px;}
-  .floral-hero h1 .hero-name{font-size:clamp(5rem,12.8vw,8rem);}
-  .floral-hero h1 .hero-amp{font-size:clamp(2.8rem,7vw,4rem);margin:2px 0 10px;}
-  .floral-hero .hero-heart-rule{margin:12px auto 11px;}
-  .floral-hero .hero-countdown{width:min(100%,575px);}
-  .floral-hero .hero-countdown .countdown strong{font-size:clamp(2.7rem,6.9vw,4rem);}
-  .floral-hero .hero-botanical-top{width:clamp(170px,32vw,260px);right:-55px;top:-45px;opacity:.88;}
-  .floral-hero .hero-botanical-bottom{width:clamp(190px,35vw,285px);left:-75px;bottom:-95px;opacity:.87;}
+  .romantic-hero .hero-announcement{width:100%;}
+  .romantic-hero .eyebrow{font-size:clamp(2rem,5vw,2.8rem);margin:0 0 11px;}
+  .romantic-hero h1 .hero-name{font-size:clamp(5rem,12.8vw,8rem);}
+  .romantic-hero h1 .hero-amp{font-size:clamp(2.8rem,7vw,4rem);margin:2px 0 10px;}
+  .romantic-hero .hero-heart-rule{margin:12px auto 11px;}
+  .romantic-hero .hero-countdown{width:min(100%,575px);}
+  .romantic-hero .hero-countdown .countdown strong{font-size:clamp(2.7rem,6.9vw,4rem);}
+  .romantic-hero .hero-botanical-top{width:clamp(170px,32vw,260px);right:-55px;top:-45px;opacity:.88;}
+  .romantic-hero .hero-botanical-bottom{width:clamp(190px,35vw,285px);left:-75px;bottom:-95px;opacity:.87;}
   .celebration{padding:70px 0;}
 }
 @media(max-width:540px){
-  .hero.floral-hero{padding-bottom:38px;}
-  .floral-hero .hero-photo{height:clamp(300px,82vw,405px);object-position:50% 41%;}
-  .floral-hero .hero-content{padding-top:clamp(255px,67vw,350px);width:calc(100% - 36px);}
-  .floral-hero .brand{font-size:1.55rem;}
-  .floral-hero .brand::after{width:26px;}
-  .floral-hero .nav-link{font-size:1rem;padding:8px 13px;gap:6px;}
-  .floral-hero .nav-link svg{width:15px;height:15px;}
-  .floral-hero .eyebrow{font-size:2rem;margin-bottom:8px;}
-  .floral-hero .eyebrow::before,.floral-hero .eyebrow::after{width:22px;}
-  .floral-hero h1 .hero-name{font-size:clamp(4rem,16vw,6rem);}
-  .floral-hero h1 .hero-amp{font-size:2.5rem;}
-  .floral-hero .hero-heart-rule{width:70%;margin:12px auto 8px;}
-  .floral-hero .date{font-size:1.46rem;}
-  .floral-hero .hero-countdown{padding:26px 7px 15px;margin-top:28px;border-radius:25px;}
-  .floral-hero .hero-countdown-label{font-size:.8rem;letter-spacing:.13em;top:-.6rem;}
-  .floral-hero .hero-countdown .countdown>div{padding:0 2px;}
-  .floral-hero .hero-countdown .countdown strong{font-size:clamp(2.25rem,10vw,3.25rem);}
-  .floral-hero .hero-countdown .countdown span{font-size:.9rem;}
-  .floral-hero .button-light{min-width:240px;margin-top:24px;padding:10px 32px 12px;font-size:1.6rem;}
-  .floral-hero .hero-botanical-top{width:175px;right:-68px;top:-39px;opacity:.7;}
-  .floral-hero .hero-botanical-bottom{width:205px;left:-83px;bottom:-115px;opacity:.7;}
+  .hero.romantic-hero{padding-bottom:38px;}
+  .romantic-hero .hero-photo{height:clamp(300px,82vw,405px);object-position:50% 41%;}
+  .romantic-hero .hero-content{padding-top:clamp(255px,67vw,350px);width:calc(100% - 36px);}
+  .romantic-hero .brand{font-size:1.55rem;}
+  .romantic-hero .brand::after{width:26px;}
+  .romantic-hero .nav-link{font-size:1rem;padding:8px 13px;gap:6px;}
+  .romantic-hero .nav-link svg{width:15px;height:15px;}
+  .romantic-hero .eyebrow{font-size:2rem;margin-bottom:8px;}
+  .romantic-hero .eyebrow::before,.romantic-hero .eyebrow::after{width:22px;}
+  .romantic-hero h1 .hero-name{font-size:clamp(4rem,16vw,6rem);}
+  .romantic-hero h1 .hero-amp{font-size:2.5rem;}
+  .romantic-hero .hero-heart-rule{width:70%;margin:12px auto 8px;}
+  .romantic-hero .date{font-size:1.46rem;}
+  .romantic-hero .hero-countdown{padding:26px 7px 15px;margin-top:28px;border-radius:25px;}
+  .romantic-hero .hero-countdown-label{font-size:.8rem;letter-spacing:.13em;top:-.6rem;}
+  .romantic-hero .hero-countdown .countdown>div{padding:0 2px;}
+  .romantic-hero .hero-countdown .countdown strong{font-size:clamp(2.25rem,10vw,3.25rem);}
+  .romantic-hero .hero-countdown .countdown span{font-size:.9rem;}
+  .romantic-hero .button-light{min-width:240px;margin-top:24px;padding:10px 32px 12px;font-size:1.6rem;}
+  .romantic-hero .hero-botanical-top{width:175px;right:-68px;top:-39px;opacity:.7;}
+  .romantic-hero .hero-botanical-bottom{width:205px;left:-83px;bottom:-115px;opacity:.7;}
   .location-card{padding:19px;}
   .celebration{padding:55px 0;}
   .dress::after{width:240px;height:260px;opacity:.16;}
   .song-card{padding:16px;}
 }
 @media(max-width:360px){
-  .floral-hero h1 .hero-name{font-size:3.72rem;}
-  .floral-hero .hero-countdown .countdown strong{font-size:2.12rem;}
-  .floral-hero .hero-countdown .countdown span{font-size:.8rem;}
+  .romantic-hero h1 .hero-name{font-size:3.72rem;}
+  .romantic-hero .hero-countdown .countdown strong{font-size:2.12rem;}
+  .romantic-hero .hero-countdown .countdown span{font-size:.8rem;}
 }
 @media(prefers-reduced-motion:reduce){
-  .floral-hero .button-light:hover{transform:none;}
+  .romantic-hero .button-light:hover{transform:none;}
 }
+
+/* Elemento de corazones en la versión actualmente publicada del HTML. */
+.romantic-hero .hero-heart{display:block;width:118px;height:49px;margin:14px auto 9px;stroke:#b66e88;}
+@media(max-width:850px){.romantic-hero::before{width:230px;height:260px;right:-56px;top:-46px;opacity:.72;}.romantic-hero::after{width:240px;height:270px;left:-87px;bottom:-100px;opacity:.78;}}
+@media(max-width:540px){.romantic-hero::before{width:178px;height:200px;right:-75px;top:-44px;}.romantic-hero::after{width:205px;height:235px;left:-86px;bottom:-115px;}.romantic-hero .hero-heart{width:106px;height:42px;}}

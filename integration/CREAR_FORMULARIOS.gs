@@ -34,20 +34,20 @@ function prepararGoogleForms() {
   },'Formulario canciones');
   // Conserva los registros anteriores y suma las respuestas de los Google Forms simplificados.
   book.getSheetByName('Confirmados').getRange('A2').setFormula(
-    '=IFNA(QUERY(VSTACK(HSTACK(Respuestas!C6:D,Respuestas!G6:I,Respuestas!F6:F),HSTACK(\\'Formulario RSVP\\'!B2:B,IF(\\'Formulario RSVP\\'!B2:B<>"","",""),IF(\\'Formulario RSVP\\'!C2:C="Sí",1,0),IF(\\'Formulario RSVP\\'!B2:B<>"","",""),IF(\\'Formulario RSVP\\'!B2:B<>"","",""),\\'Formulario RSVP\\'!C2:C)),"select Col1,Col2,Col3,Col4,Col5 where Col6 = \\'Sí\\' and Col1 is not null",0),"Aún no hay confirmaciones")'
+    '=IFNA(QUERY(VSTACK(HSTACK(Respuestas!C6:D,Respuestas!G6:I,Respuestas!F6:F),HSTACK(\'Formulario RSVP\'!B2:B,IF(\'Formulario RSVP\'!B2:B<>"","",""),IF(\'Formulario RSVP\'!C2:C="Sí",1,0),IF(\'Formulario RSVP\'!B2:B<>"","",""),IF(\'Formulario RSVP\'!B2:B<>"","",""),\'Formulario RSVP\'!C2:C)),"select Col1,Col2,Col3,Col4,Col5 where Col6 = \'Sí\' and Col1 is not null",0),"Aún no hay confirmaciones")'
   );
   book.getSheetByName('No asistirán').getRange('A2').setFormula(
-    '=IFNA(QUERY(VSTACK(HSTACK(Respuestas!C6:D,Respuestas!F6:F),HSTACK(\\'Formulario RSVP\\'!B2:B,IF(\\'Formulario RSVP\\'!B2:B<>"","",""),\\'Formulario RSVP\\'!C2:C)),"select Col1,Col2 where Col3 = \\'No\\' and Col1 is not null",0),"Aún no hay respuestas negativas")'
+    '=IFNA(QUERY(VSTACK(HSTACK(Respuestas!C6:D,Respuestas!F6:F),HSTACK(\'Formulario RSVP\'!B2:B,IF(\'Formulario RSVP\'!B2:B<>"","",""),\'Formulario RSVP\'!C2:C)),"select Col1,Col2 where Col3 = \'No\' and Col1 is not null",0),"Aún no hay respuestas negativas")'
   );
   book.getSheetByName('Playlist DJ').getRange('A2').setFormula(
-    '=IFNA(SORT(UNIQUE(TOCOL(VSTACK(Canciones!C2:C,\\'Formulario canciones\\'!B2:B),1))),"Aún no hay canciones sugeridas")'
+    '=IFNA(SORT(UNIQUE(TOCOL(VSTACK(Canciones!C2:C,\'Formulario canciones\'!B2:B),1))),"Aún no hay canciones sugeridas")'
   );
   const summary=book.getSheetByName('Resumen');
   summary.getRange('B4:B7').setFormulas([
-    ['=COUNTIF(Respuestas!C6:C,"?*")+COUNTIF(\\'Formulario RSVP\\'!B2:B,"?*")'],
-    ['=COUNTIF(Respuestas!F6:F,"Sí")+COUNTIF(\\'Formulario RSVP\\'!C2:C,"Sí")'],
-    ['=COUNTIF(Respuestas!F6:F,"No")+COUNTIF(\\'Formulario RSVP\\'!C2:C,"No")'],
-    ['=SUMIF(Respuestas!F6:F,"Sí",Respuestas!G6:G)+COUNTIF(\\'Formulario RSVP\\'!C2:C,"Sí")']
+    ['=COUNTIF(Respuestas!C6:C,"?*")+COUNTIF(\'Formulario RSVP\'!B2:B,"?*")'],
+    ['=COUNTIF(Respuestas!F6:F,"Sí")+COUNTIF(\'Formulario RSVP\'!C2:C,"Sí")'],
+    ['=COUNTIF(Respuestas!F6:F,"No")+COUNTIF(\'Formulario RSVP\'!C2:C,"No")'],
+    ['=SUMIF(Respuestas!F6:F,"Sí",Respuestas!G6:G)+COUNTIF(\'Formulario RSVP\'!C2:C,"Sí")']
   ]);
   if(!ScriptApp.getProjectTriggers().some(t=>t.getHandlerFunction()==='cerrarConfirmaciones'))ScriptApp.newTrigger('cerrarConfirmaciones').timeBased().at(new Date('2027-02-01T03:00:00Z')).create();
   const config={rsvpForm:rsvp.getPublishedUrl(),songForm:song.getPublishedUrl()};

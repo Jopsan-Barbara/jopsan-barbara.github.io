@@ -1,0 +1,53 @@
+/* Formularios nativos de la invitación — Oliva. Sin ventanas emergentes ni formularios de prueba. */
+.wedding-form{display:grid;gap:18px;margin:0;padding:0;color:#394330;font:400 15px/1.45 'DM Sans','Inter',Arial,sans-serif;text-align:left;min-width:0}
+.wedding-form__title{margin:0 0 2px!important;font-size:11px!important;font-weight:700!important;letter-spacing:.16em!important;text-transform:uppercase;color:#65744c!important}
+.wedding-form .field{display:block;min-width:0}
+.wedding-form .field-label,.wedding-form legend{display:block;font:700 13px/1.4 'DM Sans','Inter',Arial,sans-serif;color:#394330;margin:0 0 9px}
+.wedding-form fieldset{min-width:0;border:0;padding:0;margin:0}
+.wedding-form .choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.wedding-form .choice{position:relative;display:flex;align-items:center;gap:10px;cursor:pointer;min-height:51px;padding:12px 13px;border:1px solid #d8d6c8;background:#fffdf6;color:#424c37;border-radius:5px;font:600 13px/1.25 'DM Sans','Inter',Arial,sans-serif;transition:background-color .18s,border-color .18s}
+.wedding-form .choice:has(input:checked){background:#e9eddd;border-color:#63754a;color:#3d4d35}
+.wedding-form .choice:has(input:focus-visible){outline:2px solid #65744c;outline-offset:3px}
+.wedding-form .choice input{position:static;accent-color:#65744c;width:18px;height:18px;min-width:18px;margin:0;cursor:pointer}
+.wedding-form input[type=text]{width:100%;min-height:49px;margin:0;padding:12px 14px;border:1px solid #d3d2c5;border-radius:4px;background:#fffdf9;color:#374032;font:400 16px/1.2 'DM Sans','Inter',Arial,sans-serif;box-shadow:none}
+.wedding-form input[type=text]:focus{outline:2px solid #8f9c6d;outline-offset:2px;border-color:#65744c}
+.wedding-form input::placeholder{color:#8e9586}
+.wedding-form .form-submit{display:inline-flex;align-items:center;justify-content:center;min-height:49px;margin:0;width:100%;padding:12px 22px;border:1px solid #65744c;border-radius:4px;background:#65744c;color:#fffdf7;font:700 13px/1.2 'DM Sans','Inter',Arial,sans-serif;letter-spacing:.025em;cursor:pointer}
+.wedding-form .form-submit:hover{background:#435738;border-color:#435738;color:#fff}
+.wedding-form .form-submit:disabled{opacity:.62;cursor:default}
+.wedding-form .form-status{margin:0!important;min-height:0;font:500 13px/1.5 'DM Sans','Inter',Arial,sans-serif;color:#4c6041}
+.wedding-form .form-status:empty{display:none}
+.wedding-form .form-status[data-error=true]{color:#8d4030}
+.wedding-form .form-backup{font-size:13px;color:#65744c;text-underline-offset:4px}
+.wedding-form .form-backup[hidden]{display:none!important}
+.wedding-form .form-trap,.wedding-form .form-transport{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip-path:inset(50%);opacity:0;pointer-events:none}
+.form-shell{position:relative;max-width:100%;padding:clamp(25px,3vw,39px);background:#fbf8ef;color:#374032;border:1px solid #d6d2bf;box-shadow:0 14px 38px rgba(32,42,26,.07);text-align:left;border-radius:2px}
+.form-shell .form-hint{font:400 13px/1.5 'DM Sans','Inter',Arial,sans-serif;color:#69705d;margin:15px 0 0}
+body.oliva-theme .rsvp{background:#505d40!important;color:#faf7ec!important}
+body.oliva-theme .rsvp .rsvp-layout{display:grid;grid-template-columns:1fr minmax(320px,.83fr);align-items:center;gap:clamp(45px,8vw,125px);max-width:1110px;padding:0;background:transparent;border:0;box-shadow:none;text-align:left}
+body.oliva-theme .rsvp .rsvp-intro h2{font:500 clamp(3.6rem,5.8vw,6.1rem)/1.02 'Cormorant Garamond',Georgia,serif;color:#faf7ec;margin:10px 0 23px}
+body.oliva-theme .rsvp .rsvp-intro .section-kicker{color:#dde5cf}
+body.oliva-theme .rsvp .rsvp-intro p{color:#f5f2e8;font-size:15px;line-height:1.75}
+body.oliva-theme .rsvp .rsvp-intro .rsvp-individual-note{border:0;background:none;color:#e4e8d8;padding:12px 0;margin:18px 0 0;font-size:13px;line-height:1.6}
+body.oliva-theme .rsvp .form-shell{background:#faf7ef;box-shadow:0 18px 36px rgba(20,30,15,.12)}
+body.oliva-theme .playlist .song-card{background:#fbf8ef;padding:clamp(24px,3vw,34px);border-radius:2px}
+body.oliva-theme .playlist .song-card .wedding-form{margin-top:13px}
+html[data-estilo=olivo] .band form.wedding-form{display:grid;gap:18px;padding:0;background:transparent;color:#374032}
+html[data-estilo=olivo] .band .form-shell{padding:clamp(24px,3vw,38px);background:#faf7ef}
+html[data-estilo=olivo] .band .form-shell .wedding-form{margin:0}
+html[data-estilo=olivo] .song-inline{background:#fbf8ef;padding:26px 26px 24px;border:1px solid #ddd9cc}
+html[data-estilo=olivo] .song-inline h3{margin:0 0 14px}
+html[data-estilo=olivo] .song-inline .wedding-form{gap:15px}
+html[data-estilo=olivo] .wedding-form .form-submit{justify-self:stretch}
+@media(max-width:760px){
+ body.oliva-theme .rsvp .rsvp-layout{grid-template-columns:1fr;gap:27px;max-width:690px;text-align:center}
+ body.oliva-theme .rsvp .rsvp-intro h2{font-size:clamp(3.15rem,9vw,4.6rem)}
+ body.oliva-theme .rsvp .rsvp-intro p{max-width:580px;margin-inline:auto}
+ body.oliva-theme .rsvp .rsvp-intro .rsvp-individual-note{margin-inline:auto}
+}
+@media(max-width:480px){
+ .form-shell{padding:24px 18px}
+ .wedding-form .choices{grid-template-columns:1fr;gap:8px}
+ .wedding-form .choice{min-height:45px}
+ html[data-estilo=olivo] .song-inline{padding:21px 18px}
+}

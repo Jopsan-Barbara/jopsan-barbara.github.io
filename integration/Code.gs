@@ -32,6 +32,35 @@ function prepararInvitaciones_() {
   });
 }
 
+
+// Recepción de formularios HTML nativos, sin CORS ni aplicaciones adicionales.
+// La confirmación solo aparece cuando Sheets respondió correctamente.
+function doPost(e) {
+  const p = (e && e.parameter) || {};
+  const kind = String(p.kind || '');
+  const requestId = String(p.requestId || '').slice(0,160);
+  let result = {ok:false,message:'No se pudo registrar la respuesta.'};
+  try {
+    if(kind === 'public-rsvp') result = submitPublicRsvp(p);
+    else if(kind === 'public-song') result = submitPublicSong(p);
+    else throw new Error('Tipo de formulario no válido.');
+  } catch(err) {
+    result = {ok:false,message:String((err && err.message) || 'Error al registrar la respuesta.').slice(0,250)};
+  }
+  const payload = JSON.stringify({
+    channel:'jb-inline-form-response-v1',
+    kind:kind,
+    requestId:requestId,
+    ok:result.ok === true,
+    message:String(result.message || '').slice(0,250)
+  }).replace(/</g,'\\u003c').replace(/>/g,'\\u003e');
+  return HtmlService.createHtmlOutput(
+    '<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>' +
+    '<body><p>Respuesta procesada.</p><script>window.top.postMessage(' + payload +
+    ', "https://jopsan-barbara.github.io");<\\/script></body></html>'
+  ).setTitle('Resultado de la confirmación').setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
 function doGet(e) {
   if(e&&e.parameter&&e.parameter.view==='public-song')return publicForm_('public-song');
   if(e&&e.parameter&&e.parameter.view==='public-rsvp'&&Date.now()<RSVP_CLOSE_)return publicForm_('public-rsvp');

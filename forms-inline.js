@@ -30,8 +30,18 @@
     } catch (_) { return false; }
   }
 
-  const newId = () => 'jb-' + (window.crypto && crypto.randomUUID
-    ? crypto.randomUUID() : String(Date.now()) + '-' + Math.random().toString(36).slice(2));
+  // El backend de Google Apps Script admite IDs "public-" seguidos de UUID.
+  // Mantener este formato evita que se rechacen las confirmaciones y canciones.
+  const newId = () => {
+    if (window.crypto && typeof crypto.randomUUID === 'function') {
+      return 'public-' + crypto.randomUUID();
+    }
+    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, char => {
+      const n = Math.floor(Math.random() * 16);
+      return (char === 'x' ? n : (n & 3) | 8).toString(16);
+    });
+    return 'public-' + uuid;
+  };
 
   function field(form, name, value) {
     let input = form.querySelector('input[name="' + name + '"]');

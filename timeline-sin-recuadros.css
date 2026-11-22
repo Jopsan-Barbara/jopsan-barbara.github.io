@@ -1,0 +1,78 @@
+/* Cronograma Oliva — íconos vectoriales integrados, sin recuadros.
+   Corrección compartida por la invitación principal y las cuatro propuestas.
+   Regla cargada al final de los CSS de cada versión para evitar fondos
+   heredados, incluido Herbario. No cambia horarios, textos ni pictogramas. */
+
+/* El eje editorial queda ligeramente a la izquierda de los íconos:
+   así ningún trazo atraviesa las figuras al quitar los recuadros. */
+body.oliva-theme .timing .timeline ol::before{
+  left:17px !important;
+  width:1px !important;
+  background:rgba(101,116,76,.45) !important;
+  z-index:0;
+}
+
+/* El SVG es el único elemento visible. Se elimina el contenedor
+   opaco que parecía una miniatura rectangular o una imagen cortada. */
+body.oliva-theme .timing .timeline ol .timeline-item .moment-icon{
+  background:transparent !important;
+  background-color:transparent !important;
+  background-image:none !important;
+  box-shadow:none !important;
+  outline:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  backdrop-filter:none !important;
+  overflow:visible;
+  position:relative;
+  z-index:1;
+  color:var(--olive-deep,#65744c);
+}
+body.oliva-theme .timing .timeline ol .timeline-item .moment-icon svg{
+  display:block;
+  position:relative;
+  z-index:1;
+  background:transparent !important;
+  filter:none !important;
+  box-shadow:none !important;
+  fill:none;
+}
+
+/* Punto de hito en vez de placa cuadrada. */
+body.oliva-theme .timing .timeline ol .timeline-item .moment-icon::before{
+  content:"";
+  display:block;
+  width:7px;
+  height:7px;
+  position:absolute;
+  top:50%;
+  left:-22px;
+  transform:translateY(-50%);
+  border-radius:50%;
+  background:var(--olive-deep,#65744c);
+  border:0;
+  box-shadow:0 0 0 3px rgba(143,156,109,.13);
+  z-index:2;
+  pointer-events:none;
+}
+
+@media(max-width:600px){
+  /* En mobile el cronograma no tiene sangría (ol padding-left:0).
+     El eje y el punto se desplazan juntos, sin ocupar ancho de texto. */
+  body.oliva-theme .timing .timeline ol::before{
+    left:9px !important;
+  }
+  body.oliva-theme .timing .timeline ol .timeline-item .moment-icon::before{
+    left:5px;
+  }
+  body.oliva-theme .timing .timeline ol .timeline-item .moment-icon svg{
+    width:30px;
+    height:30px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  body.oliva-theme .timing .timeline ol .timeline-item .moment-icon{
+    transition:none !important;
+  }
+}

@@ -535,3 +535,14 @@ body.oliva-theme .footer p{color:#f7f3e7;}
     scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;
   }
 }
+
+/* Álbum actualizado: fotografías verticales y panorámicas en un carrusel editorial. */
+body.oliva-theme .memory-slide{
+  flex:0 0 clamp(255px,28vw,355px);width:clamp(255px,28vw,355px);
+  height:clamp(335px,38vw,450px);aspect-ratio:4 / 5;
+  background:var(--olive-ivory);
+}
+body.oliva-theme .memory-slide img{width:100%;height:100%;object-fit:cover;object-position:center;}
+@media(max-width:600px){
+  body.oliva-theme .memory-slide{flex-basis:min(77vw,330px);width:min(77vw,330px);height:clamp(305px,93vw,425px);}
+}

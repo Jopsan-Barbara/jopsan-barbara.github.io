@@ -1,73 +1,18 @@
-/* Fotografías aportadas por Jopsan y Bárbara. Imágenes optimizadas alojadas en este repositorio. */
+/* Fotografías aportadas por los novios, en el orden recibido.\n   WebP optimizadas sin retoque; la web aplica blanco y negro solo con CSS. */
 window.JB_GALLERY_PHOTOS = [
-  {
-    "src": "assets/recuerdos/recuerdo-01.jpg",
-    "alt": "La propuesta en la nieve",
-    "position": "center 77%"
-  },
-  {
-    "src": "assets/recuerdos/recuerdo-02.jpg",
-    "alt": "Un sí entre risas",
-    "position": "center 77%"
-  },
-  {
-    "src": "assets/recuerdos/recuerdo-03.jpg",
-    "alt": "Celebrando nuestros anillos",
-    "position": "center 70%"
-  },
-  {
-    "src": "assets/recuerdos/recuerdo-04.jpg",
-    "alt": "Juntos en la montaña",
-    "position": "center 70%"
-  },
-  {
-    "src": "assets/recuerdos/recuerdo-05.jpg",
-    "alt": "Un beso para recordar",
-    "position": "center 58%"
-  },
-  {
-    "src": "assets/recuerdos/recuerdo-06.jpg",
-    "alt": "Una tarde junto al lago",
-    "position": "center 79%"
-  },
-  {
-    "src": "assets/recuerdos/recuerdo-07.jpg",
-    "alt": "Nuestros mejores momentos",
-    "position": "center 66%"
-  },
-  {
-    "src": "assets/recuerdos/recuerdo-08.jpg",
-    "alt": "El amor en los pequeños detalles",
-    "position": "center 53%"
-  },
-  {
-    "src": "assets/recuerdos/recuerdo-09.jpg",
-    "alt": "Un atardecer compartido",
-    "position": "center 66%"
-  },
-  {
-    "src": "assets/recuerdos/recuerdo-10.jpg",
-    "alt": "Un brindis especial",
-    "position": "center 52%"
-  },
-  {
-    "src": "assets/recuerdos/recuerdo-11.jpg",
-    "alt": "Paisajes que nos unen",
-    "position": "center 66%"
-  },
-  {
-    "src": "assets/recuerdos/recuerdo-12.jpg",
-    "alt": "Siempre de la mano",
-    "position": "center 55%"
-  },
-  {
-    "src": "assets/recuerdos/recuerdo-13.jpg",
-    "alt": "Más momentos juntos",
-    "position": "center 58%"
-  },
-  {
-    "src": "assets/recuerdos/recuerdo-14.jpg",
-    "alt": "La felicidad de estar juntos",
-    "position": "center 55%"
-  }
+  {src:"assets/galeria-2027/recuerdo-01.webp",alt:"Jopsan y Bárbara junto a un lago",position:"center 60%"},
+  {src:"assets/galeria-2027/recuerdo-02.webp",alt:"Jopsan y Bárbara frente al volcán Osorno",position:"center 72%"},
+  {src:"assets/galeria-2027/recuerdo-03.webp",alt:"Jopsan y Bárbara junto al corazón de Frutillar",position:"center 67%"},
+  {src:"assets/galeria-2027/recuerdo-04.webp",alt:"Jopsan y Bárbara bajo los árboles",position:"center 67%"},
+  {src:"assets/galeria-2027/recuerdo-05.webp",alt:"Jopsan y Bárbara mostrando sus anillos",position:"center 69%"},
+  {src:"assets/galeria-2027/recuerdo-06.webp",alt:"Jopsan y Bárbara en un paisaje nevado",position:"center 78%"},
+  {src:"assets/galeria-2027/recuerdo-07.webp",alt:"Jopsan y Bárbara junto a un lago en el sur",position:"center 62%"},
+  {src:"assets/galeria-2027/recuerdo-08.webp",alt:"Jopsan y Bárbara besándose en la nieve",position:"center 65%"},
+  {src:"assets/galeria-2027/recuerdo-09.webp",alt:"Jopsan y Bárbara abrazados en la nieve",position:"center 77%"},
+  {src:"assets/galeria-2027/recuerdo-10.webp",alt:"Jopsan y Bárbara en la orilla de un lago",position:"center 64%"},
+  {src:"assets/galeria-2027/recuerdo-11.webp",alt:"Detalle de los anillos de compromiso",position:"center 64%"},
+  {src:"assets/galeria-2027/recuerdo-12.webp",alt:"Jopsan y Bárbara paseando en un bosque",position:"center 63%"},
+  {src:"assets/galeria-2027/recuerdo-13.webp",alt:"Jopsan y Bárbara junto al agua",position:"center 69%"},
+  {src:"assets/galeria-2027/recuerdo-14.webp",alt:"Jopsan y Bárbara en una salida nocturna",position:"center 76%"},
+  {src:"assets/galeria-2027/recuerdo-15.webp",alt:"Jopsan y Bárbara junto a un velero",position:"center 78%"}
 ];

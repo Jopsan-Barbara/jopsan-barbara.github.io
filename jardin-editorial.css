@@ -1,0 +1,495 @@
+/* Propuesta 05 — Jardín editorial ilustrado, Jopsan & Bárbara.
+   Dirección visual: acuarela floral integrada al papel y al verde oliva.
+   Los SVG son fondos originales de secciones, no stickers superpuestos.
+   Fotografía de los novios: archivo original, filtro CSS gris.
+   Contenido real, caricaturas, RSVP, mapa, cronograma y FAQ sin cambios. */
+
+body.oliva-theme.propuesta-organica.propuesta-jardin{
+  --j-paper:#f9f5e9;
+  --j-ivory:#f6eddc;
+  --j-sage:#e5e9dc;
+  --j-olive:#65744c;
+  --j-ink:#364730;
+  --j-line:#c6c6ab;
+  --olive-dark:#43563d;
+  color:var(--j-ink);
+  background:var(--j-paper);
+}
+
+/* Portada: fondo ilustrado auténtico ocupando toda la sección; 
+   composición en grilla para que no tape caras ni nombres. */
+body.oliva-theme.propuesta-organica.propuesta-jardin .hero.romantic-hero{
+  border:0!important;
+  border-top:9px solid #65744c!important;
+  background-color:#f9f5e9!important;
+  background-image:
+    url('assets/jardin-hero-papel.svg'),
+    url('assets/textura-papel-algodon.svg')!important;
+  background-position:center center,center!important;
+  background-size:cover,240px 240px!important;
+  background-repeat:no-repeat,repeat!important;
+  min-height:0!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero .nav{
+  background:rgba(253,249,239,.75);
+  border-bottom:1px solid rgba(76,91,62,.3);
+  backdrop-filter:blur(4px);
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero .hero-content{
+  width:min(calc(100% - 64px),1150px)!important;
+  margin:28px auto 22px!important;
+  padding:clamp(26px,3.5vw,56px)!important;
+  background:rgba(255,252,245,.88)!important;
+  border:1px solid #c8c7b4!important;
+  outline:1px solid rgba(151,163,132,.35);
+  outline-offset:-12px;
+  border-radius:2px!important;
+  box-shadow:0 20px 52px rgba(39,61,36,.11)!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero .hero-announcement{
+  padding-top:8px;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero .eyebrow{
+  letter-spacing:.28em!important;color:#4f6748!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero h1 .hero-name{
+  color:#4b6544!important;
+  font-size:clamp(5rem,7.6vw,8.5rem)!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero .date{
+  font-size:clamp(1.25rem,2.4vw,1.7rem)!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero .herb-portrait{
+  background:#fffef8!important;
+  border:1px solid #c7c6b0!important;
+  box-shadow:12px 15px 32px rgba(58,74,48,.13)!important;
+  border-radius:2px!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero .herb-portrait .hero-photo,
+body.oliva-theme.propuesta-organica.propuesta-jardin .memory-slide img{
+  filter:grayscale(100%)!important;
+  -webkit-filter:grayscale(100%)!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero .hero-countdown{
+  background:rgba(246,237,220,.9)!important;
+  border:1px solid #c9c4aa!important;
+  padding-top:21px!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero .button-light{
+  background:#65744c!important;
+  border-color:#65744c!important;
+  color:#fffdf5!important;
+  border-radius:4px!important;
+  min-height:49px;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero .button-light:hover{
+  background:#41583b!important;
+}
+
+/* Suavizar uniones: cada fondo es una ilustración continua,
+   sin cintas pegadas que parezcan recortes. */
+body.oliva-theme.propuesta-organica.propuesta-jardin .herb-paper-seam{
+  display:none!important;
+}
+
+/* Galería como secuencia fotográfica sobre lámina ilustrada. */
+body.oliva-theme.propuesta-organica.propuesta-jardin .memories-strip{
+  background-color:#f9f6ed!important;
+  background-image:
+    url('assets/jardin-jazmin-marco.svg'),
+    url('assets/textura-papel-algodon.svg')!important;
+  background-position:center center,center!important;
+  background-size:cover,240px 240px!important;
+  background-repeat:no-repeat,repeat!important;
+  padding:clamp(85px,9vw,125px) 0!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .memories-heading{
+  width:min(calc(100% - 44px),1120px);
+  padding:17px 24px 24px;
+  background:rgba(255,252,244,.84);
+  border:1px solid rgba(159,169,142,.38)!important;
+  border-bottom:1px solid #bdc3ae!important;
+  box-shadow:0 5px 16px rgba(63,68,44,.045);
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .memory-slide{
+  border:7px solid #fffdf6!important;
+  border-bottom-width:16px!important;
+  border-radius:1px!important;
+  box-shadow:0 9px 24px rgba(50,63,44,.12)!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .memories-arrow{
+  border-color:#9baa8f!important;
+  background:#fff9ee!important;
+}
+
+/* Lugar y celebración en acuarela salvia de gran formato,
+   con hoja y flor impresas en los bordes. */
+body.oliva-theme.propuesta-organica.propuesta-jardin .celebration{
+  background-color:#e7eadc!important;
+  background-image:
+    url('assets/jardin-salvia-acuarela.svg'),
+    url('assets/textura-papel-algodon.svg')!important;
+  background-position:center center,center!important;
+  background-size:cover,240px 240px!important;
+  background-repeat:no-repeat,repeat!important;
+  padding:clamp(90px,10vw,145px) 0!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .celebration-story{
+  background:rgba(251,249,239,.92);
+  padding:clamp(22px,3vw,38px)!important;
+  border:1px solid rgba(133,152,117,.50);
+  box-shadow:0 7px 22px rgba(68,77,49,.045);
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .celebration h2,
+body.oliva-theme.propuesta-organica.propuesta-jardin .celebration h2 em{
+  color:#40553b!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .location-card{
+  background:#fffdf7!important;
+  border:1px solid #bdc5b4!important;
+  box-shadow:0 13px 30px rgba(46,67,42,.12)!important;
+  padding:clamp(18px,2.3vw,36px)!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .location-card .map-preview{
+  border:5px solid #f2efe4!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .celebrate-cta,
+body.oliva-theme.propuesta-organica.propuesta-jardin .map-cta{
+  border-radius:4px!important;
+}
+
+/* Cronograma sobre papel botánico claro; sin recuadros en iconos. */
+body.oliva-theme.propuesta-organica.propuesta-jardin .timing{
+  background-color:#fbf8ef!important;
+  background-image:url('assets/jardin-jazmin-marco.svg')!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+  padding:clamp(100px,12vw,165px) 0!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .timing .container.narrow{
+  padding:24px 22px;
+  background:rgba(255,252,245,.89);
+  border:1px solid rgba(159,170,146,.35);
+  max-width:800px;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .timing .timeline{
+  max-width:820px;
+  margin-top:29px!important;
+  padding:20px 25px!important;
+  background:rgba(255,252,245,.94);
+  border:1px solid rgba(159,170,146,.48);
+  box-shadow:0 6px 20px rgba(50,60,44,.045);
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .timing .moment-icon{
+  background:transparent!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .timing .moment-copy h3{
+  color:#374c34!important;
+}
+
+/* Vestimenta: jardín oliva envolvente + tarjeta de papel clara. */
+body.oliva-theme.propuesta-organica.propuesta-jardin .dress{
+  background-color:#647451!important;
+  background-image:url('assets/jardin-oliva-flores.svg')!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+  padding:clamp(100px,10vw,145px) 0!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .dress .container{
+  background:rgba(255,252,242,.96)!important;
+  width:min(calc(100% - 44px),690px)!important;
+  padding:clamp(26px,4vw,45px)!important;
+  border:1px solid #d9d4be!important;
+  box-shadow:0 15px 33px rgba(25,40,26,.16);
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .dress h2{
+  color:#576f4a!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .dress .section-kicker,
+body.oliva-theme.propuesta-organica.propuesta-jardin .dress p{
+  color:#40513b!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .dress .reserved-palette li{
+  color:#364730!important;
+}
+
+/* Música: jardín blanco sobre marfil, formulario ligero y visible. */
+body.oliva-theme.propuesta-organica.propuesta-jardin .playlist{
+  background-color:#faf5e9!important;
+  background-image:
+    url('assets/jardin-hero-papel.svg'),
+    url('assets/textura-papel-algodon.svg')!important;
+  background-position:center center,center!important;
+  background-size:cover,240px 240px!important;
+  background-repeat:no-repeat,repeat!important;
+  padding:clamp(100px,12vw,155px) 0!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .playlist-copy{
+  padding:28px 24px;
+  background:rgba(255,252,245,.89);
+  border:1px solid #d2d1bd;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .song-card{
+  background:#fffdf6!important;
+  border:1px solid #bec7b7!important;
+  box-shadow:0 10px 29px rgba(53,69,43,.08)!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .song-card .wedding-form button{
+  border-radius:4px!important;
+}
+
+/* Regalos: la ilustración botánica queda en el fondo del catálogo;
+   cada caricatura se conserva en color y con su propio contraste. */
+body.oliva-theme.propuesta-organica.propuesta-jardin #regalos{
+  background-color:#fcf9f1!important;
+  background-image:url('assets/jardin-jazmin-marco.svg')!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin #regalos .gift-intro{
+  background:rgba(255,252,244,.92);
+  border:1px solid rgba(157,166,136,.55);
+  padding:31px clamp(18px,3vw,38px)!important;
+  margin:0 auto clamp(25px,4vw,45px)!important;
+  max-width:810px!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin #regalos .catalog{
+  max-width:1080px;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin #regalos .gift{
+  background:#fffdfa!important;
+  background-image:none!important;
+  border:1px solid #d1d0bc!important;
+  border-radius:2px!important;
+  box-shadow:0 8px 23px rgba(57,70,47,.09)!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin #regalos .illustration img{
+  filter:none!important;
+  -webkit-filter:none!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin #regalos .gift-caption h3{
+  color:#42583c!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin #regalos .bank-section{
+  background-color:#e9ebde!important;
+  background-image:url('assets/jardin-salvia-acuarela.svg')!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  padding:clamp(90px,10vw,145px) 0!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin #regalos .bank-intro{
+  background:rgba(255,252,245,.87);
+  padding:24px 22px;
+  border:1px solid rgba(157,166,136,.41);
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin #regalos .bank-card{
+  background:#fffdf6!important;
+  border:1px solid #c7cbb5!important;
+  box-shadow:0 10px 27px rgba(47,67,42,.085)!important;
+}
+
+/* Confirmaciones y preguntas: inputs siempre HTML legibles. */
+body.oliva-theme.propuesta-organica.propuesta-jardin .rsvp{
+  background-color:#faf6ec!important;
+  background-image:url('assets/jardin-hero-papel.svg')!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+  padding:clamp(100px,12vw,155px) 0!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .rsvp .rsvp-layout{
+  background:rgba(255,252,245,.97)!important;
+  border:1px solid #bdc4ad!important;
+  box-shadow:0 13px 38px rgba(48,65,42,.09)!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .rsvp .form-shell{
+  background:#fffdf8!important;
+  border:1px solid #d0d0be!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .faq{
+  background-color:#f8f4e8!important;
+  background-image:url('assets/jardin-jazmin-marco.svg')!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+  padding:clamp(90px,9vw,130px) 0!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .faq .container{
+  background:rgba(255,252,245,.92);
+  border:1px solid rgba(153,165,138,.44);
+  padding:clamp(22px,4vw,42px)!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .faq details{
+  border-color:#d1d5c3!important;
+}
+
+/* Despedida: composición botánica completa, sin stickers. */
+body.oliva-theme.propuesta-organica.propuesta-jardin .footer{
+  background-color:#566946!important;
+  background-image:url('assets/jardin-oliva-flores.svg')!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+  border-top:9px solid #d6c8aa!important;
+  padding:clamp(100px,11vw,160px) 0!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .footer-names{
+  color:#fffdf1!important;
+  text-shadow:0 2px 12px rgba(28,47,29,.32);
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .footer p{
+  color:#fffdf1!important;
+  text-shadow:0 1px 8px rgba(28,47,29,.24);
+}
+
+/* Transiciones sutiles, no imágenes recortadas o elementos flotantes. */
+body.oliva-theme.propuesta-organica.propuesta-jardin .memories-strip,
+body.oliva-theme.propuesta-organica.propuesta-jardin .celebration,
+body.oliva-theme.propuesta-organica.propuesta-jardin .timing,
+body.oliva-theme.propuesta-organica.propuesta-jardin .dress,
+body.oliva-theme.propuesta-organica.propuesta-jardin .playlist,
+body.oliva-theme.propuesta-organica.propuesta-jardin #regalos,
+body.oliva-theme.propuesta-organica.propuesta-jardin .rsvp,
+body.oliva-theme.propuesta-organica.propuesta-jardin .faq{
+  border-top:0!important;
+  background-attachment:scroll!important;
+}
+
+/* MOBILE-FIRST: fotografía y nombres sin superposiciones. Las flores
+   permanecen en los bordes del lienzo, nunca delante del contenido. */
+@media(max-width:850px){
+  body.oliva-theme.propuesta-organica.propuesta-jardin .hero.romantic-hero{
+    background-position:center top,center!important;
+    background-size:auto 100%,240px 240px!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero .hero-content{
+    width:min(calc(100% - 28px),620px)!important;
+    margin:14px auto 0!important;
+    padding:24px 19px 30px!important;
+    background:rgba(255,252,245,.94)!important;
+    outline:0!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero .hero-announcement{padding-top:12px!important;}
+  body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero .herb-portrait{
+    border:1px solid #bfc5b0!important;
+    width:min(100%,480px)!important;
+    margin-top:18px!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero .hero-countdown{
+    width:min(100%,480px)!important;
+    margin-top:27px!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .celebration-story{
+    padding:24px!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .timing .timeline{
+    width:min(calc(100% - 30px),650px)!important;
+    padding:17px 18px!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .memories-heading{
+    width:min(calc(100% - 30px),660px);
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .playlist-copy{padding:22px 18px;}
+}
+@media(max-width:600px){
+  body.oliva-theme.propuesta-organica.propuesta-jardin .hero.romantic-hero{
+    border-top-width:6px!important;
+    background-image:
+      url('assets/jardin-jazmin-marco.svg'),
+      url('assets/textura-papel-algodon.svg')!important;
+    background-position:center top,center!important;
+    background-size:100% auto,240px 240px!important;
+    background-repeat:no-repeat,repeat!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero .nav{
+    background:rgba(252,249,239,.91);
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero .hero-content{
+    width:calc(100% - 22px)!important;
+    padding:20px 13px 24px!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero h1 .hero-name{
+    font-size:clamp(3.48rem,15.5vw,5.3rem)!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .memories-strip,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .celebration,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .timing,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .playlist,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .rsvp,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .faq{
+    background-position:center top!important;
+    background-size:auto 100%!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .memories-strip{padding:76px 0!important;}
+  body.oliva-theme.propuesta-organica.propuesta-jardin .memories-heading{
+    margin-bottom:16px!important;
+    padding:16px 12px!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .celebration{padding:83px 0!important;}
+  body.oliva-theme.propuesta-organica.propuesta-jardin .celebration-story{
+    padding:20px 18px!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .timing{padding:78px 0!important;}
+  body.oliva-theme.propuesta-organica.propuesta-jardin .timing .container.narrow{
+    width:calc(100% - 32px)!important;
+    padding:22px 13px!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .timing .timeline{
+    width:calc(100% - 26px)!important;
+    padding:12px 9px!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .dress{padding:95px 0!important;}
+  body.oliva-theme.propuesta-organica.propuesta-jardin .dress .container{
+    width:calc(100% - 28px)!important;
+    padding:22px 12px!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .playlist{padding:87px 0!important;}
+  body.oliva-theme.propuesta-organica.propuesta-jardin .playlist-copy{
+    padding:18px 14px!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin #regalos{
+    background-position:center top!important;
+    background-size:auto 100%!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin #regalos .gift-intro{
+    width:calc(100% - 28px)!important;
+    padding:25px 16px!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin #regalos .bank-section{
+    background-position:center top!important;background-size:auto 100%!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .rsvp{
+    padding:94px 0!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .rsvp .rsvp-layout{
+    width:calc(100% - 28px)!important;
+    padding:20px 13px!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .faq{
+    padding:80px 0!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .faq .container{
+    width:calc(100% - 28px)!important;padding:18px 15px!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .footer{
+    background-position:center center!important;
+    background-size:auto 100%!important;
+    padding:100px 0!important;
+  }
+}
+@media(max-width:359px){
+  body.oliva-theme.propuesta-organica.propuesta-jardin .romantic-hero h1 .hero-name{
+    font-size:3.48rem!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .timing .timeline{
+    padding:8px 4px!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  body.oliva-theme.propuesta-organica.propuesta-jardin *{
+    scroll-behavior:auto!important;
+  }
+}

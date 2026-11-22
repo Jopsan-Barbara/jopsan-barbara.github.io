@@ -2425,6 +2425,66 @@ body.oliva-theme .celebration::after{
 }
 
 
+/* Auditoría móvil 400px — segunda revisión visual 2026-11-22 */
+/* La foto está posicionada respecto de la portada. Este espacio se
+   calcula con su altura real para evitar un vacío de 80–100 px entre
+   el retrato y los nombres sin alterar la imagen original. */
+@media(max-width:600px){
+  body.oliva-theme .romantic-hero .hero-content{
+    padding-top:calc(clamp(250px,73vw,380px) + 12px);
+    padding-bottom:24px;
+  }
+  body.oliva-theme .romantic-hero .eyebrow{
+    margin-bottom:12px;
+  }
+  body.oliva-theme .romantic-hero .hero-countdown{
+    margin-top:25px;
+  }
+  body.oliva-theme .romantic-hero .button-light{
+    margin-top:18px;
+    min-height:48px;
+  }
+  /* El carrusel conserva fotografías y navegación existentes. */
+  body.oliva-theme .memories-strip{
+    padding-top:40px;
+    padding-bottom:49px;
+  }
+  body.oliva-theme .memories-heading{
+    margin-bottom:16px;
+  }
+  body.oliva-theme .memories-controls{
+    row-gap:8px;
+  }
+  /* Más presencia visual de las acciones sin ampliar el catálogo. */
+  body.oliva-theme #regalos .pay{
+    font-size:.79rem;
+    line-height:1.35;
+    padding-inline:7px;
+  }
+  body.oliva-theme #regalos .transfer{
+    font-size:.79rem;
+    min-height:44px;
+  }
+  body.oliva-theme #regalos .gift{
+    gap:6px 12px;
+  }
+  /* El mapa permanece integrado, con algo más de altura de interacción. */
+  body.oliva-theme .map-preview{
+    height:260px;
+  }
+}
+/* A 320–359px conservamos espacio para los nombres y acciones. */
+@media(max-width:359px){
+  body.oliva-theme .romantic-hero .hero-content{
+    padding-top:calc(clamp(250px,73vw,380px) + 17px);
+  }
+  body.oliva-theme #regalos .pay{
+    font-size:.73rem;
+    padding-inline:4px;
+  }
+}
+
+
 /* ===== forms-inline.css ===== */
 /* Formularios nativos de la invitación — Oliva. Sin ventanas emergentes ni formularios de prueba. */
 .wedding-form{display:grid;gap:18px;margin:0;padding:0;color:#394330;font:400 15px/1.45 'DM Sans','Inter',Arial,sans-serif;text-align:left;min-width:0}

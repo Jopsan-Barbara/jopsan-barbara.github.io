@@ -1,5 +1,5 @@
-// Bienvenida: 27 de febrero de 2027, 12:00 en America/Santiago (UTC-3).
-const weddingDate = new Date('2027-02-27T12:00:00-03:00');
+// Llegada: 27 de febrero de 2027, 14:30 en America/Santiago (UTC-3).
+const weddingDate = new Date('2027-02-27T14:30:00-03:00');
 
 function updateCountdown() {
   const now = new Date();

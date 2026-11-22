@@ -31,6 +31,7 @@
   const slides = Array.from(track.children);
   let current = 0;
   let interval = null;
+  let visitorInteracted = false;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const canCycle = slides.length > 1;
   const motion = reducedMotion ? 'auto' : 'smooth';
@@ -54,16 +55,17 @@
     viewport.scrollTo({ left: Math.max(0, offset), behavior });
   };
   const stop = () => { if (interval) clearInterval(interval); interval = null; };
+  const stopForInteraction = () => { visitorInteracted = true; stop(); };
   const start = () => {
-    if (reducedMotion || interval || document.hidden) return;
+    if (visitorInteracted || reducedMotion || interval || document.hidden) return;
     interval = setInterval(() => show(current + 1, current === slides.length - 1 ? 'auto' : motion), 4600);
   };
-  prev?.addEventListener('click', () => { stop(); show(current - 1); });
-  next?.addEventListener('click', () => { stop(); show(current + 1); });
+  prev?.addEventListener('click', () => { stopForInteraction(); show(current - 1); });
+  next?.addEventListener('click', () => { stopForInteraction(); show(current + 1); });
   viewport.addEventListener('keydown', (event) => {
     if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
     event.preventDefault();
-    stop();
+    stopForInteraction();
     show(current + (event.key === 'ArrowRight' ? 1 : -1));
   });
   // El contador también refleja las fotografías desplazadas manualmente.
@@ -90,8 +92,11 @@
   viewport.addEventListener('mouseleave', start);
   viewport.addEventListener('focusin', stop);
   viewport.addEventListener('focusout', start);
-  viewport.addEventListener('touchstart', stop, { passive: true });
-  viewport.addEventListener('touchend', () => { if (!reducedMotion) start(); }, { passive: true });
+  // El desplazamiento manual toma prioridad: no retomar automáticamente el pase.
+  viewport.addEventListener('touchstart', stopForInteraction, { passive: true });
+  viewport.addEventListener('pointerdown', event => {
+    if (event.pointerType !== 'mouse') stopForInteraction();
+  }, { passive: true });
   document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting ? start() : stop()), {threshold: .1});

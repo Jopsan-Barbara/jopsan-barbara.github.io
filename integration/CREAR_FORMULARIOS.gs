@@ -19,30 +19,35 @@ function prepararGoogleForms() {
     return f;
   }
   const rsvp=make('RSVP_FORM','Jopsan y Bárbara · Confirmación de asistencia',f=>{
-    f.setDescription('Confirma hasta el 31 de enero de 2027. La invitación es individual salvo indicación expresa de los novios. Gracias por comprender.').setConfirmationMessage('Tu respuesta quedó registrada. ¡Muchas gracias!').setShowLinkToRespondAgain(false).setCustomClosedFormMessage('El tiempo para confirmar asistencia ha finalizado.');
-    f.addTextItem().setTitle('Nombre').setRequired(true);
-    f.addTextItem().setTitle('Apellido').setRequired(true);
-    const choice=f.addMultipleChoiceItem().setTitle('¿Asistirás?').setRequired(true);
-    const yes=f.addPageBreakItem().setTitle('Detalles de asistencia');
-    f.addListItem().setTitle('Personas invitadas, incluyéndote').setHelpText('Elige 1, salvo que los novios te hayan indicado expresamente que puedes llevar acompañantes.').setChoiceValues(Array.from({length:20},(_,i)=>String(i+1))).setRequired(true);
-    f.addParagraphTextItem().setTitle('Nombres de acompañantes, si corresponde');
-    f.addParagraphTextItem().setTitle('Restricciones alimentarias (opcional)');
-    choice.setChoices([choice.createChoice('Sí',yes),choice.createChoice('No',FormApp.PageNavigationType.SUBMIT)]);
+    f.setDescription('Confirma tu asistencia hasta el 31 de enero de 2027. La invitación es individual, salvo que los novios te hayan indicado lo contrario.')
+     .setConfirmationMessage('¡Gracias! Tu respuesta quedó registrada.')
+     .setShowLinkToRespondAgain(false)
+     .setCustomClosedFormMessage('El tiempo para confirmar asistencia ha finalizado.');
+    f.addTextItem().setTitle('Nombre y apellido').setRequired(true);
+    f.addMultipleChoiceItem().setTitle('¿Asistirás?').setChoiceValues(['Sí','No']).setRequired(true);
   },'Formulario RSVP');
   const song=make('SONG_FORM','Jopsan y Bárbara · Canciones para la fiesta',f=>{
-    f.setDescription('¿Qué canción no puede faltar?').setConfirmationMessage('¡Gracias! Tu canción quedó registrada.').setShowLinkToRespondAgain(true);
+    f.setDescription('Queremos saber qué canción no puede faltar.')
+     .setConfirmationMessage('¡Gracias! Tu canción quedó registrada.')
+     .setShowLinkToRespondAgain(true);
     f.addTextItem().setTitle('Canción y artista').setRequired(true);
   },'Formulario canciones');
-  // Preserva los registros existentes y añade las nuevas respuestas a las vistas privadas.
-  book.getSheetByName('Confirmados').getRange('A2').setFormula('=IFNA(QUERY(VSTACK(CHOOSECOLS(Respuestas!C6:I,1,2,5,6,7,4),CHOOSECOLS(\'Formulario RSVP\'!B2:G,1,2,4,5,6,3)),"select Col1,Col2,Col3,Col4,Col5 where Col6 = \'Sí\'",0),"Aún no hay confirmaciones")');
-  book.getSheetByName('No asistirán').getRange('A2').setFormula('=IFNA(QUERY(VSTACK(Respuestas!C6:F,CHOOSECOLS(\'Formulario RSVP\'!B2:G,1,2,5,3)),"select Col1,Col2 where Col4 = \'No\'",0),"Aún no hay respuestas negativas")');
-  book.getSheetByName('Playlist DJ').getRange('A2').setFormula('=IFNA(SORT(UNIQUE(TOCOL(VSTACK(Canciones!C2:C,\'Formulario canciones\'!B2:B),1))),"Aún no hay canciones sugeridas")');
+  // Conserva los registros anteriores y suma las respuestas de los Google Forms simplificados.
+  book.getSheetByName('Confirmados').getRange('A2').setFormula(
+    '=IFNA(QUERY(VSTACK(HSTACK(Respuestas!C6:D,Respuestas!G6:I,Respuestas!F6:F),HSTACK(\\'Formulario RSVP\\'!B2:B,IF(\\'Formulario RSVP\\'!B2:B<>"","",""),IF(\\'Formulario RSVP\\'!C2:C="Sí",1,0),IF(\\'Formulario RSVP\\'!B2:B<>"","",""),IF(\\'Formulario RSVP\\'!B2:B<>"","",""),\\'Formulario RSVP\\'!C2:C)),"select Col1,Col2,Col3,Col4,Col5 where Col6 = \\'Sí\\' and Col1 is not null",0),"Aún no hay confirmaciones")'
+  );
+  book.getSheetByName('No asistirán').getRange('A2').setFormula(
+    '=IFNA(QUERY(VSTACK(HSTACK(Respuestas!C6:D,Respuestas!F6:F),HSTACK(\\'Formulario RSVP\\'!B2:B,IF(\\'Formulario RSVP\\'!B2:B<>"","",""),\\'Formulario RSVP\\'!C2:C)),"select Col1,Col2 where Col3 = \\'No\\' and Col1 is not null",0),"Aún no hay respuestas negativas")'
+  );
+  book.getSheetByName('Playlist DJ').getRange('A2').setFormula(
+    '=IFNA(SORT(UNIQUE(TOCOL(VSTACK(Canciones!C2:C,\\'Formulario canciones\\'!B2:B),1))),"Aún no hay canciones sugeridas")'
+  );
   const summary=book.getSheetByName('Resumen');
   summary.getRange('B4:B7').setFormulas([
-    ['=COUNTIF(Respuestas!C6:C,"?*")+COUNTIF(\'Formulario RSVP\'!B2:B,"?*")'],
-    ['=COUNTIF(Respuestas!F6:F,"Sí")+COUNTIF(\'Formulario RSVP\'!D2:D,"Sí")'],
-    ['=COUNTIF(Respuestas!F6:F,"No")+COUNTIF(\'Formulario RSVP\'!D2:D,"No")'],
-    ['=SUMIF(Respuestas!F6:F,"Sí",Respuestas!G6:G)+SUMPRODUCT(IFERROR(VALUE(\'Formulario RSVP\'!E2:E),0),N(\'Formulario RSVP\'!D2:D="Sí"))']
+    ['=COUNTIF(Respuestas!C6:C,"?*")+COUNTIF(\\'Formulario RSVP\\'!B2:B,"?*")'],
+    ['=COUNTIF(Respuestas!F6:F,"Sí")+COUNTIF(\\'Formulario RSVP\\'!C2:C,"Sí")'],
+    ['=COUNTIF(Respuestas!F6:F,"No")+COUNTIF(\\'Formulario RSVP\\'!C2:C,"No")'],
+    ['=SUMIF(Respuestas!F6:F,"Sí",Respuestas!G6:G)+COUNTIF(\\'Formulario RSVP\\'!C2:C,"Sí")']
   ]);
   if(!ScriptApp.getProjectTriggers().some(t=>t.getHandlerFunction()==='cerrarConfirmaciones'))ScriptApp.newTrigger('cerrarConfirmaciones').timeBased().at(new Date('2027-02-01T03:00:00Z')).create();
   const config={rsvpForm:rsvp.getPublishedUrl(),songForm:song.getPublishedUrl()};

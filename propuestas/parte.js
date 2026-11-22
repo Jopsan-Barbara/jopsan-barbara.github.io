@@ -61,4 +61,5 @@ function mountForm(form) {
     } catch (_) { status.textContent = 'El navegador no pudo guardar los datos. Intenta nuevamente.'; }
   });
 }
-document.querySelectorAll('form').forEach(mountForm);
+// Carta de olivo usa formularios nativos conectados; las otras propuestas conservan su simulación.
+if (document.documentElement.dataset.estilo !== 'olivo') document.querySelectorAll('form').forEach(mountForm);

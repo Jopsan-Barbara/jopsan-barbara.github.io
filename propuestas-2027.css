@@ -1,0 +1,514 @@
+/* Cuatro propuestas rediseñadas — Jopsan & Bárbara · 22-11-2026
+   Adaptación real a la web, inspirada en las dos referencias de los novios.
+   Cargar después de wedding-oliva.css y texturas-oliva.css.
+   Mantiene foto original sin retoque, galería, countdown, mapa, colores prohibidos,
+   itinerario, caricaturas, música, confirmación, preguntas y pagos. */
+
+/* NAVEGADOR COMPARATIVO: compacto, accesible y ajeno al diseño de la invitación */
+body.oliva-theme .preview-bar{
+  position:relative;z-index:80;display:flex;align-items:center;justify-content:center;
+  flex-wrap:wrap;column-gap:22px;row-gap:8px;padding:12px 20px;
+  color:#f9f6ed;background:#374834;font:500 12px/1.35 'DM Sans',Arial,sans-serif;
+  box-shadow:0 3px 12px rgba(27,41,28,.11);
+}
+body.oliva-theme .preview-bar strong{font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:#f6eddc}
+body.oliva-theme .preview-bar nav{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px}
+body.oliva-theme .preview-bar nav a{
+  display:inline-flex;align-items:center;justify-content:center;min-height:42px;
+  color:#fffdf5;text-decoration:none;padding:8px 12px;
+  border:1px solid rgba(255,255,255,.29);border-radius:2px;
+  transition:background .15s ease;
+}
+body.oliva-theme .preview-bar nav a[aria-current="page"]{color:#374834;background:#f6eddc;border-color:#f6eddc;font-weight:700}
+body.oliva-theme .preview-bar nav a:hover{color:#374834;background:#e9e6d7;border-color:#e9e6d7}
+body.oliva-theme .preview-bar nav .preview-home{border-color:transparent;text-decoration:underline;text-underline-offset:3px}
+body.oliva-theme .preview-bar small{color:#e5e6db;font-size:10px}
+body.oliva-theme .preview-bar a:focus-visible{outline:3px solid #f6eddc;outline-offset:2px}
+
+/* AJUSTES COMPARTIDOS: el papel tiene una retícula visual, no adornos pegados */
+body.oliva-theme.propuesta-editorial,
+body.oliva-theme.propuesta-organica,
+body.oliva-theme.propuesta-campestre,
+body.oliva-theme.propuesta-clasica{
+  --olive-ivory:#f6eddc;--olive-sand:#d6c8aa;--olive-sage:#8f9c6d;
+  --olive-deep:#65744c;--olive-dark:#3f4d34;--olive-ink:#374032;
+  --olive-paper:#faf8f1;--olive-muted:#565e51;--olive-line:#d6d2c0;
+  background:#faf8f1;color:#374032;
+}
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .romantic-hero .hero-heart{display:none!important}
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .romantic-hero .hero-announcement{
+  position:relative;
+}
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .romantic-hero .hero-announcement::after{
+  content:'';display:block;width:clamp(100px,36%,195px);height:1px;
+  background:linear-gradient(90deg,transparent,#89967b 20%,#89967b 80%,transparent);
+  margin:13px auto 7px;position:relative;pointer-events:none;
+}
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .romantic-hero .hero-announcement .date{
+  border:0;padding-top:10px;margin-top:0;letter-spacing:.17em;
+}
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .romantic-hero .hero-name{
+  text-shadow:none;letter-spacing:-.035em;
+}
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .romantic-hero .hero-photo{
+  filter:grayscale(100%)!important;-webkit-filter:grayscale(100%)!important;
+}
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .memory-slide img{
+  filter:grayscale(100%)!important;-webkit-filter:grayscale(100%)!important;
+}
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) #regalos .illustration img{
+  filter:none!important;-webkit-filter:none!important;
+}
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .location-card{
+  border-radius:0;
+}
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .memories-arrow,
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .button,
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .map-cta,
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .wedding-form button{
+  min-height:44px;
+}
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .section-kicker{
+  letter-spacing:.22em;
+}
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .footer-names{
+  font-family:var(--olive-script);
+  font-weight:400;
+}
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .hero.romantic-hero .hero-content::before{
+  content:'J  ·  B';letter-spacing:.36em;font-weight:500;font-size:.65rem;
+}
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .memories-strip,
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .celebration,
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .timing,
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .dress,
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .playlist,
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) #regalos,
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .rsvp,
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .faq{
+  isolation:isolate;
+}
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .footer::before,
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .footer::after,
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .dress-flourish,
+body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) img.wedding-flowers{
+  display:none!important;
+}
+
+/* 1. MINIMALISTA SIN PLANTAS
+   Primera línea comparativa: sólo papel algodón, marfil/oliva,
+   filetes tipográficos, líneas finas y fotografía. CERO BOTÁNICA. */
+body.oliva-theme.propuesta-editorial .hero.romantic-hero{
+  border:0;border-top:9px solid #65744c;
+  background:url('assets/textura-papel-algodon.svg') repeat,
+    linear-gradient(118deg,#f4f0e5,#fdfbf4 66%,#f6eddc);
+  background-size:240px 240px,cover;
+}
+body.oliva-theme.propuesta-editorial .romantic-hero .hero-photo{
+  border:9px solid #fffdf7;border-bottom-width:24px;box-shadow:0 10px 20px rgba(46,56,43,.12);
+  outline:1px solid #ccc9b7;outline-offset:6px;
+}
+body.oliva-theme.propuesta-editorial .romantic-hero .hero-content{
+  border:1px solid #cbcbb5;background:rgba(255,253,246,.79);
+  box-shadow:none;
+}
+body.oliva-theme.propuesta-editorial .romantic-hero .hero-content::before{
+  color:#65744c;content:'EST. 2027';
+}
+body.oliva-theme.propuesta-editorial .romantic-hero .hero-countdown{
+  border-top:1px solid #c2c7b5;border-bottom:1px solid #c2c7b5;
+  background:#f8f3e7;box-shadow:none;
+}
+body.oliva-theme.propuesta-editorial .memories-strip,
+body.oliva-theme.propuesta-editorial .timing,
+body.oliva-theme.propuesta-editorial .faq,
+body.oliva-theme.propuesta-editorial #regalos{
+  background:url('assets/textura-papel-algodon.svg') repeat,#faf8f1;
+  background-size:240px 240px;
+}
+body.oliva-theme.propuesta-editorial .memories-heading{
+  border-bottom:1px solid #d5d3c4;padding-bottom:19px;
+}
+body.oliva-theme.propuesta-editorial .memory-slide{border:5px solid #fffdf7;box-shadow:0 3px 15px rgba(48,62,42,.08)}
+body.oliva-theme.propuesta-editorial .celebration,
+body.oliva-theme.propuesta-editorial #regalos .bank-section{
+  background:url('assets/textura-papel-algodon.svg') repeat,#f2ebdc;background-size:240px 240px;
+}
+body.oliva-theme.propuesta-editorial .location-card,
+body.oliva-theme.propuesta-editorial .song-card,
+body.oliva-theme.propuesta-editorial #regalos .gift,
+body.oliva-theme.propuesta-editorial .rsvp .rsvp-layout{
+  border:1px solid #c2c6b2;border-radius:0;
+  box-shadow:0 8px 22px rgba(54,70,47,.055);
+}
+body.oliva-theme.propuesta-editorial .timing .moment-icon{background:#faf8f1}
+body.oliva-theme.propuesta-editorial .dress{
+  background:url('assets/textura-papel-algodon.svg') repeat,#ded5c1;
+  background-size:240px 240px;border-block:1px solid #b9b9a3;
+}
+body.oliva-theme.propuesta-editorial .dress .container{border-block:1px solid #aeb69e}
+body.oliva-theme.propuesta-editorial .playlist{background:url('assets/textura-papel-algodon.svg') repeat,#e9ebe1;background-size:240px 240px}
+body.oliva-theme.propuesta-editorial .rsvp{background:url('assets/textura-papel-algodon.svg') repeat,#f1ebdd;background-size:240px 240px}
+body.oliva-theme.propuesta-editorial .footer{
+  background:#58694b;border-top:5px double #d6c8aa;
+}
+
+/* 2. HERBARIO BOTÁNICO
+   Referencia Pinterest 1: eucaliptos y hojas impresas en el margen
+   DEL PAPEL. No hay adornos HTML flotantes sobre fotos, texto ni botones.
+   Las ramas nacen del borde y se integran como tinta sobre la textura. */
+body.oliva-theme.propuesta-organica .hero.romantic-hero{
+  border:0;border-top:9px solid #869574;
+  background:
+    url('assets/herbario-eucalipto-papel.svg') center top / 100% auto no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,
+    linear-gradient(145deg,#f6efdf,#faf8ef);
+  background-size:100% auto,240px 240px,cover;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .hero-photo{
+  border:9px solid #fffdf4;border-bottom-width:20px;
+  box-shadow:0 15px 37px rgba(49,60,43,.12);
+}
+body.oliva-theme.propuesta-organica .romantic-hero .hero-content{
+  background:rgba(255,252,245,.79);border:1px solid rgba(124,140,105,.38);
+  border-radius:0;box-shadow:0 5px 18px rgba(57,71,52,.035);
+}
+body.oliva-theme.propuesta-organica .romantic-hero .hero-content::before{
+  content:'J  &  B';color:#65744c;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .hero-countdown{
+  background:#f7f2e6;border:1px solid #c2c4aa;box-shadow:none;
+}
+body.oliva-theme.propuesta-organica .memories-strip,
+body.oliva-theme.propuesta-organica .timing,
+body.oliva-theme.propuesta-organica .faq,
+body.oliva-theme.propuesta-organica #regalos{
+  background:
+    url('assets/herbario-eucalipto-papel.svg') center top / 100% auto no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,
+    #faf8ee;
+  background-size:100% auto,240px 240px,auto;
+}
+body.oliva-theme.propuesta-organica .memory-slide{
+  border:7px solid #fffdf3;box-shadow:0 7px 20px rgba(43,58,44,.085);
+}
+body.oliva-theme.propuesta-organica .celebration,
+body.oliva-theme.propuesta-organica #regalos .bank-section{
+  background:
+    url('assets/herbario-eucalipto-papel.svg') center top / 100% auto no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,
+    #f3eddd;
+  background-size:100% auto,240px 240px,auto;
+}
+body.oliva-theme.propuesta-organica .timing .moment-icon{background:#faf8ee}
+body.oliva-theme.propuesta-organica .location-card,
+body.oliva-theme.propuesta-organica .song-card,
+body.oliva-theme.propuesta-organica #regalos .gift,
+body.oliva-theme.propuesta-organica .rsvp .rsvp-layout{
+  border:1px solid #bcc6b2;border-radius:0;background-color:#fffdf6;
+  box-shadow:0 8px 22px rgba(54,70,47,.065);
+}
+body.oliva-theme.propuesta-organica .dress{
+  background:
+    url('assets/herbario-eucalipto-papel.svg') center top / 100% auto no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,
+    #d9d1b9;
+  background-size:100% auto,240px 240px,auto;
+}
+body.oliva-theme.propuesta-organica .dress .container{border-block:1px solid rgba(101,116,76,.44)}
+body.oliva-theme.propuesta-organica .playlist,
+body.oliva-theme.propuesta-organica .rsvp{
+  background:
+    url('assets/herbario-eucalipto-papel.svg') center top / 100% auto no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,
+    #ecefe5;
+  background-size:100% auto,240px 240px,auto;
+}
+body.oliva-theme.propuesta-organica .footer{
+  background:linear-gradient(140deg,#65744c,#566847);
+  border-top:5px solid #d6c8aa;
+}
+body.oliva-theme.propuesta-organica .footer-names{color:#fffdf3}
+
+/* 3. OLIVA EN BLOQUES
+   Referencia Pinterest 2: portada de color profundo y módulos alternados
+   con papel crema, fuerte jerarquía editorial, fotos limpias y CTAs.
+   Sin plantas. Contraste pensado para desktop y mobile. */
+body.oliva-theme.propuesta-campestre{
+  --olive-paper:#f9f6ed;--olive-dark:#32442e;
+}
+body.oliva-theme.propuesta-campestre .hero.romantic-hero{
+  border:0;border-top:10px solid #d6c8aa;
+  background:linear-gradient(90deg,#e7e7d8 0 44%,#546746 44% 100%);
+}
+body.oliva-theme.propuesta-campestre .romantic-hero .hero-photo{
+  border:10px solid #fff9ed;border-bottom:22px solid #fff9ed;box-shadow:18px 16px 0 rgba(43,60,39,.20);
+}
+body.oliva-theme.propuesta-campestre .romantic-hero .hero-content{
+  background:#536643;border:1px solid #829476;
+  box-shadow:0 20px 50px rgba(36,51,32,.15);
+}
+body.oliva-theme.propuesta-campestre .romantic-hero .hero-content::before,
+body.oliva-theme.propuesta-campestre .romantic-hero .eyebrow,
+body.oliva-theme.propuesta-campestre .romantic-hero .hero-name,
+body.oliva-theme.propuesta-campestre .romantic-hero .hero-amp,
+body.oliva-theme.propuesta-campestre .romantic-hero .date,
+body.oliva-theme.propuesta-campestre .romantic-hero .hero-mininote{
+  color:#fff9e9!important;
+}
+body.oliva-theme.propuesta-campestre .romantic-hero .hero-announcement::after{
+  background:#cbd5b8;
+}
+body.oliva-theme.propuesta-campestre .romantic-hero .nav .brand,
+body.oliva-theme.propuesta-campestre .romantic-hero .nav .nav-link{
+  color:#fffdf1!important;border-color:#dfdece;
+}
+body.oliva-theme.propuesta-campestre .romantic-hero .hero-countdown{
+  background:#f4eedf;border:0;box-shadow:none;
+}
+body.oliva-theme.propuesta-campestre .romantic-hero .button-light{
+  background:#f4eedf;color:#42563a!important;border-color:#f4eedf;
+}
+body.oliva-theme.propuesta-campestre .memories-strip,
+body.oliva-theme.propuesta-campestre .timing,
+body.oliva-theme.propuesta-campestre .faq,
+body.oliva-theme.propuesta-campestre #regalos{
+  background:url('assets/textura-papel-algodon.svg') repeat,#f9f6ed;
+  background-size:240px 240px;
+}
+body.oliva-theme.propuesta-campestre .memory-slide{
+  border:5px solid #fffaf1;box-shadow:0 10px 23px rgba(37,50,32,.085);
+}
+body.oliva-theme.propuesta-campestre .celebration{
+  background:#536643;
+  color:#fff8e8;
+}
+body.oliva-theme.propuesta-campestre .celebration .section-kicker,
+body.oliva-theme.propuesta-campestre .celebration h2,
+body.oliva-theme.propuesta-campestre .celebration h2 em,
+body.oliva-theme.propuesta-campestre .celebration .celebration-copy,
+body.oliva-theme.propuesta-campestre .celebration .fact-label,
+body.oliva-theme.propuesta-campestre .celebration .celebration-facts strong,
+body.oliva-theme.propuesta-campestre .celebration .celebration-facts span{
+  color:#fff8e8!important;
+}
+body.oliva-theme.propuesta-campestre .celebration .celebration-facts>div{border-color:rgba(255,250,235,.35)}
+body.oliva-theme.propuesta-campestre .celebration .celebrate-cta{
+  background:#fff8e8;color:#42563a;border:1px solid #fff8e8;
+}
+body.oliva-theme.propuesta-campestre .location-card{
+  background:#fffdf4!important;color:#374032;
+  border:3px double #d6c8aa;box-shadow:0 12px 28px rgba(17,35,18,.11);
+}
+body.oliva-theme.propuesta-campestre .location-card h3,
+body.oliva-theme.propuesta-campestre .location-card p{color:#374032!important}
+body.oliva-theme.propuesta-campestre .timing .moment-icon{background:#f9f6ed}
+body.oliva-theme.propuesta-campestre .dress{
+  background:#536643;border-top:8px solid #d6c8aa;
+}
+body.oliva-theme.propuesta-campestre .dress .container{
+  border-color:rgba(246,237,220,.48);
+}
+body.oliva-theme.propuesta-campestre .dress .section-kicker,
+body.oliva-theme.propuesta-campestre .dress h2,
+body.oliva-theme.propuesta-campestre .dress p,
+body.oliva-theme.propuesta-campestre .dress .reserved-palette li{
+  color:#fff8e8!important;
+}
+body.oliva-theme.propuesta-campestre .dress .reserved-palette span{
+  box-shadow:0 0 0 2px rgba(255,255,255,.42);
+}
+body.oliva-theme.propuesta-campestre .dress .reserved-palette span::after{
+  border-color:#fbf7ec;
+  background:linear-gradient(135deg,transparent calc(50% - .85px),#354b30 calc(50% - .85px),#354b30 calc(50% + .85px),transparent calc(50% + .85px));
+}
+body.oliva-theme.propuesta-campestre .playlist{
+  background:#e5e9db;
+}
+body.oliva-theme.propuesta-campestre .song-card{
+  border:0;border-top:6px solid #536643;box-shadow:0 12px 30px rgba(37,53,35,.085);
+}
+body.oliva-theme.propuesta-campestre #regalos .gift{
+  border:1px solid #aeb99e;box-shadow:0 7px 17px rgba(47,62,43,.06);
+}
+body.oliva-theme.propuesta-campestre #regalos .bank-section{
+  background:#d6c8aa;
+}
+body.oliva-theme.propuesta-campestre .rsvp{
+  background:#536643;
+}
+body.oliva-theme.propuesta-campestre .rsvp .rsvp-layout{
+  border:2px solid #b7c1aa;background:#fffdf4;
+}
+body.oliva-theme.propuesta-campestre .faq{background:#f9f6ed}
+body.oliva-theme.propuesta-campestre .footer{
+  background:#435936;border-top:8px solid #d6c8aa;
+}
+
+/* 4. PERGAMINO Y ACUARELA
+   Referencia Pinterest 1, sin botánica: papel de algodón, pigmento
+   oliva con borde irregular INTEGRADO en los bloques, guillotina
+   artesanal y tipografía caligráfica. No hojas ni flores flotantes. */
+body.oliva-theme.propuesta-clasica{
+  --olive-paper:#fbf6ec;--olive-line:#d1cab5;
+}
+body.oliva-theme.propuesta-clasica .hero.romantic-hero{
+  border:0;
+  background:
+    url('assets/banda-acuarela-borde-irregular.svg') center top / 100% 170px no-repeat,
+    url('assets/textura-acuarela-oliva.svg') center center / cover no-repeat,
+    #faf5e9;
+}
+body.oliva-theme.propuesta-clasica .romantic-hero .hero-photo{
+  border:8px solid #fff9ee;border-bottom-width:24px;
+  box-shadow:0 17px 34px rgba(55,61,46,.115);
+}
+body.oliva-theme.propuesta-clasica .romantic-hero .hero-content{
+  background:rgba(255,251,242,.79);
+  border:1px solid #ccc3ad;outline:1px solid #d3cbb7;outline-offset:-13px;
+  box-shadow:0 9px 26px rgba(55,61,46,.045);
+}
+body.oliva-theme.propuesta-clasica .romantic-hero .hero-content::before{
+  content:'J  &  B';font-family:var(--olive-serif);
+  font-size:.76rem;letter-spacing:.23em;color:#65744c;
+}
+body.oliva-theme.propuesta-clasica .romantic-hero .hero-countdown{
+  border:1px solid #c2bdab;background:#faf5e9;box-shadow:none;
+}
+body.oliva-theme.propuesta-clasica .memories-strip,
+body.oliva-theme.propuesta-clasica .timing,
+body.oliva-theme.propuesta-clasica .faq,
+body.oliva-theme.propuesta-clasica #regalos{
+  background:url('assets/textura-papel-algodon.svg') repeat,#fbf6ec;background-size:240px 240px;
+}
+body.oliva-theme.propuesta-clasica .memories-strip{border-top:7px solid #d6c8aa}
+body.oliva-theme.propuesta-clasica .memory-slide{border:9px double #d6c8aa;box-shadow:none}
+body.oliva-theme.propuesta-clasica .celebration,
+body.oliva-theme.propuesta-clasica #regalos .bank-section{
+  background:
+    url('assets/banda-acuarela-borde-irregular.svg') center top / 100% 115px no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,#f4ebd9;
+  background-size:100% 115px,240px 240px,auto;
+}
+body.oliva-theme.propuesta-clasica .celebration{padding-top:clamp(120px,12vw,178px)}
+body.oliva-theme.propuesta-clasica .location-card,
+body.oliva-theme.propuesta-clasica .song-card,
+body.oliva-theme.propuesta-clasica #regalos .gift,
+body.oliva-theme.propuesta-clasica .rsvp .rsvp-layout{
+  border:3px double #bdb6a1;border-radius:0;box-shadow:0 6px 18px rgba(50,60,42,.035);
+}
+body.oliva-theme.propuesta-clasica .timing .moment-icon{background:#fbf6ec}
+body.oliva-theme.propuesta-clasica .dress{
+  background:
+    url('assets/banda-acuarela-borde-irregular.svg') center top / 100% 115px no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,#e9dfcb;
+  background-size:100% 115px,240px 240px,auto;
+  padding-top:clamp(135px,15vw,185px);
+}
+body.oliva-theme.propuesta-clasica .dress .container{
+  border-top:3px double #9ca58a;border-bottom:3px double #9ca58a;
+}
+body.oliva-theme.propuesta-clasica .playlist{
+  background:url('assets/textura-papel-algodon.svg') repeat,#f2ebdf;background-size:240px 240px;
+}
+body.oliva-theme.propuesta-clasica .rsvp{
+  background:
+    url('assets/banda-acuarela-borde-irregular.svg') center top / 100% 110px no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,#f4eddf;
+  background-size:100% 110px,240px 240px,auto;
+  padding-top:clamp(132px,14vw,182px);
+}
+body.oliva-theme.propuesta-clasica .footer{
+  background:#59694c;border-top:12px solid #d6c8aa;
+}
+
+/* Adaptación mobile para las cuatro opciones: evitar solapes y
+   preservar ancho táctil, fotos intactas y CTA visible. */
+@media(max-width:850px){
+  body.oliva-theme .preview-bar{gap:8px;padding:9px 12px}
+  body.oliva-theme .preview-bar strong{width:100%;text-align:center}
+  body.oliva-theme .preview-bar nav{gap:6px}
+  body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .romantic-hero .hero-content{
+    background:transparent;border:0;outline:0;box-shadow:none;
+  }
+  body.oliva-theme.propuesta-organica .hero.romantic-hero{
+    background:url('assets/herbario-eucalipto-papel.svg') center 60px/100% auto no-repeat,
+      url('assets/textura-papel-algodon.svg') repeat,#faf8ed;
+  }
+  body.oliva-theme.propuesta-campestre .hero.romantic-hero{
+    background:linear-gradient(180deg,#536643 0 57px,#e7e7d8 57px 47%,#f6f4eb 47% 100%);
+  }
+  body.oliva-theme.propuesta-campestre .romantic-hero .hero-content::before,
+  body.oliva-theme.propuesta-campestre .romantic-hero .eyebrow,
+  body.oliva-theme.propuesta-campestre .romantic-hero .hero-name,
+  body.oliva-theme.propuesta-campestre .romantic-hero .hero-amp,
+  body.oliva-theme.propuesta-campestre .romantic-hero .date,
+  body.oliva-theme.propuesta-campestre .romantic-hero .hero-mininote{
+    color:#44583b!important;
+  }
+  body.oliva-theme.propuesta-campestre .romantic-hero .nav .brand,
+  body.oliva-theme.propuesta-campestre .romantic-hero .nav .nav-link{color:#fffdf1!important;}
+  body.oliva-theme.propuesta-clasica .hero.romantic-hero{
+    background:url('assets/banda-acuarela-borde-irregular.svg') center top/100% 125px no-repeat,
+      url('assets/textura-papel-algodon.svg') repeat,#faf5e9;
+  }
+}
+@media(max-width:600px){
+  body.oliva-theme .preview-bar{padding:8px 7px;gap:5px}
+  body.oliva-theme .preview-bar strong{font-size:10px;letter-spacing:.09em}
+  body.oliva-theme .preview-bar small{display:none}
+  body.oliva-theme .preview-bar nav a{font-size:11px;min-height:39px;padding:7px 9px}
+  body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .hero.romantic-hero .hero-photo{
+    border-width:7px;border-bottom-width:21px;outline:0;
+  }
+  body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .hero.romantic-hero .hero-countdown{
+    margin-top:22px;
+  }
+  body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .hero.romantic-hero .hero-content::before{
+    content:none!important;
+  }
+  body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .hero.romantic-hero .hero-name{
+    font-size:clamp(3.6rem,16vw,5.1rem);line-height:.98;
+  }
+  body.oliva-theme.propuesta-organica .hero.romantic-hero{
+    background:url('assets/herbario-eucalipto-papel.svg') center 70px/100% auto no-repeat,
+      url('assets/textura-papel-algodon.svg') repeat,#faf8ed;
+  }
+  body.oliva-theme.propuesta-organica .hero.romantic-hero .hero-photo{
+    box-shadow:0 10px 22px rgba(52,65,43,.09);
+  }
+  body.oliva-theme.propuesta-campestre .hero.romantic-hero{
+    background:linear-gradient(180deg,#536643 0 58px,#e7e7d8 58px 44%,#f6f4eb 44% 100%);
+  }
+  body.oliva-theme.propuesta-campestre .romantic-hero .nav{
+    border-bottom:1px solid rgba(255,255,255,.35);
+  }
+  body.oliva-theme.propuesta-campestre .romantic-hero .hero-countdown{background:#f4eedf}
+  body.oliva-theme.propuesta-clasica .hero.romantic-hero{
+    background:url('assets/banda-acuarela-borde-irregular.svg') center top/100% 120px no-repeat,
+      url('assets/textura-papel-algodon.svg') repeat,#faf5e9;
+  }
+  body.oliva-theme.propuesta-clasica .celebration{
+    padding-top:130px;
+  }
+  body.oliva-theme.propuesta-clasica .dress,
+  body.oliva-theme.propuesta-clasica .rsvp{
+    padding-top:140px;
+  }
+  body.oliva-theme.propuesta-organica .celebration,
+  body.oliva-theme.propuesta-organica .dress,
+  body.oliva-theme.propuesta-organica .playlist,
+  body.oliva-theme.propuesta-organica .rsvp,
+  body.oliva-theme.propuesta-organica #regalos .bank-section{
+    background-size:130% auto,240px 240px,auto;
+  }
+}
+@media(max-width:360px){
+  body.oliva-theme .preview-bar nav a{padding:6px 7px;font-size:10px}
+  body.oliva-theme:is(.propuesta-editorial,.propuesta-organica,.propuesta-campestre,.propuesta-clasica) .romantic-hero .hero-name{
+    font-size:3.65rem;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  body.oliva-theme .preview-bar nav a{transition:none}
+}

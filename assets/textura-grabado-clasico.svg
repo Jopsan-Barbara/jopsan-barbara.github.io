@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+ <defs>
+  <pattern id="etch" width="36" height="36" patternUnits="userSpaceOnUse">
+   <path d="M0 36L36 0 M-6 12L12 -6 M24 42L42 24" stroke="#65744c" stroke-opacity=".065" stroke-width=".65" fill="none"/>
+   <path d="M0 0L36 36" stroke="#d6c8aa" stroke-opacity=".10" stroke-width=".45"/>
+  </pattern>
+  <filter id="patina"><feTurbulence baseFrequency=".8" numOctaves="2" seed="19" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 .37 0 0 0 0 .43 0 0 0 0 .29 0 0 0 .045 0"/></filter>
+ </defs>
+ <rect width="320" height="320" fill="url(#etch)"/>
+ <rect width="320" height="320" filter="url(#patina)"/>
+</svg>

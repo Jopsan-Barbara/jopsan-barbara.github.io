@@ -177,7 +177,7 @@ $('copySongs').onclick=async()=>{
  const songs=[...(snapshot?.rows||[]).map(r=>String(r.song||'').trim()),...(snapshot?.publicSongs||[]).map(s=>String(s).trim())].filter(Boolean);
  const feedback=$('copySongsStatus');
  if(!songs.length){feedback.textContent='Aún no hay canciones registradas.';return;}
- const content=songs.map((song,i)=>(i+1)+'. '+song).join('\n');
+ const content=songs.map((song,i)=>(i+1)+'. '+song).join('\\n');
  try{
    if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(content);
    else{const box=document.createElement('textarea');box.value=content;box.style.position='fixed';box.style.left='-9999px';document.body.append(box);box.select();const ok=document.execCommand('copy');box.remove();if(!ok)throw Error('No se pudo copiar');}

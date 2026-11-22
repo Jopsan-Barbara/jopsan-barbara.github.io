@@ -1,5 +1,18 @@
 (()=>{"use strict";
-const mercadoPago = { 'teatro-sidney': 'https://mpago.la/26ybJS3' };
+const mercadoPago = {
+  'teatro-sidney': 'https://mpago.la/26ybJS3',
+  'sillon': 'https://mpago.la/2f8SybA',
+  'masajes': 'https://mpago.la/2SMGVrP',
+  'cena': 'https://mpago.la/17SDFHf',
+  'bencina': 'https://mpago.la/2Lf5BoD',
+  'baby-doll': 'https://mpago.la/1Gsjxam',
+  'princesa-alba': 'https://mpago.la/2huczgm',
+  'comida-kimberly': 'https://mpago.la/2ALfm36',
+  'zapatillas-luces': 'https://mpago.la/151rN51',
+  'lena': 'https://mpago.la/1BqJQPF',
+  'boxers': 'https://mpago.la/1ip3Sxj',
+  'catamaran': 'https://mpago.la/2zmtfZY'
+};
 const root=document.getElementById('regalos');if(!root)return;
 let available=0;
 root.querySelectorAll('[data-pay]').forEach(a=>{const value=mercadoPago[a.dataset.pay];if(!value)return;try{const url=new URL(value);if(url.protocol!=='https:')return;a.href=url.href;a.hidden=false;available++}catch(_){}});

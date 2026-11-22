@@ -681,3 +681,91 @@ body.oliva-theme.propuesta-organica.propuesta-jardin .faq{
     padding:20px 9px!important;
   }
 }
+
+
+/* Hojas en acuarela real — fondos WebP rasterizados, sin flores ni SVG */
+/* Ilustraciones pintadas en acuarela sobre papel de grano suave.
+   Reemplazan todas las flores anteriores y los contornos geométricos.
+   No hay dibujos botánicos flotantes ni SVG florales en la propuesta 05. */
+body.oliva-theme.propuesta-organica.propuesta-jardin .hero.romantic-hero,
+body.oliva-theme.propuesta-organica.propuesta-jardin .memories-strip,
+body.oliva-theme.propuesta-organica.propuesta-jardin .timing,
+body.oliva-theme.propuesta-organica.propuesta-jardin #regalos,
+body.oliva-theme.propuesta-organica.propuesta-jardin .playlist,
+body.oliva-theme.propuesta-organica.propuesta-jardin .rsvp,
+body.oliva-theme.propuesta-organica.propuesta-jardin .faq{
+  background-color:#f6f2e6!important;
+  background-image:
+    linear-gradient(rgba(250,247,240,.12),rgba(250,247,240,.12)),
+    url('assets/hojas_papel_acuarela_web.webp')!important;
+  background-position:center top!important;
+  background-repeat:no-repeat!important;
+  background-size:cover!important;
+  background-attachment:scroll!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .celebration,
+body.oliva-theme.propuesta-organica.propuesta-jardin #regalos .bank-section{
+  background-color:#e6ebdf!important;
+  background-image:
+    linear-gradient(rgba(225,234,218,.40),rgba(225,234,218,.40)),
+    url('assets/hojas_papel_acuarela_web.webp')!important;
+  background-position:center top!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .dress,
+body.oliva-theme.propuesta-organica.propuesta-jardin .footer{
+  background-color:#586a4b!important;
+  background-image:
+    linear-gradient(rgba(70,91,62,.90),rgba(70,91,62,.90)),
+    url('assets/hojas_papel_acuarela_web.webp')!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+}
+body.oliva-theme.propuesta-organica.propuesta-jardin .hero.romantic-hero .hero-content,
+body.oliva-theme.propuesta-organica.propuesta-jardin .location-card,
+body.oliva-theme.propuesta-organica.propuesta-jardin .song-card,
+body.oliva-theme.propuesta-organica.propuesta-jardin .rsvp .rsvp-layout,
+body.oliva-theme.propuesta-organica.propuesta-jardin #regalos .gift{
+  position:relative;
+  z-index:1;
+}
+/* Trama y contraste: el contenido nunca se hornea dentro de una imagen. */
+body.oliva-theme.propuesta-organica.propuesta-jardin .timing .timeline,
+body.oliva-theme.propuesta-organica.propuesta-jardin .timing .container.narrow{
+  background:transparent!important;
+}
+@media(max-width:850px){
+  body.oliva-theme.propuesta-organica.propuesta-jardin .hero.romantic-hero,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .memories-strip,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .celebration,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .timing,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .playlist,
+  body.oliva-theme.propuesta-organica.propuesta-jardin #regalos,
+  body.oliva-theme.propuesta-organica.propuesta-jardin #regalos .bank-section,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .rsvp,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .faq{
+    background-image:
+      linear-gradient(rgba(249,247,240,.22),rgba(249,247,240,.22)),
+      url('assets/hojas_papel_acuarela_mobile.webp')!important;
+    background-position:center top!important;
+    background-size:100% auto!important;
+    background-repeat:no-repeat!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .celebration,
+  body.oliva-theme.propuesta-organica.propuesta-jardin #regalos .bank-section{
+    background-color:#e9ebe0!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .dress,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .footer{
+    background-image:
+      linear-gradient(rgba(66,88,60,.91),rgba(66,88,60,.91)),
+      url('assets/hojas_papel_acuarela_mobile.webp')!important;
+    background-position:center top!important;
+    background-size:cover!important;
+    background-repeat:no-repeat!important;
+  }
+}
+/* Las imágenes de los novios siguen siendo fotos sin retoque,
+   solo con el filtro de blanco y negro ya aprobado. */

@@ -57,7 +57,7 @@ function doPost(e) {
   return HtmlService.createHtmlOutput(
     '<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>' +
     '<body><p>Respuesta procesada.</p><script>window.top.postMessage(' + payload +
-    ', "https://jopsan-barbara.github.io");<\\/script></body></html>'
+    ', "https://jopsan-barbara.github.io");</script></body></html>'
   ).setTitle('Resultado de la confirmación').setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 

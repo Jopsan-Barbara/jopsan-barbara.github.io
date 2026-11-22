@@ -1,6 +1,6 @@
 # Invitación · Jopsan & Bárbara
 
-Invitación web al matrimonio del 27 de febrero de 2027, a las 12:00 h, en Domos de Chamiza, Puerto Montt.
+Invitación web al matrimonio del 27 de febrero de 2027, con llegada a las 14:30 h, en Domos de Chamiza, Puerto Montt.
 
 **Sitio público:** https://jopsan-barbara.github.io/
 
@@ -28,7 +28,7 @@ El formulario de asistencia admite respuestas «Sí» y «No» y debe cerrar el 
 1. Activar y validar una sola alternativa: Apps Script actualizado o dos formularios públicos de Google Forms. Las instrucciones están en `integration/ACTIVAR.md` e `integration/GOOGLE_FORMS.md`.
 2. Si se usa Google Forms, completar `rsvpForm` y `songForm` en `rsvp-config.json` con enlaces de **respuesta**, nunca de edición.
 3. Verificar en navegación privada un «Sí», un «No» y una canción. Comprobar las respuestas en Google Sheets y en el panel, y retirar solo los registros de prueba.
-4. Completar los horarios del itinerario cuando los novios los confirmen.
+4. Itinerario confirmado por los novios: llegada 14:30, ceremonia 15:15, cóctel y discursos 16:15, juegos y dinámicas 17:30, inicio de parrillada 18:00, autoservicio 19:15, bendición y comida 19:40, baile 20:30 y término de la fiesta a las 00:00 del domingo 28 de febrero de 2027.
 5. Revisar con los novios cualquier cambio de dress code o modalidad de pago antes de modificar el contenido.
 
 Las fotografías originales de los novios y la galería testimonial deben conservarse sin alterar rostros.

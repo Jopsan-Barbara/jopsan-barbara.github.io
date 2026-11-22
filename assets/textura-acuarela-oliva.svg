@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820">
+ <defs>
+  <filter id="wash" x="-30%" y="-30%" width="160%" height="160%">
+   <feTurbulence baseFrequency=".008 .013" numOctaves="2" seed="9" type="fractalNoise" result="edge"/>
+   <feDisplacementMap in="SourceGraphic" in2="edge" scale="67" xChannelSelector="R" yChannelSelector="G"/>
+   <feGaussianBlur stdDeviation="38"/>
+  </filter>
+  <radialGradient id="sage"><stop stop-color="#8f9c6d" stop-opacity=".34"/><stop offset="1" stop-color="#8f9c6d" stop-opacity="0"/></radialGradient>
+  <radialGradient id="sand"><stop stop-color="#d6c8aa" stop-opacity=".52"/><stop offset="1" stop-color="#d6c8aa" stop-opacity="0"/></radialGradient>
+  <radialGradient id="ivory"><stop stop-color="#f6eddc" stop-opacity=".78"/><stop offset="1" stop-color="#f6eddc" stop-opacity="0"/></radialGradient>
+ </defs>
+ <g filter="url(#wash)">
+  <ellipse cx="130" cy="155" rx="410" ry="280" fill="url(#sage)"/>
+  <ellipse cx="1000" cy="645" rx="480" ry="335" fill="url(#sand)"/>
+  <ellipse cx="755" cy="140" rx="310" ry="220" fill="url(#ivory)"/>
+ </g>
+</svg>

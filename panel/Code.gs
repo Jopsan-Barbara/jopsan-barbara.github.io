@@ -66,6 +66,7 @@ function compile_(guests, answers) {
       updated:a?String(a[0] || ''):'', respondent:a?[a[2],a[3]].join(' ').trim():''
     };
   });
+  const hasOriginalGuestList = rows.length > 0;
   const byName = new Map();
   rows.forEach((row, i) => {
     const key = normalizeGuestName_(row.name);
@@ -117,9 +118,9 @@ function compile_(guests, answers) {
         companions:String(a[7] || ''), song:'', message:String(a[10] || ''),
         email:String(a[4] || ''), phone:'', sent:'Enlace general',
         updated:String(a[0] || ''), respondent:name,
-        public:true, review:true
+        public:true, review:hasOriginalGuestList
       });
-      reviewNames.push(name + ' — no figura en la lista original');
+      if (hasOriginalGuestList) reviewNames.push(name + ' — no figura en la lista original');
     }
   });
   return {

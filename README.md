@@ -19,7 +19,7 @@ El formulario de asistencia admite respuestas «Sí» y «No» y debe cerrar el 
 - `gifts.js`: catálogo de **12 caricaturas y regalos**, con enlaces configurados para Mercado Pago, transferencia y acción de copiar datos. Las ilustraciones mantienen sus colores y archivos originales.
 - `forms-inline.js` y `rsvp-config.json`: formularios nativos visibles sin abrir una ventana. Cada envío genera un ID `public-UUID` compatible con la validación de Apps Script.
 - `integration/Code.gs`: servidor de formularios; procesa confirmaciones y canciones hacia Google Sheets.
-- `panel/Code.gs`: panel privado, con conciliación por nombre completo normalizado. Si el nombre aparece varias veces o no coincide con el listado, señala la respuesta para revisión.
+- `panel/Code.gs`: panel privado simplificado a asistencia y canciones, con botón para copiar la playlist y enviarla al DJ. Concilia por nombre completo normalizado; cuando existe un listado previo señala coincidencias ambiguas o nombres sin correspondencia. Sin nómina previa, acepta los registros generales sin exigir enlaces personalizados.
 - `integration/CREAR_FORMULARIOS.gs`: alternativa con Google Forms. No debe activarse al mismo tiempo que los formularios nativos sin revisar la configuración.
 
 ### Horario confirmado

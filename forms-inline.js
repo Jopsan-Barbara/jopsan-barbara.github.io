@@ -64,7 +64,7 @@
     if (ok) {
       const fallback = form.querySelector('.form-backup');
       if (fallback) fallback.hidden = true;
-      if (state.kind === 'public-song') form.reset();
+      if (state.kind === 'public-song') { form.reset(); state.id = ''; }
       if (state.kind === 'public-rsvp') {
         if (button) button.textContent = 'Respuesta registrada';
         form.querySelectorAll('input:not([type=hidden])').forEach(el => { el.disabled = true; });
@@ -95,7 +95,8 @@
       const button = form.querySelector('.form-submit');
       if (button) button.disabled = true;
       state.pending = true;
-      state.id = newId();
+      // Reutilizamos el identificador si falló el acuse: evita duplicar respuestas.
+      state.id = state.id || newId();
       field(form, 'requestId', state.id);
       field(form, 'kind', kind);
 

@@ -493,3 +493,53 @@ body.oliva-theme.propuesta-organica.propuesta-jardin .faq{
     scroll-behavior:auto!important;
   }
 }
+
+
+/* Rendimiento visual: nunca escalar un SVG hasta la altura de un catálogo
+   de regalos ni del itinerario. En secciones largas, la ilustración se
+   presenta como papel impreso en su cabecera; el resto usa un fondo sólido.
+   Evita rasterizaciones gigantes en iPhone/Android. */
+body.oliva-theme.propuesta-organica.propuesta-jardin .timing,
+body.oliva-theme.propuesta-organica.propuesta-jardin #regalos,
+body.oliva-theme.propuesta-organica.propuesta-jardin .faq{
+  background-size:100% auto!important;
+  background-position:center top!important;
+  background-repeat:no-repeat!important;
+}
+@media(max-width:850px){
+  body.oliva-theme.propuesta-organica.propuesta-jardin .memories-strip,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .celebration,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .playlist,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .rsvp{
+    background-size:100% auto,240px 240px!important;
+    background-position:center top,center!important;
+    background-repeat:no-repeat,repeat!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .timing,
+  body.oliva-theme.propuesta-organica.propuesta-jardin #regalos,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .faq,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .dress,
+  body.oliva-theme.propuesta-organica.propuesta-jardin #regalos .bank-section,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .footer{
+    background-size:100% auto!important;
+    background-position:center top!important;
+    background-repeat:no-repeat!important;
+  }
+}
+@media(max-width:600px){
+  body.oliva-theme.propuesta-organica.propuesta-jardin .memories-strip,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .celebration,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .playlist,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .rsvp{
+    background-size:100% auto,240px 240px!important;
+  }
+  body.oliva-theme.propuesta-organica.propuesta-jardin .timing,
+  body.oliva-theme.propuesta-organica.propuesta-jardin #regalos,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .faq,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .dress,
+  body.oliva-theme.propuesta-organica.propuesta-jardin #regalos .bank-section,
+  body.oliva-theme.propuesta-organica.propuesta-jardin .footer{
+    background-size:100% auto!important;
+    background-position:center top!important;
+  }
+}

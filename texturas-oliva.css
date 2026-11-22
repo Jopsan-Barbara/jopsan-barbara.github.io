@@ -1,0 +1,267 @@
+/* Jopsan & Bárbara — tratamientos de superficie sin flores.
+   CSS de presentación final: cargar DESPUÉS de wedding-oliva.css y propuestas.css.
+   Las texturas son archivos SVG locales livianos (no fotografías modificadas). */
+
+/* Eliminar definitivamente TODOS los adornos botánicos superpuestos de
+   las cinco invitaciones. No suprimir controles, swatches ni iconos del itinerario. */
+body.oliva-theme .hero.romantic-hero::before,
+body.oliva-theme .hero.romantic-hero::after,
+body.oliva-theme .celebration::before,
+body.oliva-theme .celebration::after,
+body.oliva-theme .dress::after,
+body.oliva-theme .dress .container::before,
+body.oliva-theme .playlist .container::after,
+body.oliva-theme .rsvp::before,
+body.oliva-theme .footer::before,
+body.oliva-theme .footer::after,
+body.oliva-theme .hero .floral-ornament,
+body.oliva-theme .hero img.wedding-flowers,
+body.oliva-theme .hero .floral-top,
+body.oliva-theme .hero .floral-bottom,
+body.oliva-theme .leaves{
+  content:none!important;
+  background-image:none!important;
+  display:none!important;
+}
+/* Monograma y línea editorial siguen siendo elementos impresos, no
+   ornamentos flotantes. */
+body.oliva-theme .dress-flourish{display:none!important}
+body.oliva-theme .hero.romantic-hero,
+body.oliva-theme .celebration,
+body.oliva-theme .dress,
+body.oliva-theme .playlist,
+body.oliva-theme #regalos,
+body.oliva-theme #regalos .bank-section,
+body.oliva-theme .rsvp,
+body.oliva-theme .faq{
+  background-attachment:scroll;
+}
+body.oliva-theme .hero.romantic-hero .hero-photo,
+body.oliva-theme .memory-slide img{
+  filter:grayscale(100%) contrast(1.06) brightness(.97)!important;
+}
+body.oliva-theme #regalos .illustration img{filter:none!important}
+
+/* Invitación original: papel de algodón con fibras muy finas y
+   gradientes amplios; el color nunca compite con fotos o texto. */
+body.oliva-theme:not(.propuesta-editorial):not(.propuesta-organica):not(.propuesta-campestre):not(.propuesta-clasica) .hero.romantic-hero{
+  background:url('assets/textura-papel-algodon.svg') repeat,
+    linear-gradient(120deg,#f1e9d8 0%,#fcf9f1 61%,#f6eddc 100%);
+  background-size:240px 240px,cover;
+}
+body.oliva-theme:not(.propuesta-editorial):not(.propuesta-organica):not(.propuesta-campestre):not(.propuesta-clasica) .memories-strip,
+body.oliva-theme:not(.propuesta-editorial):not(.propuesta-organica):not(.propuesta-campestre):not(.propuesta-clasica) .timing,
+body.oliva-theme:not(.propuesta-editorial):not(.propuesta-organica):not(.propuesta-campestre):not(.propuesta-clasica) .faq,
+body.oliva-theme:not(.propuesta-editorial):not(.propuesta-organica):not(.propuesta-campestre):not(.propuesta-clasica) #regalos{
+  background:url('assets/textura-papel-algodon.svg') repeat,#fcf9f1;
+  background-size:240px 240px;
+}
+body.oliva-theme:not(.propuesta-editorial):not(.propuesta-organica):not(.propuesta-campestre):not(.propuesta-clasica) .celebration,
+body.oliva-theme:not(.propuesta-editorial):not(.propuesta-organica):not(.propuesta-campestre):not(.propuesta-clasica) #regalos .bank-section{
+  background:url('assets/textura-papel-algodon.svg') repeat,
+    linear-gradient(140deg,#f6eddc,#f9f5e9);
+  background-size:240px 240px,cover;
+}
+body.oliva-theme:not(.propuesta-editorial):not(.propuesta-organica):not(.propuesta-campestre):not(.propuesta-clasica) .dress{
+  background:url('assets/textura-papel-algodon.svg') repeat,#d6c8aa;
+  background-size:240px 240px;
+}
+body.oliva-theme:not(.propuesta-editorial):not(.propuesta-organica):not(.propuesta-campestre):not(.propuesta-clasica) .playlist{
+  background:url('assets/textura-papel-algodon.svg') repeat,#eeefe5;
+  background-size:240px 240px;
+}
+body.oliva-theme:not(.propuesta-editorial):not(.propuesta-organica):not(.propuesta-campestre):not(.propuesta-clasica) .rsvp{
+  background:url('assets/textura-papel-algodon.svg') repeat,
+    linear-gradient(160deg,#eff0e5,#f6eddc);
+  background-size:240px 240px,cover;
+}
+body.oliva-theme:not(.propuesta-editorial):not(.propuesta-organica):not(.propuesta-campestre):not(.propuesta-clasica) .footer{
+  background:url('assets/textura-papel-algodon.svg') repeat,#65744c;
+  background-size:240px 240px;
+}
+/* El grano debe sentirse como papel también en los marcos, sin
+   agregar una lámina opaca por encima de elementos interactivos. */
+body.oliva-theme .location-card,
+body.oliva-theme .rsvp .rsvp-layout,
+body.oliva-theme .rsvp .form-shell,
+body.oliva-theme .song-card,
+body.oliva-theme #regalos .gift,
+body.oliva-theme #regalos .bank-card{
+  background-image:url('assets/textura-papel-algodon.svg');
+  background-repeat:repeat;
+  background-size:240px 240px;
+}
+
+/* 1 — EDITORIAL: algodón prensado, filetes, líneas casi invisibles.
+   El patrón de líneas es parte del papel, no un objeto en una esquina. */
+body.oliva-theme.propuesta-editorial .hero.romantic-hero{
+  background:url('assets/textura-papel-algodon.svg') repeat,
+    repeating-linear-gradient(90deg,transparent 0 59px,rgba(101,116,76,.028) 60px,transparent 61px),
+    linear-gradient(115deg,#f3ecdc,#faf8f1 73%);
+  background-size:240px 240px,auto,cover;
+}
+body.oliva-theme.propuesta-editorial .memories-strip,
+body.oliva-theme.propuesta-editorial .timing,
+body.oliva-theme.propuesta-editorial .faq,
+body.oliva-theme.propuesta-editorial #regalos{
+  background:url('assets/textura-papel-algodon.svg') repeat,#faf8f1;
+  background-size:240px 240px;
+}
+body.oliva-theme.propuesta-editorial .celebration,
+body.oliva-theme.propuesta-editorial #regalos .bank-section{
+  background:url('assets/textura-papel-algodon.svg') repeat,
+    linear-gradient(135deg,#f6eddc,#faf8ef);
+  background-size:240px 240px,cover;
+}
+body.oliva-theme.propuesta-editorial .dress{
+  background:url('assets/textura-papel-algodon.svg') repeat,#f0eedf;
+  background-size:240px 240px;
+}
+body.oliva-theme.propuesta-editorial .playlist{
+  background:url('assets/textura-papel-algodon.svg') repeat,#ebece1;
+  background-size:240px 240px;
+}
+body.oliva-theme.propuesta-editorial .rsvp{
+  background:url('assets/textura-papel-algodon.svg') repeat,#f1eee5;
+  background-size:240px 240px;
+}
+body.oliva-theme.propuesta-editorial .footer{
+  background:url('assets/textura-papel-algodon.svg') repeat,#546343;
+  background-size:240px 240px;
+}
+
+/* 2 — ORGÁNICA: pigmentos lavados incorporados al fondo. No hay
+   flores, ramas, hojas ni imágenes flotando sobre los nombres. */
+body.oliva-theme.propuesta-organica .hero.romantic-hero{
+  background:url('assets/textura-acuarela-oliva.svg') center/cover no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,
+    #faf6ea;
+}
+body.oliva-theme.propuesta-organica .memories-strip,
+body.oliva-theme.propuesta-organica .timing,
+body.oliva-theme.propuesta-organica .faq,
+body.oliva-theme.propuesta-organica #regalos{
+  background:url('assets/textura-acuarela-oliva.svg') center/cover no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,#faf6ea;
+}
+body.oliva-theme.propuesta-organica .celebration,
+body.oliva-theme.propuesta-organica #regalos .bank-section{
+  background:url('assets/textura-acuarela-oliva.svg') center/cover no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,#f4efdc;
+}
+body.oliva-theme.propuesta-organica .dress{
+  background:url('assets/textura-acuarela-oliva.svg') center/cover no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,#d6c8aa;
+}
+body.oliva-theme.propuesta-organica .playlist,
+body.oliva-theme.propuesta-organica .rsvp{
+  background:url('assets/textura-acuarela-oliva.svg') center/cover no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,#edf0e4;
+}
+body.oliva-theme.propuesta-organica .footer{
+  background:url('assets/textura-papel-algodon.svg') repeat,
+    linear-gradient(135deg,#65744c,#52653d);
+  background-size:240px 240px,cover;
+}
+
+/* 3 — CAMPESTRE: trama de lino muy fina, verdes vegetales y
+   paneles de geometría clara. El tejido es un patrón continuo. */
+body.oliva-theme.propuesta-campestre .hero.romantic-hero{
+  background:url('assets/textura-lino-campestre.svg') repeat,
+    linear-gradient(90deg,#dbe3d3 0 45%,#f6f5ed 45% 100%);
+  background-size:128px 128px,cover;
+}
+body.oliva-theme.propuesta-campestre .memories-strip,
+body.oliva-theme.propuesta-campestre .timing,
+body.oliva-theme.propuesta-campestre .faq,
+body.oliva-theme.propuesta-campestre #regalos{
+  background:url('assets/textura-lino-campestre.svg') repeat,#f6f7f0;
+  background-size:128px 128px;
+}
+body.oliva-theme.propuesta-campestre .celebration,
+body.oliva-theme.propuesta-campestre #regalos .bank-section{
+  background:url('assets/textura-lino-campestre.svg') repeat,
+    linear-gradient(120deg,#edf0e7,#e3e9dd);
+  background-size:128px 128px,cover;
+}
+body.oliva-theme.propuesta-campestre .dress{
+  background:url('assets/textura-lino-campestre.svg') repeat,#d8dfcc;
+  background-size:128px 128px;
+}
+body.oliva-theme.propuesta-campestre .playlist,
+body.oliva-theme.propuesta-campestre .rsvp{
+  background:url('assets/textura-lino-campestre.svg') repeat,#e5eadf;
+  background-size:128px 128px;
+}
+body.oliva-theme.propuesta-campestre .footer{
+  background:url('assets/textura-lino-campestre.svg') repeat,#3c5338;
+  background-size:128px 128px;
+}
+body.oliva-theme.propuesta-campestre .location-card,
+body.oliva-theme.propuesta-campestre .rsvp .rsvp-layout,
+body.oliva-theme.propuesta-campestre .song-card,
+body.oliva-theme.propuesta-campestre #regalos .gift,
+body.oliva-theme.propuesta-campestre #regalos .bank-card{
+  background-image:url('assets/textura-lino-campestre.svg');
+  background-size:128px 128px;
+}
+
+/* 4 — CLÁSICA: grabado lineal sobre pergamino, marcos dobles y
+   simetría de imprenta. Ningún motivo figurativo sobre las fotos. */
+body.oliva-theme.propuesta-clasica .hero.romantic-hero{
+  background:url('assets/textura-grabado-clasico.svg') repeat,
+    linear-gradient(120deg,#f9f5eb,#f6eddc);
+  background-size:320px 320px,cover;
+}
+body.oliva-theme.propuesta-clasica .memories-strip,
+body.oliva-theme.propuesta-clasica .timing,
+body.oliva-theme.propuesta-clasica .faq,
+body.oliva-theme.propuesta-clasica #regalos{
+  background:url('assets/textura-grabado-clasico.svg') repeat,#f9f5eb;
+  background-size:320px 320px;
+}
+body.oliva-theme.propuesta-clasica .celebration,
+body.oliva-theme.propuesta-clasica #regalos .bank-section{
+  background:url('assets/textura-grabado-clasico.svg') repeat,
+    linear-gradient(160deg,#f0eadb,#f9f5eb);
+  background-size:320px 320px,cover;
+}
+body.oliva-theme.propuesta-clasica .dress{
+  background:url('assets/textura-grabado-clasico.svg') repeat,#ebe0ca;
+  background-size:320px 320px;
+}
+body.oliva-theme.propuesta-clasica .playlist,
+body.oliva-theme.propuesta-clasica .rsvp{
+  background:url('assets/textura-grabado-clasico.svg') repeat,#f3eee2;
+  background-size:320px 320px;
+}
+body.oliva-theme.propuesta-clasica .footer{
+  background:url('assets/textura-grabado-clasico.svg') repeat,#576648;
+  background-size:320px 320px;
+}
+body.oliva-theme.propuesta-clasica .location-card,
+body.oliva-theme.propuesta-clasica .rsvp .rsvp-layout,
+body.oliva-theme.propuesta-clasica .song-card,
+body.oliva-theme.propuesta-clasica #regalos .gift,
+body.oliva-theme.propuesta-clasica #regalos .bank-card{
+  background-image:url('assets/textura-grabado-clasico.svg');
+  background-size:320px 320px;
+}
+/* Las cuatro propuestas conservan intactas las superficies críticas
+   de lectura y los controles. El contraste está definido por las
+   variables aprobadas, no por el tono del patrón. */
+body.oliva-theme .wedding-form input[type=text],
+body.oliva-theme .wedding-form .choice,
+body.oliva-theme .wedding-form .form-submit{
+  background-image:none!important;
+}
+@media(max-width:850px){
+  body.oliva-theme.propuesta-campestre .hero.romantic-hero{
+    background:url('assets/textura-lino-campestre.svg') repeat,
+      linear-gradient(180deg,#dbe3d3 0%,#f6f5ed 54%);
+    background-size:128px 128px,cover;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  body.oliva-theme *{background-attachment:scroll!important}
+}

@@ -1,5 +1,5 @@
 (()=>{"use strict";
-const mercadoPago = {};
+const mercadoPago = { 'teatro-sidney': 'https://mpago.la/26ybJS3' };
 const root=document.getElementById('regalos');if(!root)return;
 let available=0;
 root.querySelectorAll('[data-pay]').forEach(a=>{const value=mercadoPago[a.dataset.pay];if(!value)return;try{const url=new URL(value);if(url.protocol!=='https:')return;a.href=url.href;a.hidden=false;available++}catch(_){}});

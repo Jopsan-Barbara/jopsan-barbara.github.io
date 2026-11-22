@@ -1,0 +1,654 @@
+/* HERBARIO ROMÁNTICO — Jopsan & Bárbara
+   Recreación web mobile-first de la propuesta botánica aprobada como dirección.
+   La ilustración es tinta sobre papel: camelias, anémonas, eléboros y jazmín.
+   Sin imágenes decorativas flotantes ni alteración de fotografías de los novios.
+   Cargar ÚNICAMENTE en la propuesta 2, después de los estilos anteriores. */
+
+body.oliva-theme.propuesta-organica{
+  --herb-paper:#faf7ef;
+  --herb-cream:#f6eddc;
+  --herb-sage:#e9eddf;
+  --herb-olive:#65744c;
+  --herb-ink:#394734;
+  --herb-line:#d0c9b4;
+  color:var(--herb-ink);
+  background:var(--herb-paper);
+}
+body.oliva-theme.propuesta-organica .hero.romantic-hero{
+  display:block!important;min-height:0!important;
+  padding:0 0 56px!important;position:relative;
+  border:0!important;border-top:6px solid var(--herb-olive)!important;
+  background:
+    url('assets/herbario-flores-blancas-2027.svg') center 35px/100% auto no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,
+    linear-gradient(130deg,#f6efdf 0%,#fffdf6 58%,#f5eddd 100%)!important;
+  background-size:100% auto,240px 240px,cover!important;
+  isolation:isolate;
+}
+body.oliva-theme.propuesta-organica .hero.romantic-hero::before,
+body.oliva-theme.propuesta-organica .hero.romantic-hero::after,
+body.oliva-theme.propuesta-organica .hero.romantic-hero .hero-overlay{
+  display:none!important;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .nav{
+  width:min(calc(100% - 44px),1180px)!important;
+  max-width:1180px;
+  margin:0 auto!important;
+  padding:21px 0!important;
+  display:flex!important;justify-content:space-between;
+  align-items:center;position:relative;z-index:3;
+  border-bottom:1px solid rgba(95,112,80,.28);
+}
+body.oliva-theme.propuesta-organica .romantic-hero .brand{
+  font-family:'Pinyon Script',cursive;
+  font-size:clamp(1.7rem,3vw,2.25rem);
+  color:var(--herb-olive);
+}
+body.oliva-theme.propuesta-organica .romantic-hero .brand::after{
+  width:58px;background:#a5ae95;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .nav-link{
+  background:#fffdf8e3;color:#43593a;
+  border:1px solid #9ba98c;border-radius:100px;
+  padding:9px 20px;font-size:.73rem;min-height:44px;
+  letter-spacing:.11em;text-transform:uppercase;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .hero-content{
+  position:relative!important;z-index:2;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,.95fr);
+  grid-template-rows:auto auto auto;
+  grid-template-areas:'announcement portrait' 'countdown portrait' 'cta portrait';
+  column-gap:clamp(38px,5vw,85px);row-gap:0;
+  align-items:center;justify-items:center;
+  width:min(calc(100% - 64px),1120px)!important;
+  max-width:1120px!important;min-height:0!important;
+  padding:clamp(30px,3.5vw,52px)!important;
+  margin:26px auto 0!important;
+  background:rgba(255,252,244,.78)!important;
+  border:1px solid rgba(175,180,154,.73)!important;
+  border-radius:0!important;outline:1px solid rgba(188,189,159,.3);outline-offset:-12px;
+  box-shadow:0 18px 54px rgba(59,70,52,.09)!important;
+  text-align:center;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .hero-content::before{
+  content:none!important;display:none!important;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .hero-announcement{
+  grid-area:announcement;width:100%;max-width:none!important;
+  display:flex;flex-direction:column;align-items:center;
+  gap:0;padding:18px 0 10px;
+  background:none!important;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .eyebrow{
+  font-family:'DM Sans',sans-serif;font-size:.76rem!important;
+  text-transform:uppercase;letter-spacing:.28em;
+  font-weight:600;color:#516749;
+  margin:2px 0 22px!important;
+}
+body.oliva-theme.propuesta-organica .romantic-hero h1{
+  margin:0!important;padding:0!important;max-width:100%!important;
+  font-family:'Pinyon Script',cursive;color:#536d4b;
+  line-height:.89!important;font-weight:400!important;
+}
+body.oliva-theme.propuesta-organica .romantic-hero h1 .hero-name{
+  display:block;
+  white-space:nowrap;
+  font-family:'Pinyon Script',cursive!important;
+  font-size:clamp(5.1rem,7.8vw,8.2rem)!important;
+  color:#526a46!important;
+  font-weight:400!important;line-height:.90!important;
+  letter-spacing:-.035em!important;
+  overflow:visible;
+}
+body.oliva-theme.propuesta-organica .romantic-hero h1 .hero-amp{
+  display:block;line-height:.88!important;
+  font:400 clamp(2rem,3vw,3rem)/.9 'Pinyon Script',cursive!important;
+  margin:4px 0 5px!important;
+  color:#8f9c6d!important;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .hero-announcement::after{
+  content:'';display:block;
+  width:clamp(115px,47%,230px);height:1px;
+  margin:18px auto 8px;
+  background:linear-gradient(to right,transparent,#8c9b7f 20%,#8c9b7f 80%,transparent);
+  pointer-events:none;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .date{
+  order:3;border:0!important;
+  padding:10px 0 0!important;margin:0!important;
+  color:#45553b;font:500 clamp(1.1rem,2vw,1.5rem)/1.3 'Cormorant Garamond',Georgia,serif!important;
+  letter-spacing:.23em!important;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .hero-mininote{
+  order:4;margin:5px 0 0;color:#5c6553;
+  font:600 .64rem/1.5 'DM Sans',sans-serif;
+  letter-spacing:.20em;text-transform:uppercase;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .herb-portrait{
+  grid-area:portrait;position:relative;
+  width:100%;height:100%;min-height:530px;
+  margin:0!important;padding:8px 8px 28px;
+  background:#fffef9;
+  border:1px solid #c5c8b4;
+  box-shadow:11px 13px 28px rgba(46,57,40,.13);
+  overflow:hidden;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .herb-portrait .hero-photo{
+  display:block!important;position:relative!important;
+  top:auto!important;bottom:auto!important;right:auto!important;left:auto!important;
+  width:100%!important;height:100%!important;min-height:0!important;
+  max-width:100%!important;max-height:none!important;
+  margin:0!important;padding:0!important;
+  border:0!important;border-radius:0!important;
+  outline:none!important;box-shadow:none!important;
+  object-fit:cover!important;object-position:center 50%!important;
+  aspect-ratio:auto!important;
+  filter:grayscale(100%)!important;-webkit-filter:grayscale(100%)!important;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .herb-photo-paper{
+  display:block;position:absolute;left:8px;right:8px;bottom:28px;
+  height:58px;pointer-events:none;opacity:.85;
+  background:linear-gradient(to bottom,transparent,#fffef9);
+}
+body.oliva-theme.propuesta-organica .romantic-hero .hero-countdown{
+  grid-area:countdown;width:100%!important;max-width:510px!important;
+  margin:12px auto 0!important;
+  padding:24px 8px 16px!important;
+  background:rgba(249,244,232,.92)!important;
+  border:1px solid #d3cbb8!important;border-radius:0!important;
+  box-shadow:none!important;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .hero-countdown-label{
+  top:-.68rem!important;color:#53694b!important;
+  background:#faf7ed!important;
+  font:700 .58rem/1.2 'DM Sans',sans-serif!important;
+  letter-spacing:.23em;
+  padding:0 12px!important;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .hero-countdown .countdown{
+  display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:0!important;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .hero-countdown .countdown>div{
+  min-width:0;padding:0 5px!important;border-left:1px solid #d8d1bf;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .hero-countdown .countdown strong{
+  font:500 clamp(1.95rem,3.1vw,2.8rem)/1 'Cormorant Garamond',Georgia,serif!important;
+  color:#4e6344!important;white-space:nowrap;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .hero-countdown .countdown span{
+  display:block;margin-top:5px;
+  font:500 .58rem/1.2 'DM Sans',sans-serif!important;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:#53624e!important;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .button-light{
+  grid-area:cta;
+  margin:19px auto 0!important;
+  background:#65744c!important;color:#fffdf5!important;
+  border:1px solid #65744c!important;
+  padding:12px 27px!important;border-radius:100px!important;
+  min-height:49px;font:700 .75rem/1.2 'DM Sans',sans-serif!important;
+  letter-spacing:.10em;text-transform:uppercase;
+  box-shadow:none!important;
+}
+body.oliva-theme.propuesta-organica .romantic-hero .button-light:hover{
+  background:#465c3e!important;border-color:#465c3e!important;
+}
+
+/* Papel de algodón y bordes integrados, sin stickers ni flores flotantes. */
+body.oliva-theme.propuesta-organica .herb-paper-seam{
+  display:block;position:relative;z-index:2;
+  width:100%;height:32px;margin:-1px 0 0;pointer-events:none;
+  background:#f9f6ee url('assets/herbario-borde-papel-2027.svg') center top/100% 100% no-repeat;
+}
+body.oliva-theme.propuesta-organica .herb-paper-seam--sage{
+  background-color:#eff0e7;
+}
+body.oliva-theme.propuesta-organica .memories-strip,
+body.oliva-theme.propuesta-organica .timing,
+body.oliva-theme.propuesta-organica .faq,
+body.oliva-theme.propuesta-organica #regalos{
+  background:url('assets/textura-papel-algodon.svg') repeat,#faf8f1!important;
+  background-size:240px 240px!important;
+}
+body.oliva-theme.propuesta-organica .memories-strip{
+  padding:70px 0 70px!important;
+  border-top:0!important;border-bottom:0!important;
+}
+body.oliva-theme.propuesta-organica .memories-heading{
+  gap:14px;align-items:center;
+  padding-bottom:19px;border-bottom:1px solid #d9d2bf;
+}
+body.oliva-theme.propuesta-organica .memories-heading-text p{
+  color:#586d4d;letter-spacing:.17em;font-weight:700;
+}
+body.oliva-theme.propuesta-organica .memories-heading-text span{
+  font:italic 400 clamp(1.8rem,3.4vw,2.8rem)/1.1 'Cormorant Garamond',Georgia,serif;
+  color:#485a40;
+}
+body.oliva-theme.propuesta-organica .memory-slide{
+  border:7px solid #fffdf6!important;border-radius:3px!important;
+  box-shadow:0 10px 24px rgba(60,65,42,.10)!important;
+}
+body.oliva-theme.propuesta-organica .memories-arrow{
+  width:48px;height:48px;min-height:48px;
+  background:#f8f3e9;border-color:#c4c8b1;
+}
+body.oliva-theme.propuesta-organica .celebration{
+  padding:90px 0 95px!important;
+  color:#394734;
+  background:
+    url('assets/herbario-flores-blancas-2027.svg') center top/100% auto no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,
+    linear-gradient(140deg,#f0eee2,#f7f2e7)!important;
+  background-size:100% auto,240px 240px,cover!important;
+}
+body.oliva-theme.propuesta-organica .celebration-layout{
+  width:min(calc(100% - 50px),1120px);max-width:1120px;
+  column-gap:clamp(38px,5vw,80px);align-items:center;
+}
+body.oliva-theme.propuesta-organica .celebration-story{
+  padding:15px 0;text-align:left;
+}
+body.oliva-theme.propuesta-organica .section-kicker,
+body.oliva-theme.propuesta-organica .gift-kicker{
+  color:#4f674a!important;letter-spacing:.21em;
+  font-size:.71rem;
+}
+body.oliva-theme.propuesta-organica .celebration h2,
+body.oliva-theme.propuesta-organica .timing-title,
+body.oliva-theme.propuesta-organica .playlist h2,
+body.oliva-theme.propuesta-organica #regalos h2,
+body.oliva-theme.propuesta-organica .rsvp h2,
+body.oliva-theme.propuesta-organica .faq h2{
+  color:#3d523b!important;
+  font-family:'Cormorant Garamond',Georgia,serif!important;
+  font-weight:400;line-height:1.05;
+}
+body.oliva-theme.propuesta-organica .celebration h2 em{
+  color:#607c59!important;
+}
+body.oliva-theme.propuesta-organica .celebration-copy{
+  color:#4e5e4b!important;
+}
+body.oliva-theme.propuesta-organica .celebration-facts>div{
+  border-color:#c7cbb7!important;
+}
+body.oliva-theme.propuesta-organica .location-card{
+  background:#fffdf6!important;
+  border:1px solid #c5c2ac!important;
+  box-shadow:0 12px 34px rgba(50,63,43,.08)!important;
+  padding:clamp(18px,2vw,35px);
+  border-radius:3px!important;
+}
+body.oliva-theme.propuesta-organica .location-card .map-preview{
+  border:5px solid #f1eade;border-radius:3px;
+}
+body.oliva-theme.propuesta-organica .map-cta,
+body.oliva-theme.propuesta-organica .celebrate-cta{
+  background:#65744c!important;color:#fffdf4!important;
+  border:1px solid #65744c!important;border-radius:100px!important;
+  min-height:49px;box-shadow:none!important;
+}
+body.oliva-theme.propuesta-organica .map-cta:hover,
+body.oliva-theme.propuesta-organica .celebrate-cta:hover{
+  background:#42583c!important;
+}
+body.oliva-theme.propuesta-organica .timing{
+  padding:80px 0 90px!important;
+}
+body.oliva-theme.propuesta-organica .timing-title{
+  font-size:clamp(2.8rem,5.3vw,4.7rem);
+}
+body.oliva-theme.propuesta-organica .timing-intro{
+  color:#516049;font-family:'Cormorant Garamond',Georgia,serif;
+}
+body.oliva-theme.propuesta-organica .timing .timeline ol::before{
+  background:#b7c5aa!important;
+}
+body.oliva-theme.propuesta-organica .timing .moment-icon{
+  color:#65744c;background:#faf8f1!important;
+}
+body.oliva-theme.propuesta-organica .timing .moment-copy{
+  border-bottom:1px solid #d5d5c5;
+}
+body.oliva-theme.propuesta-organica .timing .moment-copy h3{
+  font-family:'Cormorant Garamond',Georgia,serif!important;font-weight:500;
+  color:#384b35!important;
+}
+body.oliva-theme.propuesta-organica .timing .moment-copy p{
+  color:#556f4e!important;font-weight:700;
+}
+body.oliva-theme.propuesta-organica .dress{
+  padding:100px 0!important;
+  background:
+    url('assets/herbario-flores-blancas-2027.svg') center top/100% auto no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,
+    linear-gradient(140deg,#d9decd,#e7e7da)!important;
+  background-size:100% auto,240px 240px,cover!important;
+}
+body.oliva-theme.propuesta-organica .dress .container{
+  width:min(calc(100% - 48px),690px);
+  padding:26px clamp(15px,4vw,42px)!important;
+  background:rgba(250,248,239,.62);
+  border-top:1px solid #a7b398!important;border-bottom:1px solid #a7b398!important;
+  border-left:0!important;border-right:0!important;
+}
+body.oliva-theme.propuesta-organica .dress h2{
+  color:#4e6845!important;
+  font:400 clamp(5.2rem,10vw,7.7rem)/.98 'Pinyon Script',cursive!important;
+}
+body.oliva-theme.propuesta-organica .dress p{color:#374935!important;}
+body.oliva-theme.propuesta-organica .dress .reserved-palette span{
+  box-shadow:0 0 0 2px rgba(255,255,255,.36);
+}
+body.oliva-theme.propuesta-organica .playlist{
+  padding:84px 0!important;
+  background:url('assets/textura-papel-algodon.svg') repeat,#f9f6ed!important;
+  background-size:240px 240px!important;
+}
+body.oliva-theme.propuesta-organica .playlist h2{
+  font-size:clamp(2.65rem,5vw,4.4rem);
+}
+body.oliva-theme.propuesta-organica .song-card{
+  background:#fffdf7!important;
+  border:1px solid #bfc7b5!important;border-radius:3px!important;
+  box-shadow:0 9px 24px rgba(53,66,47,.07)!important;
+}
+body.oliva-theme.propuesta-organica .wedding-form .form-submit,
+body.oliva-theme.propuesta-organica #regalos .pay,
+body.oliva-theme.propuesta-organica #regalos .copy{
+  border-radius:100px!important;
+  background:#65744c;color:#fffdf5;
+  min-height:49px;
+}
+body.oliva-theme.propuesta-organica #regalos{
+  padding-top:25px!important;
+}
+body.oliva-theme.propuesta-organica #regalos .gift-intro{
+  position:relative;
+}
+body.oliva-theme.propuesta-organica #regalos .gift-intro h2{
+  color:#43583a!important;
+}
+body.oliva-theme.propuesta-organica #regalos .gift{
+  background:#fffcf7!important;
+  border:1px solid #cacbb9!important;border-radius:8px!important;
+  box-shadow:0 9px 20px rgba(57,67,43,.07)!important;
+}
+body.oliva-theme.propuesta-organica #regalos .gift-caption h3{
+  color:#42513b!important;
+}
+body.oliva-theme.propuesta-organica #regalos .bank-section{
+  padding:90px 0!important;
+  background:url('assets/textura-papel-algodon.svg') repeat,#e9e8db!important;
+  background-size:240px 240px!important;
+}
+body.oliva-theme.propuesta-organica #regalos .bank-card{
+  background:#fffdf6!important;border:1px solid #b8c0ac!important;
+  border-radius:8px!important;box-shadow:0 9px 25px rgba(52,65,45,.07)!important;
+}
+body.oliva-theme.propuesta-organica .rsvp{
+  padding:104px 0!important;
+  background:
+    url('assets/herbario-flores-blancas-2027.svg') center top/100% auto no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,
+    #ecede4!important;
+  background-size:100% auto,240px 240px,auto!important;
+}
+body.oliva-theme.propuesta-organica .rsvp .rsvp-layout{
+  border:1px solid #bfc6b2!important;border-radius:5px!important;
+  box-shadow:0 11px 34px rgba(48,64,40,.08)!important;
+  background:rgba(255,253,247,.96)!important;
+}
+body.oliva-theme.propuesta-organica .rsvp .form-shell{
+  border:1px solid #d3d3c1!important;
+  border-radius:4px!important;box-shadow:none!important;
+  background:#fffdf7!important;
+}
+body.oliva-theme.propuesta-organica .faq{
+  padding:85px 0 100px!important;
+}
+body.oliva-theme.propuesta-organica .faq summary{
+  color:#41583b!important;
+  font-family:'Cormorant Garamond',Georgia,serif!important;
+  font-size:clamp(1.15rem,2.8vw,1.45rem);
+  min-height:60px;
+}
+body.oliva-theme.propuesta-organica .faq details{
+  border-color:#d0d0bd!important;
+}
+body.oliva-theme.propuesta-organica .footer{
+  padding:85px 0 105px!important;
+  background:
+    url('assets/herbario-flores-blancas-2027.svg') center bottom/100% auto no-repeat,
+    url('assets/textura-papel-algodon.svg') repeat,
+    #546846!important;
+  background-size:100% auto,240px 240px,auto!important;
+  border-top:9px solid #c6c8b0!important;
+}
+body.oliva-theme.propuesta-organica .footer-names{
+  font:400 clamp(4.5rem,8vw,7.5rem)/.96 'Pinyon Script',cursive!important;
+  color:#fffdf3!important;
+}
+body.oliva-theme.propuesta-organica .footer p{
+  color:#fff9e9!important;
+}
+
+/* MOBILE: order name → unretouched photo → countdown → CTA.
+   Keep graphics in paper backgrounds rather than absolute floating elements. */
+@media(max-width:850px){
+  body.oliva-theme.propuesta-organica .hero.romantic-hero{
+    padding-bottom:38px!important;
+    background:
+      url('assets/herbario-flores-blancas-2027.svg') center 55px/100% auto no-repeat,
+      url('assets/textura-papel-algodon.svg') repeat,
+      #faf7ef!important;
+    background-size:100% auto,240px 240px,auto!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .nav{
+    width:calc(100% - 32px)!important;
+    padding:14px 0!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .hero-content{
+    display:flex!important;
+    flex-direction:column;align-items:center;
+    width:min(calc(100% - 32px),660px)!important;
+    margin:18px auto 0!important;
+    padding:24px 18px 30px!important;
+    background:rgba(255,253,245,.76)!important;
+    border:1px solid #d4d0bd!important;
+    outline:0!important;
+    box-shadow:none!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .hero-announcement{
+    width:100%!important;margin:0!important;padding:12px 0 0!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .hero-announcement::after{
+    margin:12px auto 6px;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .eyebrow{
+    font-size:.68rem!important;margin:3px 0 16px!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero h1 .hero-name{
+    font-size:clamp(4.9rem,12.3vw,7.4rem)!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .herb-portrait{
+    width:min(100%,510px);height:auto;min-height:0;
+    margin:22px auto 0!important;
+    aspect-ratio:4/4.2;
+    padding:7px 7px 23px;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .herb-portrait .hero-photo{
+    width:100%!important;height:100%!important;
+    max-height:none!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .hero-countdown{
+    width:min(100%,510px)!important;margin:32px auto 0!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .button-light{
+    margin-top:21px!important;
+  }
+  body.oliva-theme.propuesta-organica .celebration-layout{
+    grid-template-columns:1fr!important;max-width:660px;
+  }
+  body.oliva-theme.propuesta-organica .celebration-story{text-align:center!important;}
+  body.oliva-theme.propuesta-organica .celebration-copy{margin:0 auto 22px!important;}
+  body.oliva-theme.propuesta-organica .celebration-facts{margin:24px auto!important;text-align:left;}
+  body.oliva-theme.propuesta-organica .footer{
+    background-size:100% auto,240px 240px,auto!important;
+  }
+}
+@media(max-width:600px){
+  body.oliva-theme.propuesta-organica .preview-bar{padding:7px 7px!important;}
+  body.oliva-theme.propuesta-organica .romantic-hero .nav{
+    width:calc(100% - 32px)!important;padding:10px 0!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .brand{
+    font-size:1.55rem;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .nav-link{
+    font-size:.65rem;letter-spacing:.10em;
+    padding:8px 12px;min-height:42px;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .hero-content{
+    width:calc(100% - 24px)!important;
+    padding:18px 15px 26px!important;
+    margin:10px auto 0!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero h1{
+    line-height:.9!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero h1 .hero-name{
+    font-size:clamp(3.65rem,16.3vw,5.4rem)!important;
+    line-height:.9!important;
+    white-space:nowrap!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero h1 .hero-amp{
+    font-size:2.15rem!important;margin:3px 0!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .hero-announcement .date{
+    font-size:1.35rem!important;margin:0!important;
+    letter-spacing:.2em!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .hero-mininote{
+    letter-spacing:.13em;font-size:.59rem;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .herb-portrait{
+    width:min(100%,490px);
+    aspect-ratio:1/1.06;
+    padding:6px 6px 20px;
+    margin-top:16px!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .herb-photo-paper{
+    left:6px;right:6px;bottom:20px;height:41px;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .hero-countdown{
+    padding:23px 3px 12px!important;
+    margin:28px auto 0!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .hero-countdown .countdown strong{
+    font-size:clamp(1.7rem,7vw,2.45rem)!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .hero-countdown .countdown span{
+    font-size:.54rem!important;letter-spacing:.01em!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .hero-countdown .countdown>div{
+    padding:0 2px!important;
+  }
+  body.oliva-theme.propuesta-organica .memories-strip{
+    padding:48px 0 54px!important;
+  }
+  body.oliva-theme.propuesta-organica .memories-heading{
+    align-items:flex-start;row-gap:13px;
+  }
+  body.oliva-theme.propuesta-organica .memories-heading-text span{
+    font-size:clamp(1.58rem,6.7vw,2.1rem);
+  }
+  body.oliva-theme.propuesta-organica .memories-arrow{
+    width:46px;height:46px;min-width:46px;min-height:46px;
+  }
+  body.oliva-theme.propuesta-organica .celebration{
+    padding:72px 0 80px!important;
+    background:
+      url('assets/herbario-flores-blancas-2027.svg') center top/100% auto no-repeat,
+      url('assets/textura-papel-algodon.svg') repeat,
+      #f0eee2!important;
+    background-size:100% auto,240px 240px,auto!important;
+  }
+  body.oliva-theme.propuesta-organica .celebration-layout{
+    width:calc(100% - 36px)!important;gap:28px;
+  }
+  body.oliva-theme.propuesta-organica .celebration h2{
+    font-size:clamp(2.65rem,10vw,3.4rem)!important;
+  }
+  body.oliva-theme.propuesta-organica .location-card{
+    padding:20px 15px!important;
+  }
+  body.oliva-theme.propuesta-organica .timing{
+    padding:58px 0 69px!important;
+  }
+  body.oliva-theme.propuesta-organica .timing-title{
+    font-size:clamp(2.6rem,9vw,3.4rem)!important;
+  }
+  body.oliva-theme.propuesta-organica .timing .moment-copy h3{
+    font-size:clamp(1.35rem,5vw,1.7rem)!important;
+  }
+  body.oliva-theme.propuesta-organica .dress{
+    padding:75px 0!important;
+    background:
+      url('assets/herbario-flores-blancas-2027.svg') center top/100% auto no-repeat,
+      url('assets/textura-papel-algodon.svg') repeat,
+      #e0e4d7!important;
+    background-size:100% auto,240px 240px,auto!important;
+  }
+  body.oliva-theme.propuesta-organica .dress .container{
+    width:calc(100% - 32px)!important;
+    padding:20px 10px!important;
+  }
+  body.oliva-theme.propuesta-organica .dress h2{
+    font-size:clamp(4.9rem,17vw,6.4rem)!important;
+  }
+  body.oliva-theme.propuesta-organica .playlist{
+    padding:69px 0!important;
+  }
+  body.oliva-theme.propuesta-organica #regalos .gift-intro{
+    padding-top:65px!important;
+  }
+  body.oliva-theme.propuesta-organica #regalos .bank-section{
+    padding:70px 0!important;
+  }
+  body.oliva-theme.propuesta-organica .rsvp{
+    padding:75px 0!important;
+    background:url('assets/textura-papel-algodon.svg') repeat,#edf0e5!important;
+    background-size:240px 240px!important;
+  }
+  body.oliva-theme.propuesta-organica .rsvp .rsvp-layout{
+    padding:23px 16px!important;
+  }
+  body.oliva-theme.propuesta-organica .faq{
+    padding:70px 0 86px!important;
+  }
+  body.oliva-theme.propuesta-organica .footer{
+    padding:78px 0 102px!important;
+    background:
+      url('assets/herbario-flores-blancas-2027.svg') center bottom/100% auto no-repeat,
+      #546846!important;
+    background-size:100% auto,auto!important;
+  }
+  body.oliva-theme.propuesta-organica .footer-names{
+    font-size:clamp(3.85rem,14vw,5.6rem)!important;
+  }
+}
+@media(max-width:365px){
+  body.oliva-theme.propuesta-organica .romantic-hero h1 .hero-name{
+    font-size:3.6rem!important;
+  }
+  body.oliva-theme.propuesta-organica .romantic-hero .hero-countdown .countdown strong{
+    font-size:1.72rem!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  body.oliva-theme.propuesta-organica .memory-slide img{transition:none!important}
+}

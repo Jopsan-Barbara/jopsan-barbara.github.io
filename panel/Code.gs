@@ -15,39 +15,117 @@ function doGet() {
     return HtmlService.createHtmlOutput('<!doctype html><html lang="es"><meta name="viewport" content="width=device-width,initial-scale=1"><body style="font:18px Arial;padding:40px"><h1>Acceso restringido</h1><p>Ingresa con la cuenta de Google autorizada para este matrimonio.</p></body></html>').setTitle('Acceso restringido');
   }
 }
+/* Conciliación para enlace único: evita contar dos veces a un invitado
+   registrado antes y después por su nombre completo. Nunca resuelve
+   coincidencias ambiguas automáticamente. */
+function normalizeGuestName_(value) {
+  return String(value || '').normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '').toLowerCase()
+    .replace(/[.,;:!¿?¡'"()]/g,' ').replace(/\s+/g,' ').trim();
+}
 function compile_(guests, answers) {
-  const index = new Map(), ids = new Set();
-  let unmatched = 0;
-  const publicAnswers=[];
+  const indexed = new Map(), ids = new Set(), publicAnswers = [];
+  let unmatched = 0, repeated = 0, conflicts = 0;
+  const reviewNames = [];
   guests.forEach(g => {
-    const id = String(g[0]).trim();
-    if (!String(g[1]).trim()) return;
+    const id = String(g[0] || '').trim();
+    if (!String(g[1] || '').trim()) return;
     if (id && ids.has(id)) throw new Error('Hay IDs de invitación duplicados. Revisa la planilla Invitados.');
     if (id) ids.add(id);
   });
   answers.forEach(a => {
-    const id = String(a[1]).trim();
-    if (!id || !String(a[2]).trim()) return;
-    if (id.startsWith('public-') && String(a[11])==='Web pública') { publicAnswers.push(a); return; }
+    const id = String(a[1] || '').trim();
+    if (!id || !String(a[2] || '').trim()) return;
+    if (id.startsWith('public-') && String(a[11]) === 'Web pública') {
+      publicAnswers.push(a);
+      return;
+    }
     if (!ids.has(id)) { unmatched++; return; }
-    if (index.has(id)) throw new Error('Hay respuestas duplicadas para una invitación. Revisa la planilla Respuestas.');
-    index.set(id,a);
+    if (indexed.has(id)) throw new Error('Hay respuestas duplicadas para una invitación. Revisa la planilla Respuestas.');
+    indexed.set(id, a);
   });
-  const rows = guests.filter(g => String(g[1]).trim()).map(g => {
-    const id = String(g[0]).trim(), a = index.get(id);
+  const rows = guests.filter(g => String(g[1] || '').trim()).map(g => {
+    const id = String(g[0] || '').trim(), a = indexed.get(id);
     const capacity = Number(g[4]);
-    if (!Number.isInteger(capacity) || capacity < 1 || capacity > 100) throw new Error('Hay una invitación con cupos inválidos. Revisa la planilla Invitados.');
+    if (!Number.isInteger(capacity) || capacity < 1 || capacity > 100)
+      throw new Error('Hay una invitación con cupos inválidos. Revisa la planilla Invitados.');
     const status = a ? String(a[5]).trim() : 'Pendiente';
-    if (!['Sí','No','Pendiente'].includes(status)) throw new Error('Hay una respuesta sin estado válido. Revisa Respuestas.');
+    if (!['Sí','No','Pendiente'].includes(status))
+      throw new Error('Hay una respuesta sin estado válido. Revisa Respuestas.');
     const people = status === 'Sí' ? Number(a[6]) : 0;
-    if (!Number.isInteger(people) || people < 0 || people > capacity || (status === 'Sí' && people < 1)) throw new Error('Revisa personas confirmadas y cupos en las planillas.');
-    const diet = a ? String(a[8]).trim() : '';
-    const normalized = diet.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[.!]/g,'').trim();
+    if (!Number.isInteger(people) || people < 0 || people > capacity || (status === 'Sí' && people < 1))
+      throw new Error('Revisa personas confirmadas y cupos en las planillas.');
+    const diet = a ? String(a[8] || '').trim() : '';
+    const normalized = normalizeGuestName_(diet).replace(/[.!]/g,'');
     const dietary = status === 'Sí' && !!diet && !/^(ningun[ao]s?|no|sin restricciones( alimentarias)?|ninguna restriccion( alimentaria)?|no tengo|no tenemos)$/.test(normalized);
-    return {url:id?'https://jopsan-barbara.github.io/?id='+encodeURIComponent(id):'',name:String(g[1]),capacity,status,people,dietary,diet,companions:a?String(a[7]):'',song:a?String(a[9]):'',message:a?String(a[10]):'',email:a?String(a[4]):String(g[2]),phone:String(g[3]),sent:String(g[5]),updated:a?String(a[0]):'',respondent:a?[a[2],a[3]].join(' '):''};
+    return {
+      url:'', name:String(g[1]), capacity, status, people, dietary, diet,
+      companions:a?String(a[7] || ''):'', song:a?String(a[9] || ''):'',
+      message:a?String(a[10] || ''):'', email:a?String(a[4] || ''):String(g[2] || ''),
+      phone:String(g[3] || ''), sent:String(g[5] || ''),
+      updated:a?String(a[0] || ''):'', respondent:a?[a[2],a[3]].join(' ').trim():''
+    };
   });
-  publicAnswers.forEach(a=>{const status=String(a[5]),people=status==='Sí'?Number(a[6]):0;if(!['Sí','No'].includes(status)||!Number.isInteger(people)||people<0||(status==='Sí'&&people<1)){unmatched++;return;}const name=[a[2],a[3]].join(' ').trim(),diet=String(a[8]||'');const dietary=status==='Sí'&&!!diet.trim()&&!/^(no|ninguna|ninguno|sin restricciones)([.!])?$/i.test(diet.trim());rows.push({url:'',name,capacity:people,status,people,dietary,diet,companions:String(a[7]||''),song:'',message:String(a[10]||''),email:String(a[4]||''),phone:'',sent:'Enlace general',updated:String(a[0]||''),respondent:name,public:true});});
-  return {rows,unmatched,missingIds:guests.filter(g=>String(g[1]).trim()&&!String(g[0]).trim()).length};
+  const byName = new Map();
+  rows.forEach((row, i) => {
+    const key = normalizeGuestName_(row.name);
+    if (!key) return;
+    if (!byName.has(key)) byName.set(key, []);
+    byName.get(key).push(i);
+  });
+  // Un mismo nombre completo puede enviar varias respuestas desde el enlace
+  // general. La última respuesta válida reemplaza a la anterior en el panel.
+  const latestByName = new Map();
+  publicAnswers.forEach(a => {
+    const status = String(a[5] || '').trim();
+    const people = status === 'Sí' ? Number(a[6]) : 0;
+    if (!['Sí','No'].includes(status) || !Number.isInteger(people) ||
+        people !== (status === 'Sí' ? 1 : 0)) { unmatched++; return; }
+    const name = [a[2],a[3]].join(' ').trim();
+    const key = normalizeGuestName_(name);
+    if (!key) { unmatched++; return; }
+    if (latestByName.has(key)) repeated++;
+    latestByName.set(key, {a, status, people, name});
+  });
+  latestByName.forEach(({a,status,people,name}, key) => {
+    const matches = byName.get(key) || [];
+    if (matches.length > 1) {
+      conflicts++;
+      reviewNames.push(name + ' — nombre duplicado en la lista');
+      return; // Evitar doble conteo hasta que los novios revisen la identidad.
+    }
+    const diet = String(a[8] || '');
+    const dietary = status === 'Sí' && !!diet.trim() &&
+      !/^(no|ninguna|ninguno|sin restricciones)([.!])?$/i.test(diet.trim());
+    if (matches.length === 1) {
+      const row = rows[matches[0]];
+      const previousStatus = row.status;
+      if (previousStatus !== 'Pendiente' && previousStatus !== status) {
+        conflicts++;
+        reviewNames.push(name + ' — cambió su respuesta');
+      }
+      Object.assign(row, {
+        status, people, dietary, diet,
+        respondent:name, updated:String(a[0] || ''),
+        sent:'Enlace general', public:true,
+        review:previousStatus !== 'Pendiente' && previousStatus !== status
+      });
+    } else {
+      // Sin coincidencia segura, mostrarlo una sola vez y señalarlo para revisión.
+      rows.push({
+        url:'', name, capacity:1, status, people, dietary, diet,
+        companions:String(a[7] || ''), song:'', message:String(a[10] || ''),
+        email:String(a[4] || ''), phone:'', sent:'Enlace general',
+        updated:String(a[0] || ''), respondent:name,
+        public:true, review:true
+      });
+      reviewNames.push(name + ' — no figura en la lista original');
+    }
+  });
+  return {
+    rows, unmatched, repeated, conflicts, reviewNames,
+    missingIds:0
+  };
 }
 function getDashboard() {
   const viewer = authorize_();
@@ -124,8 +202,8 @@ function selectRows(){if(!snapshot)return[];const query=clean($('search').value)
 function text(tag,value,cls){const el=document.createElement(tag);el.textContent=value;if(cls)el.className=cls;return el;}
 function render(){if(!snapshot)return;const rows=selectRows(),yes=rows.filter(r=>r.status==='Sí'),no=rows.filter(r=>r.status==='No'),pending=rows.filter(r=>r.status==='Pendiente');$('total').textContent=rows.length;$('capacity').textContent='Cupos asignados: '+rows.reduce((n,r)=>n+r.capacity,0);$('people').textContent=yes.reduce((n,r)=>n+r.people,0);$('yes').textContent='Invitaciones que asisten: '+yes.length;$('pending').textContent=pending.length;$('pendingSeats').textContent='Cupos por responder: '+pending.reduce((n,r)=>n+r.capacity,0);$('no').textContent=no.length;$('responseRate').textContent='Respuestas: '+(rows.length?Math.round((yes.length+no.length)/rows.length*100)+'%':'sin invitados');$('dietCount').textContent=yes.filter(r=>r.dietary).length+' invitaciones con indicaciones alimentarias';$('songCount').textContent=(rows.filter(r=>r.song.trim()).length+(snapshot.publicSongs||[]).length)+' canciones sugeridas';$('scope').textContent=rows.length+' de '+snapshot.rows.length+' invitaciones · Resumen y gráficos según filtros actuales.';
 $('publicSongs').replaceChildren(...(snapshot.publicSongs||[]).map(song=>text('p',song)));$('bars').replaceChildren();[['Asiste','Sí',yes.length,'sage'],['Pendiente','Pendiente',pending.length,'grey'],['No asiste','No',no.length,'plum']].forEach(([label,status,n,cls])=>{const bar=text('div','','bar'),button=text('button',label),track=text('div','','track'),fill=text('div','','fill '+cls);button.onclick=()=>{$('status').value=status;render();};fill.style.width=(rows.length?n/rows.length*100:0)+'%';track.append(fill);bar.append(button,track,text('b',n));$('bars').append(bar);});
-$('rows').replaceChildren();$('empty').hidden=rows.length>0;rows.forEach(r=>{const tr=document.createElement('tr'),name=document.createElement('td');name.append(text('strong',r.name));if(false&&r.url){const link=document.createElement('a');link.href=r.url;link.target='_blank';link.rel='noopener';link.textContent='Abrir invitación';name.append(document.createElement('br'),link);const field=document.createElement('input');field.readOnly=true;field.value=r.url;field.setAttribute('aria-label','Enlace de '+r.name);field.style.width='100%';field.onclick=()=>field.select();name.append(document.createElement('br'),field);}if(r.respondent)name.append(text('small','Respondió: '+r.respondent));const state=document.createElement('td');state.append(text('span',r.status==='Sí'?'Asiste':r.status==='No'?'No asiste':'Pendiente','badge '+(r.status==='No'?'no':r.status==='Pendiente'?'pending':'')));const info=document.createElement('td');if(r.dietary)info.append(text('span','Revisar alimentación','badge no'));const details=document.createElement('details');details.append(text('summary','Ver detalles'));const detail=text('div','','detail');[['Acompañantes',r.companions],['Alimentación',r.diet],['Canción',r.song],['Mensaje',r.message],['Correo',r.email],['Teléfono',r.phone],['Envío',r.sent],['Última respuesta',r.updated]].forEach(([k,v])=>{if(v)detail.append(text('p',k+': '+v));});if(!detail.childNodes.length)detail.append(text('p','Sin información adicional.'));details.append(detail);info.append(details);tr.append(name,state,text('td',r.capacity),text('td',r.status==='Pendiente'?'—':r.people),info);$('rows').append(tr);});
-$('warnings').replaceChildren();if(snapshot.unmatched)$('warnings').append(text('p',snapshot.unmatched+' respuestas sin invitación vinculada no se incluyen en los indicadores.','alert'));if(snapshot.missingIds)$('warnings').append(text('p',snapshot.missingIds+' invitaciones todavía no tienen ID. Revisa la planilla antes de enviar sus enlaces.','alert'));
+$('rows').replaceChildren();$('empty').hidden=rows.length>0;rows.forEach(r=>{const tr=document.createElement('tr'),name=document.createElement('td');name.append(text('strong',r.name));if(false&&r.url){const link=document.createElement('a');link.href=r.url;link.target='_blank';link.rel='noopener';link.textContent='Abrir invitación';name.append(document.createElement('br'),link);const field=document.createElement('input');field.readOnly=true;field.value=r.url;field.setAttribute('aria-label','Enlace de '+r.name);field.style.width='100%';field.onclick=()=>field.select();name.append(document.createElement('br'),field);}if(r.respondent)name.append(text('small','Respondió: '+r.respondent));if(r.review)name.append(text('small','Revisar identidad o cambio de respuesta.','alert'));const state=document.createElement('td');state.append(text('span',r.status==='Sí'?'Asiste':r.status==='No'?'No asiste':'Pendiente','badge '+(r.status==='No'?'no':r.status==='Pendiente'?'pending':'')));const info=document.createElement('td');if(r.dietary)info.append(text('span','Revisar alimentación','badge no'));const details=document.createElement('details');details.append(text('summary','Ver detalles'));const detail=text('div','','detail');[['Acompañantes',r.companions],['Alimentación',r.diet],['Canción',r.song],['Mensaje',r.message],['Correo',r.email],['Teléfono',r.phone],['Envío',r.sent],['Última respuesta',r.updated]].forEach(([k,v])=>{if(v)detail.append(text('p',k+': '+v));});if(!detail.childNodes.length)detail.append(text('p','Sin información adicional.'));details.append(detail);info.append(details);tr.append(name,state,text('td',r.capacity),text('td',r.status==='Pendiente'?'—':r.people),info);$('rows').append(tr);});
+$('warnings').replaceChildren();if(snapshot.unmatched)$('warnings').append(text('p',snapshot.unmatched+' respuestas sin invitación vinculada no se incluyen en los indicadores.','alert'));if(snapshot.repeated)$('warnings').append(text('p',snapshot.repeated+' respuestas repetidas por nombre se consolidaron para evitar contarlas dos veces. Verifica si son personas distintas con el mismo nombre.','alert'));if(snapshot.reviewNames&&snapshot.reviewNames.length)$('warnings').append(text('p','Respuestas a revisar: '+snapshot.reviewNames.join('; ')+'.','alert'));
 }
 function load(){if(!window.google||!google.script||!google.script.run){$('error').textContent='Esta vista debe abrirse desde su dirección privada de Google.';return;}$('refresh').disabled=true;$('error').textContent='';$('notice').textContent='Actualizando…';google.script.run.withSuccessHandler(data=>{snapshot=data;render();$('notice').textContent='Actualizado '+new Date(data.refreshedAt).toLocaleString('es-CL',{timeZone:'America/Santiago'})+' · '+data.viewer;$('refresh').disabled=false;}).withFailureHandler(error=>{$('error').textContent=error.message||'No se pudieron cargar las planillas.';$('notice').textContent=snapshot?'Se mantiene la última consulta; no se ha actualizado.':'Datos no disponibles.';$('refresh').disabled=false;}).getDashboard();}
 google.script.run.withSuccessHandler(data=>{$('giftSettings').elements.bank.value=data.bank;$('giftSettings').elements.gifts.value=data.gifts;}).withFailureHandler(error=>{$('giftStatus').textContent=error.message;}).getGiftSettings();

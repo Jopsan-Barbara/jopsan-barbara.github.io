@@ -2349,6 +2349,82 @@ body.oliva-theme .faq details[open] summary{color:#3f4d34;}
 }
 
 
+/* Ajuste editorial tras revisión visual de capturas 2026-11-22. */
+/* Mantener solamente el motivo botánico oliva elegido. Los ramilletes
+   rosados de diseños anteriores no pertenecen a esta identidad. */
+body.oliva-theme .dress .container::before,
+body.oliva-theme .playlist .container::after,
+body.oliva-theme .celebration::after{
+  content:none!important;
+  display:none!important;
+}
+
+/* Evitar que la caligrafía empuje el CTA principal fuera del primer
+   pliegue en pantallas de escritorio, sin recortar la fotografía. */
+@media (min-width:1051px){
+  body.oliva-theme .hero.romantic-hero{
+    min-height:740px;
+    padding-bottom:30px;
+  }
+  body.oliva-theme .romantic-hero .hero-content{
+    min-height:560px;
+    margin-top:24px;
+    padding-top:53px;
+    padding-bottom:30px;
+  }
+  body.oliva-theme .romantic-hero h1 .hero-name{
+    font-size:clamp(5.4rem,7.3vw,8.3rem);
+    line-height:.92;
+  }
+  body.oliva-theme .romantic-hero h1 .hero-amp{
+    font-size:clamp(2.1rem,2.8vw,3.2rem);
+    margin:2px 0 7px;
+  }
+  body.oliva-theme .romantic-hero .date{
+    margin-top:11px;
+  }
+  body.oliva-theme .romantic-hero .hero-countdown{
+    margin-top:26px;
+    padding-top:23px;
+    padding-bottom:14px;
+  }
+  body.oliva-theme .romantic-hero .button-light{
+    margin-top:19px;
+  }
+  body.oliva-theme .romantic-hero .hero-photo{
+    top:108px;
+    height:calc(100% - 152px);
+  }
+}
+
+/* Tarjetas editoriales uniformes: evitar un espacio muerto entre
+   el nombre del regalo, su precio y las acciones en desktop. */
+@media (min-width:851px){
+  body.oliva-theme #regalos .gift-caption{
+    padding:15px 9px 2px;
+  }
+  body.oliva-theme #regalos .gift-caption h3{
+    min-height:2.6em;
+    margin-bottom:8px;
+  }
+  body.oliva-theme #regalos .actions{
+    padding-top:11px;
+  }
+}
+
+/* En móviles las flores nunca se superponen a caras, formularios o botones. */
+@media(max-width:600px){
+  body.oliva-theme .hero.romantic-hero img.wedding-flowers--top{
+    left:-24%;
+    opacity:.24;
+  }
+  body.oliva-theme .hero.romantic-hero img.wedding-flowers--bottom{
+    right:-25%;
+    opacity:.16;
+  }
+}
+
+
 /* ===== forms-inline.css ===== */
 /* Formularios nativos de la invitación — Oliva. Sin ventanas emergentes ni formularios de prueba. */
 .wedding-form{display:grid;gap:18px;margin:0;padding:0;color:#394330;font:400 15px/1.45 'DM Sans','Inter',Arial,sans-serif;text-align:left;min-width:0}

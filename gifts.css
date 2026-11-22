@@ -17,7 +17,7 @@
 #regalos .pay:hover,#regalos .copy:hover{background:#602039}
 #regalos .transfer{text-decoration:none;font-size:12px;padding:4px 0;color:var(--wine);text-underline-offset:4px}
 #regalos .transfer:hover{text-decoration:underline}
-#regalos .catalog article:last-child{grid-column:2}
+
 #regalos .symbolic{text-align:center;color:var(--muted);font-size:12px;margin:-43px 24px 57px}
 #regalos .bank-section{background:var(--pink);padding:65px 24px 72px;scroll-margin-top:20px;border-block:1px solid #edd6da}
 #regalos .bank-wrap{max-width:960px;margin:auto;display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
@@ -87,3 +87,9 @@
   #regalos .bank-section {padding:38px 18px 42px;}
   #regalos .bank-wrap {gap:18px;}
 }
+
+#regalos .illustration{height:auto;aspect-ratio:1}
+#regalos .gift-caption{text-align:center;padding:14px 5px 0}
+#regalos .gift-caption h3{font:500 1.05rem/1.35 Georgia,serif;margin:0 0 6px;color:var(--dark)}
+#regalos .gift-caption strong{font-size:1.1rem;color:var(--wine)}
+#regalos .transfer{display:flex;min-height:44px;align-items:center;justify-content:center;gap:6px}

@@ -10,7 +10,7 @@ function moveAlbum(direction) {
 document.querySelector('#prev').onclick = () => moveAlbum(-1);
 document.querySelector('#next').onclick = () => moveAlbum(1);
 function countdown() {
-  const remaining = Math.max(0, Math.floor((Date.parse('2027-02-27T12:00:00-03:00') - Date.now()) / 1000));
+  const remaining = Math.max(0, Math.floor((Date.parse('2027-02-27T14:30:00-03:00') - Date.now()) / 1000));
   const values = [Math.floor(remaining/86400), Math.floor(remaining/3600)%24, Math.floor(remaining/60)%60];
   document.querySelector('#count').textContent = remaining ? 'Faltan ' + values[0] + ' d · ' + values[1] + ' h · ' + values[2] + ' min' : '¡Llegó el gran día!';
 }

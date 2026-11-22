@@ -546,3 +546,257 @@ body.oliva-theme .memory-slide img{width:100%;height:100%;object-fit:cover;objec
 @media(max-width:600px){
   body.oliva-theme .memory-slide{flex-basis:min(77vw,330px);width:min(77vw,330px);height:clamp(305px,93vw,425px);}
 }
+
+
+/* Refinamiento UX 2026-11-22: mobile-first, identidad editorial Oliva. */
+/* Los colores suaves son decoración; textos y acciones usan verde profundo. */
+body.oliva-theme{
+  --olive-ivory:#f6eddc;
+  --olive-sand:#d6c8aa;
+  --olive-sage:#8f9c6d;
+  --olive-deep:#65744c;
+  --olive-dark:#3f4d34;
+  --olive-paper:#fcf9f1;
+  --olive-ink:#374032;
+  --olive-muted:#5b6352;
+  --olive-line:#d8d5c8;
+  line-height:1.66;
+  text-rendering:optimizeLegibility;
+}
+body.oliva-theme .section{scroll-margin-top:16px;}
+body.oliva-theme .section-kicker,
+body.oliva-theme .gift-kicker,
+body.oliva-theme .location-eyebrow{color:#4d603d;}
+body.oliva-theme .hero.romantic-hero{background:
+  radial-gradient(ellipse at 90% 28%,rgba(143,156,109,.11),transparent 40%),
+  linear-gradient(135deg,#f6eddc,#fcf9f1 65%,#f6eddc);}
+body.oliva-theme .romantic-hero .hero-content{
+  box-shadow:0 12px 40px rgba(47,61,39,.07);
+}
+body.oliva-theme .romantic-hero .hero-countdown{box-shadow:none;}
+body.oliva-theme .romantic-hero .hero-countdown .countdown strong{
+  font-variant-numeric:tabular-nums;
+}
+body.oliva-theme .romantic-hero h1 .hero-name{
+  text-wrap:nowrap;
+}
+body.oliva-theme .romantic-hero .nav-link,
+body.oliva-theme .romantic-hero .button-light,
+body.oliva-theme .celebrate-cta,
+body.oliva-theme .map-cta{
+  min-height:48px;
+}
+body.oliva-theme .memory-slide img{
+  filter:grayscale(100%) !important;
+  -webkit-filter:grayscale(100%) !important;
+}
+body.oliva-theme .memories-arrow{
+  width:48px;height:48px;min-width:48px;min-height:48px;
+  font-size:1.7rem;touch-action:manipulation;
+}
+body.oliva-theme .memories-controls{gap:8px;}
+body.oliva-theme .memories-viewport{overscroll-behavior-inline:contain;}
+body.oliva-theme .celebration-facts strong{overflow-wrap:anywhere;}
+body.oliva-theme .location-card{overflow:hidden;}
+body.oliva-theme .map-preview iframe{width:100%;height:100%;border:0;}
+body.oliva-theme .timing .timeline-item{min-width:0;}
+body.oliva-theme .timing .moment-copy p{color:#4a5d38;}
+body.oliva-theme .dress::after,
+body.oliva-theme .celebration::before,
+body.oliva-theme .rsvp::before{
+  pointer-events:none;
+}
+body.oliva-theme .dress .reserved-palette li{
+  min-width:61px;font-size:.79rem;color:var(--olive-ink);
+}
+body.oliva-theme .dress .reserved-palette span{
+  width:54px;height:54px;margin-inline:auto;
+}
+body.oliva-theme .playlist p{color:var(--olive-muted);}
+body.oliva-theme .song-card,.form-shell{
+  max-width:100%;min-width:0;
+}
+body.oliva-theme .wedding-form .form-submit{
+  min-height:50px;touch-action:manipulation;
+}
+body.oliva-theme .wedding-form .choice{
+  min-height:50px;touch-action:manipulation;
+}
+body.oliva-theme #regalos .gift{
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+body.oliva-theme #regalos .illustration img{
+  filter:none!important;
+  -webkit-filter:none!important;
+}
+body.oliva-theme #regalos .pay,
+body.oliva-theme #regalos .transfer,
+body.oliva-theme #regalos .copy{
+  touch-action:manipulation;
+}
+body.oliva-theme #regalos .transfer{min-height:48px;line-height:1.35;}
+body.oliva-theme #regalos .bank-card dd{overflow-wrap:anywhere;}
+body.oliva-theme .faq summary{
+  cursor:pointer;touch-action:manipulation;
+}
+body.oliva-theme .faq details[open] summary{color:#3f4d34;}
+
+/* Desktop: bloques con proporciones de una invitación impresa, no un dashboard. */
+@media(min-width:851px){
+  body.oliva-theme .romantic-hero .hero-content{margin-top:34px;}
+  body.oliva-theme .celebration-layout{align-items:center;}
+  body.oliva-theme .timing .timeline{margin-top:42px;}
+}
+
+/* Tablet: la lectura y las fotografías se ordenan en una columna editorial. */
+@media(max-width:850px){
+  body.oliva-theme .romantic-hero .hero-content{box-shadow:none;}
+  body.oliva-theme .memories-heading{flex-wrap:wrap;}
+  body.oliva-theme .memories-arrow{width:46px;height:46px;min-width:46px;min-height:46px;}
+}
+
+/* Mobile: botones cómodos, itinerario compacto y regalos con ilustración lateral. */
+@media(max-width:600px){
+  body.oliva-theme{font-size:16px;line-height:1.6;}
+  body.oliva-theme .container{width:calc(100% - 38px);}
+  body.oliva-theme .section{padding:58px 0;}
+  body.oliva-theme .hero.romantic-hero{border-width:5px;padding-bottom:30px;}
+  body.oliva-theme .romantic-hero .nav{width:calc(100% - 28px);}
+  body.oliva-theme .romantic-hero .hero-content{
+    width:calc(100% - 20px);padding-left:0;padding-right:0;
+  }
+  body.oliva-theme .romantic-hero h1{max-width:100%;}
+  body.oliva-theme .romantic-hero h1 .hero-name{
+    font-size:clamp(3.8rem,16.7vw,6.3rem);
+    line-height:1.02;letter-spacing:-.026em;
+    white-space:nowrap;
+  }
+  body.oliva-theme .romantic-hero h1 .hero-amp{
+    margin:0 0 4px;font-size:clamp(2rem,9vw,2.8rem);
+  }
+  body.oliva-theme .romantic-hero .date{
+    font-size:1.48rem;letter-spacing:.12em;padding-inline:10px;
+  }
+  body.oliva-theme .romantic-hero .hero-countdown{
+    margin-top:34px;padding:25px 5px 14px;
+  }
+  body.oliva-theme .romantic-hero .hero-countdown .countdown strong{
+    font-size:clamp(1.85rem,8vw,3rem);
+  }
+  body.oliva-theme .romantic-hero .hero-countdown .countdown span{
+    font-size:.68rem;line-height:1.4;
+  }
+  body.oliva-theme .hero.romantic-hero img.wedding-flowers--top{
+    top:103px;left:-22%;width:164px;opacity:.26;
+  }
+  body.oliva-theme .hero.romantic-hero img.wedding-flowers--bottom{
+    right:-24%;bottom:14%;width:142px;opacity:.19;
+  }
+  body.oliva-theme .memories-strip{padding:46px 0 55px;}
+  body.oliva-theme .memories-heading{gap:12px;}
+  body.oliva-theme .memories-heading-text span{
+    font-size:clamp(1.55rem,5.7vw,2rem);
+  }
+  body.oliva-theme .memories-controls{margin-left:auto;gap:8px;}
+  body.oliva-theme .memories-counter{font-size:.73rem;min-width:59px;}
+  body.oliva-theme .memories-arrow{
+    width:44px;height:44px;min-width:44px;min-height:44px;font-size:1.6rem;
+  }
+  body.oliva-theme .celebration .celebration-story{text-align:center;}
+  body.oliva-theme .celebration h2{
+    font-size:clamp(2.8rem,10.5vw,4rem);line-height:1.03;
+  }
+  body.oliva-theme .celebration-facts{max-width:390px;}
+  body.oliva-theme .location-card{padding:18px;}
+  body.oliva-theme .map-preview{height:250px;}
+  body.oliva-theme .timing .timeline{margin-top:28px;padding:0 17px;}
+  body.oliva-theme .timing .timeline ol{padding:0;}
+  body.oliva-theme .timing .timeline ol::before{left:27px;}
+  body.oliva-theme .timing .timeline-item,
+  body.oliva-theme .timing .timeline-item:nth-child(even){
+    min-height:85px;gap:12px;padding:0;
+  }
+  body.oliva-theme .timing .moment-icon{
+    width:54px;height:62px;flex:0 0 54px;
+  }
+  body.oliva-theme .timing .moment-icon svg{width:29px;height:29px;}
+  body.oliva-theme .timing .moment-copy{
+    padding:15px 0;gap:2px;
+    grid-template-columns:1fr;
+  }
+  body.oliva-theme .timing .moment-copy h3{
+    font-size:clamp(1.35rem,5vw,1.65rem);line-height:1.16;
+  }
+  body.oliva-theme .timing .moment-copy p{
+    grid-column:1;font-size:.79rem;white-space:normal;
+  }
+  body.oliva-theme .dress h2{font-size:clamp(4.5rem,16vw,6rem);}
+  body.oliva-theme .dress .reserved-palette{
+    gap:16px 12px;justify-content:center;
+  }
+  body.oliva-theme .dress .reserved-palette li{min-width:65px;font-size:.72rem;}
+  body.oliva-theme .dress .reserved-palette span{width:46px;height:46px;}
+  body.oliva-theme #regalos .gift-intro{padding:62px 21px 30px;}
+  body.oliva-theme #regalos .catalog{
+    width:min(calc(100% - 30px),480px);
+    grid-template-columns:1fr;gap:13px;margin-bottom:48px;
+  }
+  body.oliva-theme #regalos .gift{
+    display:grid;
+    grid-template-columns:minmax(112px,37%) minmax(0,1fr);
+    grid-template-areas:"illustration caption" "illustration actions";
+    gap:5px 13px;align-items:center;
+    padding:10px;min-width:0;
+  }
+  body.oliva-theme #regalos .illustration{
+    grid-area:illustration;min-height:150px;height:100%;
+    max-height:235px;aspect-ratio:auto;align-self:stretch;
+    background:#f2ecdf;
+  }
+  body.oliva-theme #regalos .illustration img{
+    width:100%;height:100%;object-fit:contain;
+  }
+  body.oliva-theme #regalos .gift-caption{
+    grid-area:caption;min-width:0;text-align:left;padding:4px 0 0;
+  }
+  body.oliva-theme #regalos .gift-caption h3{
+    min-height:0;font-size:clamp(1.22rem,4vw,1.5rem)!important;
+    line-height:1.14;margin:0 0 7px;
+    overflow-wrap:anywhere;
+  }
+  body.oliva-theme #regalos .gift-caption strong{
+    font-size:.95rem;line-height:1.25;
+  }
+  body.oliva-theme #regalos .actions{
+    grid-area:actions;min-width:0;gap:2px;padding:5px 0 0;
+  }
+  body.oliva-theme #regalos .pay{
+    width:100%;min-height:44px;font-size:.74rem;line-height:1.3;
+    padding:8px;
+  }
+  body.oliva-theme #regalos .transfer{
+    min-height:42px;font-size:.75rem;padding:5px 2px;
+  }
+  body.oliva-theme #regalos .bank-section{padding:53px 18px;}
+  body.oliva-theme #regalos .bank-card{padding:21px 18px;}
+  body.oliva-theme #regalos .bank-card dl div{grid-template-columns:90px minmax(0,1fr);}
+  body.oliva-theme #regalos .bank-card dt{letter-spacing:0;font-size:.66rem;}
+  body.oliva-theme .faq summary{min-height:61px;padding-block:16px;}
+  body.oliva-theme .footer{padding-block:53px;}
+  body.oliva-theme .footer-names{font-size:clamp(3.9rem,15vw,6rem);}
+}
+
+@media(max-width:370px){
+  body.oliva-theme .romantic-hero h1 .hero-name{font-size:clamp(3.6rem,16.4vw,4.15rem);}
+  body.oliva-theme .romantic-hero .hero-countdown .countdown strong{font-size:1.85rem;}
+  body.oliva-theme .romantic-hero .hero-countdown .countdown span{font-size:.62rem;}
+  body.oliva-theme #regalos .gift{
+    grid-template-columns:minmax(100px,34%) minmax(0,1fr);gap:4px 10px;
+  }
+  body.oliva-theme #regalos .gift-caption h3{font-size:1.16rem!important;}
+  body.oliva-theme #regalos .pay{font-size:.7rem;}
+}
+
+@media(hover:none){
+  body.oliva-theme #regalos .gift:hover{transform:none;box-shadow:0 11px 30px rgba(44,58,39,.065);}
+}

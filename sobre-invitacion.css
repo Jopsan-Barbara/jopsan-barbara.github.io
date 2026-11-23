@@ -68,3 +68,78 @@ html.sobre-prototipo body.sobre-bloqueado{height:100%;overflow:hidden!important}
 @media(max-width:520px){.sobre-intro{padding:17px 12px}.sobre-intro__content{max-width:98%}.sobre-intro__kicker{font-size:10px!important;letter-spacing:.17em}.sobre-intro__title{font-size:clamp(47px,12.4vw,67px)!important;line-height:.98!important}.sobre-intro__date{font-size:11px!important;letter-spacing:.09em!important;margin:7px 0 19px!important}.sobre-intro__button{width:min(315px,80vw,44vh)}.sobre-intro__help{font-size:17px!important}.sobre-intro__botanics span{opacity:.4}}
 @media(max-width:360px){.sobre-intro__button{width:min(285px,80vw,40vh)}.sobre-intro__title{font-size:clamp(43px,11.5vw,56px)!important}}
 @media(prefers-reduced-motion:reduce){.sobre-intro,.sobre-intro *{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important}}
+
+/* Ajustes de fidelidad respecto de la referencia editorial - revisión 5 */
+.sobre-intro{
+  background-color:#9ba589;
+  background-image:linear-gradient(115deg,rgba(45,66,47,.10),transparent 38%,rgba(240,228,190,.075) 61%,rgba(38,62,47,.09)),url("assets/sobre-fondo-editorial.svg");
+  background-position:center;
+}
+.sobre-intro::before{
+  background:radial-gradient(ellipse at 50% 45%,rgba(255,250,225,.065) 0%,transparent 47%,rgba(55,66,46,.055) 100%);
+}
+.sobre-intro__botanics{opacity:.9}
+.sobre-intro__botanics span{
+  width:clamp(320px,33vw,530px);
+  aspect-ratio:1.7;
+  opacity:.76;
+  background-image:url("assets/herbario-flores-acuarela.webp");
+  mix-blend-mode:screen;
+  filter:saturate(.64) contrast(.89) brightness(.97);
+  -webkit-mask-image:radial-gradient(ellipse 82% 80% at 40% 42%,#000 0%,rgba(0,0,0,.68) 41%,transparent 83%);
+  mask-image:radial-gradient(ellipse 82% 80% at 40% 42%,#000 0%,rgba(0,0,0,.68) 41%,transparent 83%);
+}
+.sobre-intro__botanics .botanic--tl{top:-48px;left:-96px;transform:rotate(4deg)}
+.sobre-intro__botanics .botanic--tr{top:-80px;right:-135px;transform:rotate(181deg)}
+.sobre-intro__botanics .botanic--bl{bottom:-96px;left:-98px;transform:rotate(-4deg)}
+.sobre-intro__botanics .botanic--br{bottom:-98px;right:-93px;transform:rotate(182deg)}
+.sobre-intro__kicker{font-size:clamp(11px,1.1vw,14px)!important;letter-spacing:.31em}
+.sobre-intro__title{margin:5px 0 9px!important;line-height:1.1!important}
+.sobre-intro__date{font-size:clamp(11px,1.1vw,14px)!important;letter-spacing:.19em!important;margin:0 0 clamp(22px,3vh,33px)!important}
+.sobre-intro__button{width:min(340px,76vw,47vh)}
+.sobre-intro__scene{filter:drop-shadow(0 5px 2px rgba(58,61,43,.15)) drop-shadow(4px 14px 8px rgba(57,64,45,.16)) drop-shadow(10px 23px 18px rgba(39,47,37,.13))}
+.sobre-intro__envelope-back{
+  background-image:linear-gradient(115deg,rgba(255,255,255,.38),rgba(241,234,219,.06) 40%,rgba(122,101,73,.04)),url("assets/sobre-papel-realista.svg");
+  box-shadow:inset 0 0 3px rgba(144,122,85,.14);
+}
+.sobre-intro__envelope-back::after{inset:2px;border:0}
+.sobre-intro__side-left{
+  background-image:linear-gradient(93deg,rgba(158,133,91,.12),rgba(255,255,255,.14) 64%),url("assets/sobre-papel-realista.svg");
+}
+.sobre-intro__side-right{
+  background-image:linear-gradient(267deg,rgba(141,115,75,.15),rgba(255,255,255,.16) 65%),url("assets/sobre-papel-realista.svg");
+}
+.sobre-intro__pocket{
+  background-image:linear-gradient(0deg,rgba(181,156,110,.12),rgba(255,253,248,.15) 56%,rgba(255,255,255,.06)),url("assets/sobre-papel-realista.svg");
+}
+.sobre-intro__flap{
+  background-image:linear-gradient(167deg,rgba(255,255,255,.35),rgba(198,178,141,.095) 67%,rgba(136,111,72,.17)),url("assets/sobre-papel-realista.svg");
+  filter:drop-shadow(0 3px 3px rgba(110,89,59,.16));
+}
+.sobre-intro__seams{stroke:#ae9568;stroke-width:.58;opacity:.27}
+.sobre-intro__ribbon{top:56.7%;opacity:.76}
+.sobre-intro__floral{
+  left:37%;top:26%;width:77%;height:51%;
+  filter:saturate(.57) sepia(.04) brightness(1.05) contrast(.96) drop-shadow(2px 4px 3px rgba(54,65,45,.24));
+  transform:rotate(-2deg);
+}
+.sobre-intro__seal{
+  top:55.2%;left:49%;
+  border:3px solid #a97b39;
+  box-shadow:inset 0 0 0 1px rgba(255,239,185,.82),inset 0 0 0 4px rgba(119,83,43,.32),2px 5px 7px rgba(57,53,37,.32),0 11px 10px rgba(51,55,38,.13);
+}
+.sobre-intro__help{margin-top:clamp(19px,3vh,29px)!important;font-size:clamp(18px,2.2vw,22px)!important}
+.sobre-intro__skip{margin-top:3px!important}
+@media(max-height:740px){
+ .sobre-intro__button{width:min(285px,72vw,42vh)}
+ .sobre-intro__date{margin-bottom:13px!important}
+ .sobre-intro__help{margin-top:8px!important}
+ .sobre-intro__title{margin-bottom:3px!important}
+}
+@media(max-width:520px){
+ .sobre-intro__title{font-size:clamp(42px,11.5vw,62px)!important;line-height:1.04!important;margin:10px 0 7px!important}
+ .sobre-intro__date{font-size:10px!important;letter-spacing:.10em!important;margin-bottom:clamp(15px,2.4vh,24px)!important}
+ .sobre-intro__button{width:min(315px,78vw,42vh)}
+ .sobre-intro__help{font-size:17px!important;margin-top:12px!important}
+ .sobre-intro__botanics span{opacity:.51}
+}

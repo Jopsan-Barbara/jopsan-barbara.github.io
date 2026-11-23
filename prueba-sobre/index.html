@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="../herbario-florales-prueba.css?v=20261123-fotos-color-1">
   <link rel="stylesheet" href="../herbario-sobre-aprobado.css?v=20261123-oliva-fotografico-1">
   <link rel="stylesheet" href="../sobre-invitacion.css?v=20261123-foto6">
-  <link rel="stylesheet" href="../sobre-musica.css?v=20261123-clip1">
+  <link rel="stylesheet" href="../sobre-musica.css?v=20261123-mp3-1">
 </head>
 <body class="oliva-theme propuesta-organica flower-test is-defined sobre-bloqueado">
 
@@ -72,18 +72,11 @@
       </button>
       <p class="sobre-intro__help">Toca el sello para abrir tu invitación</p>
       <button type="button" id="sobre-omitir" class="sobre-intro__skip">Ir directamente a la invitación</button>
-      <button type="button" id="sobre-musica-activar" class="sobre-intro__music-start" aria-controls="sobre-musica-panel">♫ Escuchar nuestra canción</button>
-      <small class="sobre-intro__music-note">Del 2:30 al 3:09 · una sola vez</small>
+      <button type="button" id="sobre-musica-activar" class="sobre-intro__music-start" aria-pressed="false">♫ Escuchar nuestra canción</button>
+      <small class="sobre-intro__music-note">39 segundos · una sola vez</small>
+      <small id="sobre-musica-estado" class="sobre-intro__music-note" role="status" aria-live="polite" hidden></small>
+      <audio id="sobre-musica-audio" src="../assets/sobre-cancion-0230-0309.mp3" preload="none" aria-label="Nuestra canción"></audio>
     </div>
-    <aside id="sobre-musica-panel" class="sobre-intro__music-panel" aria-label="Reproductor de la canción de los novios" hidden>
-      <div class="sobre-intro__music-header">
-        <span class="sobre-intro__music-caption">Nuestra canción · 2:30–3:09</span>
-        <button type="button" id="sobre-musica-detener" class="sobre-intro__music-close">Detener música</button>
-      </div>
-      <div id="sobre-musica-frame" class="sobre-intro__music-frame"></div>
-      <p id="sobre-musica-estado" class="sobre-intro__music-legend" role="status">Si no comienza automáticamente, toca Reproducir en el video.</p>
-      <small class="sobre-intro__music-legend">Reproductor oficial de YouTube. <a href="https://www.youtube.com/watch?v=YOQGBzNCe-g&amp;t=150s" target="_blank" rel="noopener noreferrer">Abrir canción en YouTube</a></small>
-    </aside>
   </section>
   <button id="sobre-repetir" class="sobre-repetir" type="button" hidden>Volver a ver el sobre</button>
 
@@ -347,7 +340,7 @@
       document.querySelectorAll('[data-pay]').forEach(a=>{a.removeAttribute('data-pay');a.hidden=true;});
     })();
   </script>
-  <script src="../sobre-musica.js?v=20261123-clip1"></script>
+  <script src="../sobre-musica.js?v=20261123-mp3-1"></script>
   <script src="../sobre-invitacion.js?v=20261123-conexion-musica-2"></script>
 </body>
 </html>

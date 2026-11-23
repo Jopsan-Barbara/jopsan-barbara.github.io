@@ -21,6 +21,7 @@
           shown = true;
           if (!photoOk) root.classList.add('sobre-photo-missing');
           root.classList.add('sobre-visual-ready');
+          window.dispatchEvent(new Event('sobre-visual-ready'));
         };
         const loadImage = (src) => new Promise(resolve => {
           const image = new Image();
@@ -383,7 +384,7 @@
       document.querySelectorAll('[data-pay]').forEach(a=>{a.removeAttribute('data-pay');a.hidden=true;});
     })();
   </script>
-  <script src="../sobre-musica.js?v=20261123-auto36-1"></script>
+  <script src="../sobre-musica.js?v=20261123-auto36-2"></script>
   <script src="../sobre-invitacion.js?v=20261123-auto36-2"></script>
 </body>
 </html>

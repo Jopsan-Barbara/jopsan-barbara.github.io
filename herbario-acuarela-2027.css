@@ -35,7 +35,12 @@ body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .hero.romantic-hero .
   border-color:#c6c8b2!important;
   background-color:#fffcf5!important;
 }
-body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .romantic-hero .herb-portrait .hero-photo,
+/* Foto de portada original a color; no altera el archivo fotográfico. */
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .romantic-hero .herb-portrait .hero-photo {
+  filter:none!important;
+  -webkit-filter:none!important;
+}
+/* Solo las fotografías del carrusel conservan el blanco y negro. */
 body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .memory-slide img {
   filter:grayscale(100%)!important;
   -webkit-filter:grayscale(100%)!important;

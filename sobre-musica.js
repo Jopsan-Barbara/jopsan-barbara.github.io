@@ -1,190 +1,202 @@
 (() => {
   'use strict';
 
-  // El MP3 alojado en GitHub cubre 2:30–3:09. Iniciamos a los 3 s:
-  // lo que escucha el invitado equivale a 2:33–3:09 (36 segundos).
+  // Se utiliza el mismo MP3 local (2:30–3:09).
+  // Iniciar en el segundo 3 equivale a 2:33–3:09 de la canción original.
+  // No hay bucle, ni bloqueo por sesión: solo una reproducción por entrada al sobre.
   const audio = document.getElementById('sobre-musica-audio');
   const button = document.getElementById('sobre-musica-activar');
+  const floating = document.getElementById('sobre-musica-flotante');
   const status = document.getElementById('sobre-musica-estado');
-  if (!audio || !button || !status) return;
+  if (!audio || !button || !floating || !status) return;
 
-  const SESSION_KEY = 'jopsan-barbara-cancion-sobre-0233-v3';
-  const CLIP_START = 3;
-  const CLIP_END = 39;
-  const DEFAULT_VOLUME = .82;
-  const FADE_MS = 1200;
-
-  let consumed = false;
-  let started = false;
+  const START = 3;
+  const END = 39;
+  const VOLUME = .82;
+  let startedThisVisit = false;
   let pending = false;
-  let fading = false;
-  let stopping = false;
-  let fadeFrame = null;
-  let interval = null;
+  let finished = false;
+  let muted = false;
+  let inHerbario = false;
+  let playRequest = 0;
+  let cutoffTimer = null;
 
-  try { consumed = sessionStorage.getItem(SESSION_KEY) === '1'; } catch (_) {}
   audio.loop = false;
   audio.preload = 'auto';
-  audio.volume = DEFAULT_VOLUME;
+  audio.volume = VOLUME;
   audio.muted = false;
 
-  function message(text) {
-    status.hidden = !text;
-    status.textContent = text || '';
+  function note(value) {
+    status.hidden = !value;
+    status.textContent = value || '';
   }
 
-  function remember() {
-    if (consumed) return;
-    consumed = true;
-    try { sessionStorage.setItem(SESSION_KEY, '1'); } catch (_) {}
+  function isActive() {
+    return startedThisVisit && !finished && !audio.paused && !audio.ended;
   }
 
-  function updateButton() {
-    if (stopping || (consumed && !started)) {
-      button.disabled = true;
-      button.textContent = 'Canción finalizada';
-      button.setAttribute('aria-pressed', 'false');
-    } else if (started && !audio.paused) {
-      button.disabled = false;
-      button.textContent = audio.muted ? 'Activar sonido' : 'Silenciar música';
-      button.setAttribute('aria-pressed', String(!audio.muted));
-    } else {
-      button.disabled = false;
-      button.textContent = '♫ Activar música';
-      button.setAttribute('aria-pressed', 'false');
+  function updateControls() {
+    const sounding = isActive();
+    const label = finished
+      ? 'Volver a escuchar'
+      : sounding
+        ? (muted ? 'Activar sonido' : 'Silenciar música')
+        : (pending ? 'Preparando música…' : '♫ Activar música');
+    button.textContent = label;
+    button.disabled = pending && !sounding;
+    button.setAttribute('aria-pressed', String(sounding && !muted));
+
+    floating.hidden = !inHerbario || !sounding;
+    floating.textContent = muted ? '♫ Activar sonido' : '♫ Silenciar música';
+    floating.setAttribute('aria-pressed', String(sounding && !muted));
+
+    const noteElement = document.getElementById('sobre-musica-nota');
+    if (noteElement) {
+      noteElement.textContent = finished
+        ? 'Terminó · vuelve al principio para escucharla'
+        : '36 segundos · sin repetición automática';
     }
   }
 
-  function stopNow() {
-    if (fadeFrame !== null) cancelAnimationFrame(fadeFrame);
-    fadeFrame = null;
-    if (interval !== null) clearInterval(interval);
-    interval = null;
-    fading = false;
-    pending = false;
-    started = false;
-    stopping = true;
-    audio.pause();
-    audio.loop = false;
-    audio.muted = false;
-    audio.volume = DEFAULT_VOLUME;
-    updateButton();
-    message('');
-  }
-
-  function fadeAndStop() {
-    if (stopping || fading) return;
-    if (audio.paused || !started) {
-      stopping = true;
-      stopNow();
-      return;
-    }
-    fading = true;
-    const initial = audio.volume;
-    const start = performance.now();
-    function tick(now) {
-      if (!fading) return;
-      const fraction = Math.min(1, (now - start) / FADE_MS);
-      audio.volume = Math.max(0, initial * Math.pow(1 - fraction, 1.65));
-      if (fraction >= 1 || audio.paused || audio.ended) stopNow();
-      else fadeFrame = requestAnimationFrame(tick);
-    }
-    fadeFrame = requestAnimationFrame(tick);
-  }
-
-  function startAtCut() {
-    // Nunca reproducir la introducción descartada, ni el resto del tema.
+  function seekStart() {
     try {
-      if (audio.currentTime < CLIP_START || audio.currentTime >= CLIP_END) {
-        audio.currentTime = CLIP_START;
+      if (audio.currentTime < START - .08 || audio.currentTime >= END - .08) {
+        audio.currentTime = START;
       }
     } catch (_) {}
   }
 
-  audio.addEventListener('loadedmetadata', startAtCut);
-  audio.addEventListener('playing', () => {
-    if (stopping || fading) return;
-    // En conexiones lentas puede empezar un instante antes de terminar el seek.
-    // Ajustamos al segundo 3 y registramos igualmente el estado "reproduciendo".
-    if (audio.currentTime < CLIP_START - .2) startAtCut();
-    pending = false;
-    started = true;
-    remember();
-    updateButton();
-    message('');
-    if (interval === null) {
-      interval = setInterval(() => {
-        if (!stopping && audio.currentTime >= CLIP_END - .12) stopNow();
-      }, 180);
+  function clearCutoff() {
+    if (cutoffTimer !== null) {
+      window.clearInterval(cutoffTimer);
+      cutoffTimer = null;
     }
-  });
+  }
 
-  audio.addEventListener('timeupdate', () => {
-    if (audio.currentTime >= CLIP_END - .12 && !stopping) stopNow();
-  });
-  audio.addEventListener('ended', stopNow);
-  audio.addEventListener('error', () => {
-    if (stopping) return;
+  function finish() {
+    if (finished) return;
+    finished = true;
     pending = false;
-    if (!consumed) {
-      updateButton();
-      message('No se pudo cargar la canción. Toca «Activar música» para reintentar.');
-    }
-  });
+    clearCutoff();
+    audio.pause();
+    audio.loop = false;
+    updateControls();
+    note('');
+  }
 
-  function attemptPlay() {
-    if (consumed || stopping || pending || started) return;
+  function monitorEnd() {
+    if (cutoffTimer !== null) return;
+    cutoffTimer = window.setInterval(() => {
+      if (audio.currentTime >= END - .12 || audio.ended) finish();
+    }, 150);
+  }
+
+  function tryPlayback() {
+    if (finished || isActive()) return;
+    // Una solicitud pendiente no debe impedir reintentar desde un gesto humano
+    // cuando el primer intento fue bloqueado por el navegador.
+    const id = ++playRequest;
     pending = true;
-    button.disabled = true;
-    audio.muted = false;
-    audio.volume = DEFAULT_VOLUME;
-    startAtCut();
-    let promise;
+    audio.muted = muted;
+    audio.volume = VOLUME;
+    seekStart();
+    updateControls();
     try {
-      promise = audio.play();
+      const result = audio.play();
+      if (result && typeof result.then === 'function') {
+        result.then(() => {
+          if (id !== playRequest || finished) return;
+          pending = false;
+          startedThisVisit = true;
+          updateControls();
+          note('');
+          monitorEnd();
+        }).catch(() => {
+          if (id !== playRequest || finished) return;
+          pending = false;
+          updateControls();
+          note('Si tu navegador lo solicita, toca el sello o «Activar música».');
+        });
+      }
     } catch (_) {
+      if (id !== playRequest) return;
       pending = false;
-      updateButton();
-      message('Tu navegador solicita un toque para activar la música.');
-      return;
-    }
-    if (promise && typeof promise.then === 'function') {
-      promise.catch(() => {
-        if (stopping || started || consumed) return;
-        pending = false;
-        updateButton();
-        message('Toca «Activar música» para escuchar nuestra canción.');
-      });
+      updateControls();
+      note('Toca el sello para abrir y escuchar la canción.');
     }
   }
 
-  button.addEventListener('click', () => {
-    if (stopping || (consumed && !started)) return;
-    if (started) {
-      audio.muted = !audio.muted;
-      updateButton();
-      message('');
+  function resetAndPlay() {
+    // Un regreso voluntario al inicio es la única acción que reinicia el fragmento.
+    ++playRequest;
+    clearCutoff();
+    audio.pause();
+    finished = false;
+    startedThisVisit = false;
+    pending = false;
+    muted = false;
+    audio.muted = false;
+    audio.volume = VOLUME;
+    try { audio.currentTime = START; } catch (_) {}
+    updateControls();
+    note('');
+    // Se llama dentro del evento de clic "Volver al inicio": conserva el permiso.
+    tryPlayback();
+  }
+
+  function toggleSound() {
+    if (finished) {
+      if (!inHerbario) resetAndPlay();
       return;
     }
-    if (!pending) attemptPlay();
+    if (!isActive()) {
+      tryPlayback();
+      return;
+    }
+    muted = !muted;
+    audio.muted = muted;
+    updateControls();
+  }
+
+  audio.addEventListener('loadedmetadata', seekStart);
+  audio.addEventListener('playing', () => {
+    if (finished) { audio.pause(); return; }
+    if (audio.currentTime < START - .08) seekStart();
+    startedThisVisit = true;
+    pending = false;
+    updateControls();
+    note('');
+    monitorEnd();
+  });
+  audio.addEventListener('timeupdate', () => {
+    if (!finished && audio.currentTime >= END - .12) finish();
+  });
+  audio.addEventListener('ended', finish);
+  audio.addEventListener('error', () => {
+    if (finished) return;
+    pending = false;
+    updateControls();
+    note('No fue posible cargar el audio. Puedes activarlo con un toque.');
   });
 
-  // Se intenta de forma automática. Chrome, Safari y móviles pueden bloquear
-  // el sonido hasta recibir un gesto real; el botón anterior es el respaldo.
-  if (consumed) {
-    stopping = true;
-    updateButton();
-  } else {
-    updateButton();
-    if (audio.readyState === 0) audio.load();
-    // Comenzar junto con la aparición de la imagen, no mientras la portada está oculta.
-    if (document.documentElement.classList.contains('sobre-visual-ready')) attemptPlay();
-    else window.addEventListener('sobre-visual-ready', attemptPlay, { once: true });
-  }
+  button.addEventListener('click', toggleSound);
+  floating.addEventListener('click', toggleSound);
 
-  // El control del sobre invoca un fade-out de 1,2 s al comenzar la apertura.
+  if (audio.readyState === 0) audio.load();
+  updateControls();
+
+  // Autoplay es un intento, no una garantía. Se verifica la promesa play().
+  // Si el navegador lo bloquea, el mismo toque para abrir el sobre activa audio.
+  if (document.documentElement.classList.contains('sobre-visual-ready')) tryPlayback();
+  else window.addEventListener('sobre-visual-ready', tryPlayback, { once: true });
+
   window.SobreMusica = {
-    fadeAndStop,
-    isPlaying: () => !stopping && !audio.paused && !audio.ended
+    playFromGesture: tryPlayback,
+    resetAndPlay,
+    isPlaying: isActive,
+    setHerbario(value) {
+      inHerbario = !!value;
+      updateControls();
+    }
   };
 })();

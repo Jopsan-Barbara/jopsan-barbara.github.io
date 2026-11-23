@@ -1,79 +1,46 @@
-/* Música oficial de YouTube: jugador visible, sin extracción ni audio oculto. */
+/* Canción de los novios: MP3 local, controles discretos, sin YouTube. */
 .sobre-intro__music-start{
-  display:inline-flex;align-items:center;justify-content:center;gap:.45em;
-  margin:9px auto 0;padding:7px 14px;
-  font:500 clamp(13px,1.7vw,15px)/1.4 'Cormorant Garamond',Georgia,serif;
-  letter-spacing:.04em;
-  color:#fff9eb;
-  background:rgba(35,54,40,.13);
-  border:1px solid rgba(255,247,226,.54);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.45em;
+  margin:10px auto 0;
+  padding:8px 18px;
+  border:1px solid rgba(255,247,226,.57);
   border-radius:100px;
+  background:rgba(35,54,40,.16);
+  color:#fff9eb;
+  font:500 clamp(13px,1.7vw,16px)/1.3 'Cormorant Garamond',Georgia,serif;
+  letter-spacing:.035em;
+  text-shadow:0 1px 5px rgba(38,55,36,.18);
   cursor:pointer;
-  text-shadow:0 1px 5px rgba(38,55,36,.15);
-  transition:background-color .22s ease,opacity .22s ease;
+  transition:background-color .25s ease,color .25s ease,opacity .25s ease;
 }
-.sobre-intro__music-start:hover:not(:disabled){background:rgba(35,54,40,.27)}
-.sobre-intro__music-start:focus-visible,
-.sobre-intro__music-close:focus-visible{outline:2px solid #fff9df;outline-offset:3px}
-.sobre-intro__music-start:disabled{opacity:.62;cursor:default}
-.sobre-intro__music-start[hidden],.sobre-intro__music-panel[hidden]{display:none!important}
+.sobre-intro__music-start:hover:not(:disabled){
+  background:rgba(35,54,40,.35);
+}
+.sobre-intro__music-start:focus-visible{
+  outline:2px solid #fff9df;
+  outline-offset:4px;
+}
+.sobre-intro__music-start:disabled{
+  opacity:.64;
+  cursor:default;
+}
 .sobre-intro__music-note{
-  display:block;margin-top:4px;
-  font:400 11px/1.3 'DM Sans',Arial,sans-serif;
-  color:#fffaf0;text-shadow:0 1px 4px rgba(43,58,41,.18);
-}
-.sobre-intro__music-panel{
-  position:fixed;
-  z-index:25;
-  right:clamp(10px,2vw,24px);
-  bottom:clamp(10px,2vh,22px);
-  width:min(340px,calc(100vw - 22px));
-  padding:12px;
-  background:#f9f3e7;
-  border:1px solid rgba(164,141,98,.85);
-  border-radius:10px;
-  box-shadow:0 14px 34px rgba(35,49,34,.26);
-  color:#475c45;
-  text-align:left;
-}
-.sobre-intro__music-header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px}
-.sobre-intro__music-caption{font:500 15px/1.2 'Cormorant Garamond',Georgia,serif;color:#46573d}
-.sobre-intro__music-close{
-  background:transparent;
-  border:1px solid #c6b996;
-  border-radius:99px;
-  color:#4a6145;
-  font:500 12px/1.2 'DM Sans',Arial,sans-serif;
-  padding:7px 10px;
-  cursor:pointer;
-}
-.sobre-intro__music-frame,
-.sobre-intro__music-frame iframe{
   display:block;
-  width:100%;
-  height:214px;
-  min-height:200px;
-  border:0;
-  border-radius:4px;
-  background:#272923;
+  margin:5px 0 0;
+  color:#fff9ed;
+  font:400 clamp(10px,1.2vw,12px)/1.3 'DM Sans',Arial,sans-serif;
+  text-shadow:0 1px 4px rgba(37,53,38,.19);
 }
-.sobre-intro__music-legend{
-  display:block;
-  margin:9px 0 0;
-  color:#687361;
-  font:400 11px/1.4 'DM Sans',Arial,sans-serif;
-}
-.sobre-intro__music-legend a{color:#536b4d;text-underline-offset:3px}
-@media(max-width:520px){
-  .sobre-intro__music-panel{
-    right:10px;bottom:10px;
-    padding:10px;
-    width:min(340px,calc(100vw - 20px));
-  }
-  .sobre-intro__music-frame,.sobre-intro__music-frame iframe{height:205px}
-  .sobre-intro__music-start{margin-top:8px}
-}
+.sobre-intro__music-note[hidden]{display:none!important}
+#sobre-musica-audio{display:none!important}
 @media(max-height:730px){
-  .sobre-intro__music-start{font-size:12px;padding:5px 12px;margin-top:6px}
+  .sobre-intro__music-start{font-size:12px;margin-top:6px;padding:6px 12px}
+  .sobre-intro__music-note{font-size:10px;margin-top:3px}
+}
+@media(max-width:520px){
+  .sobre-intro__music-start{margin-top:8px;padding:9px 14px}
   .sobre-intro__music-note{font-size:10px}
 }

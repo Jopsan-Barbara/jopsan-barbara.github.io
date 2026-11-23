@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="timeline-sin-recuadros.css?v=20261122-hitos-2">
   <link rel="stylesheet" href="herbario-acuarela-2027.css?v=20261122-auditoria-responsive-4">
   <link rel="stylesheet" href="herbario-fix-publicado-20261123.css?v=1">
-  <link rel="stylesheet" href="rsvp-mejoras-20261123.css?v=1">
+  <link rel="stylesheet" href="rsvp-mejoras-20261123.css?v=2">
 </head>
 <body class="oliva-theme propuesta-organica">
   <a class="skip-link" href="#detalles">Saltar a los detalles</a>
@@ -157,7 +157,7 @@
 
     <div class="herb-paper-seam" aria-hidden="true"></div>
     <section class="section gifts" id="regalos" aria-labelledby="gift-heading">
-<div class="gift-intro"><p class="gift-kicker">Regalos</p><h2 id="gift-heading">Lo más importante es<br>celebrar juntos</h2><p>Basta con tu compañía, pero si quieres hacernos un regalo, preparamos esta lista de deseos con mucho cariño.</p><p id="gift-payment-intro">Puedes elegir tu regalo y realizar una transferencia bancaria. Encontrarás nuestros datos más abajo.</p><a class="jump" href="#datos-transferencia">Ir a los datos de transferencia ↓</a></div>
+<div class="gift-intro"><h2 id="gift-heading">Regalos</h2><p>Si quieres hacernos un regalo, preparamos esta lista de deseos con mucho cariño:</p></div>
 <div class="catalog" id="gift-catalog"><article class="gift" data-index="0"><div class="illustration"><img src="assets/gifts/teatro-sidney.webp" alt="" loading="lazy" decoding="async" width="520" height="520"></div><div class="gift-caption"><h3>Dos entradas al teatro de Sídney</h3><strong>$200.000</strong></div><div class="actions"><a class="pay" data-pay="teatro-sidney" hidden target="_blank" rel="noopener noreferrer">Regalar con Mercado Pago</a><a class="transfer" data-transfer="0" href="#datos-transferencia" aria-label="Transferir $200.000 por Dos entradas al teatro de Sídney">Prefiero transferir <span aria-hidden="true">→</span></a></div></article>
 <article class="gift" data-index="1"><div class="illustration"><img src="assets/gifts/sillon.webp" alt="" loading="lazy" decoding="async" width="520" height="520"></div><div class="gift-caption"><h3>Un sillón mediano para la casa</h3><strong>$150.000</strong></div><div class="actions"><a class="pay" data-pay="sillon" hidden target="_blank" rel="noopener noreferrer">Regalar con Mercado Pago</a><a class="transfer" data-transfer="1" href="#datos-transferencia" aria-label="Transferir $150.000 por Un sillón mediano para la casa">Prefiero transferir <span aria-hidden="true">→</span></a></div></article>
 <article class="gift" data-index="2"><div class="illustration"><img src="assets/gifts/masajes.webp" alt="" loading="lazy" decoding="async" width="520" height="520"></div><div class="gift-caption"><h3>Un día de masajes descontracturantes después de la prueba de vestidos</h3><strong>$120.000</strong></div><div class="actions"><a class="pay" data-pay="masajes" hidden target="_blank" rel="noopener noreferrer">Regalar con Mercado Pago</a><a class="transfer" data-transfer="2" href="#datos-transferencia" aria-label="Transferir $120.000 por Un día de masajes descontracturantes después de la prueba de vestidos">Prefiero transferir <span aria-hidden="true">→</span></a></div></article>
@@ -173,7 +173,7 @@
 
 <section class="bank-section" id="datos-transferencia" aria-labelledby="bankheading"><div class="bank-wrap"><div class="bank-intro"><div class="gift-kicker">Otra forma de regalar</div><h2 id="bankheading">¿Prefieres<br>transferir?</h2><p>También puedes hacernos tu regalo directamente mediante transferencia bancaria.</p><p>Copia nuestros datos y, si puedes, escribe el nombre del regalo que elegiste en el comentario de la transferencia.</p><div id="selection" class="selection" aria-live="polite"></div></div><div class="bank-card"><h3>Datos para transferencia</h3><dl id="bank-details"><div><dt>Nombre</dt><dd>Bárbara Maldonado</dd></div><div><dt>RUT</dt><dd>20624217-5</dd></div><div><dt>Banco</dt><dd>BancoEstado</dd></div><div><dt>Tipo de cuenta</dt><dd>Cuenta Vista (CuentaRUT)</dd></div><div><dt>N° de cuenta</dt><dd>20624217</dd></div><div><dt>Correo</dt><dd>Bamh.3003@gmail.com</dd></div></dl><button class="copy" id="copy-bank" type="button">▢ &nbsp; Copiar datos bancarios</button><p class="feedback" id="copy-bank-status" role="status"></p></div></div></section>
 </section>
-<script src="gifts.js?v=lista-12-pagos-completos" defer></script>
+<script src="gifts.js?v=20261123-minimal-regalos-1" defer></script>
 
     <div class="herb-paper-seam" aria-hidden="true"></div>
     <section class="section rsvp" id="rsvp">
@@ -182,7 +182,6 @@
           <p class="section-kicker">CONFIRMACIÓN INDIVIDUAL</p>
           <h2 id="guest-title">¿Nos acompañas?</h2>
           <p id="guest-copy">Cuéntanos si podrás acompañarnos antes del <strong>31 de enero de 2027</strong>.</p>
-          <p class="rsvp-individual-note">La invitación es individual, salvo que los novios te hayan indicado expresamente lo contrario. Gracias por comprender.</p>
         </div>
         <div class="form-shell">
   <form class="wedding-form" id="rsvp-form" data-kind="public-rsvp">
@@ -196,11 +195,12 @@
     <label class="field" for="rsvp-fullname"><span class="field-label">Nombre y apellido</span>
       <input id="rsvp-fullname" type="text" name="fullName" maxlength="200" autocomplete="name" placeholder="Escribe tu nombre completo" required>
     </label>
-    <label class="field dietary-field" data-dietary-question hidden for="rsvp-diet">
+    <label class="field dietary-field" data-dietary-question for="rsvp-diet">
       <span class="field-label">¿Tienes alguna alergia o restricción alimentaria?</span>
-      <span class="field-help">Si no tienes ninguna, escribe «Ninguna». Así podremos considerar tu respuesta al organizar la comida.</span>
-      <textarea id="rsvp-diet" name="diet" rows="3" maxlength="1000" placeholder="Ej.: alergia a los frutos secos, alimentación vegetariana..." disabled></textarea>
+      <span class="field-help">Si asistirás y no tienes restricciones, escribe «Ninguna».</span>
+      <textarea id="rsvp-diet" name="diet" rows="3" maxlength="1000" placeholder="Ej.: alergia a los frutos secos, alimentación vegetariana..."></textarea>
     </label>
+    <p class="rsvp-individual-note">La invitación es individual, salvo que los novios te hayan indicado expresamente lo contrario. Gracias por comprender.</p>
     <button class="form-submit" type="submit">Enviar confirmación</button>
     <p class="form-status" role="status" aria-live="polite"></p>
     <a class="post-confirm-link" href="#regalos" hidden>Regresar a ver la página <span aria-hidden="true">→</span></a>
@@ -254,7 +254,7 @@
   <script src="script.js?v=itinerario-1430"></script>
   <script src="gallery-data.js?v=galeria-15-nueva-1" defer></script>
   <script src="gallery.js?v=galeria-15-nueva-1" defer></script>
-  <script src="forms-inline.js?v=20261123-dietary-followup-2" data-wedding-forms defer></script>
+  <script src="forms-inline.js?v=20261123-dietary-followup-3" data-wedding-forms defer></script>
 </body>
 </html>
 

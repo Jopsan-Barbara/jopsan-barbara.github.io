@@ -61,120 +61,134 @@ body.flower-test .floral-test-info{
   max-width:350px;
 }
 
-/* Cada motivo es una ilustración raster WebP, no un SVG vectorial.
-   El efecto de acuarela se integra mediante multiplicación de pigmento
-   y desvanecimiento periférico, sin pegatinas cuadradas. */
+
+/* Auditado: una sola capa decorativa para la página de PRUEBA.
+   El archivo raster contiene papel beige; recortarlo con un fundido
+   verdaderamente transparente evita todos sus bordes rectangulares.
+   No cargar este CSS en la invitación oficial. */
 body.flower-test .floral-bouquet{
   display:none!important;
 }
-/* Acuarela nueva en WebP raster: flores blancas, heléboros y follaje salvia.
-   Integradas en papel, sin rosas rosadas ni filtros que laven los pigmentos. */
-body.flower-test.is-defined .floral-bouquet{
-  position:absolute!important;
-  display:block!important;
-  width:clamp(174px,17vw,265px);
-  height:clamp(181px,19vw,280px);
-  pointer-events:none;
-  z-index:1;
-  background-image:url('assets/herbario-flores-blancas-nitidas.webp?v=20261123-white-1');
-  background-repeat:no-repeat;
-  background-position:top left;
-  background-size:contain;
-  opacity:.86;
-  filter:saturate(.85) contrast(1.05);
-  mix-blend-mode:multiply;
-  -webkit-mask-image:radial-gradient(ellipse 92% 100% at 20% 18%,#000 51%,transparent 93%);
-  mask-image:radial-gradient(ellipse 92% 100% at 20% 18%,#000 51%,transparent 93%);
-}
-body.flower-test.is-defined .floral-bouquet--left{
-  top:clamp(12px,1.7vw,30px);
-  left:clamp(-28px,-1vw,-7px);
-  transform:none;
-}
-body.flower-test.is-defined .floral-bouquet--right{
-  top:clamp(12px,1.7vw,30px);
-  right:clamp(-28px,-1vw,-7px);
-  transform:scaleX(-1);
-}
-
-/* Las capas grandes de degradado original son las que borraban los
-   pétalos: se sustituyen por un papel uniforme y apenas una veladura
-   superior. Se da protagonismo a los trazos a escala contenida. */
-body.flower-test.is-defined .hero.romantic-hero,
-body.flower-test.is-defined .memories-strip,
-body.flower-test.is-defined .celebration,
-body.flower-test.is-defined .playlist,
-body.flower-test.is-defined #regalos,
-body.flower-test.is-defined .faq{
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+:is(.hero.romantic-hero,.memories-strip,.celebration,.playlist,.faq),
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+#regalos{
   position:relative;
   isolation:isolate;
-  overflow:clip;
   background-color:#faf7ef!important;
   background-image:
-    linear-gradient(to bottom,rgba(250,247,239,.00) 0%,rgba(250,247,239,.06) 210px,#faf7ef 680px),
+    linear-gradient(to bottom,rgba(250,247,239,.01),#faf7ef 710px),
     url('assets/textura-papel-algodon.svg')!important;
+  background-repeat:no-repeat,repeat!important;
   background-position:center top,center!important;
   background-size:100% 100%,240px 240px!important;
-  background-repeat:no-repeat,repeat!important;
+  background-attachment:scroll!important;
 }
-body.flower-test.is-defined .timing,
-body.flower-test.is-defined .dress,
-body.flower-test.is-defined .rsvp,
-body.flower-test.is-defined #regalos .bank-section{
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+:is(.timing,.dress,.rsvp),
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+#regalos .bank-section{
   position:relative;
   isolation:isolate;
-  overflow:clip;
   background-color:#eff1e8!important;
   background-image:url('assets/textura-papel-algodon.svg')!important;
-  background-size:240px 240px!important;
-  background-position:center!important;
   background-repeat:repeat!important;
+  background-position:center!important;
+  background-size:240px 240px!important;
 }
-
-/* Evita que una acuarela alta compita con la información central. */
-body.flower-test.is-defined .hero.romantic-hero .floral-bouquet{
-  top:22px;
+/* Las flores no se repiten a ambos lados de cada sección.
+   Portada: 2 ramos; recuerdos: derecho; celebración: derecho;
+   música: derecho; regalos: izquierdo; preguntas: derecho.
+   Itinerario, vestuario, transferencias y confirmación: solo papel. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+:is(.hero.romantic-hero,.memories-strip,.celebration,.playlist,.faq)>.floral-bouquet--right,
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+:is(.hero.romantic-hero,#regalos)>.floral-bouquet--left{
+  display:block!important;
+  position:absolute!important;
+  z-index:1!important;
+  pointer-events:none!important;
+  box-sizing:border-box;
+  width:clamp(160px,15.5vw,230px);
+  height:clamp(168px,16vw,240px);
+  top:8px;
+  left:auto;
+  right:-12px;
+  background-image:url('assets/herbario-flores-blancas-nitidas.webp?v=20261123-white-2')!important;
+  background-size:100% 100%!important;
+  background-position:top left!important;
+  background-repeat:no-repeat!important;
+  opacity:.91;
+  filter:saturate(.89) contrast(1.08);
+  mix-blend-mode:multiply;
+  /* El borde del papel desaparece antes de llegar al rectángulo. */
+  -webkit-mask-image:radial-gradient(ellipse 99% 99% at 0% 0%,#000 12%,#000 28%,rgba(0,0,0,.68) 47%,rgba(0,0,0,.18) 65%,transparent 78%)!important;
+  mask-image:radial-gradient(ellipse 99% 99% at 0% 0%,#000 12%,#000 28%,rgba(0,0,0,.68) 47%,rgba(0,0,0,.18) 65%,transparent 78%)!important;
 }
-body.flower-test.is-defined .memories-strip .floral-bouquet,
-body.flower-test.is-defined .celebration .floral-bouquet,
-body.flower-test.is-defined .playlist .floral-bouquet,
-body.flower-test.is-defined #regalos .floral-bouquet,
-body.flower-test.is-defined .faq .floral-bouquet{
-  top:18px;
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+:is(.hero.romantic-hero,#regalos)>.floral-bouquet--left{
+  left:-12px;
+  right:auto;
+  transform:none;
 }
-body.flower-test.is-defined .timing .floral-bouquet,
-body.flower-test.is-defined .dress .floral-bouquet,
-body.flower-test.is-defined .rsvp .floral-bouquet,
-body.flower-test.is-defined #regalos .bank-section .floral-bouquet{
-  top:10px;
-  opacity:.62;
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+:is(.hero.romantic-hero,.memories-strip,.celebration,.playlist,.faq)>.floral-bouquet--right{
+  transform:scaleX(-1);
 }
-
-/* El contenido mantiene lectura y contraste, las flores lo rodean. */
-body.flower-test.is-defined :is(.hero-content,.memories-heading,.celebration-layout,.playlist>.container,.faq>.container,.timing>.container,.rsvp-layout,.gift-intro,.bank-wrap){
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero>.floral-bouquet{
+  top:52px;
+  width:clamp(146px,13vw,205px);
+  height:clamp(153px,13.5vw,213px);
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.memories-strip>.floral-bouquet--right,
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.faq>.floral-bouquet--right{
+  top:16px;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.playlist>.floral-bouquet--right{
+  top:16px;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+#regalos>.floral-bouquet--left{
+  top:21px;
+}
+/* Espacio editorial protegido: decoración nunca tapa el contenido. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+:is(.hero-content,.memories-heading,.celebration-layout,.playlist>.container,.faq>.container,.timing>.container,.rsvp-layout,.gift-intro,.bank-wrap){
   position:relative;
   z-index:2;
 }
-body.flower-test.is-defined .romantic-hero .hero-content{
-  background:rgba(255,253,248,.94)!important;
-  border-color:rgba(169,178,151,.42)!important;
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.playlist>.container.playlist-layout{
+  width:min(calc(100% - 100px),1180px)!important;
+  max-width:1180px!important;
+  margin-inline:auto!important;
+  box-sizing:border-box;
 }
-body.flower-test.is-defined .faq>.container{
-  background:rgba(255,252,246,.58);
-  padding:32px clamp(12px,2vw,34px);
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.romantic-hero .hero-content{
+  background:rgba(255,253,248,.96)!important;
+  border-color:rgba(169,178,151,.35)!important;
 }
-body.flower-test.is-defined .celebration .celebration-story{
-  background:rgba(251,249,242,.76);
-  border-radius:2px;
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.faq>.container{
+  background:rgba(255,252,246,.77);
+  padding:28px clamp(14px,2vw,30px);
 }
-body.flower-test.is-defined .memories-heading{
-  background:rgba(250,247,239,.67);
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.celebration .celebration-story{
+  background:rgba(251,249,242,.88);
 }
-body.flower-test.is-defined #regalos .gift-intro{
-  background:rgba(250,247,239,.76);
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.memories-heading,
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+#regalos .gift-intro{
+  background:transparent!important;
 }
-
-/* Los marcos fotográficos, los regalos y el mapa no se alteran. */
+/* Fotografía principal a color, recuerdos B/N y regalos ilustrados a color. */
 body.flower-test.is-defined .hero .herbario-cover-photo{
   filter:none!important;
   -webkit-filter:none!important;
@@ -187,35 +201,31 @@ body.flower-test.is-defined #regalos .illustration img{
   filter:none!important;
   -webkit-filter:none!important;
 }
-
-/* Una prueba visual no debe registrar invitaciones ni canciones. */
-body.flower-test .preview-disabled{
-  background:#f2efe6;
-  border:1px solid #d6d4c7;
-  color:#56644f;
-  padding:9px 12px;
-  font:500 12px/1.5 'DM Sans',Arial,sans-serif;
-  text-align:center;
-}
 body.flower-test .wedding-form .form-submit:disabled{
   cursor:not-allowed;
   opacity:.64;
 }
 @media(max-width:850px){
-  body.flower-test.is-defined .floral-bouquet{
-    width:clamp(165px,28vw,240px);
-    height:clamp(175px,31vw,260px);
-    opacity:.75;
+  body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+  .playlist>.container.playlist-layout{
+    width:min(calc(100% - 36px),690px)!important;
   }
-  body.flower-test.is-defined .floral-bouquet--left{left:-23px;}
-  body.flower-test.is-defined .floral-bouquet--right{right:-23px;}
+  body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+  :is(.hero.romantic-hero,.memories-strip,.celebration,.playlist,.faq)>.floral-bouquet--right,
+  body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+  :is(.hero.romantic-hero,#regalos)>.floral-bouquet--left{
+    width:160px;
+    height:168px;
+    opacity:.78;
+  }
 }
 @media(max-width:600px){
   body.flower-test .floral-test-bar{
     gap:8px;
     padding:12px 10px;
   }
-  body.flower-test .floral-test-bar strong{
+  body.flower-test .floral-test-bar strong,
+  body.flower-test .floral-test-info{
     flex-basis:100%;
   }
   body.flower-test .floral-test-bar button,
@@ -223,104 +233,36 @@ body.flower-test .wedding-form .form-submit:disabled{
     min-height:40px;
     flex:1 1 auto;
   }
-  body.flower-test .floral-test-info{
-    flex-basis:100%;
-  }
-  body.flower-test.is-defined .floral-bouquet{
-    width:142px;
-    height:155px;
-    opacity:.68;
-  }
-  body.flower-test.is-defined .floral-bouquet--left{left:-18px;top:12px;}
-  body.flower-test.is-defined .floral-bouquet--right{right:-18px;top:12px;}
-  body.flower-test.is-defined .hero.romantic-hero .floral-bouquet{top:16px;}
-  body.flower-test.is-defined .faq>.container{
-    padding:19px 11px;
-    background:rgba(255,253,245,.8);
-  }
-}
-@media(prefers-reduced-motion:reduce){
-  body.flower-test .floral-test-bar button{transition:none!important;}
-}
-
-
-/* AUDITORÍA DE ESTILOS 23/11/2026: una sola capa para la prueba floral. */
-/* Estas reglas se mantienen al final del ÚNICO CSS de prueba.
-   Su especificidad supera la portada y los fondos del legado,
-   sin recurrir a más hojas de parches ni modificar la web principal. */
-body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
-:is(.hero.romantic-hero,.memories-strip,.celebration,.playlist,.faq),
-body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
-#regalos{
-  position:relative;
-  isolation:isolate;
-  background-color:#faf7ef!important;
-  background-image:
-    linear-gradient(180deg,rgba(250,247,239,0) 0%,rgba(250,247,239,.08) 195px,#faf7ef 680px),
-    url('assets/textura-papel-algodon.svg')!important;
-  background-size:100% 100%,240px 240px!important;
-  background-position:center top,center!important;
-  background-repeat:no-repeat,repeat!important;
-  background-attachment:scroll!important;
-}
-body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
-:is(.timing,.dress,.rsvp),
-body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
-#regalos .bank-section{
-  position:relative;
-  isolation:isolate;
-  background-color:#eff1e8!important;
-  background-image:
-    linear-gradient(180deg,rgba(239,241,232,0) 0%,#eff1e8 615px),
-    url('assets/textura-papel-algodon.svg')!important;
-  background-size:100% 100%,240px 240px!important;
-  background-position:center top,center!important;
-  background-repeat:no-repeat,repeat!important;
-  background-attachment:scroll!important;
-}
-/* No repetir el collage viejo. La nueva imagen es únicamente
-   assets/herbario-flores-blancas-nitidas.webp en el motivo decorativo. */
-body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
-.floral-bouquet{
-  display:block!important;
-  position:absolute!important;
-  pointer-events:none!important;
-  z-index:1!important;
-  background-image:url('assets/herbario-flores-blancas-nitidas.webp?v=20261123-white-2')!important;
-  background-repeat:no-repeat!important;
-  background-size:contain!important;
-  opacity:.86;
-  filter:saturate(.86) contrast(1.05);
-  mix-blend-mode:multiply;
-  -webkit-mask-image:radial-gradient(ellipse 92% 100% at 20% 18%,#000 50%,transparent 92%);
-  mask-image:radial-gradient(ellipse 92% 100% at 20% 18%,#000 50%,transparent 92%);
-}
-body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
-.hero.romantic-hero .nav{
-  position:relative!important;
-  z-index:3!important;
-}
-body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
-.hero.romantic-hero .hero-content{
-  position:relative;
-  z-index:2;
-}
-/* Responsive: el ramo es acotado para no competir con los nombres. */
-@media(max-width:850px){
   body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
-  .floral-bouquet{
-    opacity:.75;
-  }
-}
-@media(max-width:600px){
+  :is(.hero.romantic-hero,.memories-strip,.celebration,.playlist,.faq)>.floral-bouquet--right,
   body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
-  .floral-bouquet{
-    opacity:.60;
-    width:128px;
-    height:140px;
+  :is(.hero.romantic-hero,#regalos)>.floral-bouquet--left{
+    width:105px;
+    height:112px;
+    top:10px;
+    right:-12px;
+    opacity:.73;
+  }
+  body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+  :is(.hero.romantic-hero,#regalos)>.floral-bouquet--left{
+    left:-12px;
+    right:auto;
+  }
+  body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+  .hero.romantic-hero>.floral-bouquet{
+    top:58px;
+  }
+  body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+  .faq>.container{
+    padding:18px 10px;
   }
   body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
   .romantic-hero .hero-content{
     max-width:calc(100% - 24px)!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  body.flower-test .floral-test-bar button{
+    transition:none!important;
   }
 }

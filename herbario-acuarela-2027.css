@@ -40,10 +40,10 @@ body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .romantic-hero .herb-
   filter:none!important;
   -webkit-filter:none!important;
 }
-/* Solo las fotografías del carrusel conservan el blanco y negro. */
+/* Las fotografías del carrusel se muestran con sus colores originales. */
 body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .memory-slide img {
-  filter:grayscale(100%)!important;
-  -webkit-filter:grayscale(100%)!important;
+  filter:none!important;
+  -webkit-filter:none!important;
 }
 /* Mantener nítidas y en color las ilustraciones de regalos. */
 body.oliva-theme.propuesta-organica:not(.propuesta-jardin) #regalos .illustration img {
@@ -238,10 +238,10 @@ body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .hero.romantic-hero .
   max-width:100%!important;
   overflow:hidden;
 }
-/* Mantener el carrusel en blanco y negro, no la foto principal. */
+/* Mantener las fotografías originales del carrusel a color. */
 body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .memories-strip .memory-slide img{
-  filter:grayscale(100%)!important;
-  -webkit-filter:grayscale(100%)!important;
+  filter:none!important;
+  -webkit-filter:none!important;
 }
 
 /* 2. Fondo continuo: las imágenes de acuarela antes tenían un tope

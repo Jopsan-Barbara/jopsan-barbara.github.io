@@ -54,8 +54,8 @@
       return;
     }
     intro.classList.add('is-opening');
-    stageTimer = window.setTimeout(() => intro.classList.add('is-complete'), 2660);
-    timer = window.setTimeout(closeIntro, 3420);
+    stageTimer = window.setTimeout(() => intro.classList.add('is-complete'), 3030);
+    timer = window.setTimeout(closeIntro, 3730);
   }
 
   openButton.addEventListener('click', openIntro);

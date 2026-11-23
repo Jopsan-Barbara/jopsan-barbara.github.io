@@ -55,7 +55,7 @@
     if (stopping) return;
     stopping = true;
     clearClocks();
-    if (started || loaded) remember();
+    if (started) remember();
     safeCall('stopVideo');
     panel.hidden = true;
     if (iframe) { iframe.remove(); iframe = null; }

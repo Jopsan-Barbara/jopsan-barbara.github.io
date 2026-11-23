@@ -94,17 +94,19 @@
     const state = {kind, pending:false, id:'', timer:null};
     registry.set(form, state);
     if (kind === 'public-rsvp') {
-      // La pregunta alimentaria solo corresponde a quienes asistirán.
+      // Pregunta visible desde el inicio, incluso antes de elegir respuesta.
+      // Solo se exige al asistir; al marcar "No" se deshabilita, pero nunca se oculta.
       const dietaryQuestion = form.querySelector('[data-dietary-question]');
       const dietaryInput = form.querySelector('textarea[name="diet"]');
       const attendRadios = Array.from(form.querySelectorAll('input[type="radio"][name="attends"]'));
       const syncDietary = () => {
         if (!dietaryQuestion || !dietaryInput) return;
         const attends = attendRadios.some(radio => radio.checked && radio.value === 'Sí');
-        dietaryQuestion.hidden = !attends;
-        dietaryInput.disabled = !attends;
+        const declines = attendRadios.some(radio => radio.checked && radio.value === 'No');
+        dietaryQuestion.hidden = false;
+        dietaryInput.disabled = declines;
         dietaryInput.required = attends;
-        if (!attends) dietaryInput.value = '';
+        if (declines) dietaryInput.value = '';
       };
       attendRadios.forEach(radio => radio.addEventListener('change', syncDietary));
       syncDietary();

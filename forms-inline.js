@@ -77,7 +77,10 @@
       if (state.kind === 'public-song') { form.reset(); state.id = ''; }
       if (state.kind === 'public-rsvp') {
         if (button) button.textContent = 'Respuesta registrada';
-        form.querySelectorAll('input:not([type=hidden])').forEach(el => { el.disabled = true; });
+        form.querySelectorAll('input:not([type=hidden]), textarea').forEach(el => { el.disabled = true; });
+        // Mostrar el regreso a los regalos SOLO después del acuse OK de Apps Script.
+        const back = form.querySelector('.post-confirm-link');
+        if (back) back.hidden = false;
       }
     } else {
       if (button) button.disabled = false;
@@ -90,6 +93,22 @@
     if (!['public-rsvp', 'public-song'].includes(kind)) continue;
     const state = {kind, pending:false, id:'', timer:null};
     registry.set(form, state);
+    if (kind === 'public-rsvp') {
+      // La pregunta alimentaria solo corresponde a quienes asistirán.
+      const dietaryQuestion = form.querySelector('[data-dietary-question]');
+      const dietaryInput = form.querySelector('textarea[name="diet"]');
+      const attendRadios = Array.from(form.querySelectorAll('input[type="radio"][name="attends"]'));
+      const syncDietary = () => {
+        if (!dietaryQuestion || !dietaryInput) return;
+        const attends = attendRadios.some(radio => radio.checked && radio.value === 'Sí');
+        dietaryQuestion.hidden = !attends;
+        dietaryInput.disabled = !attends;
+        dietaryInput.required = attends;
+        if (!attends) dietaryInput.value = '';
+      };
+      attendRadios.forEach(radio => radio.addEventListener('change', syncDietary));
+      syncDietary();
+    }
     if (kind === 'public-rsvp' && isClosed) {
       form.replaceChildren(document.createTextNode('El plazo de confirmación de asistencia ha finalizado.'));
       continue;

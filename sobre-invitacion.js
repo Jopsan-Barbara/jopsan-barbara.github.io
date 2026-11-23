@@ -5,6 +5,8 @@
   const skipButton = document.getElementById('sobre-omitir');
   const replay = document.getElementById('sobre-repetir');
   if (!intro || !openButton || !skipButton || !replay) return;
+  // Si el sobre se usa como portada, continuar a la página Herbario real.
+  const nextInvitation = intro.getAttribute('data-invitation-url');
 
   const otherElements = Array.from(document.body.children).filter(
     element => element !== intro && element !== replay && element.tagName !== 'SCRIPT'
@@ -36,6 +38,10 @@
   function closeIntro() {
     window.clearTimeout(timer);
     window.clearTimeout(stageTimer);
+    if (nextInvitation) {
+      window.location.assign(new URL(nextInvitation, window.location.href).href);
+      return;
+    }
     intro.hidden = true;
     intro.classList.remove('is-opening', 'is-complete');
     openButton.disabled = false;

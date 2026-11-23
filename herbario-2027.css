@@ -901,3 +901,21 @@ body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .footer-names{
     flex:0 1 28%;
   }
 }
+
+/* Corrección del borde izquierdo del primer número en el contador. */
+body.oliva-theme.propuesta-organica .romantic-hero .hero-countdown .countdown > div:first-child{
+  border-left:0!important;
+}
+body.oliva-theme.propuesta-organica .celebration-facts .fact-location-link{
+  color:inherit!important;
+  text-decoration:none;
+  border-bottom:1px solid rgba(101,116,76,.45);
+  overflow-wrap:anywhere;
+}
+body.oliva-theme.propuesta-organica .celebration-facts .fact-location-link:hover{
+  border-bottom-color:currentColor;
+}
+body.oliva-theme.propuesta-organica .celebration-facts .fact-location-link:focus-visible{
+  outline:2px solid #65744c;
+  outline-offset:3px;
+}

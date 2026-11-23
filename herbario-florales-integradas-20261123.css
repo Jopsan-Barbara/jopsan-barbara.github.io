@@ -77,8 +77,8 @@ body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin
 }
 body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
 .memory-slide img{
-  filter:grayscale(100%)!important;
-  -webkit-filter:grayscale(100%)!important;
+  filter:none!important;
+  -webkit-filter:none!important;
 }
 
 @media(max-width:850px){

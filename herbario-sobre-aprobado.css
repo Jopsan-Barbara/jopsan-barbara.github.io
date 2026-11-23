@@ -1,0 +1,394 @@
+/*
+  HERBARIO · Continuidad visual del sobre aprobado
+  Únicamente se carga en /prueba-herbario-florales/.
+  No altera datos, fotografías, formularios ni la invitación oficial.
+  Las imágenes son activos del mismo repositorio.
+*/
+body.oliva-theme.propuesta-organica.flower-test.is-defined{
+  --hb-gold:#b49a66;
+  --hb-ink:#394d39;
+  --hb-olive:#60734f;
+  --hb-cream:#fbf7ed;
+  --hb-paper:url("assets/sobre-papel-realista.svg");
+  --hb-photo:url("assets/sobre-fondo-referencia.webp");
+  color:var(--hb-ink);
+  background:#a2aa8d;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .floral-test-bar{
+  background:#faf7ef!important;
+  border-bottom:1px solid #c5b899!important;
+  color:#455a42!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .floral-test-bar a{
+  border-color:#c7b88f!important;
+  color:#43563f!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .floral-test-info{color:#68715f}
+
+/* The approved sage-watercolor photograph supplies the lilies. 
+   Hide the earlier duplicated ornamental bouquets; never overlay the gallery. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+[data-watercolor-arch] > .floral-bouquet{
+  display:none!important;
+}
+
+/* Individual panels keep the floral photograph visible at the edges.
+   Text remains on warm, semi-opaque cotton-paper surfaces. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero{
+  background-image:linear-gradient(120deg,rgba(44,59,43,.13),rgba(80,101,75,.04) 49%,rgba(43,57,42,.12)),var(--hb-photo)!important;
+  background-size:cover,cover!important;
+  background-repeat:no-repeat,no-repeat!important;
+  background-position:center top,center center!important;
+  border-top:0!important;
+  padding-bottom:clamp(46px,6vw,85px)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero .nav{
+  border-bottom-color:rgba(255,248,224,.5)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero .brand{
+  color:#fff9ed!important;
+  text-shadow:0 2px 7px rgba(52,64,46,.2);
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero .brand::after{background:#ddc99d!important}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero .nav-link{
+  background:rgba(251,247,234,.94)!important;
+  border-color:rgba(185,154,95,.8)!important;
+  color:#41573d!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero .hero-content{
+  background-image:linear-gradient(rgba(253,250,243,.94),rgba(250,245,234,.96)),var(--hb-paper)!important;
+  background-size:100% 100%,220px 220px!important;
+  background-repeat:no-repeat,repeat!important;
+  border:1px solid #c8b992!important;
+  outline:1px solid rgba(183,154,99,.35)!important;
+  outline-offset:-12px!important;
+  box-shadow:0 20px 55px rgba(42,54,39,.19),0 4px 12px rgba(42,54,39,.07)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero .eyebrow{
+  color:#657358!important;
+  letter-spacing:.30em!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero h1 .hero-name{
+  color:#52684a!important;
+  text-shadow:none!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero h1 .hero-amp{color:#b19359!important}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero .herb-portrait{
+  background:#fffaf1!important;
+  border:1px solid #d4c6a8!important;
+  box-shadow:0 16px 36px rgba(42,52,38,.18)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero .herb-portrait img{
+  filter:none!important;
+  -webkit-filter:none!important;
+  opacity:1!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero .hero-countdown{
+  background-image:linear-gradient(rgba(252,249,242,.94),rgba(251,246,235,.94)),var(--hb-paper)!important;
+  background-size:100% 100%,200px 200px!important;
+  border-color:#d5c4a4!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero .hero-countdown-label{background:#fbf7ed!important}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero .button-light,
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.celebrate-cta,
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.map-cta{
+  color:#fff9ed!important;
+  background:#596d4d!important;
+  border:1px solid #7d8a6a!important;
+  box-shadow:0 5px 15px rgba(47,64,43,.14)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero .button-light:hover,
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.celebrate-cta:hover,
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.map-cta:hover{background:#40593d!important}
+
+/* Same painted sage ground in the major chapters. Each crop is repositioned
+   to prevent creating a fixed repeated wallpaper or hard rectangle. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.memories-strip{
+  background-image:linear-gradient(rgba(248,248,236,.55),rgba(251,250,241,.72)),var(--hb-photo)!important;
+  background-color:#a2ac8f!important;
+  background-position:center,center 55%!important;
+  background-size:cover,cover!important;
+  background-repeat:no-repeat,no-repeat!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.celebration,
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.playlist,
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.rsvp{
+  background-image:linear-gradient(rgba(250,248,240,.78),rgba(250,246,237,.86)),var(--hb-photo)!important;
+  background-color:#edeadd!important;
+  background-size:cover,cover!important;
+  background-repeat:no-repeat,no-repeat!important;
+  background-position:center,center center!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.timing,
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+#regalos,
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.dress{
+  background-image:linear-gradient(rgba(250,249,241,.67),rgba(250,249,241,.72)),var(--hb-photo)!important;
+  background-color:#bbc3aa!important;
+  background-size:cover,cover!important;
+  background-repeat:no-repeat,no-repeat!important;
+  background-position:center,center top!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.faq{
+  background-image:linear-gradient(rgba(247,246,234,.78),rgba(246,246,235,.88)),var(--hb-photo)!important;
+  background-color:#e5e7d9!important;
+  background-size:cover,cover!important;
+  background-repeat:no-repeat,no-repeat!important;
+  background-position:center,center bottom!important;
+}
+
+/* Keep section-to-section seams clean and gently warm, matching real paper. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined .herb-paper-seam{
+  height:13px!important;
+  min-height:0!important;
+  padding:0!important;
+  background-image:linear-gradient(180deg,rgba(141,157,127,.24),rgba(246,240,227,.65) 55%,rgba(141,157,127,.10)),var(--hb-paper)!important;
+  background-color:#f5efe2!important;
+  background-size:100% 100%,190px 190px!important;
+  border:0!important;
+  box-shadow:0 2px 6px rgba(63,75,51,.05)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .herb-paper-seam::before,
+body.oliva-theme.propuesta-organica.flower-test.is-defined .herb-paper-seam::after{display:none!important}
+
+/* Typed labels and classic headings draw from the approved envelope's ink. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined .section-kicker,
+body.oliva-theme.propuesta-organica.flower-test.is-defined .gift-kicker{
+  color:#566b4c!important;
+  letter-spacing:.24em!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined
+:is(.celebration h2,.timing-title,.playlist h2,#regalos .gift-intro h2,.rsvp h2,.faq h2){
+  font-family:'Cormorant Garamond',Georgia,serif!important;
+  font-weight:400!important;
+  color:#3b523b!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .celebration h2 em{
+  font-family:'Pinyon Script','Cormorant Garamond',cursive!important;
+  font-weight:400!important;
+  font-size:1.1em;
+  line-height:.95;
+  color:#7a875e!important;
+}
+
+/* Tactile ivory paper cards with subtle gold hairlines. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined .celebration .celebration-story,
+body.oliva-theme.propuesta-organica.flower-test.is-defined .location-card,
+body.oliva-theme.propuesta-organica.flower-test.is-defined .song-card,
+body.oliva-theme.propuesta-organica.flower-test.is-defined .dress .container,
+body.oliva-theme.propuesta-organica.flower-test.is-defined .rsvp .rsvp-layout,
+body.oliva-theme.propuesta-organica.flower-test.is-defined .rsvp .form-shell,
+body.oliva-theme.propuesta-organica.flower-test.is-defined .faq>.container{
+  background-image:linear-gradient(rgba(255,252,245,.94),rgba(251,247,238,.95)),var(--hb-paper)!important;
+  background-size:100% 100%,220px 220px!important;
+  background-repeat:no-repeat,repeat!important;
+  background-color:#fcf8ee!important;
+  border:1px solid rgba(182,155,103,.52)!important;
+  border-radius:4px!important;
+  box-shadow:0 12px 34px rgba(55,65,46,.11)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .celebration .celebration-story{
+  padding:clamp(22px,3.6vw,45px)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .celebration .location-card{
+  padding:clamp(18px,2.5vw,30px)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .dress .container{
+  padding:clamp(22px,4vw,45px)!important;
+  max-width:690px!important;
+  border-color:rgba(183,153,95,.55)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .dress h2{
+  color:#50664a!important;
+  text-shadow:none!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .song-card,
+body.oliva-theme.propuesta-organica.flower-test.is-defined .rsvp .form-shell{
+  padding:clamp(19px,2.7vw,30px)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .rsvp .rsvp-layout{
+  overflow:visible!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .faq>.container{
+  max-width:min(95%,1000px)!important;
+  padding:clamp(22px,3vw,45px)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .faq details{
+  border-bottom:1px solid #d9cdb1!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .faq summary{
+  color:#435c42!important;
+}
+
+/* Wedding gift gallery retains the 15-color-photo carousel and original images. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined .memories-heading{
+  border-bottom-color:rgba(101,118,86,.32)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .memory-slide{
+  background:#fffbf4!important;
+  border:6px solid #fff9ee!important;
+  box-shadow:0 8px 24px rgba(40,55,42,.15)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .memory-slide img,
+body.oliva-theme.propuesta-organica.flower-test.is-defined .herbario-cover-photo,
+body.oliva-theme.propuesta-organica.flower-test.is-defined #regalos .illustration img{
+  filter:none!important;
+  -webkit-filter:none!important;
+  opacity:1!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .memories-arrow{
+  background:#fdf7eb!important;
+  border-color:#c4ae7d!important;
+  color:#486344!important;
+}
+
+/* Gift cards: same handmade-paper finish as the envelope, not green blocks. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined #regalos .gift{
+  background-image:linear-gradient(rgba(255,252,246,.96),rgba(254,249,239,.98)),var(--hb-paper)!important;
+  background-size:100% 100%,210px 210px!important;
+  border:1px solid #cdbd99!important;
+  border-radius:7px!important;
+  box-shadow:0 10px 28px rgba(49,60,44,.13)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined #regalos .gift-caption h3{
+  color:#425b42!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined #regalos .pay,
+body.oliva-theme.propuesta-organica.flower-test.is-defined #regalos .copy,
+body.oliva-theme.propuesta-organica.flower-test.is-defined .wedding-form .form-submit{
+  background:#5d714f!important;
+  color:#fffaf0!important;
+  border:1px solid #728564!important;
+  border-radius:100px!important;
+  box-shadow:0 5px 14px rgba(50,61,46,.13)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined #regalos .pay:hover,
+body.oliva-theme.propuesta-organica.flower-test.is-defined #regalos .copy:hover,
+body.oliva-theme.propuesta-organica.flower-test.is-defined .wedding-form .form-submit:not(:disabled):hover{
+  background:#425a3f!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined #regalos .transfer{
+  color:#506846!important;
+}
+
+/* Transfer section uses the photographic sage-and-white lilies directly;
+   readable bank content remains cream on top. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+#regalos .bank-section{
+  background-image:linear-gradient(rgba(252,249,240,.69),rgba(250,246,237,.77)),var(--hb-photo)!important;
+  background-size:cover,cover!important;
+  background-position:center,center 62%!important;
+  background-repeat:no-repeat,no-repeat!important;
+  background-color:#b8c2a8!important;
+  border-top:1px solid rgba(177,154,108,.35)!important;
+  border-bottom:1px solid rgba(177,154,108,.35)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined #regalos .bank-card{
+  background-image:linear-gradient(rgba(255,252,244,.95),rgba(250,247,237,.97)),var(--hb-paper)!important;
+  background-size:100% 100%,220px 220px!important;
+  background-repeat:no-repeat,repeat!important;
+  border:1px solid #c9b68c!important;
+  border-radius:6px!important;
+  box-shadow:0 13px 32px rgba(53,65,44,.13)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined #regalos .bank-card dl div{
+  border-bottom-color:#ded1b5!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined #regalos .bank-intro h2{
+  color:#435b42!important;
+  font-family:'Cormorant Garamond',Georgia,serif!important;
+  text-wrap:balance;
+}
+
+/* Finish with the same green paper and white lilies as the envelope. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined .footer{
+  background-image:linear-gradient(rgba(59,77,55,.70),rgba(58,77,56,.78)),var(--hb-photo)!important;
+  background-color:#586d51!important;
+  background-size:cover,cover!important;
+  background-position:center,center bottom!important;
+  background-repeat:no-repeat,no-repeat!important;
+  border-top:4px solid #d2c3a2!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .footer-names{
+  color:#fff8ea!important;
+  text-shadow:0 2px 12px rgba(29,43,31,.22);
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .footer p{
+  color:#fff7e6!important;
+}
+
+/* Mobile: preserve comfortable reading widths, no obstructive lilies. */
+@media(max-width:850px){
+ body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+ .hero.romantic-hero{background-position:center,center top!important}
+ body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+ .hero.romantic-hero .hero-content{
+   width:min(calc(100% - 30px),690px)!important;
+   padding:clamp(21px,4vw,32px)!important;
+ }
+ body.oliva-theme.propuesta-organica.flower-test.is-defined .celebration .celebration-story{
+   text-align:center!important;
+   padding:25px 22px!important;
+ }
+ body.oliva-theme.propuesta-organica.flower-test.is-defined .faq>.container{
+   max-width:calc(100% - 32px)!important;
+ }
+}
+@media(max-width:600px){
+ body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+ .hero.romantic-hero .hero-content{
+   width:calc(100% - 24px)!important;
+   max-width:calc(100% - 24px)!important;
+   outline-offset:-8px!important;
+   padding:20px 17px!important;
+ }
+ body.oliva-theme.propuesta-organica.flower-test.is-defined .hero.romantic-hero h1 .hero-name{
+   font-size:clamp(4.2rem,15vw,6.3rem)!important;
+ }
+ body.oliva-theme.propuesta-organica.flower-test.is-defined .hero.romantic-hero .hero-countdown{
+   max-width:100%!important;
+ }
+ body.oliva-theme.propuesta-organica.flower-test.is-defined .celebration .celebration-story,
+ body.oliva-theme.propuesta-organica.flower-test.is-defined .dress .container,
+ body.oliva-theme.propuesta-organica.flower-test.is-defined .faq>.container{
+   padding:20px 17px!important;
+ }
+ body.oliva-theme.propuesta-organica.flower-test.is-defined .rsvp .form-shell{
+   padding:18px 14px!important;
+ }
+ body.oliva-theme.propuesta-organica.flower-test.is-defined .faq>.container{
+   max-width:calc(100% - 26px)!important;
+ }
+ body.oliva-theme.propuesta-organica.flower-test.is-defined .bank-wrap{
+   max-width:100%!important;
+ }
+ body.oliva-theme.propuesta-organica.flower-test.is-defined [data-watercolor-arch]{
+   background-attachment:scroll!important;
+ }
+}

@@ -1,0 +1,101 @@
+/* Prueba Herbario: un solo estrato floral, sin collage.
+   Esta hoja se carga únicamente en /prueba-herbario-florales/.
+   Secciones HTML, datos reales, formularios y sitio oficial intactos. */
+
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin){
+  --paper:#faf7ef;
+  --sage-paper:#eff1e8;
+}
+
+/* Eliminar todos los ramilletes posicionados por la prueba anterior.
+   Eran los adornos separados que parecían pegatinas. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.floral-bouquet{
+  display:none!important;
+}
+
+/* El conflicto era de especificidad: el fondo borroso de la web
+   heredada ganaba incluso frente al CSS de la prueba. El reemplazo
+   está aislado bajo 4 clases del body para superar reglas antiguas. */
+
+/* Acuarelas impresas en el papel; sin superponer otra fotografía floral.
+   Dos ramilletes raster transparentes a escala natural: detalles de
+   pétalos visibles y márgenes sin bordes rectangulares. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+:is(.hero.romantic-hero,.memories-strip,.celebration,.playlist,.faq),
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+#regalos{
+  background-color:#faf7ef!important;
+  background-image:
+    linear-gradient(180deg,rgba(250,247,239,0) 0%,rgba(250,247,239,.25) 240px,#faf7ef 690px),
+    url('assets/ramillete-botanico-real.webp'),
+    url('assets/ramillete-botanico-real.webp'),
+    url('assets/textura-papel-algodon.svg')!important;
+  background-size:100% 100%,clamp(240px,26vw,365px) auto,clamp(240px,26vw,365px) auto,240px 240px!important;
+  background-position:center top,left -32px top 6px,right -32px top 6px,center!important;
+  background-repeat:no-repeat,no-repeat,no-repeat,repeat!important;
+  background-attachment:scroll!important;
+}
+
+/* Las secciones de hojas permanecen limpias y sin fondos florales
+   ampliados: una ilustración tenue para dar ritmo al recorrido. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+:is(.timing,.dress,.rsvp),
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+#regalos .bank-section{
+  background-color:#eff1e8!important;
+  background-image:
+    linear-gradient(180deg,rgba(239,241,232,.15) 0%,#eff1e8 580px),
+    url('assets/hojas_papel_acuarela_web.webp'),
+    url('assets/textura-papel-algodon.svg')!important;
+  background-size:100% 100%,min(100%,950px) auto,240px 240px!important;
+  background-position:center top,center top,center!important;
+  background-repeat:no-repeat,no-repeat,repeat!important;
+  background-attachment:scroll!important;
+}
+
+/* Los nuevos fondos son un tratamiento editorial: evitar
+   paneles superpuestos que recorten los ramilletes. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero .hero-content{
+  background:rgba(255,253,248,.91)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.faq>.container{
+  background:rgba(255,252,247,.80)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.memories-heading{
+  background:rgba(255,252,247,.60)!important;
+}
+
+/* La fotografía principal sigue original a color; solo el carrusel es B/N. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero .herbario-cover-photo{
+  filter:none!important;
+  -webkit-filter:none!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.memory-slide img{
+  filter:grayscale(100%)!important;
+  -webkit-filter:grayscale(100%)!important;
+}
+
+@media(max-width:850px){
+  body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+  :is(.hero.romantic-hero,.memories-strip,.celebration,.playlist,.faq),
+  body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+  #regalos{
+    background-size:100% 100%,230px auto,230px auto,240px 240px!important;
+    background-position:center top,left -65px top,right -65px top,center!important;
+  }
+}
+@media(max-width:600px){
+  body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+  :is(.hero.romantic-hero,.memories-strip,.celebration,.playlist,.faq),
+  body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+  #regalos{
+    background-size:100% 100%,170px auto,170px auto,240px 240px!important;
+    background-position:center top,left -66px top,right -66px top,center!important;
+  }
+}

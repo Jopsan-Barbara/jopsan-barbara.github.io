@@ -69,3 +69,33 @@ body.oliva-theme .wedding-form .post-confirm-link:focus-visible{
   body.oliva-theme .wedding-form .dietary-field{gap:7px}
   body.oliva-theme .wedding-form .field-help{font-size:12px}
 }
+
+/* Ajuste solicitado: nota individual junto al botón, alergias siempre visibles, regalos breves */
+body.oliva-theme.propuesta-organica .rsvp .wedding-form .rsvp-individual-note{
+  box-sizing:border-box;
+  display:block;
+  max-width:100%;
+  margin:0!important;
+  padding:13px 15px;
+  border:1px solid #d8d5c8;
+  border-radius:2px;
+  background:#f6f1e5;
+  color:#4e5b43;
+  font:400 13px/1.65 'DM Sans','Inter',Arial,sans-serif;
+  text-align:left;
+}
+body.oliva-theme.propuesta-organica .rsvp .wedding-form textarea[name="diet"]:disabled{
+  opacity:.7;
+  background:#f0eee5;
+  cursor:not-allowed;
+}
+body.oliva-theme.propuesta-organica #regalos .gift-intro h2{
+  margin:0 0 15px!important;
+  font-size:clamp(3.1rem,5.6vw,5rem)!important;
+  line-height:1.05!important;
+}
+body.oliva-theme.propuesta-organica #regalos .gift-intro>p{
+  max-width:760px;
+  margin:0 auto!important;
+  line-height:1.65;
+}

@@ -165,8 +165,11 @@ function validatePublicRsvp_(data) {
   const fullName=clean_(data.fullName,200,true);
   if(!['Sí','No'].includes(data.attends))throw new Error('Indica si asistirás.');
   const people=data.attends==='Sí'?1:0;
-  // Mantenemos las doce columnas históricas sin solicitar correo ni datos extra.
-  return [new Date(),id,fullName,'','',data.attends,people,'','','','','Web pública'];
+  // La columna I (índice 8) ya está destinada a alergias/restricciones
+  // alimentarias en Respuestas y en el panel privado; no se altera la estructura.
+  // El campo es opcional en el servidor para admitir clientes anteriores.
+  const diet=data.attends==='Sí'?clean_(data.diet,1000,false):'';
+  return [new Date(),id,fullName,'','',data.attends,people,'',diet,'','','Web pública'];
 }
 function publicWrite_(sheet,start,width,row) {
   const count=Math.max(200,sheet.getMaxRows()-start+1);
@@ -198,7 +201,7 @@ function publicForm_(kind) {
   const song=kind==='public-song';
   const fields=song
     ? '<label for="song">Canción y artista</label><input id="song" name="song" required maxlength="200" placeholder="¿Cuál no puede faltar?">'
-    : '<label for="fullName">Nombre y apellido</label><input id="fullName" name="fullName" autocomplete="name" maxlength="200" required placeholder="Tu nombre completo"><label for="attends">¿Asistirás?</label><select name="attends" id="attends" required><option value="">Selecciona una opción</option><option value="Sí">Sí, asistiré</option><option value="No">No podré asistir</option></select>';
+    : '<label for="fullName">Nombre y apellido</label><input id="fullName" name="fullName" autocomplete="name" maxlength="200" required placeholder="Tu nombre completo"><label for="attends">¿Asistirás?</label><select name="attends" id="attends" required><option value="">Selecciona una opción</option><option value="Sí">Sí, asistiré</option><option value="No">No podré asistir</option></select><label for="diet">¿Tienes alguna alergia o restricción alimentaria?</label><textarea id="diet" name="diet" maxlength="1000" rows="3" placeholder="Si no tienes, escribe Ninguna"></textarea>';
   const client=`const kind=${JSON.stringify(kind)},form=document.getElementById('form'),button=document.getElementById('send'),status=document.getElementById('status');let nonce='',requestId='public-'+crypto.randomUUID(),finished=false;function notify(){if(nonce)window.top.postMessage({channel:'jb-public-form-v1',kind,nonce,ready:true,height:document.body.scrollHeight},'https://jopsan-barbara.github.io');}google.script.url.getLocation(location=>{nonce=location.parameter.nonce||'';notify();});if('ResizeObserver' in window)new ResizeObserver(notify).observe(document.body);form.onsubmit=e=>{e.preventDefault();if(finished||!form.reportValidity())return;const data=Object.fromEntries(new FormData(form));data.requestId=requestId;button.disabled=true;status.textContent='Guardando…';const run=google.script.run.withSuccessHandler(result=>{if(!result||result.ok!==true){button.disabled=false;status.textContent='No pudimos confirmar el registro.';return;}status.textContent=result.message;finished=true;if(kind==='public-song'){form.reset();requestId='public-'+crypto.randomUUID();finished=false;button.disabled=false;}else{button.textContent='Respuesta registrada';}notify();}).withFailureHandler(error=>{status.textContent=error.message||'No pudimos guardar. Intenta nuevamente.';button.disabled=false;notify();});if(kind==='public-song')run.submitPublicSong(data);else run.submitPublicRsvp(data);};`;
   return HtmlService.createHtmlOutput('<!doctype html><html lang="es"><head><meta name="viewport" content="width=device-width,initial-scale=1">'+PUBLIC_STYLE_+'</head><body><form id="form"><label class="trap" aria-hidden="true">Sitio web<input name="website" tabindex="-1" autocomplete="off"></label>'+fields+'<button id="send" type="submit">'+(song?'Enviar canción':'Confirmar respuesta')+'</button><p id="status" role="status" aria-live="polite"></p></form><script>'+client+'</script></body></html>').setTitle(song?'Sugerir canción':'Confirmar asistencia').setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }

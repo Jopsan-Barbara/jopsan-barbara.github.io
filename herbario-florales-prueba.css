@@ -1,0 +1,242 @@
+/* PRUEBA AISLADA: Herbario con flores menos difuminadas
+   Comparador A/B; no se carga desde la invitación oficial.
+   Motivo nuevo del repositorio: ramillete botánico en WebP con
+   pequeños detalles florales sobre el fondo de papel. */
+
+body.flower-test{
+  --flower-paper:#fbf7ed;
+  --flower-sage:#667c5c;
+}
+body.flower-test .floral-test-bar{
+  position:relative;
+  z-index:100;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  padding:12px 18px;
+  border-bottom:1px solid #bfc6b4;
+  color:#42533b;
+  background:#f9f6eb;
+  font:500 12px/1.45 'DM Sans',Arial,sans-serif;
+  text-align:center;
+}
+body.flower-test .floral-test-bar strong{
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.06em;
+}
+body.flower-test .floral-test-bar button,
+body.flower-test .floral-test-bar a{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  min-height:35px;
+  border-radius:3px;
+  padding:7px 13px;
+  color:#475e42;
+  border:1px solid #aab69e;
+  background:#fffef8;
+  font:600 12px/1.25 'DM Sans',Arial,sans-serif;
+  text-decoration:none;
+  cursor:pointer;
+}
+body.flower-test .floral-test-bar button[aria-pressed="true"]{
+  background:#586e4c;
+  color:#fffdf5;
+  border-color:#586e4c;
+}
+body.flower-test .floral-test-bar a:hover,
+body.flower-test .floral-test-bar button:hover{
+  box-shadow:0 0 0 2px rgba(101,116,76,.12);
+}
+body.flower-test .floral-test-bar :focus-visible{
+  outline:2px solid #5d754f;
+  outline-offset:2px;
+}
+body.flower-test .floral-test-info{
+  color:#667360;
+  font-size:11px;
+  max-width:350px;
+}
+
+/* Cada motivo es una ilustración raster WebP, no un SVG vectorial.
+   El efecto de acuarela se integra mediante multiplicación de pigmento
+   y desvanecimiento periférico, sin pegatinas cuadradas. */
+body.flower-test .floral-bouquet{
+  display:none!important;
+}
+body.flower-test.is-defined .floral-bouquet{
+  position:absolute!important;
+  display:block!important;
+  width:clamp(240px,27vw,385px);
+  height:clamp(180px,24vw,295px);
+  pointer-events:none;
+  z-index:1;
+  background-image:url('assets/ramillete-botanico-real.webp');
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+  opacity:.83;
+  filter:grayscale(.72) sepia(.19) saturate(.70) brightness(1.10) contrast(1.27);
+  mix-blend-mode:multiply;
+  mask-image:radial-gradient(ellipse 78% 80% at center,#000 45%,transparent 98%);
+  -webkit-mask-image:radial-gradient(ellipse 78% 80% at center,#000 45%,transparent 98%);
+}
+body.flower-test.is-defined .floral-bouquet--left{
+  top:clamp(-45px,-1.8vw,-18px);
+  left:clamp(-125px,-5vw,-30px);
+  transform:rotate(-7deg);
+}
+body.flower-test.is-defined .floral-bouquet--right{
+  top:clamp(-36px,-1.4vw,-13px);
+  right:clamp(-125px,-5vw,-30px);
+  transform:scaleX(-1) rotate(3deg);
+}
+
+/* Las capas grandes de degradado original son las que borraban los
+   pétalos: se sustituyen por un papel uniforme y apenas una veladura
+   superior. Se da protagonismo a los trazos a escala contenida. */
+body.flower-test.is-defined .hero.romantic-hero,
+body.flower-test.is-defined .memories-strip,
+body.flower-test.is-defined .celebration,
+body.flower-test.is-defined .playlist,
+body.flower-test.is-defined #regalos,
+body.flower-test.is-defined .faq{
+  position:relative;
+  isolation:isolate;
+  overflow:clip;
+  background-color:#faf7ef!important;
+  background-image:
+    linear-gradient(to bottom,rgba(250,247,239,.00) 0%,rgba(250,247,239,.06) 210px,#faf7ef 680px),
+    url('assets/textura-papel-algodon.svg')!important;
+  background-position:center top,center!important;
+  background-size:100% 100%,240px 240px!important;
+  background-repeat:no-repeat,repeat!important;
+}
+body.flower-test.is-defined .timing,
+body.flower-test.is-defined .dress,
+body.flower-test.is-defined .rsvp,
+body.flower-test.is-defined #regalos .bank-section{
+  position:relative;
+  isolation:isolate;
+  overflow:clip;
+  background-color:#eff1e8!important;
+  background-image:url('assets/textura-papel-algodon.svg')!important;
+  background-size:240px 240px!important;
+  background-position:center!important;
+  background-repeat:repeat!important;
+}
+
+/* Evita que una acuarela alta compita con la información central. */
+body.flower-test.is-defined .hero.romantic-hero .floral-bouquet{
+  top:70px;
+}
+body.flower-test.is-defined .memories-strip .floral-bouquet,
+body.flower-test.is-defined .celebration .floral-bouquet,
+body.flower-test.is-defined .playlist .floral-bouquet,
+body.flower-test.is-defined #regalos .floral-bouquet,
+body.flower-test.is-defined .faq .floral-bouquet{
+  top:18px;
+}
+body.flower-test.is-defined .timing .floral-bouquet,
+body.flower-test.is-defined .dress .floral-bouquet,
+body.flower-test.is-defined .rsvp .floral-bouquet,
+body.flower-test.is-defined #regalos .bank-section .floral-bouquet{
+  top:10px;
+  opacity:.62;
+}
+
+/* El contenido mantiene lectura y contraste, las flores lo rodean. */
+body.flower-test.is-defined :is(.hero-content,.memories-heading,.celebration-layout,.playlist>.container,.faq>.container,.timing>.container,.rsvp-layout,.gift-intro,.bank-wrap){
+  position:relative;
+  z-index:2;
+}
+body.flower-test.is-defined .romantic-hero .hero-content{
+  background:rgba(255,253,248,.94)!important;
+  border-color:rgba(169,178,151,.42)!important;
+}
+body.flower-test.is-defined .faq>.container{
+  background:rgba(255,252,246,.58);
+  padding:32px clamp(12px,2vw,34px);
+}
+body.flower-test.is-defined .celebration .celebration-story{
+  background:rgba(251,249,242,.76);
+  border-radius:2px;
+}
+body.flower-test.is-defined .memories-heading{
+  background:rgba(250,247,239,.67);
+}
+body.flower-test.is-defined #regalos .gift-intro{
+  background:rgba(250,247,239,.76);
+}
+
+/* Los marcos fotográficos, los regalos y el mapa no se alteran. */
+body.flower-test.is-defined .hero .herbario-cover-photo{
+  filter:none!important;
+  -webkit-filter:none!important;
+}
+body.flower-test.is-defined .memory-slide img{
+  filter:grayscale(100%)!important;
+  -webkit-filter:grayscale(100%)!important;
+}
+body.flower-test.is-defined #regalos .illustration img{
+  filter:none!important;
+  -webkit-filter:none!important;
+}
+
+/* Una prueba visual no debe registrar invitaciones ni canciones. */
+body.flower-test .preview-disabled{
+  background:#f2efe6;
+  border:1px solid #d6d4c7;
+  color:#56644f;
+  padding:9px 12px;
+  font:500 12px/1.5 'DM Sans',Arial,sans-serif;
+  text-align:center;
+}
+body.flower-test .wedding-form .form-submit:disabled{
+  cursor:not-allowed;
+  opacity:.64;
+}
+@media(max-width:850px){
+  body.flower-test.is-defined .floral-bouquet{
+    width:clamp(180px,42vw,285px);
+    height:clamp(170px,40vw,250px);
+    opacity:.65;
+  }
+  body.flower-test.is-defined .floral-bouquet--left{left:-85px;}
+  body.flower-test.is-defined .floral-bouquet--right{right:-85px;}
+}
+@media(max-width:600px){
+  body.flower-test .floral-test-bar{
+    gap:8px;
+    padding:12px 10px;
+  }
+  body.flower-test .floral-test-bar strong{
+    flex-basis:100%;
+  }
+  body.flower-test .floral-test-bar button,
+  body.flower-test .floral-test-bar a{
+    min-height:40px;
+    flex:1 1 auto;
+  }
+  body.flower-test .floral-test-info{
+    flex-basis:100%;
+  }
+  body.flower-test.is-defined .floral-bouquet{
+    width:185px;
+    height:155px;
+    opacity:.42;
+  }
+  body.flower-test.is-defined .floral-bouquet--left{left:-98px;top:10px;}
+  body.flower-test.is-defined .floral-bouquet--right{right:-98px;top:10px;}
+  body.flower-test.is-defined .hero.romantic-hero .floral-bouquet{top:52px;}
+  body.flower-test.is-defined .faq>.container{
+    padding:19px 11px;
+    background:rgba(255,253,245,.8);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  body.flower-test .floral-test-bar button{transition:none!important;}
+}

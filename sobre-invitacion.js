@@ -17,6 +17,7 @@
   function setBackgroundBlocked(blocked) {
     otherElements.forEach(element => { element.inert = blocked; });
     document.body.classList.toggle('sobre-bloqueado', blocked);
+    document.documentElement.classList.toggle('sobre-bloqueado-html', blocked);
   }
 
   function showIntro() {

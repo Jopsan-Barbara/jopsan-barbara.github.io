@@ -67,32 +67,34 @@ body.flower-test .floral-test-info{
 body.flower-test .floral-bouquet{
   display:none!important;
 }
+/* Acuarela nueva en WebP raster: flores blancas, heléboros y follaje salvia.
+   Integradas en papel, sin rosas rosadas ni filtros que laven los pigmentos. */
 body.flower-test.is-defined .floral-bouquet{
   position:absolute!important;
   display:block!important;
-  width:clamp(240px,27vw,385px);
-  height:clamp(180px,24vw,295px);
+  width:clamp(174px,17vw,265px);
+  height:clamp(181px,19vw,280px);
   pointer-events:none;
   z-index:1;
-  background-image:url('assets/ramillete-botanico-real.webp');
+  background-image:url('assets/herbario-flores-blancas-nitidas.webp?v=20261123-white-1');
   background-repeat:no-repeat;
-  background-position:center;
+  background-position:top left;
   background-size:contain;
-  opacity:.83;
-  filter:grayscale(.72) sepia(.19) saturate(.70) brightness(1.10) contrast(1.27);
+  opacity:.86;
+  filter:saturate(.85) contrast(1.05);
   mix-blend-mode:multiply;
-  mask-image:radial-gradient(ellipse 78% 80% at center,#000 45%,transparent 98%);
-  -webkit-mask-image:radial-gradient(ellipse 78% 80% at center,#000 45%,transparent 98%);
+  -webkit-mask-image:radial-gradient(ellipse 92% 100% at 20% 18%,#000 51%,transparent 93%);
+  mask-image:radial-gradient(ellipse 92% 100% at 20% 18%,#000 51%,transparent 93%);
 }
 body.flower-test.is-defined .floral-bouquet--left{
-  top:clamp(-45px,-1.8vw,-18px);
-  left:clamp(-125px,-5vw,-30px);
-  transform:rotate(-7deg);
+  top:clamp(12px,1.7vw,30px);
+  left:clamp(-28px,-1vw,-7px);
+  transform:none;
 }
 body.flower-test.is-defined .floral-bouquet--right{
-  top:clamp(-36px,-1.4vw,-13px);
-  right:clamp(-125px,-5vw,-30px);
-  transform:scaleX(-1) rotate(3deg);
+  top:clamp(12px,1.7vw,30px);
+  right:clamp(-28px,-1vw,-7px);
+  transform:scaleX(-1);
 }
 
 /* Las capas grandes de degradado original son las que borraban los
@@ -131,7 +133,7 @@ body.flower-test.is-defined #regalos .bank-section{
 
 /* Evita que una acuarela alta compita con la información central. */
 body.flower-test.is-defined .hero.romantic-hero .floral-bouquet{
-  top:70px;
+  top:22px;
 }
 body.flower-test.is-defined .memories-strip .floral-bouquet,
 body.flower-test.is-defined .celebration .floral-bouquet,
@@ -201,12 +203,12 @@ body.flower-test .wedding-form .form-submit:disabled{
 }
 @media(max-width:850px){
   body.flower-test.is-defined .floral-bouquet{
-    width:clamp(180px,42vw,285px);
-    height:clamp(170px,40vw,250px);
-    opacity:.65;
+    width:clamp(165px,28vw,240px);
+    height:clamp(175px,31vw,260px);
+    opacity:.75;
   }
-  body.flower-test.is-defined .floral-bouquet--left{left:-85px;}
-  body.flower-test.is-defined .floral-bouquet--right{right:-85px;}
+  body.flower-test.is-defined .floral-bouquet--left{left:-23px;}
+  body.flower-test.is-defined .floral-bouquet--right{right:-23px;}
 }
 @media(max-width:600px){
   body.flower-test .floral-test-bar{
@@ -225,13 +227,13 @@ body.flower-test .wedding-form .form-submit:disabled{
     flex-basis:100%;
   }
   body.flower-test.is-defined .floral-bouquet{
-    width:185px;
+    width:142px;
     height:155px;
-    opacity:.42;
+    opacity:.68;
   }
-  body.flower-test.is-defined .floral-bouquet--left{left:-98px;top:10px;}
-  body.flower-test.is-defined .floral-bouquet--right{right:-98px;top:10px;}
-  body.flower-test.is-defined .hero.romantic-hero .floral-bouquet{top:52px;}
+  body.flower-test.is-defined .floral-bouquet--left{left:-18px;top:12px;}
+  body.flower-test.is-defined .floral-bouquet--right{right:-18px;top:12px;}
+  body.flower-test.is-defined .hero.romantic-hero .floral-bouquet{top:16px;}
   body.flower-test.is-defined .faq>.container{
     padding:19px 11px;
     background:rgba(255,253,245,.8);

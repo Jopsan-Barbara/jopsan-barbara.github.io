@@ -28,7 +28,7 @@ body.sobre-bloqueado{overflow:hidden!important;touch-action:auto}
 .sobre-intro__seal{position:absolute;top:62%;left:50%;z-index:6;display:flex;align-items:center;justify-content:center;width:clamp(54px,15vw,70px);aspect-ratio:1;border:3px solid #a77982;border-radius:48% 52% 49% 51% / 53% 46% 54% 47%;background:radial-gradient(circle at 32% 28%,#a56b77 0%,#8c4c61 54%,#673748 100%);color:#f8ecdf;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(18px,4.8vw,24px);letter-spacing:-.08em;box-shadow:inset 0 0 0 2px #bb8a8b,inset 0 0 0 4px #713f4f,0 5px 9px #4e4a383d;transform:translate(-50%,-50%);will-change:transform,opacity}
 .sobre-intro__seal span{font-style:italic;font-size:.8em;margin:0 .08em}
 .sobre-intro__help{font-size:13px;letter-spacing:.035em;color:#58694f;margin:clamp(13px,2.5vh,24px) 0 15px}
-.sobre-intro__skip{display:inline-block;font-size:12px;color:#6e785e;text-underline-offset:4px;padding:5px 10px}
+.sobre-intro__skip{display:inline-block;font-size:12px;color:#6e785e;text-underline-offset:4px;padding:5px 10px;border:0;background:transparent;appearance:none;font-family:inherit;text-decoration:underline;cursor:pointer}
 .sobre-intro__skip:focus-visible{outline:2px solid #86596a;outline-offset:4px;border-radius:4px}
 .sobre-intro__button:hover .sobre-intro__seal{box-shadow:inset 0 0 0 2px #bb8a8b,inset 0 0 0 4px #713f4f,0 8px 16px #4e4a3850}
 .sobre-intro.is-opening .sobre-intro__seal{animation:sobre-romper .35s ease-in both}

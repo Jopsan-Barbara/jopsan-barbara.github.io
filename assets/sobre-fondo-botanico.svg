@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="740" height="940" viewBox="0 0 740 940">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#aab39a"/><stop offset=".48" stop-color="#909f82"/><stop offset="1" stop-color="#687e65"/></linearGradient>
+ <filter id="paper" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".024 .036" numOctaves="3" seed="4" stitchTiles="stitch" result="n"/><feColorMatrix in="n" type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".18"/></feComponentTransfer></filter>
+ <g id="flower" stroke="#fbfaf0" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".82">
+  <path d="M0 -12 C-23 -50 -18 -76 0 -86 C20 -74 22 -51 0 -12Z" fill="#f8f7e6" fill-opacity=".08"/>
+  <path d="M11 -5 C31 -44 61 -51 81 -38 C78 -15 54 -5 11 -5Z" fill="#f8f7e6" fill-opacity=".09"/>
+  <path d="M7 10 C36 25 45 58 32 78 C9 72 -5 44 7 10Z" fill="#f8f7e6" fill-opacity=".08"/>
+  <path d="M-9 8 C-48 29 -64 20 -76 2 C-67 -20 -35 -20 -9 8Z" fill="#f8f7e6" fill-opacity=".12"/>
+  <path d="M-10 -7 C-45 -46 -48 -65 -28 -79 C-6 -70 0 -43 -10 -7Z" fill="#f8f7e6" fill-opacity=".08"/>
+  <circle r="7" fill="#f8e9c3" fill-opacity=".25"/>
+  <path d="M0 -16 -4 -62 M10 -3 60 -30 M8 10 29 56 M-10 8 -54 4 M-8 -8 -28 -56" stroke-width="1" opacity=".65"/>
+  <path d="M0 0 Q-4 10 -1 22M0 0Q10 4 17 9M0 0Q-11 -4 -20 -1" stroke="#4e604c" stroke-width="1.25"/>
+ </g>
+ <g id="twig" fill="none" stroke="#f7f7e9" stroke-width="2" stroke-linecap="round" opacity=".66">
+  <path d="M0 0 C28 -45 64 -94 98 -172"/>
+  <path d="M28 -45 Q-19 -87 -38 -68 Q-25 -39 28 -45Z" fill="#fbfbef" fill-opacity=".06"/>
+  <path d="M49 -73 Q85 -105 116 -97 Q95 -71 49 -73Z" fill="#fbfbef" fill-opacity=".07"/>
+  <path d="M68 -113 Q23 -137 16 -169 Q54 -157 68 -113Z" fill="#fbfbef" fill-opacity=".06"/>
+  <path d="M87 -151 Q121 -189 139 -179 Q121 -150 87 -151Z" fill="#fbfbef" fill-opacity=".06"/>
+  <path d="M28 -45 -30 -67M49 -73 108 -96M68 -113 21 -157M87 -151 131 -173" stroke-width="1" opacity=".65"/>
+ </g>
+</defs>
+<rect width="740" height="940" fill="url(#bg)"/>
+<rect width="740" height="940" fill="#fff" filter="url(#paper)" opacity=".32"/>
+<path d="M-60 130C150 75 165 305 300 225S520 28 820 84" stroke="#faf5e6" stroke-opacity=".13" stroke-width="16" fill="none"/>
+<path d="M-90 770C120 700 202 840 340 763S570 654 830 710" stroke="#405c4c" stroke-opacity=".13" stroke-width="28" fill="none"/>
+<use href="#flower" transform="translate(93 188) rotate(-20) scale(1.2)"/>
+<use href="#flower" transform="translate(619 150) rotate(33) scale(.92)"/>
+<use href="#flower" transform="translate(86 698) rotate(20) scale(.85)"/>
+<use href="#flower" transform="translate(602 791) rotate(-20) scale(1.13)"/>
+<use href="#flower" transform="translate(435 495) rotate(9) scale(.65)" opacity=".27"/>
+<use href="#flower" transform="translate(265 358) rotate(-25) scale(.5)" opacity=".25"/>
+<use href="#flower" transform="translate(350 880) rotate(6) scale(.52)" opacity=".3"/>
+<use href="#twig" transform="translate(11 459) rotate(-23) scale(1.1)"/>
+<use href="#twig" transform="translate(735 407) rotate(195) scale(1.15)"/>
+<use href="#twig" transform="translate(179 917) rotate(17) scale(1.4)"/>
+<use href="#twig" transform="translate(503 20) rotate(180) scale(.95)"/>
+<path d="M20 280q14-26 25-13t-3 30M690 587q-18-20-31-9t12 27M390 54q-21 10-14 25t24 0M301 645q-12-15-23 0t10 22" stroke="#f4f1df" opacity=".45" fill="none"/>
+</svg>

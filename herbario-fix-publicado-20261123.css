@@ -1,7 +1,7 @@
 /* Corrección verificable del Herbario oficial — 23/11/2026.
    Desacopla la foto principal de .hero-photo (clase antigua que
    conserva máscaras y estilos conflictivos en varios CSS heredados).
-   Mantiene la foto sin filtros y respeta las 15 imágenes B/N del álbum.
+   Mantiene la foto principal y las 15 imágenes del álbum en sus colores originales.
    Los fondos florales cubren el ancho real sin rectángulos centrales. */
 
 body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
@@ -52,11 +52,11 @@ body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
 .hero.romantic-hero .herb-photo-paper{
   display:none!important;
 }
-/* Las fotografías del carrusel mantienen el tratamiento aprobado. */
+/* Las fotografías del carrusel mantienen sus colores originales. */
 body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
 .memories-strip .memory-slide img{
-  filter:grayscale(100%)!important;
-  -webkit-filter:grayscale(100%)!important;
+  filter:none!important;
+  -webkit-filter:none!important;
 }
 
 /* Papel floral: cubre el ancho de la sección, no solo una franja

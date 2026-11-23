@@ -33,16 +33,14 @@
   <link rel="stylesheet" href="../herbario-acuarela-2027.css?v=20261122-auditoria-responsive-4">
   <link rel="stylesheet" href="../herbario-fix-publicado-20261123.css?v=1">
   <link rel="stylesheet" href="../rsvp-mejoras-20261123.css?v=2">
-  <link rel="stylesheet" href="../herbario-florales-prueba.css?v=20261123-arcos-continuos-6">
+  <link rel="stylesheet" href="../herbario-florales-prueba.css?v=20261123-final-consolidado-7">
 </head>
 <body class="oliva-theme propuesta-organica flower-test is-defined">
   <a class="skip-link" href="#detalles">Saltar a los detalles</a>
-  <div class="floral-test-bar" role="group" aria-label="Comparar tratamiento floral">
-    <strong>Prueba Herbario · Flores en acuarela</strong>
-    <button type="button" data-floral-mode="original" aria-pressed="false">Flores actuales</button>
-    <button type="button" data-floral-mode="defined" aria-pressed="true">Flores blancas en acuarela</button>
+  <div class="floral-test-bar" role="note" aria-label="Vista previa de Herbario">
+    <strong>Herbario · Propuesta floral definitiva (prueba)</strong>
     <a href="../">Volver a la invitación oficial</a>
-    <span class="floral-test-info">Prueba visual sin envíos ni pagos. La invitación oficial no cambia.</span>
+    <span class="floral-test-info">Vista de prueba sin envíos ni pagos. La invitación oficial no cambia.</span>
   </div>
 
   <header class="hero romantic-hero" id="inicio" data-watercolor-arch="ivory">
@@ -287,14 +285,6 @@
   <script src="../gallery.js?v=galeria-15-nueva-1" defer></script>
   <script>
     (() => {
-      const buttons = [...document.querySelectorAll('[data-floral-mode]')];
-      const setMode = mode => {
-        const defined = mode !== 'original';
-        document.body.classList.toggle('is-defined', defined);
-        document.body.classList.toggle('is-original', !defined);
-        buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.floralMode === (defined ? 'defined' : 'original'))));
-      };
-      buttons.forEach(b => b.addEventListener('click', () => setMode(b.dataset.floralMode)));
       document.querySelectorAll('form.wedding-form').forEach(form => {
         const button = form.querySelector('button[type="submit"]');
         if (button) {

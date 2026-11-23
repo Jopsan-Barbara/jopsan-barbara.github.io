@@ -243,7 +243,7 @@ body.flower-test .wedding-form .form-submit:disabled{
 @media(max-width:850px){
   body.flower-test.is-defined [data-watercolor-arch] > .floral-bouquet{
     width:clamp(128px,22vw,210px)!important;
-    opacity:calc(var(--arch-opacity) * .87)!important;
+    opacity:.46!important;
   }
   body.flower-test.is-defined .playlist[data-watercolor-arch] > .container.playlist-layout{
     width:min(calc(100% - 36px),690px)!important;
@@ -267,7 +267,7 @@ body.flower-test .wedding-form .form-submit:disabled{
   body.flower-test.is-defined [data-watercolor-arch] > .floral-bouquet{
     width:min(25vw,102px)!important;
     left:-6px!important;
-    opacity:calc(var(--arch-opacity) * .77)!important;
+    opacity:.39!important;
     background-size:100% auto!important;
   }
   body.flower-test.is-defined [data-watercolor-arch] > .floral-bouquet--right{

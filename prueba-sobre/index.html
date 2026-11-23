@@ -81,11 +81,11 @@
   <link rel="stylesheet" href="../herbario-florales-prueba.css?v=20261123-fotos-color-1">
   <link rel="stylesheet" href="../herbario-sobre-aprobado.css?v=20261123-oliva-fotografico-1">
   <link rel="stylesheet" href="../sobre-invitacion.css?v=20261123-restaurado2">
-  <link rel="stylesheet" href="../sobre-musica.css?v=20261123-mp3-1">
+  <link rel="stylesheet" href="../sobre-musica.css?v=20261123-continuidad-1">
 </head>
 <body class="oliva-theme propuesta-organica flower-test is-defined sobre-bloqueado">
 
-  <section id="sobre-intro" class="sobre-intro" role="dialog" aria-modal="true" aria-labelledby="sobre-titulo" data-invitation-url="../prueba-herbario-florales/">
+  <section id="sobre-intro" class="sobre-intro" role="dialog" aria-modal="true" aria-labelledby="sobre-titulo">
     <div class="sobre-intro__botanics" aria-hidden="true">
       <span class="botanic--tl"></span><span class="botanic--tr"></span>
       <span class="botanic--bl"></span><span class="botanic--br"></span>
@@ -117,12 +117,13 @@
       <p class="sobre-intro__help">Toca el sello para abrir tu invitación</p>
       <button type="button" id="sobre-omitir" class="sobre-intro__skip">Ir directamente a la invitación</button>
       <button type="button" id="sobre-musica-activar" class="sobre-intro__music-start" aria-pressed="false">♫ Activar música</button>
-      <small class="sobre-intro__music-note">36 segundos · una sola vez</small>
+      <small id="sobre-musica-nota" class="sobre-intro__music-note">36 segundos · sin repetición automática</small>
       <small id="sobre-musica-estado" class="sobre-intro__music-note" role="status" aria-live="polite" hidden></small>
       <audio id="sobre-musica-audio" src="../assets/sobre-cancion-0230-0309.mp3" preload="auto" aria-label="Nuestra canción"></audio>
     </div>
   </section>
-  <button id="sobre-repetir" class="sobre-repetir" type="button" hidden>Volver a ver el sobre</button>
+  <button id="sobre-repetir" class="sobre-repetir" type="button" hidden>Volver al inicio y escuchar</button>
+  <button id="sobre-musica-flotante" class="sobre-musica-flotante" type="button" aria-pressed="false" hidden>♫ Silenciar música</button>
 
   <a class="skip-link" href="#detalles">Saltar a los detalles</a>
   <div class="floral-test-bar" role="note" aria-label="Vista previa de Herbario">
@@ -384,8 +385,8 @@
       document.querySelectorAll('[data-pay]').forEach(a=>{a.removeAttribute('data-pay');a.hidden=true;});
     })();
   </script>
-  <script src="../sobre-musica.js?v=20261123-auto36-2"></script>
-  <script src="../sobre-invitacion.js?v=20261123-auto36-2"></script>
+  <script src="../sobre-musica.js?v=20261123-continuidad-1"></script>
+  <script src="../sobre-invitacion.js?v=20261123-continuidad-1"></script>
 </body>
 </html>
 

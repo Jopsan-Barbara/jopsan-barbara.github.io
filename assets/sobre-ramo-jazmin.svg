@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="290" height="290" viewBox="0 0 290 290" fill="none" role="img" aria-label="Ramillete de flores blancas con hojas oliva">
+<defs>
+  <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#87926f"/><stop offset=".55" stop-color="#526842"/><stop offset="1" stop-color="#2f4c37"/></linearGradient>
+  <linearGradient id="leaf2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b2b497"/><stop offset=".6" stop-color="#7d8c64"/><stop offset="1" stop-color="#566d48"/></linearGradient>
+  <radialGradient id="petal"><stop stop-color="#fffef9"/><stop offset=".7" stop-color="#f8f7eb"/><stop offset="1" stop-color="#d7dbc8"/></radialGradient>
+  <radialGradient id="petal2"><stop stop-color="#fffdf7"/><stop offset=".78" stop-color="#f1f1e4"/><stop offset="1" stop-color="#d3d7c5"/></radialGradient>
+  <radialGradient id="core"><stop stop-color="#f7e7b2"/><stop offset=".6" stop-color="#dec687"/><stop offset="1" stop-color="#9a8b55"/></radialGradient>
+  <filter id="soft-shadow" x="-45%" y="-45%" width="190%" height="190%"><feGaussianBlur in="SourceAlpha" stdDeviation="1.2"/><feOffset dy="1"/><feComponentTransfer><feFuncA type="linear" slope=".18"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<!-- Fine stems beneath petals -->
+<g stroke="#566b4c" stroke-linecap="round" stroke-width="2.4">
+<path d="M95 265 C120 218 145 156 185 70"/>
+<path d="M95 265 C116 207 119 156 117 116"/>
+<path d="M97 265 C145 227 195 180 230 148"/>
+<path d="M104 254 C96 205 73 142 60 85"/>
+<path d="M100 250 C134 204 170 183 197 188"/>
+<path d="M96 261 C75 232 58 212 44 187"/>
+</g>
+<!-- Soft natural leaves -->
+<g fill="url(#leaf)" stroke="#677553" stroke-width=".6">
+<path d="M132 204 Q84 168 80 150 Q115 154 139 193Z"/>
+<path d="M148 165 Q126 118 139 97 Q169 126 154 160Z"/>
+<path d="M161 150 Q208 129 230 133 Q214 156 163 158Z"/>
+<path d="M121 226 Q84 205 59 210 Q74 234 117 232Z"/>
+<path d="M188 90 Q173 58 184 38 Q203 52 194 90Z"/>
+<path d="M199 186 Q236 178 250 196 Q222 212 194 195Z"/>
+</g>
+<g fill="url(#leaf2)" stroke="#6f805d" stroke-width=".5">
+<path d="M94 184 Q50 157 45 133 Q75 137 100 177Z"/>
+<path d="M105 245 Q77 223 63 239 Q76 258 100 254Z"/>
+<path d="M154 183 Q167 152 184 151 Q181 176 161 193Z"/>
+<path d="M121 135 Q94 112 83 91 Q112 95 124 129Z"/>
+<path d="M206 116 Q231 84 256 84 Q252 110 209 125Z"/>
+</g>
+<!-- Branch veins -->
+<g stroke="#c4c9ad" opacity=".54" stroke-width=".7" stroke-linecap="round">
+<path d="M135 196 91 161M150 157 142 108M168 152 220 139M120 229 68 217M192 89 188 45M198 194 241 198M95 178 53 141"/>
+</g>
+<!-- White jasmine flowers, each petal built from soft shaded layers -->
+<g filter="url(#soft-shadow)">
+  <g transform="translate(184 70) rotate(-8)">
+    <ellipse cx="0" cy="-22" rx="13" ry="26" fill="url(#petal)" stroke="#d2d6bf" stroke-width=".75"/>
+    <ellipse cx="20" cy="-5" rx="13" ry="26" transform="rotate(72 20 -5)" fill="url(#petal)" stroke="#d2d6bf" stroke-width=".75"/>
+    <ellipse cx="12" cy="19" rx="13" ry="26" transform="rotate(144 12 19)" fill="url(#petal)" stroke="#d2d6bf" stroke-width=".75"/>
+    <ellipse cx="-13" cy="19" rx="13" ry="26" transform="rotate(216 -13 19)" fill="url(#petal)" stroke="#d2d6bf" stroke-width=".75"/>
+    <ellipse cx="-20" cy="-5" rx="13" ry="26" transform="rotate(288 -20 -5)" fill="url(#petal)" stroke="#d2d6bf" stroke-width=".75"/>
+    <circle r="10" fill="url(#core)"/><circle r="3.5" fill="#a9a06e"/>
+    <g stroke="#a28b55" stroke-width="1.3"><path d="M-6 -5 -11 -10M2 -6 5 -12M7 1 15 1M2 7 5 14M-6 4 -13 9"/></g>
+  </g>
+  <g transform="translate(115 116) rotate(12) scale(.79)">
+    <ellipse cx="0" cy="-23" rx="14" ry="27" fill="url(#petal2)" stroke="#d5d8c5"/>
+    <ellipse cx="21" cy="-6" rx="14" ry="27" transform="rotate(72 21 -6)" fill="url(#petal2)" stroke="#d5d8c5"/>
+    <ellipse cx="13" cy="19" rx="14" ry="27" transform="rotate(144 13 19)" fill="url(#petal2)" stroke="#d5d8c5"/>
+    <ellipse cx="-13" cy="19" rx="14" ry="27" transform="rotate(216 -13 19)" fill="url(#petal2)" stroke="#d5d8c5"/>
+    <ellipse cx="-21" cy="-6" rx="14" ry="27" transform="rotate(288 -21 -6)" fill="url(#petal2)" stroke="#d5d8c5"/>
+    <circle r="10" fill="url(#core)"/><circle r="4" fill="#b8a56e"/>
+  </g>
+  <g transform="translate(232 147) rotate(25) scale(.68)">
+    <ellipse cx="0" cy="-22" rx="13" ry="25" fill="url(#petal)" stroke="#d3d6c4"/>
+    <ellipse cx="20" cy="-6" rx="13" ry="25" transform="rotate(72 20 -6)" fill="url(#petal)" stroke="#d3d6c4"/>
+    <ellipse cx="13" cy="18" rx="13" ry="25" transform="rotate(144 13 18)" fill="url(#petal)" stroke="#d3d6c4"/>
+    <ellipse cx="-13" cy="18" rx="13" ry="25" transform="rotate(216 -13 18)" fill="url(#petal)" stroke="#d3d6c4"/>
+    <ellipse cx="-20" cy="-6" rx="13" ry="25" transform="rotate(288 -20 -6)" fill="url(#petal)" stroke="#d3d6c4"/>
+    <circle r="10" fill="url(#core)"/><circle r="3" fill="#b6a36a"/>
+  </g>
+  <g transform="translate(61 84) rotate(-12) scale(.58)">
+    <ellipse cx="0" cy="-22" rx="13" ry="26" fill="url(#petal)" stroke="#d3d6c4"/>
+    <ellipse cx="20" cy="-6" rx="13" ry="26" transform="rotate(72 20 -6)" fill="url(#petal)" stroke="#d3d6c4"/>
+    <ellipse cx="13" cy="19" rx="13" ry="26" transform="rotate(144 13 19)" fill="url(#petal)" stroke="#d3d6c4"/>
+    <ellipse cx="-13" cy="19" rx="13" ry="26" transform="rotate(216 -13 19)" fill="url(#petal)" stroke="#d3d6c4"/>
+    <ellipse cx="-20" cy="-6" rx="13" ry="26" transform="rotate(288 -20 -6)" fill="url(#petal)" stroke="#d3d6c4"/>
+    <circle r="10" fill="url(#core)"/><circle r="4" fill="#b8a56e"/>
+  </g>
+</g>
+<!-- Two unopened ivory buds -->
+<g fill="#f8f4e5" stroke="#c3c9aa" stroke-width="1">
+  <path d="M192 195 Q178 171 192 161 Q212 178 192 195Z"/>
+  <path d="M42 191 Q24 169 37 161 Q54 175 42 191Z"/>
+</g>
+</svg>

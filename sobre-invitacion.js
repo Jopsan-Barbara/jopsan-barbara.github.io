@@ -3,6 +3,7 @@
   const intro = document.getElementById('sobre-intro');
   const openButton = document.getElementById('sobre-abrir');
   const skipButton = document.getElementById('sobre-omitir');
+  const musicButton = document.getElementById('sobre-musica-activar');
   const replay = document.getElementById('sobre-repetir');
   if (!intro || !openButton || !skipButton || !replay) return;
   // Si el sobre se usa como portada, continuar a la página Herbario real.
@@ -83,11 +84,15 @@
   intro.addEventListener('keydown', event => {
     if (event.key === 'Escape') {
       event.preventDefault();
-      closeIntro();
+      const music = window.SobreMusica;
+      const sounding = !!(music && music.isPlaying());
+      if (music) music.fadeAndStop();
+      if (sounding) window.setTimeout(closeIntro, 1200);
+      else closeIntro();
     }
     if (event.key === 'Tab' && !opening) {
       const first = openButton;
-      const last = skipButton;
+      const last = musicButton && !musicButton.disabled ? musicButton : skipButton;
       if (event.shiftKey && document.activeElement === first) {
         event.preventDefault();
         last.focus();

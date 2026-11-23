@@ -64,6 +64,11 @@
     timer = window.setTimeout(closeIntro, 3730);
   }
 
+  // Restaurar el sobre cuando el navegador regresa desde Herbario (bfcache).
+  window.addEventListener('pageshow', event => {
+    if (event.persisted && nextInvitation) showIntro();
+  });
+
   openButton.addEventListener('click', openIntro);
   skipButton.addEventListener('click', closeIntro);
   replay.addEventListener('click', showIntro);

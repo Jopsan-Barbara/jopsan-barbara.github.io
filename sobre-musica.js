@@ -104,10 +104,9 @@
   audio.addEventListener('loadedmetadata', startAtCut);
   audio.addEventListener('playing', () => {
     if (stopping || fading) return;
-    if (audio.currentTime < CLIP_START - .2) {
-      startAtCut();
-      return;
-    }
+    // En conexiones lentas puede empezar un instante antes de terminar el seek.
+    // Ajustamos al segundo 3 y registramos igualmente el estado "reproduciendo".
+    if (audio.currentTime < CLIP_START - .2) startAtCut();
     pending = false;
     started = true;
     remember();

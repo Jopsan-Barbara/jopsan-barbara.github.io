@@ -201,20 +201,84 @@ body.flower-test .wedding-form .form-submit:disabled{opacity:.6;cursor:not-allow
   body.flower-test.is-defined .faq > .container{padding:14px 9px}
 }
 
-/* Cierre armonioso y sin espacio vacío excesivo antes del pie.
-   La decoración no se repite: hay un motivo arriba, hojas a media
-   altura y un motivo abajo. Aplicado únicamente a la prueba. */
-body.oliva-theme.propuesta-organica.flower-test.is-defined .faq[data-watercolor-arch]{
-  padding-top:clamp(36px,4.5vw,62px)!important;
-  padding-bottom:clamp(30px,3vw,48px)!important;
+/* ARMONIZACIÓN FINAL · solamente la prueba. Corregir ritmo vertical sin
+   cambiar estructura, fotos, texto, formularios ni información. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin) .celebration{
+  padding-block:clamp(50px,5vw,72px) clamp(34px,3vw,48px)!important;
 }
-body.oliva-theme.propuesta-organica.flower-test.is-defined .faq[data-watercolor-arch] > .container{
-  padding-block:clamp(14px,2vw,28px)!important;
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin) .timing{
+  padding-block:clamp(42px,4vw,62px) clamp(34px,3vw,50px)!important;
 }
-body.oliva-theme.propuesta-organica.flower-test.is-defined .footer{
-  padding-top:clamp(48px,5vw,70px)!important;
-  padding-bottom:clamp(52px,5vw,76px)!important;
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin) .dress{
+  padding-block:clamp(40px,4vw,62px)!important;
 }
-body.flower-test.is-defined [data-watercolor-arch] > .floral-bouquet{
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin) .playlist{
+  padding-block:clamp(43px,4vw,62px) clamp(32px,3vw,46px)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin) #regalos{
+  padding-top:0!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin) #regalos .gift-intro{
+  padding:clamp(32px,3.5vw,52px) 20px clamp(26px,2.5vw,40px)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin) #regalos .catalog{
+  margin-bottom:clamp(24px,2.8vw,42px)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin) #regalos .bank-section{
+  padding-block:clamp(40px,4vw,64px)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin) .rsvp{
+  padding-block:clamp(42px,4vw,66px)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin) .faq{
+  padding-block:clamp(40px,4vw,62px) clamp(30px,3vw,45px)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin) .faq>.container{
+  padding-block:clamp(14px,2vw,27px)!important;
+}
+/* Para evitar un borde de flores idénticas a lo largo de todo el sitio:
+   preservar la portada, y alternar UN lado en solo cuatro capítulos.
+   El resto descansa visualmente sobre papel texturado. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+:is(.timing,.dress,.playlist,.bank-section,.rsvp)>.floral-bouquet,
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.memories-strip>.floral-bouquet--left,
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.celebration>.floral-bouquet--right,
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+#regalos>.floral-bouquet--left,
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.faq>.floral-bouquet--right{
+  display:none!important;
+}
+/* Un motivo floral por extremo activo (no el mismo ramo arriba y abajo). */
+body.flower-test.is-defined [data-watercolor-arch]>.floral-bouquet::after{
+  display:none!important;
+  content:none!important;
+}
+body.flower-test.is-defined [data-watercolor-arch]>.floral-bouquet{
   background-repeat:no-repeat!important;
+  background-position:left 58%!important;
+}
+/* No sobrescribir la textura del pie, que se conserva verde oliva. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined .footer{
+  padding-block:clamp(48px,5vw,70px) clamp(54px,5vw,77px)!important;
+}
+@media(max-width:600px){
+  body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+  :is(.celebration,.timing,.dress,.playlist,.rsvp,.faq){
+    padding-block:38px!important;
+  }
+  body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+  #regalos .gift-intro{
+    padding-block:34px 25px!important;
+  }
+  body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+  #regalos .bank-section{
+    padding-block:38px!important;
+  }
+  body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+  #regalos .catalog{
+    margin-bottom:26px!important;
+  }
 }

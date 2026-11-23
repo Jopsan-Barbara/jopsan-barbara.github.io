@@ -52,6 +52,7 @@ function doPost(e) {
     kind:kind,
     requestId:requestId,
     ok:result.ok === true,
+    dietSaved:result.dietSaved === true,
     message:String(result.message || '').slice(0,250)
   }).replace(/</g,'\\u003c').replace(/>/g,'\\u003e');
   return HtmlService.createHtmlOutput(
@@ -188,7 +189,7 @@ function submitPublicRsvp(data) {
   assertOpen_();
   const row=validatePublicRsvp_(data);
   const lock=LockService.getScriptLock();if(!lock.tryLock(15000))throw new Error('Inténtalo nuevamente en unos segundos.');
-  try{assertOpen_();const sheet=SpreadsheetApp.openById(RESPUESTAS_ID).getSheetByName('Respuestas');publicWrite_(sheet,6,12,row);return {ok:true,message:'Tu respuesta quedó guardada. ¡Muchas gracias!'};}finally{lock.releaseLock();}
+  try{assertOpen_();const sheet=SpreadsheetApp.openById(RESPUESTAS_ID).getSheetByName('Respuestas');publicWrite_(sheet,6,12,row);return {ok:true,dietSaved:true,message:'Tu respuesta quedó guardada. ¡Muchas gracias!'};}finally{lock.releaseLock();}
 }
 function submitPublicSong(data) {
   if(!data||data.website)throw new Error('Solicitud no válida.');

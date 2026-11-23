@@ -328,3 +328,72 @@ body.flower-test .wedding-form .form-submit:disabled{
 @media(prefers-reduced-motion:reduce){
   body.flower-test .floral-test-bar button{transition:none!important;}
 }
+
+
+/* CORRECCIÓN DE CASCADA: el modo nuevo sí sustituye las acuarelas difuminadas heredadas. */
+/*
+ El sitio original carga antes una declaración muy específica:
+ body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .hero.romantic-hero
+ con background-image !important. Por eso un selector genérico con
+ [data-watercolor-arch] no bastaba. Sobrescribir únicamente la prueba
+ en el modo "Flores blancas", sin tocar el modo A o la web oficial.
+*/
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero[data-watercolor-arch],
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.memories-strip[data-watercolor-arch],
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.celebration[data-watercolor-arch],
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.timing[data-watercolor-arch],
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.dress[data-watercolor-arch],
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.playlist[data-watercolor-arch],
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+#regalos[data-watercolor-arch],
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+#regalos .bank-section[data-watercolor-arch],
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.rsvp[data-watercolor-arch],
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.faq[data-watercolor-arch]{
+  background:var(--arch-paper) url('assets/textura-papel-algodon.svg') center / 240px 240px repeat!important;
+  background-attachment:scroll!important;
+  box-shadow:none;
+}
+/* Conservar marco exterior de la portada, sin antiguo wallpaper de fondo. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero[data-watercolor-arch]{
+  border-top:6px solid #778b6a!important;
+}
+/* Una transición de acuarela suave en el lateral no debe crear
+ rectángulos ni velar la tipografía. Separa las ramas de la foto. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+[data-watercolor-arch] > .floral-bouquet{
+  -webkit-mask-image:
+    linear-gradient(to right,#000 0%,#000 24%,rgba(0,0,0,.78) 48%,rgba(0,0,0,.34) 73%,transparent 100%)!important;
+  mask-image:
+    linear-gradient(to right,#000 0%,#000 24%,rgba(0,0,0,.78) 48%,rgba(0,0,0,.34) 73%,transparent 100%)!important;
+}
+/* El ramo invertido debe degradarse hacia el centro,
+ no hacia el borde exterior del navegador. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+[data-watercolor-arch] > .floral-bouquet--right{
+  -webkit-mask-image:
+    linear-gradient(to left,#000 0%,#000 24%,rgba(0,0,0,.78) 48%,rgba(0,0,0,.34) 73%,transparent 100%)!important;
+  mask-image:
+    linear-gradient(to left,#000 0%,#000 24%,rgba(0,0,0,.78) 48%,rgba(0,0,0,.34) 73%,transparent 100%)!important;
+}
+/* Reservar espacios de lectura en la portada.
+ La decoración queda en los laterales y no sobre las caras. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+.hero.romantic-hero[data-watercolor-arch] .hero-content{
+  background:#fffdf8f5!important;
+}
+@media(max-width:600px){
+  body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
+  [data-watercolor-arch] > .floral-bouquet{
+    opacity:.30!important;
+  }
+}

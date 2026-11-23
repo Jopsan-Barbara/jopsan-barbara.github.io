@@ -376,15 +376,8 @@ body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin
   mask-image:
     linear-gradient(to right,#000 0%,#000 24%,rgba(0,0,0,.78) 48%,rgba(0,0,0,.34) 73%,transparent 100%)!important;
 }
-/* El ramo invertido debe degradarse hacia el centro,
- no hacia el borde exterior del navegador. */
-body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)
-[data-watercolor-arch] > .floral-bouquet--right{
-  -webkit-mask-image:
-    linear-gradient(to left,#000 0%,#000 24%,rgba(0,0,0,.78) 48%,rgba(0,0,0,.34) 73%,transparent 100%)!important;
-  mask-image:
-    linear-gradient(to left,#000 0%,#000 24%,rgba(0,0,0,.78) 48%,rgba(0,0,0,.34) 73%,transparent 100%)!important;
-}
+/* El ramo derecho ya usa transform:scaleX(-1). Su máscara
+   se invierte con la imagen, por lo que no requiere otro giro. */
 /* Reservar espacios de lectura en la portada.
  La decoración queda en los laterales y no sobre las caras. */
 body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin)

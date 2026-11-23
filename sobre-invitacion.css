@@ -143,3 +143,52 @@ html.sobre-prototipo body.sobre-bloqueado{height:100%;overflow:hidden!important}
  .sobre-intro__help{font-size:17px!important;margin-top:12px!important}
  .sobre-intro__botanics span{opacity:.51}
 }
+
+/* Composición con materiales fotográficos aprobados: revisión 6 */
+.sobre-intro{
+  background:#a1ab8c url("assets/sobre-fondo-referencia.webp") center / cover no-repeat!important;
+}
+.sobre-intro::before{
+  background:linear-gradient(90deg,rgba(34,48,34,.045),transparent 32%,transparent 70%,rgba(34,48,34,.035))!important;
+}
+.sobre-intro__botanics{display:none!important}
+.sobre-intro__title{font-size:clamp(55px,7.35vw,98px)!important}
+.sobre-intro__date{margin-bottom:clamp(15px,2.3vh,24px)!important}
+.sobre-intro__button{width:min(365px,78vw,49vh)!important}
+.sobre-intro__scene{
+  filter:drop-shadow(0 7px 4px rgba(44,47,36,.07)) drop-shadow(0 20px 16px rgba(40,51,40,.15))!important;
+}
+.sobre-intro__scene::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:12;
+  display:block;
+  pointer-events:none;
+  background:url("assets/sobre-aprobado-fotografico.webp") center / 100% 100% no-repeat;
+  opacity:1;
+  will-change:opacity,transform;
+}
+.sobre-intro.is-opening .sobre-intro__scene::before{
+  animation:sobre-foto-fundido .19s .34s ease-in forwards;
+}
+@keyframes sobre-foto-fundido{
+  from{opacity:1;transform:translateY(0) scale(1)}
+  to{opacity:0;transform:translateY(-1%) scale(1.012)}
+}
+.sobre-intro__help{margin-top:clamp(14px,2.5vh,23px)!important}
+@media(max-height:730px){
+ .sobre-intro__button{width:min(293px,72vw,43vh)!important}
+ .sobre-intro__help{margin-top:9px!important}
+ .sobre-intro__date{margin-bottom:12px!important}
+}
+@media(max-width:520px){
+ .sobre-intro{background-position:center!important}
+ .sobre-intro__title{font-size:clamp(45px,12vw,65px)!important}
+ .sobre-intro__button{width:min(315px,80vw,43vh)!important}
+ .sobre-intro__date{margin-bottom:16px!important}
+ .sobre-intro__help{margin-top:12px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .sobre-intro.is-opening .sobre-intro__scene::before{animation:none!important;opacity:1!important}
+}

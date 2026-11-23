@@ -55,6 +55,8 @@
     if (opening) return;
     opening = true;
     openButton.disabled = true;
+    // El movimiento de apertura apaga lentamente la canción si estaba sonando.
+    if (window.SobreMusica) window.SobreMusica.fadeAndStop();
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       closeIntro();
       return;
@@ -70,7 +72,13 @@
   });
 
   openButton.addEventListener('click', openIntro);
-  skipButton.addEventListener('click', closeIntro);
+  skipButton.addEventListener('click', () => {
+    const music = window.SobreMusica;
+    const sounding = !!(music && music.isPlaying());
+    if (music) music.fadeAndStop();
+    if (sounding) window.setTimeout(closeIntro, 1200);
+    else closeIntro();
+  });
   replay.addEventListener('click', showIntro);
   intro.addEventListener('keydown', event => {
     if (event.key === 'Escape') {

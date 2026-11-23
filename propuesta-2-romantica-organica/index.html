@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="../timeline-sin-recuadros.css?v=20261122-hitos-2">
   <link rel="stylesheet" href="../herbario-acuarela-2027.css?v=20261122-auditoria-responsive-4">
   <link rel="stylesheet" href="../herbario-fix-publicado-20261123.css?v=1">
+  <link rel="stylesheet" href="../rsvp-mejoras-20261123.css?v=1">
 </head>
 <body class="oliva-theme propuesta-organica">
   <a class="skip-link" href="#detalles">Saltar a los detalles</a>
@@ -118,7 +119,6 @@
               <iframe title="Mapa de Domos de Chamiza, Puerto Montt" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Domos%20de%20Chamiza%2C%20Puerto%20Montt%2C%20Chile&amp;output=embed"></iframe>
             </div>
             <a class="map-cta" href="https://maps.app.goo.gl/zymREpPr2wvXvVBv8?g_st=iw" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">⌖</span> Abrir mapa y cómo llegar <span aria-hidden="true">↗</span></a>
-            <a class="location-rsvp" href="#rsvp">Confirmar mi asistencia <span aria-hidden="true">›</span></a>
           </div>
         </div>
       </div>
@@ -208,8 +208,14 @@
     <label class="field" for="rsvp-fullname"><span class="field-label">Nombre y apellido</span>
       <input id="rsvp-fullname" type="text" name="fullName" maxlength="200" autocomplete="name" placeholder="Escribe tu nombre completo" required>
     </label>
+    <label class="field dietary-field" data-dietary-question hidden for="rsvp-diet">
+      <span class="field-label">¿Tienes alguna alergia o restricción alimentaria?</span>
+      <span class="field-help">Si no tienes ninguna, escribe «Ninguna». Así podremos considerar tu respuesta al organizar la comida.</span>
+      <textarea id="rsvp-diet" name="diet" rows="3" maxlength="1000" placeholder="Ej.: alergia a los frutos secos, alimentación vegetariana..." disabled></textarea>
+    </label>
     <button class="form-submit" type="submit">Enviar confirmación</button>
     <p class="form-status" role="status" aria-live="polite"></p>
+    <a class="post-confirm-link" href="#regalos" hidden>Regresar a ver la página <span aria-hidden="true">→</span></a>
     <a class="form-backup" hidden target="_blank" rel="noopener noreferrer">Abrir formulario alternativo</a>
   </form>
   <noscript><p class="form-hint">Activa JavaScript para enviar tu respuesta.</p></noscript>
@@ -234,6 +240,18 @@
           <summary>¿Hasta cuándo puedo confirmar?</summary>
           <p>Hasta el 31 de enero de 2027 a las 23:59, hora de Chile.</p>
         </details>
+        <details>
+          <summary>¿Puedo llevar a mis hijos?</summary>
+          <p>Hemos organizado una celebración solo para adultos, por lo que esta vez no podremos recibir niños. Agradecemos mucho tu cariño y comprensión para acompañarnos en este día tan especial.</p>
+        </details>
+        <details>
+          <summary>¿Qué hago si confirmé y después no puedo asistir?</summary>
+          <p>Sabemos que pueden surgir imprevistos. Si finalmente no puedes acompañarnos, te pedimos que avises a los novios lo antes posible, ya que los cupos son limitados y eso nos ayudará a organizar mejor la celebración. ¡Muchas gracias!</p>
+        </details>
+        <details>
+          <summary>¿Hay piscina?</summary>
+          <p>¡Sí! El lugar cuenta con piscina. Si quieres utilizarla, recuerda llevar traje de baño, toalla, sandalias y todos los accesorios que necesites para disfrutarla cómodamente.</p>
+        </details>
       </div>
     </section>
   </main>
@@ -249,7 +267,7 @@
   <script src="../gallery-data.js?v=galeria-15-nueva-1" defer></script>
   <script src="../propuestas-assets.js?v=20261122-1" defer></script>
   <script src="../gallery.js?v=galeria-15-nueva-1" defer></script>
-  <script src="../forms-inline.js?v=oliva-form-20261122-2" data-wedding-forms defer></script>
+  <script src="../forms-inline.js?v=20261123-dietary-followup-1" data-wedding-forms defer></script>
 </body>
 </html>
 

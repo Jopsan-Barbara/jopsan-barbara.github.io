@@ -8,6 +8,10 @@
   if (!viewport || !track) return;
 
   const memories = Array.isArray(window.JB_GALLERY_PHOTOS) ? window.JB_GALLERY_PHOTOS : [];
+  // Resolve image paths relative to the shared gallery data file, not the current page.
+  // This keeps the official invitation and the Herbario preview in sync.
+  const galleryDataScript = document.querySelector('script[src*="gallery-data.js"]');
+  const photoBaseURL = new URL('.', galleryDataScript?.src || document.baseURI);
   if (memories.length) {
     const fragment = document.createDocumentFragment();
     memories.forEach((photo, i) => {
@@ -17,7 +21,7 @@
       frame.setAttribute('aria-roledescription', 'fotografía');
       frame.setAttribute('aria-label', (i + 1) + ' de ' + memories.length);
       const img = document.createElement('img');
-      img.src = photo.src;
+      img.src = new URL(photo.src, photoBaseURL).href;
       img.alt = photo.alt || ('Recuerdo de Jopsan y Bárbara, fotografía ' + (i + 1));
       img.style.objectPosition = photo.position || 'center';
       img.loading = i < 3 ? 'eager' : 'lazy';

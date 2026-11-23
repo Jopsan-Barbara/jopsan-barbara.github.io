@@ -60,6 +60,7 @@
     panel.hidden = true;
     if (iframe) { iframe.remove(); iframe = null; }
     player = null;
+    loaded = false;
     if (consumed) lockButton();
     else {
       activate.disabled = false;
@@ -88,6 +89,15 @@
           onReady: event => {
             if (stopping) return;
             try { event.target.setVolume(80); } catch (_) {}
+            // El video puede comenzar antes de que termine de cargar la API.
+            try {
+              if (event.target.getPlayerState() === window.YT.PlayerState.PLAYING) {
+                started = true;
+                remember();
+                message('Reproduciendo fragmento · 2:30–3:09');
+                trackPlayback();
+              }
+            } catch (_) {}
           },
           onStateChange: event => {
             if (stopping) return;
@@ -180,5 +190,5 @@
   if (consumed) lockButton();
 
   // La apertura del sello y el botón "ir directamente" invocan este controlador.
-  window.SobreMusica = { fadeAndStop };
+  window.SobreMusica = { fadeAndStop, isPlaying: () => started && loaded && !stopping };
 })();

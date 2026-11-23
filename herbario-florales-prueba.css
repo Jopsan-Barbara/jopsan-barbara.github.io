@@ -132,20 +132,20 @@ body.flower-test.is-defined [data-watercolor-arch] > .floral-bouquet{
   height:100%!important;
   left:-13px!important;
   right:auto!important;
-  width:clamp(168px,20.5vw,315px)!important;
+  width:clamp(110px,11vw,176px)!important;
   margin:0!important;
   pointer-events:none!important;
-  z-index:1!important;
+  z-index:3!important;
   opacity:var(--arch-opacity)!important;
   background-image:var(--arch-vine)!important;
   background-repeat:repeat-y!important;
   background-position:left top!important;
-  background-size:100% auto!important;
+  background-size:clamp(240px,20vw,320px) auto!important;
   filter:var(--arch-filter)!important;
   mix-blend-mode:multiply;
   transform:none!important;
-  -webkit-mask-image:linear-gradient(to right,#000 0%,rgba(0,0,0,.70) 36%,rgba(0,0,0,.20) 68%,transparent 94%)!important;
-  mask-image:linear-gradient(to right,#000 0%,rgba(0,0,0,.70) 36%,rgba(0,0,0,.20) 68%,transparent 94%)!important;
+  -webkit-mask-image:linear-gradient(to right,#000 0%,#000 44%,rgba(0,0,0,.75) 66%,rgba(0,0,0,.25) 87%,transparent 100%)!important;
+  mask-image:linear-gradient(to right,#000 0%,#000 44%,rgba(0,0,0,.75) 66%,rgba(0,0,0,.25) 87%,transparent 100%)!important;
 }
 body.flower-test.is-defined [data-watercolor-arch] > .floral-bouquet--right{
   left:auto!important;
@@ -222,6 +222,42 @@ body.flower-test.is-defined .playlist[data-watercolor-arch] > .container.playlis
   margin-inline:auto!important;
   box-sizing:border-box!important;
 }
+/* Arco auténtico: las ramas laterales avanzan de principio a fin.
+   Una tira angosta por encima del papel asegura que también sean
+   visibles cuando hay paneles blancos ocupando casi todo el ancho. */
+body.flower-test.is-defined [data-watercolor-arch] > .floral-bouquet{
+  background-position:left top!important;
+  transition:opacity .18s ease;
+}
+body.flower-test.is-defined .hero.romantic-hero[data-watercolor-arch] > .floral-bouquet{
+  width:clamp(88px,8vw,128px)!important;
+}
+body.flower-test.is-defined .hero.romantic-hero[data-watercolor-arch] > .nav{
+  position:relative;
+  z-index:4;
+}
+body.flower-test.is-defined .playlist[data-watercolor-arch] > .floral-bouquet--left,
+body.flower-test.is-defined .celebration[data-watercolor-arch] > .floral-bouquet--right{
+  opacity:.33!important;
+}
+body.flower-test.is-defined .memories-strip[data-watercolor-arch] > .floral-bouquet--left,
+body.flower-test.is-defined #regalos[data-watercolor-arch] > .floral-bouquet--right{
+  opacity:.34!important;
+}
+/* Romper el patrón repetido al alternar papel y especie. */
+body.flower-test.is-defined .memories-strip[data-watercolor-arch] > .floral-bouquet{
+  background-position:left -58px!important;
+}
+body.flower-test.is-defined .playlist[data-watercolor-arch] > .floral-bouquet{
+  background-position:left -112px!important;
+}
+body.flower-test.is-defined #regalos[data-watercolor-arch] > .floral-bouquet{
+  background-position:left -84px!important;
+}
+body.flower-test.is-defined .faq[data-watercolor-arch] > .floral-bouquet{
+  background-position:left -36px!important;
+}
+
 /* Fotografía de portada a color; 15 recuerdos B/N; regalos a color. */
 body.flower-test.is-defined .hero .herbario-cover-photo{
   filter:none!important;
@@ -242,8 +278,8 @@ body.flower-test .wedding-form .form-submit:disabled{
 /* Tablet: ancho del marco y densidad floral más contenidos. */
 @media(max-width:850px){
   body.flower-test.is-defined [data-watercolor-arch] > .floral-bouquet{
-    width:clamp(128px,22vw,210px)!important;
-    opacity:.46!important;
+    width:clamp(90px,14vw,120px)!important;
+    opacity:.43!important;
   }
   body.flower-test.is-defined .playlist[data-watercolor-arch] > .container.playlist-layout{
     width:min(calc(100% - 36px),690px)!important;
@@ -265,10 +301,10 @@ body.flower-test .wedding-form .form-submit:disabled{
     flex:1 1 auto;
   }
   body.flower-test.is-defined [data-watercolor-arch] > .floral-bouquet{
-    width:min(25vw,102px)!important;
-    left:-6px!important;
-    opacity:.39!important;
-    background-size:100% auto!important;
+    width:clamp(44px,12vw,72px)!important;
+    left:-5px!important;
+    opacity:.34!important;
+    background-size:170px auto!important;
   }
   body.flower-test.is-defined [data-watercolor-arch] > .floral-bouquet--right{
     left:auto!important;

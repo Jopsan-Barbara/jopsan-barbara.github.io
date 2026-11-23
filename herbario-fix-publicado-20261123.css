@@ -1,0 +1,193 @@
+/* Corrección verificable del Herbario oficial — 23/11/2026.
+   Desacopla la foto principal de .hero-photo (clase antigua que
+   conserva máscaras y estilos conflictivos en varios CSS heredados).
+   Mantiene la foto sin filtros y respeta las 15 imágenes B/N del álbum.
+   Los fondos florales cubren el ancho real sin rectángulos centrales. */
+
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+.hero.romantic-hero .herb-portrait{
+  position:relative!important;
+  box-sizing:border-box!important;
+  min-width:0!important;
+  width:100%!important;
+  max-width:100%!important;
+  overflow:hidden!important;
+  isolation:isolate;
+  background:#fffdf7!important;
+}
+
+/* FOTO NUEVA CLASE: no depende de reglas .hero-photo de etapas previas. */
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+.hero.romantic-hero .herb-portrait img.herbario-cover-photo{
+  display:block!important;
+  position:relative!important;
+  inset:auto!important;
+  z-index:1!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  aspect-ratio:auto!important;
+  -webkit-mask:none!important;
+  mask:none!important;
+  -webkit-mask-image:none!important;
+  mask-image:none!important;
+  clip-path:none!important;
+  filter:none!important;
+  -webkit-filter:none!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+  transform:none!important;
+}
+/* Se elimina la neblina de papel que superponía la fotografía. */
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+.hero.romantic-hero .herb-photo-paper{
+  display:none!important;
+}
+/* Las fotografías del carrusel mantienen el tratamiento aprobado. */
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+.memories-strip .memory-slide img{
+  filter:grayscale(100%)!important;
+  -webkit-filter:grayscale(100%)!important;
+}
+
+/* Papel floral: cubre el ancho de la sección, no solo una franja
+   de 1.100 píxeles en el centro. Capas de fundido lateral y vertical
+   integran la acuarela con el tono marfil del resto de la página. */
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+.hero.romantic-hero{
+  background-color:#faf7ef!important;
+  background-image:
+    linear-gradient(to right,#faf7ef 0%,rgba(250,247,239,0) 9%,rgba(250,247,239,0) 91%,#faf7ef 100%),
+    linear-gradient(to bottom,rgba(250,247,239,0) 0%,rgba(250,247,239,.28) 38%,#faf7ef 82%),
+    url("assets/herbario-flores-acuarela.webp"),
+    url("assets/textura-papel-algodon.svg")!important;
+  background-position:center,center,center top,center!important;
+  background-size:100% 100%,100% 100%,100% auto,240px 240px!important;
+  background-repeat:no-repeat,no-repeat,no-repeat,repeat!important;
+}
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+:is(.memories-strip,.celebration,.playlist,.faq),
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+#regalos{
+  background-color:#faf8f1!important;
+  background-image:
+    linear-gradient(to right,#faf8f1 0%,rgba(250,248,241,0) 9%,rgba(250,248,241,0) 91%,#faf8f1 100%),
+    linear-gradient(to bottom,rgba(250,248,241,0) 0%,#faf8f1 640px),
+    url("assets/herbario-flores-acuarela.webp"),
+    url("assets/textura-papel-algodon.svg")!important;
+  background-position:center,center,center top,center!important;
+  background-size:100% 100%,100% 100%,100% auto,240px 240px!important;
+  background-repeat:no-repeat,no-repeat,no-repeat,repeat!important;
+}
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+:is(.timing,.dress,.rsvp),
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+#regalos .bank-section{
+  background-color:#eff1e8!important;
+  background-image:
+    linear-gradient(to right,#eff1e8 0%,rgba(239,241,232,0) 9%,rgba(239,241,232,0) 91%,#eff1e8 100%),
+    linear-gradient(to bottom,rgba(239,241,232,0) 0%,#eff1e8 640px),
+    url("assets/hojas_papel_acuarela_web.webp"),
+    url("assets/textura-papel-algodon.svg")!important;
+  background-position:center,center,center top,center!important;
+  background-size:100% 100%,100% 100%,100% auto,240px 240px!important;
+  background-repeat:no-repeat,no-repeat,no-repeat,repeat!important;
+}
+
+/* Evitar palabras partidas de forma artificial en los títulos grandes. */
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+:is(.celebration,.playlist,.rsvp,.faq) h2,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+:is(.timing-title,.gift-intro h2,.bank-intro h2){
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+  text-wrap:balance;
+}
+
+/* Transferencias con dos columnas fluidas y un margen real,
+   sin desplazar la introducción fuera del viewport. */
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+#regalos .bank-section{
+  box-sizing:border-box!important;
+  padding-inline:clamp(20px,4vw,55px)!important;
+}
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+#regalos .bank-section .bank-wrap{
+  width:min(100%,1050px)!important;
+  max-width:1050px!important;
+  margin-inline:auto!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)!important;
+  gap:clamp(22px,4vw,60px)!important;
+  align-items:center!important;
+}
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+#regalos .bank-section .bank-wrap > *{
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+}
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+#regalos .bank-section .bank-intro h2{
+  font-size:clamp(2.55rem,4.2vw,4.4rem)!important;
+  line-height:1.04!important;
+}
+
+/* Tablet / móvil: la fotografía muestra el encuadre completo sin
+   máscara ni recorte lateral. Ambos novios permanecen visibles. */
+@media(max-width:850px){
+  body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+  .hero.romantic-hero .herb-portrait{
+    width:min(100%,490px)!important;
+    height:auto!important;
+    min-height:0!important;
+    aspect-ratio:3/4!important;
+    padding:7px 7px 20px!important;
+    margin:18px auto 0!important;
+  }
+  body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+  #regalos .bank-section .bank-wrap{
+    width:min(100%,650px)!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:26px!important;
+  }
+}
+@media(max-width:600px){
+  body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+  .hero.romantic-hero .herb-portrait{
+    width:100%!important;
+    aspect-ratio:3/4!important;
+    padding:6px 6px 16px!important;
+  }
+  body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+  .hero.romantic-hero .herb-portrait img.herbario-cover-photo{
+    object-position:center center!important;
+  }
+  body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+  #regalos .bank-section{
+    padding-inline:16px!important;
+  }
+  body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+  #regalos .bank-section .bank-card{
+    padding:20px 15px!important;
+  }
+  body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+  #regalos .bank-section .bank-card dl div{
+    grid-template-columns:minmax(84px,32%) minmax(0,1fr)!important;
+    gap:8px!important;
+  }
+  body.oliva-theme.propuesta-organica:not(.propuesta-jardin)
+  .celebration h2{
+    font-size:clamp(2.3rem,8.7vw,3.1rem)!important;
+  }
+}

@@ -213,3 +213,150 @@ body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .faq {
     transition:none!important;
   }
 }
+
+
+/* Revisión visual de Herbario oficial · 2026-11-22 · continuidad y mobile */
+/* 1. Portada: eliminar máscaras de un diseño anterior que ocultan
+   una mitad de la fotografía, especialmente en móviles. La foto
+   original permanece intacta y a color. */
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .hero.romantic-hero .herb-portrait .hero-photo{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  object-fit:cover!important;
+  object-position:center 47%!important;
+  -webkit-mask-image:none!important;
+  mask-image:none!important;
+  clip-path:none!important;
+  filter:none!important;
+  -webkit-filter:none!important;
+  opacity:1!important;
+}
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .hero.romantic-hero .herb-portrait{
+  min-width:0!important;
+  max-width:100%!important;
+  overflow:hidden;
+}
+/* Mantener el carrusel en blanco y negro, no la foto principal. */
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .memories-strip .memory-slide img{
+  filter:grayscale(100%)!important;
+  -webkit-filter:grayscale(100%)!important;
+}
+
+/* 2. Fondo continuo: las imágenes de acuarela antes tenían un tope
+   de 1100/1200px y se veían como paneles rectangulares centrales.
+   La capa pictórica ahora abarca el ancho real de cada sección; el
+   degradado superior mantiene el borde pigmentado suave sobre papel. */
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .hero.romantic-hero,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .memories-strip,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .celebration,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .playlist,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) #regalos,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .faq,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .timing,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .dress,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .rsvp,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) #regalos .bank-section{
+  background-position:center top,center top,center!important;
+  background-size:100% 100%,100% auto,240px 240px!important;
+  background-repeat:no-repeat,no-repeat,repeat!important;
+}
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .footer{
+  background-size:cover,100% auto!important;
+}
+
+/* 3. Textos: no cortar palabras en medio de las acuarelas, y
+   ajustar encabezados para el espacio realmente disponible. */
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .celebration h2,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .playlist h2,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .timing-title,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) #regalos .gift-intro h2,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) #regalos .bank-intro h2,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .rsvp h2{
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+  text-wrap:balance;
+}
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .celebration h2 em{
+  display:inline!important;
+}
+
+/* 4. Transferencias: contener AMBAS columnas dentro del bloque,
+   sin que el texto quede a la izquierda de la ventana o la tarjeta
+   se desplace fuera de la derecha. */
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) #regalos .bank-section{
+  box-sizing:border-box;
+  padding-inline:clamp(18px,4vw,55px)!important;
+}
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) #regalos .bank-wrap{
+  box-sizing:border-box;
+  display:grid!important;
+  width:100%!important;
+  max-width:1050px!important;
+  margin:0 auto!important;
+  grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)!important;
+  gap:clamp(24px,4vw,70px)!important;
+  align-items:center;
+}
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) #regalos .bank-intro,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) #regalos .bank-card{
+  min-width:0!important;
+  width:100%!important;
+  max-width:100%!important;
+  margin-inline:0!important;
+}
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) #regalos .bank-intro h2{
+  font-size:clamp(2.55rem,4.1vw,4.3rem)!important;
+  line-height:1.03!important;
+}
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) #regalos .bank-card dl div{
+  grid-template-columns:minmax(98px,30%) minmax(0,1fr);
+}
+
+/* Anchos fluidos de contenido, sin desbordes por mínimos heredados. */
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .celebration-layout,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .playlist .container,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .rsvp .rsvp-layout{
+  max-width:100%;
+}
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .celebration-layout > *,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .playlist .container > *,
+body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .rsvp .rsvp-layout > *{
+  min-width:0!important;
+}
+
+@media(max-width:850px){
+  body.oliva-theme.propuesta-organica:not(.propuesta-jardin) #regalos .bank-wrap{
+    width:100%!important;
+    max-width:min(100%,650px)!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:28px!important;
+  }
+  body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .hero.romantic-hero .herb-portrait .hero-photo{
+    object-position:center 44%!important;
+  }
+  body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .celebration h2{
+    hyphens:none!important;
+  }
+}
+@media(max-width:600px){
+  body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .celebration h2{
+    font-size:clamp(2.35rem,9vw,3.2rem)!important;
+    line-height:1.09!important;
+  }
+  body.oliva-theme.propuesta-organica:not(.propuesta-jardin) #regalos .bank-section{
+    padding-inline:clamp(14px,4vw,20px)!important;
+  }
+  body.oliva-theme.propuesta-organica:not(.propuesta-jardin) #regalos .bank-card dl div{
+    grid-template-columns:minmax(84px,33%) minmax(0,1fr);
+    gap:8px;
+  }
+  body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .hero.romantic-hero .herb-portrait .hero-photo{
+    object-position:center 42%!important;
+  }
+  body.oliva-theme.propuesta-organica:not(.propuesta-jardin) .romantic-hero .hero-content{
+    max-width:calc(100% - 22px)!important;
+  }
+}

@@ -105,10 +105,11 @@ body.oliva-theme.propuesta-organica.flower-test.is-defined:not(.propuesta-jardin
   width:clamp(92px,10vw,160px)!important;height:100%!important;
   pointer-events:none!important;z-index:0!important;
   margin:0!important;opacity:var(--strength)!important;
+  /* Un solo tramo de hojas a media altura, sin patrones repetidos. */
   background-image:var(--leaves)!important;
-  background-position:left top!important;
-  background-repeat:repeat-y!important;
-  background-size:180px auto!important;
+  background-position:left 50%!important;
+  background-repeat:no-repeat!important;
+  background-size:clamp(120px,12vw,175px) auto!important;
   filter:var(--ink)!important;mix-blend-mode:multiply;
   transform:none!important;
   -webkit-mask-image:linear-gradient(to right,#000 0%,rgba(0,0,0,.7) 40%,transparent 100%)!important;
@@ -173,7 +174,7 @@ body.flower-test .wedding-form .form-submit:disabled{opacity:.6;cursor:not-allow
 @media(max-width:850px){
   body.flower-test.is-defined [data-watercolor-arch] > .floral-bouquet{
     width:clamp(62px,12vw,102px)!important;
-    background-size:130px auto!important;opacity:.30!important;
+    background-size:105px auto!important;opacity:.32!important;
   }
   body.flower-test.is-defined .playlist > .container.playlist-layout{
     width:min(calc(100% - 36px),690px)!important;
@@ -185,7 +186,7 @@ body.flower-test .wedding-form .form-submit:disabled{opacity:.6;cursor:not-allow
   body.flower-test .floral-test-info{flex-basis:100%}
   body.flower-test.is-defined [data-watercolor-arch] > .floral-bouquet{
     width:clamp(36px,11vw,53px)!important;
-    background-size:100px auto!important;opacity:.20!important;
+    background-size:75px auto!important;opacity:.24!important;
   }
   body.flower-test.is-defined [data-watercolor-arch] > .floral-bouquet::before,
   body.flower-test.is-defined [data-watercolor-arch] > .floral-bouquet::after{
@@ -198,4 +199,22 @@ body.flower-test .wedding-form .form-submit:disabled{opacity:.6;cursor:not-allow
     width:calc(100% - 30px)!important;
   }
   body.flower-test.is-defined .faq > .container{padding:14px 9px}
+}
+
+/* Cierre armonioso y sin espacio vacío excesivo antes del pie.
+   La decoración no se repite: hay un motivo arriba, hojas a media
+   altura y un motivo abajo. Aplicado únicamente a la prueba. */
+body.oliva-theme.propuesta-organica.flower-test.is-defined .faq[data-watercolor-arch]{
+  padding-top:clamp(36px,4.5vw,62px)!important;
+  padding-bottom:clamp(30px,3vw,48px)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .faq[data-watercolor-arch] > .container{
+  padding-block:clamp(14px,2vw,28px)!important;
+}
+body.oliva-theme.propuesta-organica.flower-test.is-defined .footer{
+  padding-top:clamp(48px,5vw,70px)!important;
+  padding-bottom:clamp(52px,5vw,76px)!important;
+}
+body.flower-test.is-defined [data-watercolor-arch] > .floral-bouquet{
+  background-repeat:no-repeat!important;
 }

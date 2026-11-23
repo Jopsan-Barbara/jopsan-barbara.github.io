@@ -159,9 +159,23 @@
     if (!data || data.channel !== 'jb-inline-form-response-v1' || !isGoogleOrigin(event.origin)) return;
     for (const [form, state] of registry) {
       if (state.pending && state.id && state.id === data.requestId && state.kind === data.kind) {
-        finish(form, data.ok === true
-          ? (data.message || (state.kind === 'public-rsvp' ? '¡Gracias! Tu asistencia quedó registrada.' : '¡Gracias! Tu canción quedó registrada.'))
-          : (data.message || 'No fue posible registrar la respuesta. Inténtalo nuevamente.'), data.ok === true);
+        // Evita anunciar que una alergia fue guardada si responde una
+        // versión antigua de Apps Script que todavía ignora el campo diet.
+        const dietField = form.querySelector('textarea[name="diet"]');
+        const reportedDiet = dietField && dietField.value.trim();
+        const hasRestriction = state.kind === 'public-rsvp'
+          && form.querySelector('input[name="attends"]:checked')?.value === 'Sí'
+          && reportedDiet && !/^(ningun[ao]s?|no|no tengo|sin restricciones( alimentarias)?)$/i.test(reportedDiet);
+        const dietUnverified = data.ok === true && hasRestriction && data.dietSaved !== true;
+        finish(form, dietUnverified
+          ? 'Tu asistencia quedó registrada, pero no pudimos confirmar que la restricción alimentaria se haya guardado. Por favor, avisa directamente a los novios para que puedan considerarla.'
+          : (data.ok === true
+            ? (data.message || (state.kind === 'public-rsvp' ? '¡Gracias! Tu asistencia quedó registrada.' : '¡Gracias! Tu canción quedó registrada.'))
+            : (data.message || 'No fue posible registrar la respuesta. Inténtalo nuevamente.')), data.ok === true);
+        if (dietUnverified) {
+          const status = form.querySelector('.form-status');
+          if (status) status.dataset.error = 'true';
+        }
       }
     }
   });

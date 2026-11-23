@@ -165,7 +165,7 @@ body.flower-test.is-defined .herbario-cover-photo{
   filter:none!important;-webkit-filter:none!important;
 }
 body.flower-test.is-defined .memory-slide img{
-  filter:grayscale(100%)!important;-webkit-filter:grayscale(100%)!important;
+  filter:none!important;-webkit-filter:none!important;
 }
 body.flower-test.is-defined #regalos .illustration img{
   filter:none!important;-webkit-filter:none!important;

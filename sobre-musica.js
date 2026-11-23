@@ -47,6 +47,7 @@
     button.setAttribute('aria-pressed', String(sounding && !muted));
 
     floating.hidden = !inHerbario || !sounding;
+    document.body.classList.toggle('sobre-musica-sonando', inHerbario && sounding);
     floating.textContent = muted ? '♫ Activar sonido' : '♫ Silenciar música';
     floating.setAttribute('aria-pressed', String(sounding && !muted));
 

@@ -177,7 +177,9 @@
   } else {
     updateButton();
     if (audio.readyState === 0) audio.load();
-    attemptPlay();
+    // Comenzar junto con la aparición de la imagen, no mientras la portada está oculta.
+    if (document.documentElement.classList.contains('sobre-visual-ready')) attemptPlay();
+    else window.addEventListener('sobre-visual-ready', attemptPlay, { once: true });
   }
 
   // El control del sobre invoca un fade-out de 1,2 s al comenzar la apertura.

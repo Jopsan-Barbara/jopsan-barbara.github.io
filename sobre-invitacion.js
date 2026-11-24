@@ -3,10 +3,9 @@
 
   const intro = document.getElementById('sobre-intro');
   const openButton = document.getElementById('sobre-abrir');
-  const skipButton = document.getElementById('sobre-omitir');
   const musicButton = document.getElementById('sobre-musica-activar');
   const replay = document.getElementById('sobre-repetir');
-  if (!intro || !openButton || !skipButton || !replay) return;
+  if (!intro || !openButton || !replay) return;
 
   // Sobre y Herbario están en este mismo documento: no navegar a otra URL.
   // Así el elemento <audio> sigue vivo durante todo el recorrido.
@@ -74,10 +73,6 @@
   }
 
   openButton.addEventListener('click', beginOpening);
-  skipButton.addEventListener('click', () => {
-    if (window.SobreMusica) window.SobreMusica.playFromGesture();
-    closeIntro();
-  });
   replay.addEventListener('click', () => {
     // La repetición SOLO ocurre al elegir volver al inicio.
     showIntro();
@@ -94,7 +89,7 @@
     }
     if (event.key === 'Tab' && !opening) {
       const first = openButton;
-      const last = musicButton && !musicButton.disabled ? musicButton : skipButton;
+      const last = musicButton && !musicButton.disabled ? musicButton : openButton;
       if (event.shiftKey && document.activeElement === first) {
         event.preventDefault();
         last.focus();

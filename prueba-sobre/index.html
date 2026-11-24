@@ -82,6 +82,7 @@
   <link rel="stylesheet" href="../herbario-sobre-aprobado.css?v=20261123-oliva-fotografico-1">
   <link rel="stylesheet" href="../sobre-invitacion.css?v=20261123-restaurado2">
   <link rel="stylesheet" href="../sobre-musica.css?v=20261123-continuidad-1">
+  <link rel="stylesheet" href="../sobre-transicion-cinematica.css?v=20261123-kaboom-1">
 </head>
 <body class="oliva-theme propuesta-organica flower-test is-defined sobre-bloqueado">
 
@@ -118,6 +119,21 @@
       <button type="button" id="sobre-musica-activar" class="sobre-intro__music-start" aria-pressed="false">♫ Activar música</button>
       <small id="sobre-musica-estado" class="sobre-intro__music-note" role="status" aria-live="polite" hidden></small>
       <audio id="sobre-musica-audio" src="../assets/sobre-cancion-0230-0309.mp3" preload="auto" aria-label="Nuestra canción"></audio>
+    </div>
+    <!-- Segunda capa teatral: aparece solamente cuando el invitado abre el sello. -->
+    <div class="sobre-cine" aria-hidden="true">
+      <div class="sobre-cine__halo"></div>
+      <div class="sobre-cine__card">
+        <span class="sobre-cine__card-kicker">La invitación está abierta</span>
+        <span class="sobre-cine__card-title">Jopsan &amp; Bárbara</span>
+        <span class="sobre-cine__card-rule"></span>
+        <span class="sobre-cine__card-date">27 de febrero de 2027</span>
+        <span class="sobre-cine__card-place">Domos de Chamiza · Puerto Montt</span>
+      </div>
+      <div class="sobre-cine__wash"></div>
+      <div class="sobre-cine__glint"></div>
+      <span class="sobre-cine__leaf"></span><span class="sobre-cine__leaf"></span><span class="sobre-cine__leaf"></span>
+      <span class="sobre-cine__leaf"></span><span class="sobre-cine__leaf"></span><span class="sobre-cine__leaf"></span>
     </div>
   </section>
   <button id="sobre-repetir" class="sobre-repetir" type="button" hidden>Volver al inicio y escuchar</button>
@@ -384,7 +400,7 @@
     })();
   </script>
   <script src="../sobre-musica.js?v=20261123-limpieza-1"></script>
-  <script src="../sobre-invitacion.js?v=20261123-limpieza-1"></script>
+  <script src="../sobre-invitacion.js?v=20261123-kaboom-1"></script>
 </body>
 </html>
 

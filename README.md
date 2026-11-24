@@ -4,6 +4,16 @@ Invitación web al matrimonio del 27 de febrero de 2027, con llegada a las 14:30
 
 **Sitio público:** https://jopsan-barbara.github.io/
 
+### Versión pública desde el 24 de noviembre de 2026
+
+La portada `index.html` integra el recorrido completo aprobado: sobre fotográfico con apertura cinematográfica, transición de carta hacia Herbario y música de 36 segundos que puede silenciarse y continúa durante la apertura. La experiencia funciona dentro de un mismo documento para evitar interrupciones del audio.
+
+La vista previa para WhatsApp utiliza la imagen social aprobada en `assets/imagen-social-jopsan-barbara-2027.jpg` mediante Open Graph y Twitter.
+
+**Respaldo íntegro de la versión anterior:** rama GitHub [`respaldo-web-original-2026-11-24`](https://github.com/Jopsan-Barbara/jopsan-barbara.github.io/tree/respaldo-web-original-2026-11-24), anclada al commit `3b6a4bb256a5508fcfcd1e82988a8059d1787fe1`. Para restaurar la versión anterior, recuperar ese commit sin sobrescribir cambios posteriores a ciegas.
+
+Los formularios se han activado en el HTML público usando `forms-inline.js`; su escritura efectiva en Google Sheets depende de la versión desplegada de Apps Script y requiere validación real. Las páginas `/prueba-sobre/` y `/prueba-herbario-florales/` permanecen como prototipos independientes con los envíos deshabilitados.
+
 ## Modalidad de invitaciones
 
 La web usa **un único enlace para todos los invitados**. No se requieren enlaces personalizados ni IDs. La invitación es individual, salvo indicación expresa de los novios.

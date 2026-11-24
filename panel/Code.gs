@@ -29,6 +29,12 @@ function obtenerEnlaceNovios() {
   return link;
 }
 
+// Usar si el enlace se compartió por error: invalida el anterior al instante.
+function renovarEnlaceNovios() {
+  PropertiesService.getScriptProperties().deleteProperty(PANEL_TOKEN_PROPERTY_);
+  return obtenerEnlaceNovios();
+}
+
 function doGet(e) {
   const token = String(e && e.parameter && e.parameter.acceso || '');
   try {

@@ -177,12 +177,12 @@
   box-shadow:0 0 10px rgba(255,236,186,.7);
   transform:rotate(var(--rot,0deg)) translateY(0) scale(.4);
 }
-.sobre-cine__leaf:nth-of-type(5){--rot:15deg;--dx:-28vw;--dy:-28vh}
-.sobre-cine__leaf:nth-of-type(6){--rot:56deg;--dx:26vw;--dy:-23vh}
-.sobre-cine__leaf:nth-of-type(7){--rot:-30deg;--dx:33vw;--dy:16vh}
-.sobre-cine__leaf:nth-of-type(8){--rot:83deg;--dx:-32vw;--dy:18vh}
-.sobre-cine__leaf:nth-of-type(9){--rot:-17deg;--dx:-11vw;--dy:-35vh}
-.sobre-cine__leaf:nth-of-type(10){--rot:112deg;--dx:15vw;--dy:33vh}
+.sobre-cine__leaf:nth-of-type(1){--rot:15deg;--dx:-28vw;--dy:-28vh}
+.sobre-cine__leaf:nth-of-type(2){--rot:56deg;--dx:26vw;--dy:-23vh}
+.sobre-cine__leaf:nth-of-type(3){--rot:-30deg;--dx:33vw;--dy:16vh}
+.sobre-cine__leaf:nth-of-type(4){--rot:83deg;--dx:-32vw;--dy:18vh}
+.sobre-cine__leaf:nth-of-type(5){--rot:-17deg;--dx:-11vw;--dy:-35vh}
+.sobre-cine__leaf:nth-of-type(6){--rot:112deg;--dx:15vw;--dy:33vh}
 .sobre-intro.is-opening .sobre-cine__leaf{
   animation:sobre-cine-petalo 2.2s .14s cubic-bezier(.12,.69,.18,1) both;
 }

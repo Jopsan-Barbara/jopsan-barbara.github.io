@@ -1,25 +1,73 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="sobre-prototipo sobre-bloqueado-html">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Evitar el flash de capas/vector y de tipografía antes de cargar la fotografía. -->
+  <style>
+    html.sobre-prototipo{background:#9eaa8a}
+    html.sobre-prototipo:not(.sobre-visual-ready) body{visibility:hidden!important}
+    .sobre-intro__floral{display:none!important}
+  </style>
+  <link rel="preload" as="image" href="assets/sobre-aprobado-fotografico.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/sobre-fondo-referencia.webp" fetchpriority="high">
+  <script>
+    (() => {
+      const root = document.documentElement;
+      document.addEventListener('DOMContentLoaded', () => {
+        let shown = false;
+        const reveal = (photoOk) => {
+          if (shown) return;
+          shown = true;
+          if (!photoOk) root.classList.add('sobre-photo-missing');
+          root.classList.add('sobre-visual-ready');
+          window.dispatchEvent(new Event('sobre-visual-ready'));
+        };
+        const loadImage = (src) => new Promise(resolve => {
+          const image = new Image();
+          image.onload = () => resolve(true);
+          image.onerror = () => resolve(false);
+          image.src = src;
+          if (image.complete && image.naturalWidth) resolve(true);
+        });
+        const fonts = document.fonts
+          ? document.fonts.load('400 72px "Pinyon Script"', 'Jopsan Bárbara').catch(() => null)
+          : Promise.resolve();
+        const timeout = window.setTimeout(() => reveal(false), 7000);
+        Promise.all([
+          loadImage('assets/sobre-aprobado-fotografico.webp'),
+          loadImage('assets/sobre-fondo-referencia.webp'),
+          fonts
+        ]).then(([photoOk]) => {
+          window.clearTimeout(timeout);
+          reveal(photoOk);
+        }).catch(() => {
+          window.clearTimeout(timeout);
+          reveal(false);
+        });
+      }, { once: true });
+    })();
+  </script>
   <meta name="theme-color" content="#65744c" />
-  <meta name="description" content="Invitación al matrimonio de Jopsan y Bárbara — 27 de febrero de 2027." />
+  <meta name="description" content="Jopsan y Bárbara se casan el 27 de febrero de 2027 en Puerto Montt. Abre nuestra invitación y acompáñanos en este día especial." />
+  <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://jopsan-barbara.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_CL">
   <meta property="og:title" content="Jopsan &amp; Bárbara · Nos casamos">
-  <meta property="og:description" content="Te invitamos a celebrar nuestro matrimonio el 27 de febrero de 2027 en Domos de Chamiza, Puerto Montt.">
+  <meta property="og:description" content="Jopsan y Bárbara · 27 de febrero de 2027 · Puerto Montt. Abre nuestra invitación de matrimonio.">
   <meta property="og:url" content="https://jopsan-barbara.github.io/">
-  <meta property="og:image" content="https://jopsan-barbara.github.io/assets/novios-portada.jpg">
-  <meta property="og:image:secure_url" content="https://jopsan-barbara.github.io/assets/novios-portada.jpg">
+  <meta property="og:image" content="https://jopsan-barbara.github.io/assets/imagen-social-jopsan-barbara-2027.jpg">
+  <meta property="og:image:secure_url" content="https://jopsan-barbara.github.io/assets/imagen-social-jopsan-barbara-2027.jpg">
   <meta property="og:image:type" content="image/jpeg">
-  <meta property="og:image:alt" content="Fotografía original de Jopsan y Bárbara mostrando sus anillos">
+  <meta property="og:image:width" content="1254">
+  <meta property="og:image:height" content="1254">
+  <meta property="og:image:alt" content="Jopsan y Bárbara · Sobre marfil con flores blancas y sello dorado J&B · 27 de febrero, Puerto Montt">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Jopsan &amp; Bárbara · Nos casamos">
   <meta name="twitter:description" content="27 de febrero de 2027 · Domos de Chamiza · Puerto Montt">
-  <meta name="twitter:image" content="https://jopsan-barbara.github.io/assets/novios-portada.jpg">
-  <title>Jopsan &amp; Bárbara · 27.02.2027</title>
+  <meta name="twitter:image" content="https://jopsan-barbara.github.io/assets/imagen-social-jopsan-barbara-2027.jpg">
+  <title>Jopsan &amp; Bárbara · Nuestra invitación</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
@@ -32,10 +80,72 @@
   <link rel="stylesheet" href="herbario-acuarela-2027.css?v=20261123-fotos-color-1">
   <link rel="stylesheet" href="herbario-fix-publicado-20261123.css?v=20261123-fotos-color-1">
   <link rel="stylesheet" href="rsvp-mejoras-20261123.css?v=2">
+  <link rel="stylesheet" href="herbario-florales-prueba.css?v=20261123-fotos-color-1">
+  <link rel="stylesheet" href="herbario-sobre-aprobado.css?v=20261123-oliva-fotografico-1">
+  <link rel="stylesheet" href="sobre-invitacion.css?v=20261123-restaurado2">
+  <link rel="stylesheet" href="sobre-musica.css?v=20261123-continuidad-1">
+  <link rel="stylesheet" href="sobre-transicion-cinematica.css?v=20261123-kaboom-1">
 </head>
-<body class="oliva-theme propuesta-organica">
+<body class="oliva-theme propuesta-organica flower-test is-defined sobre-bloqueado">
+
+  <section id="sobre-intro" class="sobre-intro" role="dialog" aria-modal="true" aria-labelledby="sobre-titulo">
+    <div class="sobre-intro__botanics" aria-hidden="true">
+      <span class="botanic--tl"></span><span class="botanic--tr"></span>
+      <span class="botanic--bl"></span><span class="botanic--br"></span>
+    </div>
+    <div class="sobre-intro__content">
+      <span class="sobre-intro__kicker">Una invitación especial para ti</span>
+      <h2 id="sobre-titulo" class="sobre-intro__title">Jopsan <span>&amp;</span> Bárbara</h2>
+      <p class="sobre-intro__date">Nos casamos · 27 de febrero de 2027</p>
+      <button type="button" id="sobre-abrir" class="sobre-intro__button" aria-label="Abrir el sobre y descubrir la invitación">
+        <span class="sobre-intro__scene" aria-hidden="true">
+          <span class="sobre-intro__envelope-back"></span>
+          <span class="sobre-intro__paper">
+            <span class="sobre-intro__paper-small">Estás invitado</span>
+            <span class="sobre-intro__paper-names">Jopsan &amp; Bárbara</span>
+            <span class="sobre-intro__paper-date">27 · 02 · 2027</span>
+          </span>
+          <span class="sobre-intro__side-left"></span>
+          <span class="sobre-intro__side-right"></span>
+          <span class="sobre-intro__pocket"></span>
+          <span class="sobre-intro__flap"></span>
+          <svg class="sobre-intro__seams" viewBox="0 0 340 470" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M 4 5 L 170 259 L 336 5"/>
+            <path d="M 4 465 L 170 259 L 336 465" opacity=".65"/>
+          </svg>
+          <span class="sobre-intro__ribbon"></span>
+          <span class="sobre-intro__seal">J<span>&amp;</span>B</span>
+        </span>
+      </button>
+      <p class="sobre-intro__help">Toca el sello para abrir tu invitación</p>
+      <button type="button" id="sobre-musica-activar" class="sobre-intro__music-start" aria-pressed="false">♫ Activar música</button>
+      <small id="sobre-musica-estado" class="sobre-intro__music-note" role="status" aria-live="polite" hidden></small>
+      <audio id="sobre-musica-audio" src="assets/sobre-cancion-0230-0309.mp3" preload="auto" aria-label="Nuestra canción"></audio>
+    </div>
+    <!-- Segunda capa teatral: aparece solamente cuando el invitado abre el sello. -->
+    <div class="sobre-cine" aria-hidden="true">
+      <div class="sobre-cine__halo"></div>
+      <div class="sobre-cine__card">
+        <span class="sobre-cine__card-kicker">La invitación está abierta</span>
+        <span class="sobre-cine__card-title">Jopsan &amp; Bárbara</span>
+        <span class="sobre-cine__card-rule"></span>
+        <span class="sobre-cine__card-date">27 de febrero de 2027</span>
+        <span class="sobre-cine__card-place">Domos de Chamiza · Puerto Montt</span>
+      </div>
+      <div class="sobre-cine__wash"></div>
+      <div class="sobre-cine__glint"></div>
+      <span class="sobre-cine__leaf"></span><span class="sobre-cine__leaf"></span><span class="sobre-cine__leaf"></span>
+      <span class="sobre-cine__leaf"></span><span class="sobre-cine__leaf"></span><span class="sobre-cine__leaf"></span>
+    </div>
+  </section>
+  <button id="sobre-repetir" class="sobre-repetir" type="button" hidden>Volver al inicio y escuchar</button>
+  <button id="sobre-musica-flotante" class="sobre-musica-flotante" type="button" aria-pressed="false" hidden>♫ Silenciar música</button>
+
   <a class="skip-link" href="#detalles">Saltar a los detalles</a>
-  <header class="hero romantic-hero" id="inicio">
+
+  <header class="hero romantic-hero" id="inicio" data-watercolor-arch="ivory">
+    <div class="floral-bouquet floral-bouquet--left" aria-hidden="true"></div>
+    <div class="floral-bouquet floral-bouquet--right" aria-hidden="true"></div>
     <nav class="nav container" aria-label="Navegación principal">
       <a class="brand" href="#inicio">J &amp; B</a>
       <a class="nav-link" href="#rsvp">Confirmar</a>
@@ -69,7 +179,9 @@
   </header>
 
   <main>
-    <section class="memories-strip" aria-label="Recuerdos de Jopsan y Bárbara">
+    <section class="memories-strip" aria-label="Recuerdos de Jopsan y Bárbara" data-watercolor-arch="foliage">
+    <div class="floral-bouquet floral-bouquet--left" aria-hidden="true"></div>
+    <div class="floral-bouquet floral-bouquet--right" aria-hidden="true"></div>
       <div class="container memories-heading">
         <div class="memories-heading-text"><p>UN POQUITO DE NUESTRA HISTORIA</p><span>Recuerdos que nos trajeron hasta aquí</span></div>
         <div class="memories-controls" aria-label="Controles del carrusel">
@@ -85,7 +197,9 @@
       </div>
     </section>
     <div class="herb-paper-seam" aria-hidden="true"></div>
-    <section class="section celebration" id="detalles">
+    <section class="section celebration" id="detalles" data-watercolor-arch="champagne">
+    <div class="floral-bouquet floral-bouquet--left" aria-hidden="true"></div>
+    <div class="floral-bouquet floral-bouquet--right" aria-hidden="true"></div>
       <div class="container celebration-layout">
         <div class="celebration-story">
           <p class="section-kicker">NUESTRA CELEBRACIÓN</p>
@@ -113,7 +227,9 @@
     </section>
 
     <div class="herb-paper-seam herb-paper-seam--sage" aria-hidden="true"></div>
-    <section class="section timing" id="cronograma" aria-label="Nuestro gran día"><div class="container narrow center"><p class="section-kicker">NUESTRO GRAN DÍA</p><h2 class="timing-title">El día que siempre recordaremos</h2><p class="timing-intro">Te esperamos el sábado 27 de febrero a las 14:30 h en Domos de Chamiza.</p></div><div class="timeline"><svg class="timeline-path" viewBox="0 0 440 940" preserveAspectRatio="none" aria-hidden="true"><path d="M220 40 C420 80 420 200 220 230 S20 380 220 420 S420 580 220 610 S20 770 220 800 L220 900" /></svg><ol><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 44V19l16-9 16 9v25M8 44h40M23 44V29h10v15M19 21h1m16 0h1"/><path d="M7 13l4 2m34 0 4-2M28 3v3"/></svg></div><div class="moment-copy"><span class="moment-number">01</span><h3>Llegada de los invitados</h3><p>14:30 h</p></div></li>
+    <section class="section timing" id="cronograma" aria-label="Nuestro gran día" data-watercolor-arch="foliage">
+    <div class="floral-bouquet floral-bouquet--left" aria-hidden="true"></div>
+    <div class="floral-bouquet floral-bouquet--right" aria-hidden="true"></div><div class="container narrow center"><p class="section-kicker">NUESTRO GRAN DÍA</p><h2 class="timing-title">El día que siempre recordaremos</h2><p class="timing-intro">Te esperamos el sábado 27 de febrero a las 14:30 h en Domos de Chamiza.</p></div><div class="timeline"><svg class="timeline-path" viewBox="0 0 440 940" preserveAspectRatio="none" aria-hidden="true"><path d="M220 40 C420 80 420 200 220 230 S20 380 220 420 S420 580 220 610 S20 770 220 800 L220 900" /></svg><ol><li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 44V19l16-9 16 9v25M8 44h40M23 44V29h10v15M19 21h1m16 0h1"/><path d="M7 13l4 2m34 0 4-2M28 3v3"/></svg></div><div class="moment-copy"><span class="moment-number">01</span><h3>Llegada de los invitados</h3><p>14:30 h</p></div></li>
 <li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="21" cy="31" r="12"/><circle cx="35" cy="31" r="12"/><path d="m16 14 5-6 5 6-5 5-5-5Z"/></svg></div><div class="moment-copy"><span class="moment-number">02</span><h3>Inicio de la ceremonia</h3><p>15:15 h</p></div></li>
 <li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13 8 16 4-7 19c-6 3-12 0-12-6l3-17Zm23 1 13 4-6 17c-5 3-11 0-11-6l4-15ZM16 32l-3 14m-6-1 12 3m18-16-3 13m-5-2 12 4M28 4l-1 4m5-3 1 3"/></svg></div><div class="moment-copy"><span class="moment-number">03</span><h3>Bienvenida, inicio del cóctel y discursos</h3><p>16:15 h</p></div></li>
 <li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="30" cy="28" r="17"/><circle cx="30" cy="28" r="11"/><path d="M6 9v15m5-15v15M6 18h5M9 24v23M51 9v38M51 9c-5 4-5 13 0 16"/></svg></div><div class="moment-copy"><span class="moment-number">04</span><h3>Inicio de la parrillada, comida y autoservicio</h3><p>18:00 h</p></div></li>
@@ -121,7 +237,9 @@
 <li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 38V12l22-5v25M22 19l22-5"/><ellipse cx="16" cy="39" rx="6" ry="5"/><ellipse cx="38" cy="33" rx="6" ry="5"/><path d="m7 10 2 3 4 1-4 2-2 4-1-4-3-2 3-1Z"/></svg></div><div class="moment-copy"><span class="moment-number">06</span><h3>¡Baile y merequetengue!</h3><p>20:30 h</p></div></li>
 <li class="timeline-item reveal"><div class="moment-icon"><svg class="" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 44V19l16-9 16 9v25M8 44h40M23 44V29h10v15M19 21h1m16 0h1"/><path d="M7 13l4 2m34 0 4-2M28 3v3"/></svg></div><div class="moment-copy"><span class="moment-number">07</span><h3>Fin de la fiesta. ¡Calabaza!</h3><p>00:00 h · domingo 28</p></div></li></ol></div></section>
     <div class="herb-paper-seam" aria-hidden="true"></div>
-    <section class="section dress reveal">
+    <section class="section dress reveal" data-watercolor-arch="ivory">
+    <div class="floral-bouquet floral-bouquet--left" aria-hidden="true"></div>
+    <div class="floral-bouquet floral-bouquet--right" aria-hidden="true"></div>
       <div class="container narrow center">
         <p class="section-kicker">DRESS CODE</p>
 
@@ -135,7 +253,9 @@
     </section>
 
     <div class="herb-paper-seam herb-paper-seam--sage" aria-hidden="true"></div>
-    <section class="section playlist reveal">
+    <section class="section playlist reveal" data-watercolor-arch="blush">
+    <div class="floral-bouquet floral-bouquet--left" aria-hidden="true"></div>
+    <div class="floral-bouquet floral-bouquet--right" aria-hidden="true"></div>
       <div class="container split align-center playlist-layout">
         <div>
           <p class="section-kicker">LA BANDA SONORA</p>
@@ -156,7 +276,9 @@
     </section>
 
     <div class="herb-paper-seam" aria-hidden="true"></div>
-    <section class="section gifts" id="regalos" aria-labelledby="gift-heading">
+    <section class="section gifts" id="regalos" aria-labelledby="gift-heading" data-watercolor-arch="foliage">
+    <div class="floral-bouquet floral-bouquet--left" aria-hidden="true"></div>
+    <div class="floral-bouquet floral-bouquet--right" aria-hidden="true"></div>
 <div class="gift-intro"><h2 id="gift-heading">Regalos</h2><p>Si quieres hacernos un regalo, preparamos esta lista de deseos con mucho cariño:</p></div>
 <div class="catalog" id="gift-catalog"><article class="gift" data-index="0"><div class="illustration"><img src="assets/gifts/teatro-sidney.webp" alt="" loading="lazy" decoding="async" width="520" height="520"></div><div class="gift-caption"><h3>Dos entradas al teatro de Sídney</h3><strong>$200.000</strong></div><div class="actions"><a class="pay" data-pay="teatro-sidney" hidden target="_blank" rel="noopener noreferrer">Regalar con Mercado Pago</a><a class="transfer" data-transfer="0" href="#datos-transferencia" aria-label="Transferir $200.000 por Dos entradas al teatro de Sídney">Prefiero transferir <span aria-hidden="true">→</span></a></div></article>
 <article class="gift" data-index="1"><div class="illustration"><img src="assets/gifts/sillon.webp" alt="" loading="lazy" decoding="async" width="520" height="520"></div><div class="gift-caption"><h3>Un sillón mediano para la casa</h3><strong>$150.000</strong></div><div class="actions"><a class="pay" data-pay="sillon" hidden target="_blank" rel="noopener noreferrer">Regalar con Mercado Pago</a><a class="transfer" data-transfer="1" href="#datos-transferencia" aria-label="Transferir $150.000 por Un sillón mediano para la casa">Prefiero transferir <span aria-hidden="true">→</span></a></div></article>
@@ -171,12 +293,16 @@
 <article class="gift" data-index="10"><div class="illustration"><img src="assets/gifts/boxers.webp" alt="" loading="lazy" decoding="async" width="520" height="520"></div><div class="gift-caption"><h3>Bóxers del Rayo McQueen para la luna de miel</h3><strong>$60.000</strong></div><div class="actions"><a class="pay" data-pay="boxers" hidden target="_blank" rel="noopener noreferrer">Regalar con Mercado Pago</a><a class="transfer" data-transfer="10" href="#datos-transferencia" aria-label="Transferir $60.000 por Bóxers del Rayo McQueen para la luna de miel">Prefiero transferir <span aria-hidden="true">→</span></a></div></article>
 <article class="gift" data-index="11"><div class="illustration"><img src="assets/gifts/catamaran.webp" alt="" loading="lazy" decoding="async" width="520" height="520"></div><div class="gift-caption"><h3>Un paseo romántico en catamarán</h3><strong>$50.000</strong></div><div class="actions"><a class="pay" data-pay="catamaran" hidden target="_blank" rel="noopener noreferrer">Regalar con Mercado Pago</a><a class="transfer" data-transfer="11" href="#datos-transferencia" aria-label="Transferir $50.000 por Un paseo romántico en catamarán">Prefiero transferir <span aria-hidden="true">→</span></a></div></article></div>
 
-<section class="bank-section" id="datos-transferencia" aria-labelledby="bankheading"><div class="bank-wrap"><div class="bank-intro"><div class="gift-kicker">Otra forma de regalar</div><h2 id="bankheading" style="font-size:clamp(1.95rem,3vw,2.65rem)!important;line-height:1.15!important;text-wrap:balance;">También puedes hacernos un regalo directamente en nuestra cuenta del valor que tu elijas.</h2><div id="selection" class="selection" aria-live="polite"></div></div><div class="bank-card"><h3>Datos para transferencia</h3><dl id="bank-details"><div><dt>Nombre</dt><dd>Bárbara Maldonado</dd></div><div><dt>RUT</dt><dd>20624217-5</dd></div><div><dt>Banco</dt><dd>BancoEstado</dd></div><div><dt>Tipo de cuenta</dt><dd>Cuenta Vista (CuentaRUT)</dd></div><div><dt>N° de cuenta</dt><dd>20624217</dd></div><div><dt>Correo</dt><dd>Bamh.3003@gmail.com</dd></div></dl><button class="copy" id="copy-bank" type="button">▢ &nbsp; Copiar datos bancarios</button><p class="feedback" id="copy-bank-status" role="status"></p></div></div></section>
+<section class="bank-section" id="datos-transferencia" aria-labelledby="bankheading" data-watercolor-arch="champagne">
+    <div class="floral-bouquet floral-bouquet--left" aria-hidden="true"></div>
+    <div class="floral-bouquet floral-bouquet--right" aria-hidden="true"></div><div class="bank-wrap"><div class="bank-intro"><div class="gift-kicker">Otra forma de regalar</div><h2 id="bankheading" style="font-size:clamp(1.95rem,3vw,2.65rem)!important;line-height:1.15!important;text-wrap:balance;">También puedes hacernos un regalo directamente en nuestra cuenta del valor que tu elijas.</h2><div id="selection" class="selection" aria-live="polite"></div></div><div class="bank-card"><h3>Datos para transferencia</h3><dl id="bank-details"><div><dt>Nombre</dt><dd>Bárbara Maldonado</dd></div><div><dt>RUT</dt><dd>20624217-5</dd></div><div><dt>Banco</dt><dd>BancoEstado</dd></div><div><dt>Tipo de cuenta</dt><dd>Cuenta Vista (CuentaRUT)</dd></div><div><dt>N° de cuenta</dt><dd>20624217</dd></div><div><dt>Correo</dt><dd>Bamh.3003@gmail.com</dd></div></dl><button class="copy" id="copy-bank" type="button">▢ &nbsp; Copiar datos bancarios</button><p class="feedback" id="copy-bank-status" role="status"></p></div></div></section>
 </section>
 <script src="gifts.js?v=20261123-minimal-regalos-1" defer></script>
 
     <div class="herb-paper-seam" aria-hidden="true"></div>
-    <section class="section rsvp" id="rsvp">
+    <section class="section rsvp" id="rsvp" data-watercolor-arch="ivory">
+    <div class="floral-bouquet floral-bouquet--left" aria-hidden="true"></div>
+    <div class="floral-bouquet floral-bouquet--right" aria-hidden="true"></div>
       <div class="container rsvp-layout reveal">
         <div class="rsvp-intro">
           <p class="section-kicker">CONFIRMACIÓN INDIVIDUAL</p>
@@ -212,7 +338,9 @@
     </section>
 
     <div class="herb-paper-seam herb-paper-seam--sage" aria-hidden="true"></div>
-    <section class="section faq reveal">
+    <section class="section faq reveal" data-watercolor-arch="blush">
+    <div class="floral-bouquet floral-bouquet--left" aria-hidden="true"></div>
+    <div class="floral-bouquet floral-bouquet--right" aria-hidden="true"></div>
       <div class="container narrow">
         <p class="section-kicker center">INFORMACIÓN ÚTIL</p>
         <h2 class="center">Preguntas frecuentes</h2>
@@ -253,8 +381,11 @@
 
   <script src="script.js?v=itinerario-1430"></script>
   <script src="gallery-data.js?v=galeria-20261123-fotos-15-2" defer></script>
+  <script src="propuestas-assets.js?v=20261122-1" defer></script>
   <script src="gallery.js?v=galeria-15-nueva-2-fix-rutas" defer></script>
-  <script src="forms-inline.js?v=20261123-dietary-followup-3" data-wedding-forms defer></script>
+  <script src="forms-inline.js?v=20261124-publicacion-herbario-1" data-wedding-forms defer></script>
+  <script src="sobre-musica.js?v=20261123-limpieza-1"></script>
+  <script src="sobre-invitacion.js?v=20261123-kaboom-1"></script>
 </body>
 </html>
 

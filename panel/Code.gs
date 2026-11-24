@@ -264,7 +264,7 @@ const LIST_NAMES={confirmed:'Confirmados',declined:'No asistirán',pending:'Pend
 function whatsappText(key){
   const list=whatsappLists[key]||[];
   return '*'+LIST_NAMES[key]+' ('+list.length+')*'+
-    (list.length?'\n\n'+list.map((value,index)=>(index+1)+'. '+value).join('\n'):'\n\nSin registros.');
+    (list.length?'\\n\\n'+list.map((value,index)=>(index+1)+'. '+value).join('\\n'):'\\n\\nSin registros.');
 }
 function renderWhatsAppLists(){
   whatsappLists=getWhatsAppLists();

@@ -1,18 +1,47 @@
-const PANEL_ALLOWED_ = ['scarriont@gmail.com','jopsan.a.v@gmail.com','bamh.3003@gmail.com'];
+// PANEL PRIVADO: la credencial NO se publica en GitHub ni en la invitación.
+// Se crea una sola vez en las Propiedades del script, desde el editor de Apps Script.
+const PANEL_TOKEN_PROPERTY_ = 'JB_PANEL_LINK_TOKEN';
 const PANEL_GUESTS_ = '1ovMgCRmxfnyhUZL69CINtlUW0TJeggHPOghDnIeubcg';
 const PANEL_ANSWERS_ = '1WVDs5uB8MjFG2TwyTrhEU5H5U_4hQrfyQRj3mtRxMTY';
 
-function authorize_() {
-  const email = String(Session.getActiveUser().getEmail() || '').trim().toLowerCase();
-  if (!email || !PANEL_ALLOWED_.includes(email)) throw new Error('Acceso restringido. Usa una de las cuentas autorizadas para este matrimonio.');
-  return email;
+function authorize_(received) {
+  const secret = PropertiesService.getScriptProperties().getProperty(PANEL_TOKEN_PROPERTY_);
+  const candidate = String(received || '').trim();
+  if (!secret || !candidate || candidate !== secret)
+    throw new Error('Enlace privado no autorizado.');
+  return 'Enlace privado de los novios';
 }
-function doGet() {
+
+// Ejecutar desde el editor una vez que la Web App esté publicada.
+// Devuelve el único enlace para Jopsan y Bárbara, sin contraseña adicional.
+// Una copia del enlace da acceso a la información: compartir únicamente con ellos.
+function obtenerEnlaceNovios() {
+  const properties = PropertiesService.getScriptProperties();
+  let token = properties.getProperty(PANEL_TOKEN_PROPERTY_);
+  if (!token) {
+    token = Utilities.getUuid().replace(/-/g,'') + Utilities.getUuid().replace(/-/g,'');
+    properties.setProperty(PANEL_TOKEN_PROPERTY_, token);
+  }
+  const url = ScriptApp.getService().getUrl();
+  if (!url) throw new Error('Despliega primero la aplicación web del panel y vuelve a ejecutar obtenerEnlaceNovios.');
+  const link = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'acceso=' + encodeURIComponent(token);
+  Logger.log('ENLACE PRIVADO PARA LOS NOVIOS: ' + link);
+  return link;
+}
+
+function doGet(e) {
+  const token = String(e && e.parameter && e.parameter.acceso || '');
   try {
-    authorize_();
-    return HtmlService.createHtmlOutput(PANEL_HTML_).setTitle('Jopsan y Bárbara · Panel de invitados');
+    authorize_(token);
+    // Apps Script muestra el HTML en un iframe de Google; el token se
+    // inyecta desde el servidor, nunca se obtiene de window.location.search.
+    const rendered = PANEL_HTML_.replace(
+      'const PANEL_ACCESS_TOKEN_ = "";',
+      'const PANEL_ACCESS_TOKEN_ = ' + JSON.stringify(token).replace(/</g,'\\u003c') + ';'
+    );
+    return HtmlService.createHtmlOutput(rendered).setTitle('Jopsan y Bárbara · Dashboard privado');
   } catch (_) {
-    return HtmlService.createHtmlOutput('<!doctype html><html lang="es"><meta name="viewport" content="width=device-width,initial-scale=1"><body style="font:18px Arial;padding:40px"><h1>Acceso restringido</h1><p>Ingresa con la cuenta de Google autorizada para este matrimonio.</p></body></html>').setTitle('Acceso restringido');
+    return HtmlService.createHtmlOutput('<!doctype html><html lang="es"><meta name="viewport" content="width=device-width,initial-scale=1"><body style="font:18px Arial;padding:40px"><h1>Acceso restringido</h1><p>Solicita a los novios el enlace privado del panel.</p></body></html>').setTitle('Acceso restringido');
   }
 }
 /* Conciliación para enlace único: evita contar dos veces a un invitado
@@ -128,8 +157,8 @@ function compile_(guests, answers) {
     missingIds:0
   };
 }
-function getDashboard() {
-  const viewer = authorize_();
+function getDashboard(accessToken) {
+  const viewer = authorize_(accessToken);
   const guests = SpreadsheetApp.openById(PANEL_GUESTS_).getSheetByName('Invitados').getRange(6,1,200,9).getDisplayValues();
   const book=SpreadsheetApp.openById(PANEL_ANSWERS_);
   const answerSheet=book.getSheetByName('Respuestas');
@@ -227,7 +256,8 @@ const PANEL_HTML_ = `<!doctype html><html lang="es"><head><meta name="viewport" 
   <p class="subtitle">Las respuestas se consolidan por nombre, tal como en el panel. Revisa las alertas de coincidencias ambiguas antes de compartir las listas.</p>
 </section>
 <div id="warnings"></div><section class="card"><h2>Detalle de invitados</h2><p class="meta" id="scope"></p><div class="table-wrap"><table><thead><tr><th>Invitación</th><th>Asistencia</th><th>Cupos</th><th>Confirmados</th><th>Información</th></tr></thead><tbody id="rows"></tbody></table></div><div class="empty" id="empty" hidden>No hay invitaciones que coincidan con estos filtros.</div></section>
-<p class="source">Fuentes: <a href="https://docs.google.com/spreadsheets/d/1ovMgCRmxfnyhUZL69CINtlUW0TJeggHPOghDnIeubcg/edit" target="_blank" rel="noopener">Invitados</a> y <a href="https://docs.google.com/spreadsheets/d/1WVDs5uB8MjFG2TwyTrhEU5H5U_4hQrfyQRj3mtRxMTY/edit" target="_blank" rel="noopener">Respuestas</a>. Gestión de invitaciones. Capacidad actual: 200 invitaciones.</p></main><script>
+<p class="source">Fuentes: <a href="https://docs.google.com/spreadsheets/d/1ovMgCRmxfnyhUZL69CINtlUW0TJeggHPOghDnIeubcg/edit" target="_blank" rel="noopener noreferrer">Invitados</a> y <a href="https://docs.google.com/spreadsheets/d/1WVDs5uB8MjFG2TwyTrhEU5H5U_4hQrfyQRj3mtRxMTY/edit" target="_blank" rel="noopener noreferrer">Respuestas</a>. Gestión de invitaciones. Capacidad actual: 200 invitaciones.</p></main><script>
+const PANEL_ACCESS_TOKEN_ = "";
 let snapshot=null;const $=id=>document.getElementById(id);const clean=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 function selectRows(){if(!snapshot)return[];const query=clean($('search').value),status=$('status').value,diet=$('diet').value;return snapshot.rows.filter(r=>(!status||r.status===status)&&(!query||clean([r.name,r.respondent,r.companions,r.song].join(' ')).includes(query))&&(!diet||(diet==='yes'?r.dietary:r.status==='Sí'&&!r.dietary)));}
 function text(tag,value,cls){const el=document.createElement(tag);el.textContent=value;if(cls)el.className=cls;return el;}
@@ -237,7 +267,7 @@ $('rows').replaceChildren();$('empty').hidden=rows.length>0;rows.forEach(r=>{con
 renderWhatsAppLists();
 $('warnings').replaceChildren();if(snapshot.unmatched)$('warnings').append(text('p',snapshot.unmatched+' respuestas sin invitación vinculada no se incluyen en los indicadores.','alert'));if(snapshot.repeated)$('warnings').append(text('p',snapshot.repeated+' respuestas repetidas por nombre se consolidaron para evitar contarlas dos veces. Verifica si son personas distintas con el mismo nombre.','alert'));if(snapshot.reviewNames&&snapshot.reviewNames.length)$('warnings').append(text('p','Respuestas a revisar: '+snapshot.reviewNames.join('; ')+'.','alert'));
 }
-function load(){if(!window.google||!google.script||!google.script.run){$('error').textContent='Esta vista debe abrirse desde su dirección privada de Google.';return;}$('refresh').disabled=true;$('error').textContent='';$('notice').textContent='Actualizando…';google.script.run.withSuccessHandler(data=>{snapshot=data;render();$('notice').textContent='Actualizado '+new Date(data.refreshedAt).toLocaleString('es-CL',{timeZone:'America/Santiago'})+' · '+data.viewer;$('refresh').disabled=false;}).withFailureHandler(error=>{$('error').textContent=error.message||'No se pudieron cargar las planillas.';$('notice').textContent=snapshot?'Se mantiene la última consulta; no se ha actualizado.':'Datos no disponibles.';$('refresh').disabled=false;}).getDashboard();}
+function load(){if(!window.google||!google.script||!google.script.run){$('error').textContent='Esta vista debe abrirse desde su dirección privada de Google.';return;}$('refresh').disabled=true;$('error').textContent='';$('notice').textContent='Actualizando…';google.script.run.withSuccessHandler(data=>{snapshot=data;render();$('notice').textContent='Actualizado '+new Date(data.refreshedAt).toLocaleString('es-CL',{timeZone:'America/Santiago'})+' · '+data.viewer;$('refresh').disabled=false;}).withFailureHandler(error=>{$('error').textContent=error.message||'No se pudieron cargar las planillas.';$('notice').textContent=snapshot?'Se mantiene la última consulta; no se ha actualizado.':'Datos no disponibles.';$('refresh').disabled=false;}).getDashboard(PANEL_ACCESS_TOKEN_);}
 const LIST_KEYS=['confirmed','declined','pending','songs'];
 let whatsappLists={confirmed:[],declined:[],pending:[],songs:[]};
 

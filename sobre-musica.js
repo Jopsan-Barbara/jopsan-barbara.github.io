@@ -51,12 +51,6 @@
     floating.textContent = muted ? '♫ Activar sonido' : '♫ Silenciar música';
     floating.setAttribute('aria-pressed', String(sounding && !muted));
 
-    const noteElement = document.getElementById('sobre-musica-nota');
-    if (noteElement) {
-      noteElement.textContent = finished
-        ? 'Terminó · vuelve al principio para escucharla'
-        : '36 segundos · sin repetición automática';
-    }
   }
 
   function seekStart() {
@@ -116,7 +110,7 @@
           if (id !== playRequest || finished) return;
           pending = false;
           updateControls();
-          note('Si tu navegador lo solicita, toca el sello o «Activar música».');
+          note('');
         });
       }
     } catch (_) {

@@ -16,12 +16,20 @@ El panel usa un proyecto Apps Script independiente. Actualizar ese proyecto con 
 
 La versión nueva concilia respuestas recibidas desde el enlace general con invitados previamente registrados por nombre completo, normalizado para diferencias de acentos y mayúsculas. Si un nombre es ambiguo, hay respuestas contradictorias o no se encuentra en la lista original, se informa al operador. Las respuestas repetidas se agrupan para no duplicar los indicadores, tomando la última válida de cada nombre; **dos invitados distintos con exactamente el mismo nombre necesitan revisión manual**.
 
+### Listas numeradas para WhatsApp
+
+La versión actual de `panel/Code.gs` incluye la sección **«Listas para WhatsApp»** con cuatro listas que se actualizan al pulsar **Actualizar**: Confirmados, No asistirán, Pendientes y Canciones solicitadas. Cada botón **«Copiar para WhatsApp»** copia el encabezado con total y una lista numerada desde el número 1. No se copian correos electrónicos ni teléfonos. Si el navegador restringe el portapapeles, aparece un cuadro para seleccionar el texto manualmente.
+
+La dirección del panel es la **URL privada `/exec` del proyecto de Apps Script del panel**, que se obtiene en **Implementar > Administrar implementaciones** dentro de ese proyecto. No corresponde al enlace público de GitHub Pages ni al endpoint de los formularios. **No se ha validado aquí una URL desplegada concreta**.
+
+Para que el correo del usuario esté disponible para `Session.getActiveUser().getEmail()`, configurar el despliegue y sus permisos de forma compatible con la autenticación por cuenta autorizada; validar con las cuentas de los novios y negar acceso a una cuenta no autorizada. Verificar también que los usuarios autorizados tengan los permisos requeridos para leer las hojas de origen. Nunca incluir contraseñas ni listas de invitados en código público, ni compartir la URL del panel en la invitación.
+
 ## 3. Prueba obligatoria antes de distribuir
 
 1. Abrir la invitación en una ventana privada, desde teléfono y escritorio, y comprobar que ambos formularios están visibles sin abrir enlaces externos.
 2. Registrar una asistencia «Sí» con un nombre de prueba y comprobar que aparece en la pestaña `Respuestas` de la planilla autorizada y en el panel privado. Repetir con una asistencia «No», y comprobar la clasificación.
-3. Registrar una canción y comprobar su aparición en la pestaña `Canciones` y en el panel.
-4. Comprobar que las respuestas repetidas no dupliquen personas y que el panel señale respuestas sin coincidencia inequívoca.
+3. Registrar una canción y comprobar su aparición en la pestaña `Canciones` y en el panel, tanto en el listado visible como en el texto copiado para WhatsApp.
+4. Comprobar que las respuestas repetidas no dupliquen personas y que el panel señale respuestas sin coincidencia inequívoca. Probar los cuatro botones de copia en computador y celular y verificar que los elementos copiados tengan numeración consecutiva.
 5. Verificar que el contador, la galería, el mapa, las caricaturas y los pagos muestran la experiencia esperada en móviles y desktop. No ejecutar pagos de prueba reales salvo que los novios lo autoricen.
 6. Identificar con precisión los registros de prueba y retirarlos solo desde las planillas correspondientes, sin tocar respuestas genuinas.
 

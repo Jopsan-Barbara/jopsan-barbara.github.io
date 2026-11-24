@@ -19,7 +19,7 @@ El formulario de asistencia admite respuestas «Sí» y «No» y debe cerrar el 
 - `gifts.js`: catálogo de **12 caricaturas y regalos**, con enlaces configurados para Mercado Pago, transferencia y acción de copiar datos. Las ilustraciones mantienen sus colores y archivos originales.
 - `forms-inline.js` y `rsvp-config.json`: formularios nativos visibles sin abrir una ventana. Cada envío genera un ID `public-UUID` compatible con la validación de Apps Script.
 - `integration/Code.gs`: servidor de formularios; procesa confirmaciones y canciones hacia Google Sheets.
-- `panel/Code.gs`: panel privado simplificado a asistencia y canciones, con botón para copiar la playlist y enviarla al DJ. Concilia por nombre completo normalizado; cuando existe un listado previo señala coincidencias ambiguas o nombres sin correspondencia. Sin nómina previa, acepta los registros generales sin exigir enlaces personalizados.
+- `panel/Code.gs`: **panel privado de los novios** con cuatro listas visibles y copiables para WhatsApp: **Confirmados, No asistirán, Pendientes y Canciones solicitadas**. Cada lista se muestra numerada y puede copiarse con encabezado y numeración consecutiva (`1. Nombre`, `2. Nombre`, etc.). Concilia por nombre completo normalizado y señala coincidencias ambiguas, cambios de respuesta o nombres sin correspondencia. Las listas son independientes de los filtros de la tabla y no incluyen correos ni teléfonos al copiarlas.
 - `integration/CREAR_FORMULARIOS.gs`: alternativa con Google Forms. No debe activarse al mismo tiempo que los formularios nativos sin revisar la configuración.
 
 ### Horario confirmado
@@ -34,6 +34,14 @@ Sábado 27 de febrero de 2027, llegada 14:30, ceremonia 15:15, cóctel y discurs
 - Móvil: navegación táctil, línea de tiempo compacta, tarjetas de regalos horizontales y formularios integrados.
 - Se verificaron por código los recursos referenciados, la sintaxis JavaScript, el balance de reglas CSS y casos de conciliación de invitados.
 - **Las pruebas estáticas no equivalen a una prueba visual en navegadores ni a un envío real a Google Sheets.** Validar ambos antes de compartir masivamente.
+
+## Consulta privada de respuestas para los novios
+
+Las confirmaciones y sugerencias de canciones se almacenan en Google Sheets. **No hay una página pública de GitHub Pages que muestre los datos**: los novios deben abrir la URL `/exec` del **proyecto independiente de Google Apps Script del panel**, después de desplegar la versión actualizada de `panel/Code.gs`. La dirección de implementación privada no se incluye en este repositorio.
+
+El panel cuenta con una sección **«Listas para WhatsApp»**, con cuatro pestañas visuales en tarjetas y un botón **«Copiar para WhatsApp»** en cada una. El texto copiado contiene el título, el total y los elementos numerados. Incluye asistentes confirmados (con cantidad de personas cuando corresponde), ausentes, pendientes y la lista de canciones para el DJ. Los registros se obtienen de las planillas conectadas; no hay datos de demostración. Si el navegador bloquea el portapapeles, el panel muestra un cuadro para seleccionar y copiar manualmente.
+
+**Activación pendiente:** publicar el código del panel desde la cuenta propietaria en Google Apps Script, confirmar el control de acceso por cuenta Google autorizada y verificar un envío real. Ver `integration/ACTIVAR.md`. Los cambios en GitHub no sustituyen esta publicación.
 
 ## Importante antes de enviar la invitación
 

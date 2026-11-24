@@ -7,24 +7,26 @@
   const replay = document.getElementById('sobre-repetir');
   if (!intro || !openButton || !replay) return;
 
-  // Sobre y Herbario están en este mismo documento: no navegar a otra URL.
-  // Así el elemento <audio> sigue vivo durante todo el recorrido.
+  // Sobre y Herbario son el mismo documento: la canción no se corta al avanzar.
   const otherElements = Array.from(document.body.children).filter(
     element => element !== intro && element !== replay && element.tagName !== 'SCRIPT'
   );
   const focusAfter = document.querySelector('.nav-link') || document.querySelector('.skip-link');
-  let timer = null;
-  let stageTimer = null;
+  const REVEAL_AT = 2530;
+  const FINISH_AT = 3770;
+
+  let revealTimer = null;
+  let finishTimer = null;
   let opening = false;
 
   function clearTimers() {
-    window.clearTimeout(timer);
-    window.clearTimeout(stageTimer);
-    timer = null;
-    stageTimer = null;
+    if (revealTimer !== null) window.clearTimeout(revealTimer);
+    if (finishTimer !== null) window.clearTimeout(finishTimer);
+    revealTimer = null;
+    finishTimer = null;
   }
 
-  function setBackgroundBlocked(blocked) {
+  function blockSite(blocked) {
     otherElements.forEach(element => { element.inert = blocked; });
     document.body.classList.toggle('sobre-bloqueado', blocked);
     document.documentElement.classList.toggle('sobre-bloqueado-html', blocked);
@@ -34,22 +36,24 @@
     clearTimers();
     opening = false;
     intro.hidden = false;
-    intro.classList.remove('is-opening', 'is-complete');
+    intro.classList.remove('is-opening', 'is-revealing', 'is-complete');
+    document.body.classList.remove('sobre-entrada-activa');
     replay.hidden = true;
     window.scrollTo({ top: 0, behavior: 'instant' });
-    setBackgroundBlocked(true);
+    blockSite(true);
     if (window.SobreMusica) window.SobreMusica.setHerbario(false);
     openButton.disabled = false;
     openButton.focus({ preventScroll: true });
   }
 
-  function closeIntro() {
+  function closeIntro(withEntrance = true) {
     clearTimers();
+    if (!withEntrance) document.body.classList.remove('sobre-entrada-activa');
     intro.hidden = true;
-    intro.classList.remove('is-opening', 'is-complete');
+    intro.classList.remove('is-opening', 'is-revealing', 'is-complete');
     openButton.disabled = false;
     opening = false;
-    setBackgroundBlocked(false);
+    blockSite(false);
     replay.hidden = false;
     replay.textContent = 'Volver al inicio y escuchar';
     if (window.SobreMusica) window.SobreMusica.setHerbario(true);
@@ -58,24 +62,30 @@
 
   function beginOpening() {
     if (opening) return;
-    // El toque en el sello puede habilitar la música en Safari/Chrome.
-    // Nunca la silenciamos ni la detenemos por abrir el sobre.
+    // El primer toque en el sello también habilita el audio cuando autoplay falla.
     if (window.SobreMusica) window.SobreMusica.playFromGesture();
     opening = true;
     openButton.disabled = true;
+
+    // Accesibilidad: sin flashes, ampliaciones ni movimiento forzado.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      closeIntro();
+      closeIntro(false);
       return;
     }
+
+    // Primero el sello, luego la carta, finalmente se descubre la web.
+    document.body.classList.add('sobre-entrada-activa');
     intro.classList.add('is-opening');
-    stageTimer = window.setTimeout(() => intro.classList.add('is-complete'), 3030);
-    timer = window.setTimeout(closeIntro, 3730);
+    revealTimer = window.setTimeout(() => {
+      intro.classList.add('is-revealing');
+    }, REVEAL_AT);
+    finishTimer = window.setTimeout(() => closeIntro(true), FINISH_AT);
   }
 
   openButton.addEventListener('click', beginOpening);
   replay.addEventListener('click', () => {
-    // La repetición SOLO ocurre al elegir volver al inicio.
     showIntro();
+    // Solo se vuelve a reproducir al regresar voluntariamente al inicio.
     if (window.SobreMusica) window.SobreMusica.resetAndPlay();
   });
 
@@ -85,7 +95,7 @@
   intro.addEventListener('keydown', event => {
     if (event.key === 'Escape') {
       event.preventDefault();
-      closeIntro();
+      closeIntro(false);
     }
     if (event.key === 'Tab' && !opening) {
       const first = openButton;
@@ -100,6 +110,6 @@
     }
   });
 
-  setBackgroundBlocked(true);
+  blockSite(true);
   openButton.focus({ preventScroll: true });
 })();

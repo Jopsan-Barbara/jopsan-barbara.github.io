@@ -35,7 +35,6 @@
     };
     form.querySelectorAll('input[name="attends"]').forEach(radio => radio.addEventListener('change', sync));
     sync();
-    return sync;
   }
   for (const form of forms) {
     const kind = form.dataset.kind;
@@ -44,39 +43,12 @@
     let saving = false;
     let completed = false;
     let requestId = '';
-    let syncDiet = () => {};
-    let another = null;
-    const back = form.querySelector('.post-confirm-link');
     if (kind === 'public-rsvp') {
-      syncDiet = configureDiet(form);
+      configureDiet(form);
       if (Date.now() >= cutoff) {
         form.replaceChildren(document.createTextNode('El plazo de confirmación de asistencia ha finalizado.'));
         continue;
       }
-    }
-    if (kind === 'public-rsvp') {
-      another = document.createElement('button');
-      another.type = 'button';
-      another.className = 'form-other-guest';
-      another.textContent = 'Registrar a otra persona autorizada';
-      another.hidden = true;
-      form.append(another);
-      another.addEventListener('click', () => {
-        if (saving) return;
-        const email = form.elements.namedItem('email')?.value || '';
-        form.querySelectorAll('input, textarea').forEach(input => { input.disabled = false; });
-        form.reset();
-        const emailInput = form.elements.namedItem('email');
-        if (emailInput) emailInput.value = email;
-        syncDiet();
-        completed = false;
-        requestId = '';
-        if (button) { button.disabled = false; button.textContent = 'Enviar confirmación'; }
-        if (back) back.hidden = true;
-        another.hidden = true;
-        message(form, '');
-        form.elements.namedItem('fullName')?.focus();
-      });
     }
     form.addEventListener('submit', async event => {
       event.preventDefault();
@@ -120,13 +92,15 @@
             result.requestId !== requestId || result.kind !== kind) {
           throw new Error(result?.message || 'No se pudo confirmar el registro.');
         }
-        message(form, result.message || 'Respuesta registrada correctamente.');
+        message(form, kind === 'public-rsvp'
+          ? 'Tu respuesta quedó registrada correctamente. ¡Gracias!'
+          : (result.message || 'Tu canción quedó registrada. ¡Gracias!'));
         if (kind === 'public-rsvp') {
           completed = true;
-          if (button) button.textContent = 'Respuesta registrada';
-          form.querySelectorAll('input, textarea').forEach(input => {input.disabled = true;});
-          if (back) back.hidden = false;
-          if (another) another.hidden = false;
+          if (button) button.hidden = true;
+          form.querySelectorAll('input, textarea').forEach(input => { input.disabled = true; });
+          const status = form.querySelector('.form-status');
+          if (status) status.dataset.success = 'true';
         } else {
           form.reset();
           requestId = '';

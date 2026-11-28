@@ -148,3 +148,41 @@ body.oliva-theme.propuesta-organica #regalos .gift-intro>p{
 .wedding-form .form-other-guest[hidden]{display:none!important}
 .wedding-form .form-other-guest:hover{background:#e9eddf}
 .wedding-form .form-other-guest:focus-visible{outline:2px solid #637c57;outline-offset:3px}
+
+/* Confirmación integrada y sin acciones redundantes; el correo tiene el mismo campo editorial que el nombre. */
+body.oliva-theme .wedding-form input[type="email"]{
+  box-sizing:border-box;
+  display:block;
+  width:100%;
+  min-width:0;
+  max-width:100%;
+  min-height:49px;
+  margin:0;
+  padding:12px 14px;
+  border:1px solid #d3d2c5;
+  border-radius:4px;
+  background:#fffdf9;
+  color:#374032;
+  font:400 16px/1.2 'DM Sans','Inter',Arial,sans-serif;
+  box-shadow:none;
+}
+body.oliva-theme .wedding-form input[type="email"]:focus-visible{
+  outline:2px solid #8f9c6d;
+  outline-offset:2px;
+  border-color:#65744c;
+}
+body.oliva-theme .wedding-form .form-submit[hidden]{display:none!important}
+body.oliva-theme .wedding-form .form-status[data-success="true"]{
+  box-sizing:border-box;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:54px;
+  padding:14px 17px;
+  border:1px solid #9cae8d;
+  border-radius:5px;
+  background:#eef1e6;
+  color:#3d5c3a;
+  font:600 14px/1.5 'DM Sans','Inter',Arial,sans-serif;
+  text-align:center;
+}

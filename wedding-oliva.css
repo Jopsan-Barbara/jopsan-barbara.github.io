@@ -2555,3 +2555,14 @@ body.oliva-theme .playlist .song-card .wedding-form{margin-top:13px}
  .wedding-form .choice{min-height:49px;padding:9px 10px;font-size:12px}
 }
 @media(max-width:355px){.wedding-form .choices{grid-template-columns:1fr}}
+
+/* El iframe de transporte se crea como hermano del formulario, no hijo:
+   oculta las páginas técnicas de Apps Script sin afectar la operación POST. */
+iframe.form-transport{
+  position:fixed!important;left:-10000px!important;top:0!important;
+  display:block!important;width:1px!important;height:1px!important;
+  min-width:0!important;min-height:0!important;
+  margin:0!important;padding:0!important;border:0!important;
+  overflow:hidden!important;clip-path:inset(50%)!important;
+  opacity:0!important;visibility:hidden!important;pointer-events:none!important;
+}

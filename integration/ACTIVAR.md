@@ -36,3 +36,12 @@ Para que el correo del usuario esté disponible para `Session.getActiveUser().ge
 **Cierre de confirmaciones:** 31 de enero de 2027 a las 23:59, hora de Chile. Las canciones no se cierran automáticamente con RSVP.
 
 **Seguridad:** nunca publicar la planilla privada completa ni incrustar el panel de administración en la invitación. El panel requiere una cuenta Google autorizada. El enlace público no comprueba por sí solo la identidad de los invitados ni los cupos personales.
+
+
+## Error de confirmación detectado el 28 de noviembre de 2026
+
+El mensaje **«No se encontró la función de la secuencia de comandos: doPost»** en la URL de Google Apps Script significa que la **implementación publicada** no reconoce dicha función. El código correcto **ya existe en `integration/Code.gs`** con `doPost`, `submitPublicRsvp` y `submitPublicSong`; **no basta con modificar GitHub**.
+
+Para corregirlo, identifica el proyecto de Apps Script asociado a la URL `endpoint` de `rsvp-config.json`, reemplaza su archivo `Code.gs` por el contenido actualizado de `integration/Code.gs`, guarda y accede a **Implementar > Administrar implementaciones > Editar > Nueva versión > Implementar**. Mantén la URL `/exec` existente siempre que corresponda al mismo proyecto; en caso de una implementación nueva, actualiza el `endpoint` del JSON. Comprueba enviando una asistencia y una canción, y verifica que ambas aparecen en Sheets antes de distribuir el enlace.
+
+El sitio ahora **oculta el iframe técnico de transporte**, que antes aparecía visualmente en la confirmación. Un fallo o un tiempo de espera se informa como envío no confirmado; **no se presenta como respuesta registrada**.

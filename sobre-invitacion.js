@@ -55,7 +55,7 @@
     opening = false;
     blockSite(false);
     replay.hidden = false;
-    replay.textContent = 'Volver al inicio y escuchar';
+    replay.setAttribute('aria-label', 'Volver al inicio y escuchar');
     if (window.SobreMusica) window.SobreMusica.setHerbario(true);
     if (focusAfter) focusAfter.focus({ preventScroll: true });
   }

@@ -25,7 +25,7 @@
   function configureDiet(form) {
     const question = form.querySelector('[data-dietary-question]');
     const dietary = form.querySelector('textarea[name="diet"]');
-    if (!dietary) return;
+    if (!dietary) return () => {};
     const sync = () => {
       const attendance = form.querySelector('input[name="attends"]:checked')?.value || '';
       if (question) question.hidden = false;
@@ -35,6 +35,7 @@
     };
     form.querySelectorAll('input[name="attends"]').forEach(radio => radio.addEventListener('change', sync));
     sync();
+    return sync;
   }
   for (const form of forms) {
     const kind = form.dataset.kind;
@@ -43,12 +44,39 @@
     let saving = false;
     let completed = false;
     let requestId = '';
+    let syncDiet = () => {};
+    let another = null;
+    const back = form.querySelector('.post-confirm-link');
     if (kind === 'public-rsvp') {
-      configureDiet(form);
+      syncDiet = configureDiet(form);
       if (Date.now() >= cutoff) {
         form.replaceChildren(document.createTextNode('El plazo de confirmación de asistencia ha finalizado.'));
         continue;
       }
+    }
+    if (kind === 'public-rsvp') {
+      another = document.createElement('button');
+      another.type = 'button';
+      another.className = 'form-other-guest';
+      another.textContent = 'Registrar a otra persona autorizada';
+      another.hidden = true;
+      form.append(another);
+      another.addEventListener('click', () => {
+        if (saving) return;
+        const email = form.elements.namedItem('email')?.value || '';
+        form.querySelectorAll('input, textarea').forEach(input => { input.disabled = false; });
+        form.reset();
+        const emailInput = form.elements.namedItem('email');
+        if (emailInput) emailInput.value = email;
+        syncDiet();
+        completed = false;
+        requestId = '';
+        if (button) { button.disabled = false; button.textContent = 'Enviar confirmación'; }
+        if (back) back.hidden = true;
+        another.hidden = true;
+        message(form, '');
+        form.elements.namedItem('fullName')?.focus();
+      });
     }
     form.addEventListener('submit', async event => {
       event.preventDefault();
@@ -61,6 +89,7 @@
       const payload = {kind, requestId, website: ''};
       if (kind === 'public-rsvp') {
         payload.fullName = form.elements.namedItem('fullName')?.value.trim() || '';
+        payload.email = form.elements.namedItem('email')?.value.trim() || '';
         payload.attends = form.querySelector('input[name="attends"]:checked')?.value || '';
         payload.diet = form.elements.namedItem('diet')?.value.trim() || '';
       } else {
@@ -96,8 +125,8 @@
           completed = true;
           if (button) button.textContent = 'Respuesta registrada';
           form.querySelectorAll('input, textarea').forEach(input => {input.disabled = true;});
-          const back = form.querySelector('.post-confirm-link');
           if (back) back.hidden = false;
+          if (another) another.hidden = false;
         } else {
           form.reset();
           requestId = '';

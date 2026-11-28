@@ -55,12 +55,76 @@
   }
 
   function backupLink(form, kind) {
+    // Enlaces alternativos de Apps Script pueden apuntar a una implementación
+    // anterior; no mostrarlos como solución verificada a un fallo de doPost.
     const anchor = form.querySelector('.form-backup');
-    if (!anchor || !endpoint) return;
-    const url = new URL(endpoint);
-    url.searchParams.set('view', kind);
-    anchor.href = url.href;
-    anchor.hidden = false;
+    if (anchor) anchor.hidden = true;
+  }
+
+  function manualMessage(form, kind) {
+    if (kind === 'public-song') {
+      const song = String(form.querySelector('[name="song"]')?.value || '').trim();
+      return '*Canción sugerida · Matrimonio Jopsan y Bárbara*\n\n'
+        + song + '\n\n'
+        + '(Respuesta enviada manualmente por WhatsApp; no registrada automáticamente en la web.)';
+    }
+    const name = String(form.querySelector('[name="fullName"]')?.value || '').trim();
+    const attends = String(form.querySelector('[name="attends"]:checked')?.value || '').trim();
+    const dietary = attends === 'Sí' ? String(form.querySelector('[name="diet"]')?.value || '').trim() : '';
+    return '*Confirmación · Matrimonio Jopsan y Bárbara*\n\n'
+      + 'Nombre: ' + name + '\n'
+      + 'Asistencia: ' + (attends === 'Sí' ? 'Sí, asistiré' : 'No podré asistir') + '\n'
+      + (attends === 'Sí' ? 'Alergias o restricciones: ' + (dietary || 'Ninguna') + '\n' : '')
+      + '\n(Respuesta enviada manualmente por WhatsApp; no registrada automáticamente en la web.)';
+  }
+
+  function setManualFallback(form, visible) {
+    const kind = form.dataset.kind;
+    let area = form.parentElement.querySelector('.wedding-manual-fallback[data-kind="' + kind + '"]');
+    if (!area && visible) {
+      area = document.createElement('div');
+      area.className = 'wedding-manual-fallback';
+      area.dataset.kind = kind;
+      area.innerHTML = '<p>Si Google no registra la respuesta, puedes copiarla y enviarla directamente a los novios por WhatsApp. <strong>Este método no actualiza la planilla automáticamente.</strong></p>'
+        + '<button type="button" class="wedding-manual-copy">Copiar para WhatsApp</button>'
+        + '<p class="wedding-manual-feedback" role="status" aria-live="polite"></p>'
+        + '<textarea class="wedding-manual-text" readonly hidden aria-label="Respuesta para copiar manualmente"></textarea>';
+      form.insertAdjacentElement('afterend', area);
+      area.querySelector('.wedding-manual-copy').addEventListener('click', async () => {
+        const content = manualMessage(form, kind);
+        const feedback = area.querySelector('.wedding-manual-feedback');
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(content);
+          } else {
+            const temp = document.createElement('textarea');
+            temp.value = content;
+            temp.style.position = 'fixed';
+            temp.style.left = '-9999px';
+            document.body.append(temp);
+            temp.select();
+            if (!document.execCommand('copy')) throw Error('Clipboard unavailable');
+            temp.remove();
+          }
+          feedback.textContent = 'Respuesta copiada. Abre WhatsApp, elige a los novios y pégala en el chat.';
+          area.querySelector('.wedding-manual-text').hidden = true;
+        } catch (_) {
+          const field = area.querySelector('.wedding-manual-text');
+          field.value = content;
+          field.hidden = false;
+          field.focus();
+          field.select();
+          feedback.textContent = 'Selecciona y copia el mensaje para enviarlo por WhatsApp.';
+        }
+      });
+    }
+    if (area) {
+      area.hidden = !visible;
+      if (visible) {
+        const feedback = area.querySelector('.wedding-manual-feedback');
+        if (feedback) feedback.textContent = '';
+      }
+    }
   }
 
   function finish(form, text, ok) {
@@ -71,6 +135,7 @@
     const button = form.querySelector('.form-submit');
     if (button) button.disabled = !!ok && state.kind === 'public-rsvp';
     message(form, text, !ok);
+    setManualFallback(form, !ok);
     if (ok) {
       const fallback = form.querySelector('.form-backup');
       if (fallback) fallback.hidden = true;
@@ -120,11 +185,13 @@
       event.preventDefault();
       if (state.pending || !form.reportValidity()) return;
       if (!endpoint) {
-        message(form, 'No se pudo conectar con el registro de respuestas. Inténtalo más tarde.', true);
+        message(form, 'No se pudo conectar con el registro automático. Puedes compartir tu respuesta con los novios por WhatsApp.', true);
+        setManualFallback(form, true);
         return;
       }
       const button = form.querySelector('.form-submit');
       if (button) button.disabled = true;
+      setManualFallback(form, false);
       state.pending = true;
       // Reutilizamos el identificador si falló el acuse: evita duplicar respuestas.
       state.id = state.id || newId();
@@ -190,5 +257,8 @@
           !/^\/macros\/s\/[\w-]+\/exec$/.test(url.pathname)) throw Error('Endpoint');
       endpoint = url.href;
     })
-    .catch(() => { forms.forEach(form => message(form, 'El registro no está disponible temporalmente.', true)); });
+    .catch(() => { forms.forEach(form => {
+      message(form, 'El registro automático no está disponible. Envía tu respuesta manualmente por WhatsApp.', true);
+      setManualFallback(form, true);
+    }); });
 })();

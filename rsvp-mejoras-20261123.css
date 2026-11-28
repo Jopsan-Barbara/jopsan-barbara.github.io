@@ -99,3 +99,46 @@ body.oliva-theme.propuesta-organica #regalos .gift-intro>p{
   margin:0 auto!important;
   line-height:1.65;
 }
+
+
+/* Copia manual por WhatsApp: alternativa cuando falla Google Apps Script. */
+.wedding-manual-fallback {
+  margin:15px 0 5px;
+  padding:17px 18px;
+  border:1px solid rgba(99,120,83,.3);
+  border-radius:9px;
+  background:#f7f5ec;
+  color:#455541;
+  box-shadow:0 3px 14px rgba(48,60,42,.06);
+  font:500 13px/1.55 'DM Sans',Arial,sans-serif;
+}
+.wedding-manual-fallback[hidden],.wedding-manual-text[hidden]{display:none!important}
+.wedding-manual-fallback p{margin:0 0 12px}
+.wedding-manual-fallback .wedding-manual-copy{
+  min-height:42px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #617454;
+  border-radius:999px;
+  padding:10px 18px;
+  background:#617454;
+  color:#fffdf5;
+  cursor:pointer;
+  font:600 13px/1.4 'DM Sans',Arial,sans-serif;
+}
+.wedding-manual-fallback .wedding-manual-copy:hover{background:#4d6149}
+.wedding-manual-fallback .wedding-manual-copy:focus-visible{outline:2px solid #617454;outline-offset:3px}
+.wedding-manual-fallback .wedding-manual-feedback{margin:9px 0 0;color:#435c42}
+.wedding-manual-fallback .wedding-manual-text{
+  margin-top:10px;
+  width:100%;
+  min-height:130px;
+  resize:vertical;
+  border:1px solid #bec8b3;
+  border-radius:5px;
+  padding:12px;
+  font:13px/1.5 'DM Sans',Arial,sans-serif;
+  color:#455541;
+  background:#fffdfa;
+}

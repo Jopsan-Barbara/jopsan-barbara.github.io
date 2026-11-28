@@ -186,3 +186,43 @@ body.oliva-theme .wedding-form .form-status[data-success="true"]{
   font:600 14px/1.5 'DM Sans','Inter',Arial,sans-serif;
   text-align:center;
 }
+
+/* Cierre automático de confirmaciones: solo asistencia, nunca canciones. */
+body.oliva-theme .rsvp-closed{
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  width:100%;
+  min-height:260px;
+  padding:clamp(22px,3vw,36px) 16px;
+  border:1px solid #ded9c7;
+  border-radius:4px;
+  background:linear-gradient(160deg,#f9f7ef 0%,#f3f1e6 100%);
+  color:#40533b;
+  text-align:center;
+}
+body.oliva-theme .rsvp-closed__eyebrow{
+  display:block;
+  color:#697b5b;
+  font:700 11px/1.6 'DM Sans',Arial,sans-serif;
+  letter-spacing:.17em;
+}
+body.oliva-theme .rsvp-closed h3{
+  margin:0;
+  color:#36533b;
+  font:400 clamp(1.9rem,3vw,2.5rem)/1.12 'Cormorant Garamond',Georgia,serif;
+}
+body.oliva-theme .rsvp-closed p{
+  margin:0;
+  max-width:35ch;
+  font:400 14px/1.7 'DM Sans',Arial,sans-serif;
+  color:#485745;
+}
+body.oliva-theme .rsvp-closed strong{font-weight:700}
+@media(max-width:480px){
+  body.oliva-theme .rsvp-closed{min-height:230px;padding:26px 16px}
+  body.oliva-theme .rsvp-closed p{font-size:13px}
+}
